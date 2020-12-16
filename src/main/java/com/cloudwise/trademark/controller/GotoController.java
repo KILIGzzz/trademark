@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("goto")
 public class GotoController {
 
-    @GetMapping("toShow")
+    @GetMapping("toHome")
     public String toShow() {
         return "home";
     }

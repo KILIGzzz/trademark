@@ -24,4 +24,9 @@ public class GotoController {
     public String toLogin() {
         return "login";
     }
+
+    @GetMapping("toDept")
+    public String toDept() {
+        return "dept";
+    }
 }

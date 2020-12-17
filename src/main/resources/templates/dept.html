@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>后台布局</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <script src="/layui/layui.js"></script>
+</head>
+<body class="layui-layout-body">
+<!--添加功能的form-->
+<form class="layui-form" action="" id="insertDeptForm"
+      style="display: none;margin-right: 40px;margin-top: 20px">
+    <div class="layui-form-item">
+        <label class="layui-form-label">部门名称</label>
+        <div class="layui-input-block">
+            <input type="text" name="deptName" autocomplete="off" placeholder="请输入部门名称"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">排序</label>
+        <div class="layui-input-block">
+            <input type="text" name="orderNum" autocomplete="off" placeholder="请输入排序"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">状态</label>
+        <div class="layui-input-block">
+            <input type="checkbox" checked="" name="status" lay-skin="switch" lay-filter="switchStatus"
+                   lay-text="可用|不可用">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="insertDeptFilter">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+<script>
+    layui.use('form', function () {
+        var form = layui.form;
+        //监听提交
+        form.on('submit(insertDeptFilter)', function (data) {
+            layer.msg(JSON.stringify(data.field));
+            return false;
+        });
+    });
+</script>
+
+<!--编辑功能的form-->
+<form class="layui-form" action="" id="updateDeptForm" lay-filter="updateDeptForm"
+      style="display: none;margin-right: 40px;margin-top: 20px">
+    <div class="layui-form-item">
+        <label class="layui-form-label">部门名称</label>
+        <div class="layui-input-block">
+            <input type="text" name="deptName" autocomplete="off" placeholder="请输入部门名称"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">排序</label>
+        <div class="layui-input-block">
+            <input type="text" name="orderNum" autocomplete="off" placeholder="请输入排序"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">状态</label>
+        <div class="layui-input-block">
+            <input type="checkbox" checked="" name="status" lay-skin="switch" lay-filter="switchStatus"
+                   lay-text="可用|不可用">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="updateDeptFilter">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+<script>
+    layui.use('form', function () {
+        var form = layui.form;
+        //监听提交
+        form.on('submit(updateDeptFilter)', function (data) {
+            layer.msg(JSON.stringify(data.field));
+            return false;
+        });
+    });
+</script>
+<!--顶部搜索框-->
+<form class="layui-form" action="" style="margin-top: 10px">
+    <div class="layui-inline">
+        <label class="layui-form-label">部门名称:</label>
+        <div class="layui-input-inline">
+            <input type="text" name="deptname" autocomplete="off" placeholder="部门名称" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-inline">
+        <label class="layui-form-label">创建人:</label>
+        <div class="layui-input-inline">
+            <input type="text" name="createby" autocomplete="off" placeholder="创建人" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-inline">
+        <label class="layui-form-label">修改人:</label>
+        <div class="layui-input-inline">
+            <input type="text" name="updateby" autocomplete="off" placeholder="修改人" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-inline">
+        <div class="layui-input-inline">
+            <button class="layui-btn" lay-submit lay-filter="searchFilter">搜索</button>
+            <button type="reset" class="layui-btn layui-btn-primary" id="myButton">重置</button>
+        </div>
+    </div>
+</form>
+<table id="showDept" lay-filter="deptFilter"></table>
+
+</body>
+<!--实现顶部添加dept功能-->
+<script type="text/html" id="deptToolbar">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-xs" lay-event="addDept"><i class="layui-icon layui-icon-add-1"></i>
+        </button>
+        <button class="layui-btn layui-btn-danger layui-btn-xs" lay-event="deleteDepts"><i
+                class="layui-icon layui-icon-delete"></i></button>
+    </div>
+</script>
+<!--实现部门管理操作功能按钮-->
+<script type="text/html" id="deptBar">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script>
+    layui.use(['table', 'layer', 'jquery', 'form'], function () {
+        var table = layui.table;
+        var layer = layui.layer;
+        var $ = layui.jquery;
+        var form = layui.form;
+
+        var deptTable = table.render({
+            elem: '#showDept'
+            , url: '/dept/selectAll' //数据接口
+            , toolbar: '#deptToolbar' //开启头部工具栏，并为其绑定左侧模板
+            , defaultToolbar: ['filter', 'exports', 'print']
+            , title: 'deptTable'
+            , page: true
+            , limit: 10
+            , cols: [
+                [ //表头
+                    {type: 'checkbox', fixed: 'left'}
+                    , {field: 'deptId', title: '编号', width: 80, sort: true, fixed: true}
+                    , {field: 'deptName', title: '部门名称', width: 100}
+                    , {field: 'orderNum', title: '排序', width: 80, sort: true}
+                    , {field: 'status', title: '状态', width: 80}
+                    , {field: 'createBy', title: '创建人', width: 80, sort: true}
+                    , {field: 'createTime', title: '创建时间', width: 200, sort: true}
+                    , {field: 'updateBy', title: '修改人', width: 100}
+                    , {field: 'updateTime', title: '修改时间', width: 200, sort: true}
+                    , {fixed: 'right', title: '操作', toolbar: '#deptBar', width: 120}
+                ]
+            ]
+        });
+        //监听行工具事件
+        table.on('tool(deptFilter)', function (obj) {
+            var data = obj.data //获得当前行数据
+                , layEvent = obj.event; //获得 lay-event 对应的值
+            if (layEvent === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    //删除数据库中的数据
+                    $.ajax({
+                        url: "/dept/deleteById",
+                        type: "PUT",
+                        dataType: "JSON",
+                        data: {deptId: data.deptId},
+                        success: function (ret) {
+                            if (ret.code == 0) {
+                                //刷新表格数据
+                                deptTable.reload({
+                                    page: {
+                                        curr: 1 //重新从第 1 页开始
+                                    }
+                                });
+                                layer.msg(ret.msg, {icon: 6});
+                            } else {
+                                layer.msg(ret.msg, {icon: 5});
+                            }
+
+                        }
+                    })
+                    layer.close(index);
+                    //向服务端发送删除指令
+                });
+            } else if (layEvent === 'edit') {
+                form.val('updateDeptForm', {
+                    'deptName': data.deptName,
+                    'orderNum': data.orderNum,
+                    'status': data.status,
+                });
+                layer.open({
+                    title: '编辑部门',
+                    type: 1,
+                    area: ['500px', '500px'],
+                    content: $("#updateDeptForm")//这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+                });
+            }
+        });
+
+        //form表单实现更新功能
+        form.on('submit(updateDeptFilter)', function (data) {
+            if (data.field.status === 'on') {
+                data.field.status = 0;
+            } else {
+                data.field.status = 1;
+            }
+            //提交表单数据
+            $.ajax({
+                url: "/dept/updateDept",
+                type: "PUT",
+                dataType: "JSON",
+                data: data.field,
+                success: function (ret) {
+                    if (ret.code == 0) {
+                        //关闭对话框
+                        layer.closeAll();
+                        //刷新表格数据
+                        deptTable.reload({
+                            page: {
+                                curr: 1 //重新从第 1 页开始
+                            }
+                        });
+                        layer.msg(ret.msg, {icon: 6});
+                    } else {
+                        layer.msg(ret.msg, {icon: 5});
+                    }
+
+                }
+            })
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+
+        //监听头工具栏事件
+        table.on('toolbar(deptFilter)', function (obj) {
+            var checkStatus = table.checkStatus(obj.config.id)
+                , data = checkStatus.data; //获取选中的数据
+            switch (obj.event) {
+                case 'addDept':
+                    layer.open({
+                        title: '添加部门',
+                        type: 1,
+                        area: ['500px', '450px'],
+                        content: $("#insertDeptForm")
+                    });
+                    break;
+                case 'deleteDepts':
+                    if (data.length === 0) {
+                        layer.msg('请选择一行');
+                    } else {
+                        layer.confirm('真的删除行么', function () {
+                            //for循环收集所有选中的id
+                            var ids = [];
+                            for (let i = 0; i < data.length; i++) {
+                                ids[i] = data[i].deptId;
+                            }
+                            $.ajax({
+                                url: "/dept/deleteByIds",
+                                type: "PUT",
+                                dataType: "JSON",
+                                data: {ids: ids.join(",")},
+                                success: function (ret) {
+                                    if (ret.code == 0) {
+                                        //刷新表格数据
+                                        deptTable.reload({
+                                            page: {
+                                                curr: 1 //重新从第 1 页开始
+                                            }
+                                        });
+                                        layer.msg(ret.msg, {icon: 6});
+                                    } else {
+                                        layer.msg(ret.msg, {icon: 5});
+                                    }
+                                }
+                            })
+                        });
+                    }
+                    break;
+            }
+        });
+
+        //form表单实现添加功能
+        form.on('submit(insertDeptFilter)', function (data) {
+            if (data.field.status === 'on') {
+                data.field.status = 0;
+            } else {
+                data.field.status = 1;
+            }
+            //提交表单数据
+            $.ajax({
+                url: "/dept/insertDept",
+                type: "POST",
+                dataType: "JSON",
+                data: data.field,
+                success: function (ret) {
+                    if (ret.code == 0) {
+                        //关闭对话框
+                        layer.closeAll();
+                        //刷新表格数据
+                        deptTable.reload({
+                            page: {
+                                curr: 1 //重新从第 1 页开始
+                            }
+                        });
+                        layer.msg(ret.msg, {icon: 6});
+                    } else {
+                        layer.msg(ret.msg, {icon: 5});
+                    }
+
+                }
+            });
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+
+        //实现顶部搜索框
+        form.on('submit(searchFilter)', function (data) {
+            //执行重载
+            personTable.reload({
+                where: {
+                    personid: data.field.personid,
+                    personname: data.field.personname
+                }
+                , page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+            });
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+        //重置条件查询表单，刷新table数据
+        $("#myButton").click(function () {
+            personTable.reload({
+                where: { //设定异步数据接口的额外参数，任意设
+                    personid: ""
+                    , personname: ""
+                }
+                , page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+            });
+        })
+    });
+</script>
+</html>

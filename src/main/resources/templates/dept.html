@@ -52,6 +52,7 @@
 <!--编辑功能的form-->
 <form class="layui-form" action="" id="updateDeptForm" lay-filter="updateDeptForm"
       style="display: none;margin-right: 40px;margin-top: 20px">
+    <input type="hidden" name="deptId">
     <div class="layui-form-item">
         <label class="layui-form-label">部门名称</label>
         <div class="layui-input-block">
@@ -96,19 +97,19 @@
     <div class="layui-inline">
         <label class="layui-form-label">部门名称:</label>
         <div class="layui-input-inline">
-            <input type="text" name="deptname" autocomplete="off" placeholder="部门名称" class="layui-input">
+            <input type="text" name="deptName" autocomplete="off" placeholder="部门名称" class="layui-input">
         </div>
     </div>
     <div class="layui-inline">
         <label class="layui-form-label">创建人:</label>
         <div class="layui-input-inline">
-            <input type="text" name="createby" autocomplete="off" placeholder="创建人" class="layui-input">
+            <input type="text" name="createBy" autocomplete="off" placeholder="创建人" class="layui-input">
         </div>
     </div>
     <div class="layui-inline">
         <label class="layui-form-label">修改人:</label>
         <div class="layui-input-inline">
-            <input type="text" name="updateby" autocomplete="off" placeholder="修改人" class="layui-input">
+            <input type="text" name="updateBy" autocomplete="off" placeholder="修改人" class="layui-input">
         </div>
     </div>
     <div class="layui-inline">
@@ -121,7 +122,7 @@
 <table id="showDept" lay-filter="deptFilter"></table>
 
 </body>
-<!--实现顶部添加dept功能-->
+<!--实现添加dept功能-->
 <script type="text/html" id="deptToolbar">
     <div class="layui-btn-container">
         <button class="layui-btn layui-btn-xs" lay-event="addDept"><i class="layui-icon layui-icon-add-1"></i>
@@ -197,6 +198,7 @@
                 });
             } else if (layEvent === 'edit') {
                 form.val('updateDeptForm', {
+                    'deptId': data.deptId,
                     'deptName': data.deptName,
                     'orderNum': data.orderNum,
                     'status': data.status,
@@ -327,10 +329,11 @@
         //实现顶部搜索框
         form.on('submit(searchFilter)', function (data) {
             //执行重载
-            personTable.reload({
+            deptTable.reload({
                 where: {
-                    personid: data.field.personid,
-                    personname: data.field.personname
+                    deptName: data.field.deptName,
+                    createBy: data.field.createBy,
+                    updateBy: data.field.updateBy
                 }
                 , page: {
                     curr: 1 //重新从第 1 页开始
@@ -340,10 +343,11 @@
         });
         //重置条件查询表单，刷新table数据
         $("#myButton").click(function () {
-            personTable.reload({
+            deptTable.reload({
                 where: { //设定异步数据接口的额外参数，任意设
-                    personid: ""
-                    , personname: ""
+                    deptName: ""
+                    , createBy: ""
+                    , updateBy: ""
                 }
                 , page: {
                     curr: 1 //重新从第 1 页开始

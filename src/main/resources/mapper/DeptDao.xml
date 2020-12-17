@@ -46,8 +46,7 @@
                create_time,
                update_by,
                update_time
-        from trademark.tbl_dept
-        limit #{offset}, #{limit}
+        from trademark.tbl_dept limit #{offset}, #{limit}
     </select>
 
     <!--通过实体作为筛选条件查询-->
@@ -177,9 +176,10 @@
             <if test="updateBy != null and updateBy != ''">
                 update_by = #{updateBy},
             </if>
-            <if test="updateTime != null">
-                update_time = #{updateTime},
-            </if>
+            update_time = now(),
+            <!--            <if test="updateTime != null">-->
+            <!--                update_time = #{updateTime},-->
+            <!--            </if>-->
         </set>
         where dept_id = #{deptId}
     </update>

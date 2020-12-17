@@ -19,4 +19,9 @@ public class GotoController {
     public String toShow() {
         return "home";
     }
+
+    @GetMapping("toLogin")
+    public String toLogin() {
+        return "login";
+    }
 }

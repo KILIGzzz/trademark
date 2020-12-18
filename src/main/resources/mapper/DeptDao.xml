@@ -177,9 +177,6 @@
                 update_by = #{updateBy},
             </if>
             update_time = now(),
-            <!--            <if test="updateTime != null">-->
-            <!--                update_time = #{updateTime},-->
-            <!--            </if>-->
         </set>
         where dept_id = #{deptId}
     </update>

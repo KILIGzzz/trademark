@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>后台布局</title>
     <link rel="stylesheet" href="/layui/css/layui.css">
     <script src="/layui/layui.js"></script>
@@ -119,10 +120,9 @@
         </div>
     </div>
 </form>
-<table id="showDept" lay-filter="deptFilter"></table>
-
+<table id="showDept"></table>
 </body>
-<!--实现添加dept功能-->
+<!--dept顶部工具栏-->
 <script type="text/html" id="deptToolbar">
     <div class="layui-btn-container">
         <button class="layui-btn layui-btn-xs" lay-event="addDept"><i class="layui-icon layui-icon-add-1"></i>
@@ -138,12 +138,12 @@
 </script>
 <script>
     layui.use(['table', 'layer', 'jquery', 'form'], function () {
-        var table = layui.table;
-        var layer = layui.layer;
-        var $ = layui.jquery;
-        var form = layui.form;
+        let table = layui.table;
+        let layer = layui.layer;
+        let $ = layui.jquery;
+        let form = layui.form;
 
-        var deptTable = table.render({
+        let deptTable = table.render({
             elem: '#showDept'
             , url: '/dept/selectAll' //数据接口
             , toolbar: '#deptToolbar' //开启头部工具栏，并为其绑定左侧模板
@@ -167,8 +167,8 @@
             ]
         });
         //监听行工具事件
-        table.on('tool(deptFilter)', function (obj) {
-            var data = obj.data //获得当前行数据
+        table.on('tool(showDept)', function (obj) {
+            let data = obj.data //获得当前行数据
                 , layEvent = obj.event; //获得 lay-event 对应的值
             if (layEvent === 'del') {
                 layer.confirm('真的删除行么', function (index) {
@@ -246,8 +246,8 @@
         });
 
         //监听头工具栏事件
-        table.on('toolbar(deptFilter)', function (obj) {
-            var checkStatus = table.checkStatus(obj.config.id)
+        table.on('toolbar(showDept)', function (obj) {
+            let checkStatus = table.checkStatus(obj.config.id)
                 , data = checkStatus.data; //获取选中的数据
             switch (obj.event) {
                 case 'addDept':
@@ -264,7 +264,7 @@
                     } else {
                         layer.confirm('真的删除行么', function () {
                             //for循环收集所有选中的id
-                            var ids = [];
+                            let ids = [];
                             for (let i = 0; i < data.length; i++) {
                                 ids[i] = data[i].deptId;
                             }

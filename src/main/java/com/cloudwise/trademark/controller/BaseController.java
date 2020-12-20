@@ -13,11 +13,12 @@ import com.cloudwise.trademark.util.ReturnStatusEnum;
  */
 public class BaseController {
     /**
+     * 通用分页参数工具
+     *
      * @param pageBean
-     * @return : offset
-     * @createBy : Enzo
-     * @description : 通用分页参数工具
-     * @createTime : 2020/12/14 16:14
+     * @return offset
+     * @createBy Enzo
+     * @createTime 2020/12/17 22:13
      */
     public int getOffset(PageBean pageBean) {
         int offset = (pageBean.getPage() - 1) * pageBean.getLimit();
@@ -54,7 +55,6 @@ public class BaseController {
         returnBean.setCode(ReturnStatusEnum.FAIL.getCode());
         returnBean.setMsg(ReturnStatusEnum.FAIL.getMessage());
         setCount(returnBean, counts);
-
         //设置返回数据
         returnBean.setData(data);
         return returnBean;

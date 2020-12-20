@@ -2,6 +2,7 @@ package com.cloudwise.trademark.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -15,18 +16,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("goto")
 public class GotoController {
 
-    @GetMapping("toHome")
-    public String toShow() {
-        return "home";
-    }
-
     @GetMapping("toLogin")
     public String toLogin() {
         return "login";
     }
 
+    @GetMapping("toHome")
+    public String toShow() {
+        return "home";
+    }
+
     @GetMapping("toDept")
     public String toDept() {
         return "dept";
+    }
+
+    @GetMapping("toMenu")
+    public String toMenu() {
+        return "menu";
     }
 }

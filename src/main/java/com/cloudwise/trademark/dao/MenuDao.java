@@ -32,6 +32,16 @@ public interface MenuDao {
 
 
     /**
+     * 查询所有菜单
+     *
+     * @return List<Menu>
+     * @createBy Enzo
+     * @createTime 2020/12/20 21:18
+     */
+    List<Menu> queryAllMenu();
+
+
+    /**
      * 通过实体作为筛选条件查询
      *
      * @param menu 实例对象
@@ -79,4 +89,33 @@ public interface MenuDao {
      */
     int deleteById(Integer menuId);
 
+    /**
+     * 修改菜单属性为不可见
+     *
+     * @param menuId 主键
+     * @return 影响行数
+     * @createBy Enzo
+     * @createTime 2020/12/20 22:50
+     */
+    int deleteMenuById(Integer menuId);
+
+    /**
+     * 根据登录名查询该用户有权限的菜单
+     *
+     * @param loginName 用户名
+     * @return List<Menu>
+     * @createBy Enzo
+     * @createTime 2020/12/19 11:05
+     */
+    List<Menu> findMenusByLoginName(@Param("loginName") String loginName);
+
+    /**
+     * 根据id查找父亲的id和名字
+     *
+     * @param menuId 主键
+     * @return Menu findParentNameId
+     * @createBy Enzo
+     * @createTime 2020/12/20 23:58
+     */
+    Menu findParentNameId(Integer menuId);
 }

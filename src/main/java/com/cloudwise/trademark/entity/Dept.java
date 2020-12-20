@@ -27,6 +27,10 @@ public class Dept implements Serializable {
      */
     private String deptName;
     /**
+     * 上级部门id
+     */
+    private Integer parentId;
+    /**
      * 显示顺序
      */
     private Integer orderNum;

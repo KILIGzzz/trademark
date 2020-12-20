@@ -111,12 +111,50 @@
         </where>
     </select>
 
+    <!--根据登录名查询该用户有权限的菜单-->
+    <select id="findMenusByLoginName" resultMap="MenuMap" parameterType="string">
+        select distinct tm.*
+        from tbl_menu tm
+        inner join tbl_role_menu trm on tm.menu_id = trm.menu_id
+        where trm.role_id in (select tur.role_id from tbl_user tu inner join tbl_user_role tur on tu.user_id =
+        tur.user_id
+        <where>
+            <if test="loginName != null">
+                and tu.login_name = #{loginName}
+            </if>
+        </where>
+        )
+    </select>
+    <!--查询所有菜单-->
+    <select id="queryAllMenu" resultMap="MenuMap">
+        select menu_id,
+               menu_name,
+               parent_id,
+               order_num,
+               url,
+               menu_type,
+               visible,
+               perms,
+               icon,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               remark
+        from trademark.tbl_menu
+        where visible = 0
+    </select>
+    <!--根据id查找父亲的id和名字-->
+    <select id="findParentNameId" resultMap="MenuMap" parameterType="int">
+        select tm.* from tbl_menu tm inner join (select parent_id from tbl_menu where menu_id=#{menuId}) pid on tm.menu_id = pid.parent_id
+    </select>
+
     <!--新增所有列-->
     <insert id="insert" keyProperty="menuId" useGeneratedKeys="true">
         insert into trademark.tbl_menu(menu_name, parent_id, order_num, url, menu_type, visible, perms, icon, create_by,
                                        create_time, update_by, update_time, remark)
         values (#{menuName}, #{parentId}, #{orderNum}, #{url}, #{menuType}, #{visible}, #{perms}, #{icon}, #{createBy},
-                #{createTime}, #{updateBy}, #{updateTime}, #{remark})
+                now(), #{updateBy}, #{updateTime}, #{remark})
     </insert>
 
     <insert id="insertBatch" keyProperty="menuId" useGeneratedKeys="true">
@@ -183,21 +221,24 @@
             <if test="updateBy != null and updateBy != ''">
                 update_by = #{updateBy},
             </if>
-            <if test="updateTime != null">
-                update_time = #{updateTime},
-            </if>
             <if test="remark != null and remark != ''">
                 remark = #{remark},
             </if>
+            update_time = now(),
         </set>
         where menu_id = #{menuId}
     </update>
-
     <!--通过主键删除-->
     <delete id="deleteById">
         delete
         from trademark.tbl_menu
         where menu_id = #{menuId}
     </delete>
+    <!--修改菜单属性为不可见-->
+    <update id="deleteMenuById" parameterType="int">
+        update trademark.tbl_menu
+        set visible=1
+        where menu_id = #{menuId}
+    </update>
 
 </mapper>

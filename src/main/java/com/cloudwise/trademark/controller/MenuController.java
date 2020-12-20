@@ -1,12 +1,12 @@
 package com.cloudwise.trademark.controller;
 
 import com.cloudwise.trademark.entity.Menu;
+import com.cloudwise.trademark.entity.ReturnBean;
 import com.cloudwise.trademark.service.MenuService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 菜单权限表(Menu)表控制层
@@ -16,7 +16,7 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("menu")
-public class MenuController {
+public class MenuController extends BaseController {
     /**
      * 服务对象
      */
@@ -34,4 +34,45 @@ public class MenuController {
         return this.menuService.queryById(id);
     }
 
+    @GetMapping("queryAllMenu")
+    public ReturnBean queryAllMenu() {
+        List<Menu> menus = menuService.queryAllMenu();
+        return returnSuccess(menus);
+    }
+
+    @PutMapping("deleteMenuById")
+    public ReturnBean deleteMenuById(Integer menuId) {
+        int i = menuService.deleteMenuById(menuId);
+        if (i > 0) {
+            return returnSuccess(null);
+        } else {
+            return returnFail(null);
+        }
+    }
+
+    @PostMapping("insertMenu")
+    public ReturnBean insertMenu(Menu menu) {
+        try {
+            menuService.insert(menu);
+            return returnSuccess(null);
+        } catch (Exception e) {
+            return returnFail(null);
+        }
+    }
+
+    @PutMapping("updateMenu")
+    public ReturnBean updateMenu(Menu menu) {
+        try {
+            Menu update = menuService.update(menu);
+            return returnSuccess(update);
+        } catch (Exception e) {
+            return returnFail(null);
+        }
+    }
+
+    @GetMapping("findParentNameId")
+    public ReturnBean findParentNameId(Integer menuId) {
+        Menu parent = menuService.findParentNameId(menuId);
+        return returnSuccess(parent);
+    }
 }

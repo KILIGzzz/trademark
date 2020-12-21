@@ -24,4 +24,12 @@ public class GotoController {
     public String toLogin() {
         return "login";
     }
+
+    @GetMapping("toUser")
+    public String toUser() {
+        return "user";
+    }
+
+    @GetMapping("toRole")
+    public String toRole() { return "role"; }
 }

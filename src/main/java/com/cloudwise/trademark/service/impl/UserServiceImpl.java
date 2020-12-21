@@ -127,7 +127,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUserRole(int userId, String[] roles) {
+    public void updateUserRole(int userId, String role) {
+        List<String> userRole = userDao.findUserRole(userId);
+        StringBuilder temp = new StringBuilder();
+        for (String s : userRole) {
+            temp.append(s).append(",");
+        }
+        String replace = role.replace(temp, "");
+        String[] roles = replace.split(",");
         userDao.deleteUserRole(userId);
         for (int i = 0; i < roles.length; i++) {
             userDao.insertUserRole(userId,roles[i]);

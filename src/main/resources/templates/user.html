@@ -320,6 +320,10 @@
                 case 'add':
                     //将表单清空
                     document.getElementById("addUserForm").reset();
+                    var $input = $("input[name=role]");
+                    for (let j = 0; j < $input.length; j++) {
+                        $input[j].checked=false
+                    }
                     //重新渲染表单
                     form.render();
                     layer.open({
@@ -360,11 +364,15 @@
         //addUserForm表单的提交
         form.on('submit(addUserFilter)', function (data) {
             data.field.role = "";
-            $('input[name=role]:checked').each(function () {
-                data.field.role += $(this).val()
-                //防止第二次获取到该input框的值
-                // $(this).val("")
-            });
+            var checkedInput = $('input[name=role]:checked');
+            for (let i = 0; i <checkedInput.length ; i++) {
+                if (i === checkedInput.length - 1){
+                    data.field.role += checkedInput[i].value
+                }else {
+                    data.field.role += checkedInput[i].value+","
+                }
+            }
+
             if (data.field.role === "") {
                 layer.msg("角色不能为空")
             } else {
@@ -422,6 +430,10 @@
                 case 'edit':
                     //将表单清空
                     document.getElementById("updateUserForm").reset();
+                    var $input = $("input[name=role]");
+                    for (let j = 0; j < $input.length; j++) {
+                        $input[j].checked=false
+                    }
                     console.log(data.status)
                     if (data.status == 0){
                         document.getElementById("updateStatus").checked=true
@@ -430,19 +442,14 @@
                     }
 
                     //复选框回显
-                    var $input = $("input[name=role]");
-                    console.log($input)
                     $.ajax({
                         url: "/user/findSelectRole",
                         type: "GET",
                         dataType: "JSON",
                         data: {userId: data.userId},
                         success: function (ret) {
-                            console.log(ret)
                             for (let i = 0; i <ret.length ; i++) {
-                                console.log('ret:'+ret[i])
                                 for (let j = 0; j < $input.length; j++) {
-                                    console.log('$input:'+$input[j].value)
                                     if ($input[j].value == ret[i]){
                                         $input[j].checked=true
                                     }
@@ -499,11 +506,14 @@
         //update表单的提交
         form.on('submit(updateUserFilter)', function (data) {
                 data.field.role = "";
-                $('input[name=role]:checked').each(function () {
-                    data.field.role += $(this).val()
-                    //防止第二次获取到该input框的值
-                    // $(this).val("")
-                });
+                var checkedInput = $('input[name=role]:checked');
+                for (let i = 0; i <checkedInput.length ; i++) {
+                    if (i === checkedInput.length - 1){
+                        data.field.role += checkedInput[i].value
+                    }else {
+                        data.field.role += checkedInput[i].value+","
+                    }
+                }
                 if (data.field.role === "") {
                     layer.msg("角色不能为空")
                 } else {
@@ -521,7 +531,8 @@
                         dataType: "JSON",
                         data: data.field,
                         success: function (ret) {
-                            if (ret.code == 0) {
+                            console.log(ret)
+                            if (ret.code === 0) {
                                 //关闭对话框
                                 layer.closeAll();
                                 //刷新表格数据
@@ -533,7 +544,7 @@
                         }
                     })
                 }
-                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
             }
         );
 

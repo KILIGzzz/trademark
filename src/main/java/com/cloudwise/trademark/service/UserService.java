@@ -119,7 +119,7 @@ public interface UserService {
      * @description : 往tbl_user_role中修改数据
      * @create time: 2020/12/18 11:57
      */
-    void updateUserRole(int userId, String[] roles);
+    void updateUserRole(int userId, String role);
 
     /**
      * 通过username查询单条数据

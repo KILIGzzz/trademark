@@ -88,7 +88,7 @@ public class UserController extends BaseController {
         if (userTemp != null){
             return returnFail(null);
         }
-        String[] roles= role.split("");
+        String[] roles= role.split(",");
         //往user表中添加数据
         User insert = userService.insert(user);
         //如果insert不为空，说明添加成功
@@ -138,8 +138,7 @@ public class UserController extends BaseController {
     public ReturnBean updateUser(User user,String role){
         User update = userService.update(user);
         if (update != null){
-            String[] roles= role.split("");
-            userService.updateUserRole(user.getUserId(),roles);
+            userService.updateUserRole(user.getUserId(),role);
             return returnSuccess(null);
         }
         return returnFail(null);

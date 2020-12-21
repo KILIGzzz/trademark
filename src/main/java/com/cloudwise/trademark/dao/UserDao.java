@@ -103,6 +103,7 @@ public interface UserDao {
      */
     int insertUserRole(@Param("userId") int userId, @Param("roleId") String roleId);
     void deleteUserRole(int userId);
+    List<String> findUserRole(int usreId);
 
     /**
      * 修改数据

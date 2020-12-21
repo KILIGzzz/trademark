@@ -285,6 +285,9 @@
         from trademark.tbl_user
         where login_name = #{username}
     </select>
+    <select id="findSelectRole" resultType="java.lang.Integer">
+        select role_id from tbl_user_role where user_id=#{userId}
+    </select>
 
 
 </mapper>

@@ -427,7 +427,23 @@
 
                     //复选框回显
                     var $input = $("input[name=role]");
-                    $input
+                    console.log($input)
+                    $.ajax({
+                        url: "/user/findSelectRole",
+                        type: "GET",
+                        dataType: "JSON",
+                        data: {userId: data.userId},
+                        success: function (ret) {
+                            for (let i = 0; i <ret.size() ; i++) {
+                                for (let $inputKey in $input) {
+                                    console.log($inputKey)
+                                    if ($inputKey.val() == ret.get(i)){
+                                        $input.checked=true
+                                    }
+                                }
+                            }
+                        }
+                    })
 
                     form.val('updateUserFormFilter', {
                         userId: data.userId

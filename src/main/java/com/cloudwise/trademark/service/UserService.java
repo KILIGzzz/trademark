@@ -130,4 +130,13 @@ public interface UserService {
      * @createTime 2020/12/19 21:39
      */
     User queryByUsername(String username);
+
+    /**
+     * @create by: IvanZ
+     * @description : 查询选中的roleId
+     * @create time: 2020/12/21 16:20
+     * @param userId:
+     * @return java.util.List<java.lang.Integer>
+     */
+    List<Integer> findSelectRole(Integer userId);
 }

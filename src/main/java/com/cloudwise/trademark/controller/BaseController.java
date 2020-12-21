@@ -5,63 +5,66 @@ import com.cloudwise.trademark.entity.ReturnBean;
 import com.cloudwise.trademark.util.ReturnStatusEnum;
 
 /**
- * @author : Enzo
+ * @author ：IvanZ
  * @version : 1.0
- * @date : Created on 2020/12/14 16:01
- * @description : base controller
- * @modifiedBy :
+ * @date ：Created on 2020/12/14 16:01
+ * @description ：
+ * @modified By：
  */
 public class BaseController {
     /**
-     * 通用分页参数工具
-     *
-     * @param pageBean
-     * @return offset
-     * @createBy Enzo
-     * @createTime 2020/12/17 22:13
+     * @create by: IvanZ
+     * @description : 获取offset
+     * @create time: 2020/12/14 16:05
+     * @param pageBean:
+     * @return int
      */
-    public int getOffset(PageBean pageBean) {
-        int offset = (pageBean.getPage() - 1) * pageBean.getLimit();
-        return offset;
+    public int getOffset(PageBean pageBean){
+        return (pageBean.getPage()-1)*pageBean.getLimit();
     }
 
     /**
-     * @return : returnBean
-     * @createBy : Enzo
-     * @description : 返回成功的结果
-     * @createTime : 2020/12/14 16:29
+     * @create by: IvanZ
+     * @description : 返回正确的信息
+     * @create time: 2020/12/14 16:14
+     * @param data:
+     * @return com.cloudwise.entity.ReturnBean
      */
-    public ReturnBean returnSuccess(Object data, Long... counts) {
-
+    public ReturnBean returnSuccess(Object data,Long ...counts){
         ReturnBean returnBean = new ReturnBean();
-        //设置返回状态码
         returnBean.setCode(ReturnStatusEnum.SUCCESS.getCode());
-        //设置返回提示信息
-        returnBean.setMsg(ReturnStatusEnum.SUCCESS.getMessage());
-        setCount(returnBean, counts);
-        //设置返回数据
+        returnBean.setMsg(ReturnStatusEnum.SUCCESS.getMsg());
+        setCount(returnBean,counts);
         returnBean.setData(data);
         return returnBean;
     }
 
     /**
-     * @return : returnBean
-     * @createBy : Enzo
-     * @description : 返回失败的结果
-     * @createTime : 2020/12/14 16:29
+     * @create by: IvanZ
+     * @description : 返回错误的信息
+     * @create time: 2020/12/14 16:14
+     * @param data:
+     * @return com.cloudwise.entity.ReturnBean
      */
-    public ReturnBean returnFail(Object data, Long... counts) {
+    public ReturnBean returnFail(Object data,Long ...counts){
         ReturnBean returnBean = new ReturnBean();
         returnBean.setCode(ReturnStatusEnum.FAIL.getCode());
-        returnBean.setMsg(ReturnStatusEnum.FAIL.getMessage());
-        setCount(returnBean, counts);
-        //设置返回数据
+        returnBean.setMsg(ReturnStatusEnum.FAIL.getMsg());
+        setCount(returnBean,counts);
         returnBean.setData(data);
         return returnBean;
     }
 
-    public void setCount(ReturnBean returnBean, Long[] counts) {
-        if (counts != null) {
+    /**
+     * @create by: IvanZ
+     * @description : 设置count
+     * @create time: 2020/12/14 16:19
+     * @param returnBean:
+ * @param counts:
+     * @return void
+     */
+    public void setCount(ReturnBean returnBean,Long[] counts){
+        if (counts != null){
             for (Long count : counts) {
                 returnBean.setCount(count);
             }

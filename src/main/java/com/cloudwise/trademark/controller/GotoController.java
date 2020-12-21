@@ -35,4 +35,24 @@ public class GotoController {
     public String toMenu() {
         return "menu";
     }
+
+    @GetMapping("toUser")
+    public String toUser() {
+        return "user";
+    }
+
+    @GetMapping("toRole")
+    public String toRole() {
+        return "role";
+    }
+
+    @GetMapping("toDept")
+    public String toDept() {
+        return "dept";
+    }
+
+    @GetMapping("toMenu")
+    public String toMenu() {
+        return "menu";
+    }
 }

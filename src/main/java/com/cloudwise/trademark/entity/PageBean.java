@@ -5,16 +5,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @author : Enzo
+ * @author ：IvanZ
  * @version : 1.0
- * @date : Created on 2020/12/14 16:02
- * @description : page bean
- * @modifiedBy :
+ * @date ：Created on 2020/12/14 17:48
+ * @description ：
+ * @modified By：
  */
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class PageBean {
-    private int page;
-    private int limit;
+    int page;
+    int limit;
 }

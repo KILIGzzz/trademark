@@ -1,22 +1,27 @@
 package com.cloudwise.trademark.util;
 
 /**
- * @author Enzo
+ * @author ：IvanZ
+ * @version : 1.0
+ * @date ：Created on 2020/12/14 17:48
+ * @description ：
+ * @modified By：
  */
-
 public enum ReturnStatusEnum {
-    SUCCESS(0, "操作成功"),
-    FAIL(1, "操作失败");
+    //成功信息
+    SUCCESS(0,"操作成功"),
+    //失败信息
+    FAIL(1,"操作失败");
 
-    private int code;
-    private String message;
+    int code;
+    String msg;
 
     ReturnStatusEnum() {
     }
 
-    ReturnStatusEnum(int code, String message) {
+    ReturnStatusEnum(int code, String msg) {
         this.code = code;
-        this.message = message;
+        this.msg = msg;
     }
 
     public int getCode() {
@@ -27,11 +32,11 @@ public enum ReturnStatusEnum {
         this.code = code;
     }
 
-    public String getMessage() {
-        return message;
+    public String getMsg() {
+        return msg;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 }

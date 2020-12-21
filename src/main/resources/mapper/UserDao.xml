@@ -20,10 +20,12 @@
         <result property="updateBy" column="update_by" jdbcType="VARCHAR"/>
         <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
         <result property="remark" column="remark" jdbcType="VARCHAR"/>
+        <result property="deptName" column="dept_name" jdbcType="VARCHAR"/>
     </resultMap>
 
+
     <!--查询单个-->
-    <select id="queryById" resultMap="UserMap">
+    <select id="queryByLoginName" resultMap="UserMap">
         select user_id,
                dept_id,
                login_name,
@@ -42,31 +44,59 @@
                update_time,
                remark
         from trademark.tbl_user
-        where user_id = #{userId}
+        where login_name = #{loginName}
     </select>
 
-    <!--查询指定行数据-->
+
+    <!--查询指定行数据，并按条件查询-->
     <select id="queryAllByLimit" resultMap="UserMap">
-        select user_id,
-               dept_id,
-               login_name,
-               user_name,
-               email,
-               phonenumber,
-               sex,
-               avatar,
-               password,
-               salt,
-               status,
-               del_flag,
-               create_by,
-               create_time,
-               update_by,
-               update_time,
-               remark
-        from trademark.tbl_user
+        select
+        tu.user_id, tu.dept_id, tu.login_name, tu.user_name, tu.email, tu.phonenumber, tu.sex, tu.avatar, tu.password,
+        tu.salt, tu.status, tu.del_flag, tu.create_by, tu.create_time, tu.update_by, tu.update_time,
+        tu.remark,td.dept_name
+        from trademark.tbl_user tu left join tbl_dept td on tu.dept_id = td.dept_id
+        <where>
+            <if test="user.loginName != null and user.loginName != ''">
+                and tu.login_name like "%"#{user.loginName}"%"
+            </if>
+            <if test="user.createBy != null and user.createBy != ''">
+                and tu.create_by like "%"#{user.createBy}"%"
+            </if>
+            <if test="user.updateBy != null and user.updateBy != ''">
+                and tu.update_by like "%"#{user.updateBy}"%"
+            </if>
+            and tu.del_flag = '0'
+        </where>
         limit #{offset}, #{limit}
     </select>
+    <!--得到行数-->
+    <select id="getCount" resultType="java.lang.Long">
+        select count(*)
+        from tbl_user
+        <where>
+            <if test="loginName != null and loginName != ''">
+                and login_name like "%"#{loginName}"%"
+            </if>
+            <if test="createBy != null and createBy != ''">
+                and create_by like "%"#{createBy}"%"
+            </if>
+            <if test="updateBy != null and updateBy != ''">
+                and update_by like "%"#{updateBy}"%"
+            </if>
+            and del_flag = '0'
+        </where>
+    </select>
+    <!--查询所有部门-->
+    <select id="findAllDept" resultType="map">
+        select dept_id, dept_name
+        from tbl_dept
+    </select>
+    <!--查询所有角色-->
+    <select id="findAllRole" resultType="java.util.Map">
+        select role_id, role_name
+        from tbl_role
+    </select>
+
 
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="UserMap">
@@ -128,7 +158,7 @@
             </if>
         </where>
     </select>
-    <select id="queryByUsername" resultMap="UserMap">
+    <select id="queryById" resultMap="UserMap">
         select user_id,
                dept_id,
                login_name,
@@ -147,43 +177,22 @@
                update_time,
                remark
         from trademark.tbl_user
-        where login_name = #{username}
+        where user_id = #{userId}
     </select>
 
-    <!--新增所有列-->
+    <!--新增所有列，并设置默认值-->
     <insert id="insert" keyProperty="userId" useGeneratedKeys="true">
         insert into trademark.tbl_user(dept_id, login_name, user_name, email, phonenumber, sex, avatar, password, salt,
                                        status, del_flag, create_by, create_time, update_by, update_time, remark)
         values (#{deptId}, #{loginName}, #{userName}, #{email}, #{phonenumber}, #{sex}, #{avatar}, #{password}, #{salt},
-                #{status}, #{delFlag}, #{createBy}, #{createTime}, #{updateBy}, #{updateTime}, #{remark})
+                #{status}, 0, #{createBy}, now(), #{updateBy}, #{updateTime}, #{remark})
     </insert>
-
-    <insert id="insertBatch" keyProperty="userId" useGeneratedKeys="true">
-        insert into trademark.tbl_user(dept_id, login_name, user_name, email, phonenumber, sex, avatar, password, salt,
-        status, del_flag, create_by, create_time, update_by, update_time, remark)
-        values
-        <foreach collection="entities" item="entity" separator=",">
-            (#{entity.deptId}, #{entity.loginName}, #{entity.userName}, #{entity.email}, #{entity.phonenumber},
-            #{entity.sex}, #{entity.avatar}, #{entity.password}, #{entity.salt}, #{entity.status}, #{entity.delFlag},
-            #{entity.createBy}, #{entity.createTime}, #{entity.updateBy}, #{entity.updateTime}, #{entity.remark})
-        </foreach>
+    <!--往tbl_user_role表中添加数据-->
+    <insert id="insertUserRole">
+            insert into tbl_user_role values (#{userId},#{roleId})
     </insert>
-
-    <insert id="insertOrUpdateBatch" keyProperty="userId" useGeneratedKeys="true">
-        insert into trademark.tbl_user(dept_id, login_name, user_name, email, phonenumber, sex, avatar, password, salt,
-        status, del_flag, create_by, create_time, update_by, update_time, remark)
-        values
-        <foreach collection="entities" item="entity" separator=",">
-            (#{entity.deptId}, #{entity.loginName}, #{entity.userName}, #{entity.email}, #{entity.phonenumber},
-            #{entity.sex}, #{entity.avatar}, #{entity.password}, #{entity.salt}, #{entity.status}, #{entity.delFlag},
-            #{entity.createBy}, #{entity.createTime}, #{entity.updateBy}, #{entity.updateTime}, #{entity.remark})
-        </foreach>
-        on duplicate key update
-        dept_id = values(dept_id) , login_name = values(login_name) , user_name = values(user_name) , email =
-        values(email) , phonenumber = values(phonenumber) , sex = values(sex) , avatar = values(avatar) , password =
-        values(password) , salt = values(salt) , status = values(status) , del_flag = values(del_flag) , create_by =
-        values(create_by) , create_time = values(create_time) , update_by = values(update_by) , update_time =
-        values(update_time) , remark = values(remark)
+    <insert id="deleteUserRole">
+            delete from tbl_user_role where user_id = #{userId}
     </insert>
 
     <!--通过主键修改数据-->
@@ -232,9 +241,7 @@
             <if test="updateBy != null and updateBy != ''">
                 update_by = #{updateBy},
             </if>
-            <if test="updateTime != null">
-                update_time = #{updateTime},
-            </if>
+            update_time = now(),
             <if test="remark != null and remark != ''">
                 remark = #{remark},
             </if>
@@ -243,10 +250,47 @@
     </update>
 
     <!--通过主键删除-->
-    <delete id="deleteById">
-        delete
-        from trademark.tbl_user
+    <update id="deleteById">
+        update tbl_user
+        set del_flag = 1
         where user_id = #{userId}
-    </delete>
+    </update>
+
+    <!--根据选中的id删除数据-->
+    <update id="delSelected">
+        update tbl_user set del_flag = 1 where user_id in
+        <foreach collection="list" item="user_id" open="(" close=")" separator=",">
+            #{user_id}
+        </foreach>
+    </update>
+
+    <select id="queryByUsername" resultMap="UserMap">
+        select user_id,
+               dept_id,
+               login_name,
+               user_name,
+               email,
+               phonenumber,
+               sex,
+               avatar,
+               password,
+               salt,
+               status,
+               del_flag,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               remark
+        from trademark.tbl_user
+        where login_name = #{username}
+    </select>
+    <select id="findSelectRole" resultType="java.lang.Integer">
+        select role_id from tbl_user_role where user_id=#{userId}
+    </select>
+    <select id="findUserRole" resultType="java.lang.String">
+        select role_id from tbl_user_role where user_id=#{usreId}
+    </select>
+
 
 </mapper>

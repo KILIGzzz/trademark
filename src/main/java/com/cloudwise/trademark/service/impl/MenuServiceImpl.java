@@ -131,6 +131,11 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
+    public List<Menu> findMenusByLoginName(String loginName) {
+        return menuDao.findMenusByLoginName(loginName);
+    }
+
+    @Override
     public int deleteMenuById(Integer menuId) {
         return menuDao.deleteMenuById(menuId);
     }

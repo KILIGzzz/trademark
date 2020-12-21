@@ -172,6 +172,7 @@
         let util = layui.util;
         let treeTable = layui.treeTable;
         let tree = layui.tree;
+        let index;
         $('body').removeClass('layui-hide');
         //生成menuTable表格
         let menuTable = treeTable.render({
@@ -243,7 +244,7 @@
             } else if (event === 'edit') {
                 console.log(obj);
                 $.ajax({
-                    url: '/menu/queryAllMenu',
+                    url: '/menu/queryAllMenus',
                     dataType: 'json',
                     contentType: "application/json;charset=UTF-8",
                     type: 'GET',
@@ -295,8 +296,8 @@
         treeTable.on('toolbar(showMenu)', function (obj) {
             if (obj.event === 'addMenu') {
                 $.ajax({
-                    url: '/menu/queryAllMenu',
-                    dataType: 'json',
+                    url: '/menu/queryAllMenus',
+                    dataType: 'JSON',
                     contentType: "application/json;charset=UTF-8",
                     type: 'GET',
                     success: function (result) {

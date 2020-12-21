@@ -120,7 +120,7 @@
         </div>
     </div>
 </form>
-<table id="showDept"></table>
+<table id="showDept" lay-filter="deptFilter"></table>
 </body>
 <!--dept顶部工具栏-->
 <script type="text/html" id="deptToolbar">
@@ -167,7 +167,7 @@
             ]
         });
         //监听行工具事件
-        table.on('tool(showDept)', function (obj) {
+        table.on('tool(deptFilter)', function (obj) {
             let data = obj.data //获得当前行数据
                 , layEvent = obj.event; //获得 lay-event 对应的值
             if (layEvent === 'del') {
@@ -246,7 +246,7 @@
         });
 
         //监听头工具栏事件
-        table.on('toolbar(showDept)', function (obj) {
+        table.on('toolbar(deptFilter)', function (obj) {
             let checkStatus = table.checkStatus(obj.config.id)
                 , data = checkStatus.data; //获取选中的数据
             switch (obj.event) {

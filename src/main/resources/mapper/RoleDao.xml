@@ -94,7 +94,7 @@
         select menu_id, menu_name, parent_id, order_num, url, menu_type, visible, perms, icon, create_by, create_time, update_by, update_time, remark from tbl_menu
     </select>
     <select id="findSelectMenu" resultType="int">
-        select menu_id from tbl_role_menu where role_id = #{roleId}
+        select menu_id  from tbl_role_menu where role_id = #{roleId} and menu_id not in (select distinct tm.parent_id from tbl_role_menu trm inner join tbl_menu tm on trm.menu_id = tm.menu_id where role_id = #{roleId})
     </select>
 
     <!--新增所有列-->

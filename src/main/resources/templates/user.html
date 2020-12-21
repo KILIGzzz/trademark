@@ -318,6 +318,8 @@
             switch (obj.event) {
                 //添加数据
                 case 'add':
+                    //将表单清空
+                    document.getElementById("addUserForm").reset();
                     //重新渲染表单
                     form.render();
                     layer.open({
@@ -396,8 +398,6 @@
                     }
                 })
             }
-            //将表单清空
-            document.getElementById("addUserForm").reset();
             return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
         });
 
@@ -407,6 +407,8 @@
             var data = obj.data
             switch (obj.event) {
                 case 'resetPassword':
+                    //将表单清空
+                    document.getElementById("resetPasswordForm").reset();
                     form.val('resetPasswordFormFilter', {
                         userId: data.userId
                     });
@@ -418,6 +420,8 @@
                     });
                     break;
                 case 'edit':
+                    //将表单清空
+                    document.getElementById("updateUserForm").reset();
                     console.log(data.status)
                     if (data.status == 0){
                         document.getElementById("updateStatus").checked=true
@@ -434,14 +438,18 @@
                         dataType: "JSON",
                         data: {userId: data.userId},
                         success: function (ret) {
-                            for (let i = 0; i <ret.size() ; i++) {
-                                for (let $inputKey in $input) {
-                                    console.log($inputKey)
-                                    if ($inputKey.val() == ret.get(i)){
-                                        $input.checked=true
+                            console.log(ret)
+                            for (let i = 0; i <ret.length ; i++) {
+                                console.log('ret:'+ret[i])
+                                for (let j = 0; j < $input.length; j++) {
+                                    console.log('$input:'+$input[j].value)
+                                    if ($input[j].value == ret[i]){
+                                        $input[j].checked=true
                                     }
                                 }
                             }
+                            //重新渲染
+                            form.render()
                         }
                     })
 
@@ -525,8 +533,6 @@
                         }
                     })
                 }
-                //将表单清空
-                document.getElementById("updateUserForm").reset();
                 return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
             }
         );
@@ -552,8 +558,6 @@
                     }
                 }
             })
-            //将表单清空
-            document.getElementById("resetPasswordForm").reset();
             return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
         });
     });

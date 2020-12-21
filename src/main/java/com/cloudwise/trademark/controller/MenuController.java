@@ -3,6 +3,7 @@ package com.cloudwise.trademark.controller;
 import com.cloudwise.trademark.entity.Menu;
 import com.cloudwise.trademark.entity.ReturnBean;
 import com.cloudwise.trademark.service.MenuService;
+import com.cloudwise.trademark.util.TreeUtil;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -38,6 +39,12 @@ public class MenuController extends BaseController {
     public ReturnBean queryAllMenu() {
         List<Menu> menus = menuService.queryAllMenu();
         return returnSuccess(menus);
+    }
+
+    @GetMapping("queryAllMenus")
+    public List queryAllMenus() {
+        List<Menu> menus = menuService.queryAllMenu();
+        return TreeUtil.fromMenuListToTreeList(menus);
     }
 
     @PutMapping("deleteMenuById")

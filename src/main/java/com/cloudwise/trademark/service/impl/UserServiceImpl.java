@@ -146,4 +146,9 @@ public class UserServiceImpl implements UserService {
     public User queryByUsername(String username) {
         return userDao.queryByUsername(username);
     }
+
+    @Override
+    public List<Integer> findSelectRole(Integer userId) {
+        return userDao.findSelectRole(userId);
+    }
 }

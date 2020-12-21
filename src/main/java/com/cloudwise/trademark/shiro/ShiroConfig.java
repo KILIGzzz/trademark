@@ -8,6 +8,8 @@ import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -70,10 +72,12 @@ public class ShiroConfig {
         map.put("/layui/**", "anon");
         //过滤所有的请求
         //map.put("/**", "authc");
-        //授权页面
-        shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
         //所有的未认证的请求都去登录页面
         shiroFilterFactoryBean.setLoginUrl("/goto/toLogin");
+        //登录成功去哪
+        shiroFilterFactoryBean.setSuccessUrl("/goto/toHome");
+        //授权页面
+        shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
         return shiroFilterFactoryBean;
     }
 }

@@ -160,4 +160,9 @@ public class UserController extends BaseController {
         }
         return returnFail(null);
     }
+
+    @GetMapping("findSelectRole")
+    public List<Integer> findSelectRole(int userId){
+        return userService.findSelectRole(userId);
+    }
 }

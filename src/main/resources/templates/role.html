@@ -281,28 +281,32 @@
             } else {
                 data.field.status = 1;
             }
-            //提交表单数据
-            $.ajax({
-                url: "/role/insertRole",
-                type: "POST",
-                dataType: "JSON",
-                data: data.field,
-                success: function (ret) {
-                    if (ret.code == 0) {
-                        //关闭对话框
-                        layer.closeAll();
-                        //刷新表格数据
-                        roleTable.reload({
-                            page: {
-                                curr: 1 //重新从第 1 页开始
-                            }
-                        });
-                        layer.msg(ret.msg, {icon: 6});
-                    } else {
-                        layer.msg(ret.msg, {icon: 5});
+            if (!isNaN(data.field.roleSort)){
+                //提交表单数据
+                $.ajax({
+                    url: "/role/insertRole",
+                    type: "POST",
+                    dataType: "JSON",
+                    data: data.field,
+                    success: function (ret) {
+                        if (ret.code == 0) {
+                            //关闭对话框
+                            layer.closeAll();
+                            //刷新表格数据
+                            roleTable.reload({
+                                page: {
+                                    curr: 1 //重新从第 1 页开始
+                                }
+                            });
+                            layer.msg(ret.msg, {icon: 6});
+                        } else {
+                            layer.msg(ret.msg, {icon: 5});
+                        }
                     }
-                }
-            })
+                })
+            }else {
+                layer.msg("排序只能为数字！")
+            }
             //将表单清空
             document.getElementById("addRoleForm").reset();
             return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。

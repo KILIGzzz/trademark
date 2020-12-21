@@ -2,6 +2,7 @@ package com.cloudwise.trademark.service;
 
 import com.cloudwise.trademark.entity.LayUiTree;
 import com.cloudwise.trademark.entity.Menu;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -82,6 +83,16 @@ public interface MenuService {
      * @createTime 2020/12/19 11:47
      */
     List<LayUiTree> queryAllTreeByLoginName(String loginName);
+
+    /**
+     * 查询该用户的所有菜单
+     *
+     * @param loginName 用户名
+     * @return List<Menu>
+     * @createBy Enzo
+     * @createTime 2020/12/21 17:27
+     */
+    List<Menu> findMenusByLoginName(String loginName);
 
     /**
      * 修改菜单属性为不可见

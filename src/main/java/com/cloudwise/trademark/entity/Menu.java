@@ -1,7 +1,9 @@
 package com.cloudwise.trademark.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,6 +17,8 @@ import java.util.List;
  * @since 2020-12-19 20:54:49
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Menu implements Serializable {
     private static final long serialVersionUID = 105955093734118480L;
     /**

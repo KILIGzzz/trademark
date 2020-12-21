@@ -133,4 +133,17 @@ public class UserServiceImpl implements UserService {
             userDao.insertUserRole(userId,roles[i]);
         }
     }
+
+    /**
+     * 通过username查询单条数据
+     *
+     * @param username
+     * @return User
+     * @createBy Enzo
+     * @createTime 2020/12/19 21:39
+     */
+    @Override
+    public User queryByUsername(String username) {
+        return userDao.queryByUsername(username);
+    }
 }

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cloudwise.trademark.dao.UserDao">
 
-    <resultMap type="com.cloudwise.trademark.entity.User" id="TblUserMap">
+    <resultMap type="com.cloudwise.trademark.entity.User" id="UserMap">
         <result property="userId" column="user_id" jdbcType="INTEGER"/>
         <result property="deptId" column="dept_id" jdbcType="INTEGER"/>
         <result property="loginName" column="login_name" jdbcType="VARCHAR"/>
@@ -25,7 +25,7 @@
 
 
     <!--查询单个-->
-    <select id="queryByLoginName" resultMap="TblUserMap">
+    <select id="queryByLoginName" resultMap="UserMap">
         select user_id,
                dept_id,
                login_name,
@@ -49,7 +49,7 @@
 
 
     <!--查询指定行数据，并按条件查询-->
-    <select id="queryAllByLimit" resultMap="TblUserMap">
+    <select id="queryAllByLimit" resultMap="UserMap">
         select
         tu.user_id, tu.dept_id, tu.login_name, tu.user_name, tu.email, tu.phonenumber, tu.sex, tu.avatar, tu.password,
         tu.salt, tu.status, tu.del_flag, tu.create_by, tu.create_time, tu.update_by, tu.update_time,
@@ -99,7 +99,7 @@
 
 
     <!--通过实体作为筛选条件查询-->
-    <select id="queryAll" resultMap="TblUserMap">
+    <select id="queryAll" resultMap="UserMap">
         select
         user_id, dept_id, login_name, user_name, email, phonenumber, sex, avatar, password, salt, status, del_flag,
         create_by, create_time, update_by, update_time, remark
@@ -158,7 +158,7 @@
             </if>
         </where>
     </select>
-    <select id="queryById" resultMap="TblUserMap">
+    <select id="queryById" resultMap="UserMap">
         select user_id,
                dept_id,
                login_name,
@@ -263,5 +263,28 @@
             #{user_id}
         </foreach>
     </update>
+
+    <select id="queryByUsername" resultMap="UserMap">
+        select user_id,
+               dept_id,
+               login_name,
+               user_name,
+               email,
+               phonenumber,
+               sex,
+               avatar,
+               password,
+               salt,
+               status,
+               del_flag,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               remark
+        from trademark.tbl_user
+        where login_name = #{username}
+    </select>
+
 
 </mapper>

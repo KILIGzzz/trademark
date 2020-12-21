@@ -1,5 +1,9 @@
 package com.cloudwise.trademark.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 
 /**
@@ -8,6 +12,9 @@ import java.io.Serializable;
  * @author makejava
  * @since 2020-12-19 20:43:57
  */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class RoleMenu implements Serializable {
     private static final long serialVersionUID = 214414593692152056L;
     /**
@@ -19,21 +26,5 @@ public class RoleMenu implements Serializable {
     */
     private Integer menuId;
 
-
-    public Integer getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(Integer roleId) {
-        this.roleId = roleId;
-    }
-
-    public Integer getMenuId() {
-        return menuId;
-    }
-
-    public void setMenuId(Integer menuId) {
-        this.menuId = menuId;
-    }
 
 }

@@ -1,6 +1,8 @@
 package com.cloudwise.trademark.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 import java.io.Serializable;
@@ -12,6 +14,8 @@ import java.io.Serializable;
  * @since 2020-12-19 18:03:32
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Role implements Serializable {
     private static final long serialVersionUID = 238192140337404061L;
     /**

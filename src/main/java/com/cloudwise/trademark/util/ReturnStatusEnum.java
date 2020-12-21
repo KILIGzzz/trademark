@@ -1,4 +1,4 @@
-package com.cloudwise.trademark.entity;
+package com.cloudwise.trademark.util;
 
 /**
  * @author ：IvanZ

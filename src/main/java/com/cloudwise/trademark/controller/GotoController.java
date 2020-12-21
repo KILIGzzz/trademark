@@ -31,5 +31,17 @@ public class GotoController {
     }
 
     @GetMapping("toRole")
-    public String toRole() { return "role"; }
+    public String toRole() {
+        return "role";
+    }
+
+    @GetMapping("toDept")
+    public String toDept() {
+        return "dept";
+    }
+
+    @GetMapping("toMenu")
+    public String toMenu() {
+        return "menu";
+    }
 }

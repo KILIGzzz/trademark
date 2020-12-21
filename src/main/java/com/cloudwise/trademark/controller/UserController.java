@@ -4,11 +4,9 @@ import com.cloudwise.trademark.entity.PageBean;
 import com.cloudwise.trademark.entity.ReturnBean;
 import com.cloudwise.trademark.entity.User;
 import com.cloudwise.trademark.service.UserService;
-import com.cloudwise.trademark.util.BaseController;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

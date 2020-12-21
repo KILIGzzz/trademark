@@ -1,6 +1,8 @@
 package com.cloudwise.trademark.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author ：IvanZ
@@ -10,6 +12,8 @@ import lombok.Data;
  * @modified By：
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class PageBean {
     int page;
     int limit;

@@ -2,13 +2,10 @@ package com.cloudwise.trademark.controller;
 
 import com.cloudwise.trademark.entity.*;
 import com.cloudwise.trademark.service.RoleService;
-import com.cloudwise.trademark.util.BaseController;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 /**

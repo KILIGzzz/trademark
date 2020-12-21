@@ -34,17 +34,17 @@ public interface UserService {
      * 查询多条数据
      *
      * @param offset 查询起始位置
-     * @param limit 查询条数
+     * @param limit  查询条数
      * @return 对象列表
      */
-    List<User> queryAllByLimit(int offset, int limit,User user);
+    List<User> queryAllByLimit(int offset, int limit, User user);
 
     /**
+     * @param :
+     * @return long
      * @create by: IvanZ
      * @description : 得到行数
      * @create time: 2020/12/17 9:58
-     * @param :
-     * @return long
      */
     long getCount(User user);
 
@@ -73,51 +73,61 @@ public interface UserService {
     boolean deleteById(Integer userId);
 
     /**
+     * @param
+     * @return boolean
      * @create by: IvanZ
      * @description : 根据选中的id删除数据
      * @create time: 2020/12/17 11:24
-     * @param
-     * @return boolean
      */
     boolean delSelected(String userIds);
 
 
     /**
+     * @param :
+     * @return java.util.List<java.util.Map < java.lang.String, java.lang.Object>>
      * @create by: IvanZ
      * @description : 查询所有部门
      * @create time: 2020/12/17 17:31
-     * @param :
-     * @return java.util.List<java.util.Map<java.lang.String,java.lang.Object>>
      */
-    List<Map<String,Object>> findAllDept();
+    List<Map<String, Object>> findAllDept();
 
     /**
+     * @param :
+     * @return java.util.List<java.util.Map < java.lang.String, java.lang.Object>>
      * @create by: IvanZ
      * @description : 查询所有角色
      * @create time: 2020/12/17 19:41
-     * @param :
-     * @return java.util.List<java.util.Map<java.lang.String,java.lang.Object>>
      */
-    List<Map<String,Object>> findAllRole();
+    List<Map<String, Object>> findAllRole();
 
 
     /**
-     * @create by: IvanZ
-     * @description : 往tbl_user_role中添加数据
-     * @create time: 2020/12/18 11:57
      * @param userId:
      * @param roles:
      * @return int
+     * @create by: IvanZ
+     * @description : 往tbl_user_role中添加数据
+     * @create time: 2020/12/18 11:57
      */
     void insertUserRole(@Param("userId") int userId, @Param("roles") String[] roles);
 
     /**
-     * @create by: IvanZ
-     * @description : 往tbl_user_role中修改数据
-     * @create time: 2020/12/18 11:57
      * @param userId:
      * @param roles:
      * @return int
+     * @create by: IvanZ
+     * @description : 往tbl_user_role中修改数据
+     * @create time: 2020/12/18 11:57
      */
     void updateUserRole(int userId, String[] roles);
+
+    /**
+     * 通过username查询单条数据
+     *
+     * @param username
+     * @return User
+     * @createBy Enzo
+     * @createTime 2020/12/19 21:39
+     */
+    User queryByUsername(String username);
 }

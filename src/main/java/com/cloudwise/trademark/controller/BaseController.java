@@ -1,8 +1,8 @@
-package com.cloudwise.trademark.util;
+package com.cloudwise.trademark.controller;
 
 import com.cloudwise.trademark.entity.PageBean;
 import com.cloudwise.trademark.entity.ReturnBean;
-import com.cloudwise.trademark.entity.ReturnStatusEnum;
+import com.cloudwise.trademark.util.ReturnStatusEnum;
 
 /**
  * @author ：IvanZ

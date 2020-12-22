@@ -66,6 +66,10 @@ public class MenuServiceImpl implements MenuService {
     @Override
     public Menu insert(Menu menu) {
         this.menuDao.insert(menu);
+        final List<Integer> roles = menuDao.selectAllRole();
+        for (Integer role : roles) {
+            menuDao.insertRoleMenu(role, menu.getMenuId());
+        }
         return menu;
     }
 
@@ -77,7 +81,14 @@ public class MenuServiceImpl implements MenuService {
      */
     @Override
     public Menu update(Menu menu) {
-        this.menuDao.update(menu);
+
+        menuDao.update(menu);
+
+        menuDao.deleteRoleMenu(menu.getMenuId());
+        final List<Integer> roles = menuDao.selectAllRole();
+        for (Integer role : roles) {
+            menuDao.insertRoleMenu(role, menu.getMenuId());
+        }
         return this.queryById(menu.getMenuId());
     }
 
@@ -89,6 +100,7 @@ public class MenuServiceImpl implements MenuService {
      */
     @Override
     public boolean deleteById(Integer menuId) {
+        menuDao.deleteRoleMenu(menuId);
         return this.menuDao.deleteById(menuId) > 0;
     }
 

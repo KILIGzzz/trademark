@@ -50,6 +50,7 @@ public class LoginController {
         User user = (User) SecurityUtils.getSubject().getPrincipal();
         //modelAndView.addObject("user", user);
         request.getSession().setAttribute("username", user.getUserName());
+        request.getSession().setAttribute("userId", user.getUserId());
         // 在左侧显示树状的菜单导航。根据登录的用户名，查询该用户的所有菜单。
         List<LayUiTree> layUiTreeList = menuService.queryAllTreeByLoginName(username);
         modelAndView.addObject("layUiTreeList", layUiTreeList);

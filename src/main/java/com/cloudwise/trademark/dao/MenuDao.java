@@ -57,6 +57,12 @@ public interface MenuDao {
      */
     int insert(Menu menu);
 
+    List<Integer> selectAllRole();
+
+    int insertRoleMenu(@Param("roleId") int roleId, @Param("menuId") int menuId);
+
+    int deleteRoleMenu(int menuId);
+
     /**
      * 批量新增数据（MyBatis原生foreach方法）
      *

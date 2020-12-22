@@ -59,12 +59,17 @@ public class MenuController extends BaseController {
 
     @PostMapping("insertMenu")
     public ReturnBean insertMenu(Menu menu) {
-        try {
-            menuService.insert(menu);
+//        try {
+//            menuService.insert(menu);
+//            return returnSuccess(null);
+//        } catch (Exception e) {
+//            return returnFail(null);
+//        }
+        final Menu insert = menuService.insert(menu);
+        if (insert != null) {
             return returnSuccess(null);
-        } catch (Exception e) {
-            return returnFail(null);
         }
+        return returnFail(null);
     }
 
     @PutMapping("updateMenu")

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>menu</title>
@@ -8,7 +8,8 @@
 </head>
 <body>
 <!--实现添加菜单的form-->
-<form class="layui-form" action="" id="save_menu_form" style="display: none">
+<form class="layui-form" action="" id="addMenuForm" style="display: none">
+    <input hidden name="createBy" th:value="${session.username}">
     <div class="layui-form-item">
         <input type="hidden" name="parentId" id="parent_id">
         <label class="layui-form-label">上级菜单</label>
@@ -70,9 +71,10 @@
     </div>
 </form>
 <!--实现编辑菜单功能的form-->
-<form class="layui-form" action="" id="update_menu_form" lay-filter="update_menu_form_filter" style="display: none">
+<form class="layui-form" action="" id="updateMenuForm" lay-filter="update_menu_form_filter" style="display: none">
+    <input hidden name="updateBy" th:value="${session.username}">
     <div class="layui-form-item">
-        <input type="hidden" name="parentId" class="parent_id">
+        <input type="hidden" name="parentId" id="updateParentId">
         <input type="hidden" name="menuId">
         <label class="layui-form-label">上级菜单</label>
         <div class="layui-input-inline">
@@ -132,7 +134,7 @@
         </div>
     </div>
 </form>
-<div class="layui-form-item" id="choose_parent_menu" style="display: none">
+<div class="layui-form-item" id="parentMenu" style="display: none">
     <label class="layui-form-label">菜单权限</label>
     <div class="layui-input-inline">
         <div id="menuTreeChoose" class="demo-tree-more"></div>
@@ -254,7 +256,7 @@
                             , data: result
                             , onlyIconControl: true
                             , click: function (treeObj) {
-                                $(".parent_id").val(treeObj.data.id);
+                                $("#updateParentId").val(treeObj.data.id);
                                 $(".parent_name").val(treeObj.data.title);
                                 layer.close(index);
                             }
@@ -264,7 +266,7 @@
                 layer.open({
                     title: '编辑菜单',
                     type: 1,
-                    content: $('#update_menu_form'),
+                    content: $('#updateMenuForm'),
                     area: ['450px', '430px']
                 });
                 //获取父节点的名称
@@ -295,6 +297,7 @@
         //监听头部工具栏事件
         treeTable.on('toolbar(showMenu)', function (obj) {
             if (obj.event === 'addMenu') {
+                document.getElementById("addMenuForm").reset();
                 $.ajax({
                     url: '/menu/queryAllMenus',
                     dataType: 'JSON',
@@ -306,7 +309,7 @@
                             , data: result
                             , onlyIconControl: true
                             , click: function (obj) {
-                                $(".parent_id").val(obj.data.id);
+                                $("#parent_id").val(obj.data.id);
                                 $(".parent_name").val(obj.data.title);
                                 layer.close(index);
                             }
@@ -316,7 +319,7 @@
                 layer.open({
                     title: '添加菜单',
                     type: 1,
-                    content: $('#save_menu_form'),
+                    content: $('#addMenuForm'),
                     area: ['400px', '480px']
                 });
             }
@@ -342,32 +345,40 @@
         });
         //添加提交
         form.on('submit(formSaveMenu)', function (data) {
-            $.ajax({
-                url: '/menu/insertMenu',
-                dataType: 'json',
-                type: 'POST',
-                data: data.field,
-                success: function (result) {
-                    layer.closeAll();//关闭对话框
-                    layer.msg(result.msg);
-                    menuTable.reload();
-                }
-            })
+            if (!isNaN(data.field.orderNum)) {
+                $.ajax({
+                    url: '/menu/insertMenu',
+                    dataType: 'json',
+                    type: 'POST',
+                    data: data.field,
+                    success: function (result) {
+                        layer.closeAll();//关闭对话框
+                        layer.msg(result.msg);
+                        menuTable.reload();
+                    }
+                });
+            } else {
+                layer.msg("显示排序只能为数字！")
+            }
             return false;
         });
         //修改提交
         form.on('submit(formUpdateMenu)', function (data) {
-            $.ajax({
-                url: '/menu/updateMenu',
-                dataType: 'json',
-                type: 'PUT',
-                data: data.field,
-                success: function (result) {
-                    layer.closeAll();//关闭对话框
-                    layer.msg(result.msg);
-                    menuTable.reload();
-                }
-            })
+            if (!isNaN(data.field.orderNum)) {
+                $.ajax({
+                    url: '/menu/updateMenu',
+                    dataType: 'json',
+                    type: 'PUT',
+                    data: data.field,
+                    success: function (result) {
+                        layer.closeAll();//关闭对话框
+                        layer.msg(result.msg);
+                        menuTable.reload();
+                    }
+                });
+            } else {
+                layer.msg("显示排序只能为数字！")
+            }
             return false;
         });
         // 全部展开
@@ -383,7 +394,7 @@
             index = layer.open({
                 title: '选择上级菜单',
                 type: 1,
-                content: $('#choose_parent_menu'),
+                content: $('#parentMenu'),
                 area: ['400px', '350px']
             });
         })

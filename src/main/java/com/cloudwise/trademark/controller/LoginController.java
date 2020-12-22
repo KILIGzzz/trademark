@@ -11,11 +11,11 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -31,7 +31,7 @@ public class LoginController {
     private MenuService menuService;
 
     @PostMapping("login")
-    public ModelAndView login(String username, String password) {
+    public ModelAndView login(String username, String password, HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
         //获取shiro的连接器
         Subject subject = SecurityUtils.getSubject();
@@ -39,6 +39,10 @@ public class LoginController {
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
         try {
             subject.login(token);
+            //在右上角显示用户名和照片
+            User user = (User) SecurityUtils.getSubject().getPrincipal();
+            request.getSession().setAttribute("username", user.getUserName());
+            request.getSession().setAttribute("userId", user.getUserId());
         } catch (UnknownAccountException e) {
             modelAndView.addObject("message", "account not found");
             modelAndView.setViewName("login");
@@ -46,9 +50,6 @@ public class LoginController {
             modelAndView.addObject("message", "incorrect password");
             modelAndView.setViewName("login");
         }
-        //在右上角显示用户名和照片
-        User user = (User) SecurityUtils.getSubject().getPrincipal();
-        modelAndView.addObject("user", user);
         // 在左侧显示树状的菜单导航。根据登录的用户名，查询该用户的所有菜单。
         List<LayUiTree> layUiTreeList = menuService.queryAllTreeByLoginName(username);
         modelAndView.addObject("layUiTreeList", layUiTreeList);

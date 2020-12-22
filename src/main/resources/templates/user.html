@@ -238,15 +238,23 @@
                     , {field: 'userName', title: '真实姓名', width: 120}
                     , {field: 'email', title: '邮箱', width: 160}
                     , {field: 'phonenumber', title: '手机号', width: 160}
-                    , {field: 'sex', title: '性别', width: 80, templet:function (d){if (d.sex === "0"){return '男'}else {return '女'}}}
-                    , {field: '', title: '状态', width: 80,toolbar: "#userState" }
+                    , {
+                    field: 'sex', title: '性别', width: 80, templet: function (d) {
+                        if (d.sex === "0") {
+                            return '男'
+                        } else {
+                            return '女'
+                        }
+                    }
+                }
+                    , {field: '', title: '状态', width: 80, toolbar: "#userState"}
                     , {field: 'deptName', title: '部门名称', width: 100}
                     , {field: 'createBy', title: '创建人', width: 100}
                     , {field: 'createTime', title: '创建时间', width: 160}
                     , {field: 'updateBy', title: '修改人', width: 100}
                     , {field: 'updateTime', title: '修改时间', width: 160}
                     //添加按钮
-                    , {field: '', title: '操作', width: 220, toolbar: "#userOperation"}
+                    , {fixed: 'right', align: 'center', title: '操作', width: 220, toolbar: "#userOperation"}
                 ]]
         });
 
@@ -268,7 +276,7 @@
                 $deptSelect.html(options)
             }
         })
-         //填充角色复选框
+        //填充角色复选框
         $.ajax({
             url: "/user/findAllRole",
             type: "GET",
@@ -325,7 +333,7 @@
                     document.getElementById("addUserForm").reset();
                     var $input = $("input[name=role]");
                     for (let j = 0; j < $input.length; j++) {
-                        $input[j].checked=false
+                        $input[j].checked = false
                     }
                     //重新渲染表单
                     form.render();
@@ -368,11 +376,11 @@
         form.on('submit(addUserFilter)', function (data) {
             data.field.role = "";
             var checkedInput = $('input[name=role]:checked');
-            for (let i = 0; i <checkedInput.length ; i++) {
-                if (i === checkedInput.length - 1){
+            for (let i = 0; i < checkedInput.length; i++) {
+                if (i === checkedInput.length - 1) {
                     data.field.role += checkedInput[i].value
-                }else {
-                    data.field.role += checkedInput[i].value+","
+                } else {
+                    data.field.role += checkedInput[i].value + ","
                 }
             }
 
@@ -435,13 +443,13 @@
                     document.getElementById("updateUserForm").reset();
                     var $input = $("input[name=role]");
                     for (let j = 0; j < $input.length; j++) {
-                        $input[j].checked=false
+                        $input[j].checked = false
                     }
                     console.log(data.status)
-                    if (data.status == 0){
-                        document.getElementById("updateStatus").checked=true
-                    }else {
-                        document.getElementById("updateStatus").checked =false
+                    if (data.status == 0) {
+                        document.getElementById("updateStatus").checked = true
+                    } else {
+                        document.getElementById("updateStatus").checked = false
                     }
 
                     //复选框回显
@@ -451,10 +459,10 @@
                         dataType: "JSON",
                         data: {userId: data.userId},
                         success: function (ret) {
-                            for (let i = 0; i <ret.length ; i++) {
+                            for (let i = 0; i < ret.length; i++) {
                                 for (let j = 0; j < $input.length; j++) {
-                                    if ($input[j].value == ret[i]){
-                                        $input[j].checked=true
+                                    if ($input[j].value == ret[i]) {
+                                        $input[j].checked = true
                                     }
                                 }
                             }
@@ -510,11 +518,11 @@
         form.on('submit(updateUserFilter)', function (data) {
                 data.field.role = "";
                 var checkedInput = $('input[name=role]:checked');
-                for (let i = 0; i <checkedInput.length ; i++) {
-                    if (i === checkedInput.length - 1){
+                for (let i = 0; i < checkedInput.length; i++) {
+                    if (i === checkedInput.length - 1) {
                         data.field.role += checkedInput[i].value
-                    }else {
-                        data.field.role += checkedInput[i].value+","
+                    } else {
+                        data.field.role += checkedInput[i].value + ","
                     }
                 }
                 if (data.field.role === "") {
@@ -547,7 +555,7 @@
                         }
                     })
                 }
-            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
             }
         );
 

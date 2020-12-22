@@ -39,6 +39,10 @@ public class LoginController {
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
         try {
             subject.login(token);
+            //在右上角显示用户名和照片
+            User user = (User) SecurityUtils.getSubject().getPrincipal();
+            request.getSession().setAttribute("username", user.getUserName());
+            request.getSession().setAttribute("userId", user.getUserId());
         } catch (UnknownAccountException e) {
             modelAndView.addObject("message", "account not found");
             modelAndView.setViewName("login");
@@ -46,11 +50,6 @@ public class LoginController {
             modelAndView.addObject("message", "incorrect password");
             modelAndView.setViewName("login");
         }
-        //在右上角显示用户名和照片
-        User user = (User) SecurityUtils.getSubject().getPrincipal();
-        //modelAndView.addObject("user", user);
-        request.getSession().setAttribute("username", user.getUserName());
-        request.getSession().setAttribute("userId", user.getUserId());
         // 在左侧显示树状的菜单导航。根据登录的用户名，查询该用户的所有菜单。
         List<LayUiTree> layUiTreeList = menuService.queryAllTreeByLoginName(username);
         modelAndView.addObject("layUiTreeList", layUiTreeList);

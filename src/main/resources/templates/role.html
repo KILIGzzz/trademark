@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>角色管理</title>
@@ -52,6 +52,7 @@
             <input type="checkbox" checked="" name="status" lay-skin="switch" lay-filter="switchTest" lay-text="正常|失效">
         </div>
     </div>
+    <input hidden name="createBy" th:value="${session.username}">
     <div class="layui-form-item">
         <label class="layui-form-label">备注</label>
         <div class="layui-input-block">
@@ -106,6 +107,7 @@
                    lay-text="正常|失效">
         </div>
     </div>
+    <input hidden name="updateBy" th:value="${session.username}">
     <div class="layui-form-item">
         <label class="layui-form-label">备注</label>
         <div class="layui-input-block">
@@ -325,24 +327,28 @@
                 } else {
                     data.field.status = 1;
                 }
-                //提交表单数据
-                $.ajax({
-                    url: "/role/updateRole",
-                    type: "PUT",
-                    dataType: "JSON",
-                    data: data.field,
-                    success: function (ret) {
-                        if (ret.code == 0) {
-                            //关闭对话框
-                            layer.closeAll();
-                            //刷新表格数据
-                            roleTable.reload({});
-                            layer.msg(ret.msg, {icon: 6});
-                        } else {
-                            layer.msg(ret.msg, {icon: 5});
+                if (!isNaN(data.field.roleSort)){
+                    //提交表单数据
+                    $.ajax({
+                        url: "/role/updateRole",
+                        type: "PUT",
+                        dataType: "JSON",
+                        data: data.field,
+                        success: function (ret) {
+                            if (ret.code == 0) {
+                                //关闭对话框
+                                layer.closeAll();
+                                //刷新表格数据
+                                roleTable.reload({});
+                                layer.msg(ret.msg, {icon: 6});
+                            } else {
+                                layer.msg(ret.msg, {icon: 5});
+                            }
                         }
-                    }
-                })
+                    })
+                }else {
+                    layer.msg("排序只能为数字！")
+                }
                 //将表单清空
                 document.getElementById("updateRoleForm").reset();
                 return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。

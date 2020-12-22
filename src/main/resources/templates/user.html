@@ -87,6 +87,7 @@
             <input type="radio" name="sex" value="1" title="女">
         </div>
     </div>
+    <input hidden name="createBy" th:value="${session.username}">
     <div class="layui-form-item" pane="">
         <label class="layui-form-label">角色</label>
         <div class="layui-input-block" id="addRoleCheckBox" name="roles">
@@ -155,6 +156,7 @@
             <input type="radio" name="sex" value="1" title="女">
         </div>
     </div>
+    <input hidden name="updateBy" th:value="${session.username}">
     <div class="layui-form-item" pane="">
         <label class="layui-form-label">角色</label>
         <div class="layui-input-block" name="roles" id="updateRoleCheckBox">
@@ -173,6 +175,7 @@
       style="display: none;margin-right: 40px;margin-top: 20px">
     <!--用户id-->
     <input name="userId" hidden="hidden"/>
+    <input hidden name="updateBy" th:value="${session.username}">
     <div class="layui-form-item">
         <label class="layui-form-label">密码</label>
         <div class="layui-input-block">

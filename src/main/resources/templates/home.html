@@ -28,17 +28,16 @@
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree" lay-filter="test">
-                <li class="layui-nav-item layui-nav-itemed">
-                    <th:block th:each="layUiTree:${layUiTreeList}">
-                        <a class="" href="javascript:;">
-                            <th:block th:text="${layUiTree.title}"></th:block>
-                        </a>
-                        <dl class="layui-nav-child">
-                            <th:block th:each="children:${layUiTree.children}">
-                                <dd><a th:href="${children.url}" th:text="${children.title}"></a></dd>
-                            </th:block>
-                        </dl>
-                    </th:block>
+                <li th:each="layUiTree:${layUiTreeList}" class="layui-nav-item layui-nav-itemed">
+                    <a class="" th:text="${layUiTree.title}" th:href="${layUiTree.url}"></a>
+                    <dl class="layui-nav-child" th:each="children:${layUiTree.children}">
+                        <dd th:if="${children.url} eq '/goto/toUser'" class="layui-this">
+                            <a th:href="${children.url}" th:text="${children.title}"></a>
+                        </dd>
+                        <dd th:if="${children.url} ne '/goto/toUser'">
+                            <a th:href="${children.url}" th:text="${children.title}"></a>
+                        </dd>
+                    </dl>
                 </li>
             </ul>
         </div>
@@ -46,7 +45,8 @@
 
     <div class="layui-body">
         <!-- 内容主体区域 -->
-        <iframe id="iframeMain" src="/goto/toUser" class="layadmin-iframe" frameborder="0" style="width: 100%;height: 100%"></iframe>
+        <iframe id="iframeMain" src="/goto/toUser" class="layadmin-iframe" frameborder="0"
+                style="width: 100%;height: 100%"></iframe>
     </div>
 
     <div class="layui-footer">

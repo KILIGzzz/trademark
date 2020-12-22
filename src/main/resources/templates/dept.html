@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>后台布局</title>
@@ -10,6 +10,7 @@
 <!--添加功能的form-->
 <form class="layui-form" action="" id="insertDeptForm"
       style="display: none;margin-right: 40px;margin-top: 20px">
+    <input hidden name="createBy" th:value="${session.username}">
     <div class="layui-form-item">
         <label class="layui-form-label">部门名称</label>
         <div class="layui-input-block">
@@ -53,6 +54,7 @@
 <!--编辑功能的form-->
 <form class="layui-form" action="" id="updateDeptForm" lay-filter="updateDeptForm"
       style="display: none;margin-right: 40px;margin-top: 20px">
+    <input hidden name="updateBy" th:value="${session.username}">
     <input type="hidden" name="deptId">
     <div class="layui-form-item">
         <label class="layui-form-label">部门名称</label>
@@ -71,7 +73,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">状态</label>
         <div class="layui-input-block">
-            <input type="checkbox" checked="" name="status" lay-skin="switch" lay-filter="switchStatus"
+            <input type="checkbox" id="status" name="status" lay-skin="switch" lay-filter="switchStatus"
                    lay-text="可用|不可用">
         </div>
     </div>
@@ -197,12 +199,17 @@
                     //向服务端发送删除指令
                 });
             } else if (layEvent === 'edit') {
+                if (data.status == 0) {
+                    document.getElementById("status").checked = true;
+                } else {
+                    document.getElementById("status").checked = false;
+                }
                 form.val('updateDeptForm', {
                     'deptId': data.deptId,
                     'deptName': data.deptName,
                     'orderNum': data.orderNum,
-                    'status': data.status,
                 });
+                form.render();
                 layer.open({
                     title: '编辑部门',
                     type: 1,
@@ -220,28 +227,32 @@
                 data.field.status = 1;
             }
             //提交表单数据
-            $.ajax({
-                url: "/dept/updateDept",
-                type: "PUT",
-                dataType: "JSON",
-                data: data.field,
-                success: function (ret) {
-                    if (ret.code == 0) {
-                        //关闭对话框
-                        layer.closeAll();
-                        //刷新表格数据
-                        deptTable.reload({
-                            page: {
-                                curr: 1 //重新从第 1 页开始
-                            }
-                        });
-                        layer.msg(ret.msg, {icon: 6});
-                    } else {
-                        layer.msg(ret.msg, {icon: 5});
-                    }
+            if (!isNaN(data.field.orderNum)) {
+                $.ajax({
+                    url: "/dept/updateDept",
+                    type: "PUT",
+                    dataType: "JSON",
+                    data: data.field,
+                    success: function (ret) {
+                        if (ret.code == 0) {
+                            //关闭对话框
+                            layer.closeAll();
+                            //刷新表格数据
+                            deptTable.reload({
+                                page: {
+                                    curr: 1 //重新从第 1 页开始
+                                }
+                            });
+                            layer.msg(ret.msg, {icon: 6});
+                        } else {
+                            layer.msg(ret.msg, {icon: 5});
+                        }
 
-                }
-            })
+                    }
+                })
+            } else {
+                layer.msg("排序只能为数字！")
+            }
             return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
         });
 
@@ -251,6 +262,7 @@
                 , data = checkStatus.data; //获取选中的数据
             switch (obj.event) {
                 case 'addDept':
+                    document.getElementById("insertDeptForm").reset();
                     layer.open({
                         title: '添加部门',
                         type: 1,
@@ -259,7 +271,7 @@
                     });
                     break;
                 case 'deleteDepts':
-                    if (data.length === 0) {
+                    if (data.length == 0) {
                         layer.msg('请选择一行');
                     } else {
                         layer.confirm('真的删除行么', function () {
@@ -301,28 +313,33 @@
                 data.field.status = 1;
             }
             //提交表单数据
-            $.ajax({
-                url: "/dept/insertDept",
-                type: "POST",
-                dataType: "JSON",
-                data: data.field,
-                success: function (ret) {
-                    if (ret.code == 0) {
-                        //关闭对话框
-                        layer.closeAll();
-                        //刷新表格数据
-                        deptTable.reload({
-                            page: {
-                                curr: 1 //重新从第 1 页开始
-                            }
-                        });
-                        layer.msg(ret.msg, {icon: 6});
-                    } else {
-                        layer.msg(ret.msg, {icon: 5});
-                    }
+            if (!isNaN(data.field.orderNum)) {
+                $.ajax({
+                    url: "/dept/insertDept",
+                    type: "POST",
+                    dataType: "JSON",
+                    data: data.field,
+                    success: function (ret) {
+                        if (ret.code == 0) {
+                            //关闭对话框
+                            layer.closeAll();
+                            //刷新表格数据
+                            deptTable.reload({
+                                page: {
+                                    curr: 1 //重新从第 1 页开始
+                                }
+                            });
+                            layer.msg(ret.msg, {icon: 6});
+                        } else {
+                            layer.msg(ret.msg, {icon: 5});
+                        }
 
-                }
-            });
+                    }
+                });
+            } else {
+                layer.msg("排序只能是数字！")
+            }
+
             return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
         });
 

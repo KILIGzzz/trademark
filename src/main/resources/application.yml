@@ -9,3 +9,9 @@ spring:
     time-zone: Asia/Shanghai
 mybatis:
   mapper-locations: mapper/*.xml
+aliyun:
+  accessKeyId: LTAI4GHyM4omK59SbtSiX8em
+  accessKeySecret: Y98IOWRB2MTaUpm5XvaTpW4OM82CC1
+  bucketName: enzo-trademark-bucket
+  endpoint: oss-cn-beijing.aliyuncs.com
+  urlPrefix: enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/

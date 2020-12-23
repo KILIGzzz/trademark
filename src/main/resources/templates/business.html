@@ -338,19 +338,19 @@
                 //将数据放到select中
                 for (let i = 0; i < allDictionary.length; i++) {
                     if (allDictionary[i].type_id == 2) {
-                        options += '<option value="' + allDictionary[i].dictionary_id + '">' + allDictionary[i].dictionary_name + '</option>';
+                        options += '<option value="' + allDictionary[i].dictionary_name + '">' + allDictionary[i].dictionary_name + '</option>';
                     }
                 }
                 //将数据放到商标类别选择框中
                 for (let i = 0; i < allDictionary.length; i++) {
                     if (allDictionary[i].type_id == 1) {
-                        trademarkRadios += '<input type="radio" name="trademarkInput" title="'+allDictionary[i].dictionary_name+'" value="' + allDictionary[i].dictionary_id + '"/>';
+                        trademarkRadios += '<input type="radio" name="trademarkInput" title="'+allDictionary[i].dictionary_name+'" value="' + allDictionary[i].dictionary_name + '"/>';
                     }
                 }
                 //将数据放到业务种类选择框中
                 for (let i = 0; i < allDictionary.length; i++) {
                     if (allDictionary[i].type_id == 3) {
-                        businessSecondTypeRadios += '<input type="radio" name="businessInput" title="'+allDictionary[i].dictionary_name+'" value="' + allDictionary[i].dictionary_id + '"/>';
+                        businessSecondTypeRadios += '<input type="radio" name="businessInput" title="'+allDictionary[i].dictionary_name+'" value="' + allDictionary[i].dictionary_name + '"/>';
                     }
                 }
 

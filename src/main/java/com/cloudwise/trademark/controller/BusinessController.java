@@ -1,5 +1,6 @@
 package com.cloudwise.trademark.controller;
 
+import com.cloudwise.trademark.entity.Custom;
 import com.cloudwise.trademark.entity.PageBean;
 import com.cloudwise.trademark.entity.ReturnBean;
 import com.cloudwise.trademark.entity.Business;
@@ -8,10 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 /**
  * (TblBusiness)表控制层
@@ -30,12 +28,14 @@ public class BusinessController extends BaseController {
 
     /**
      * 通过主键查询单条数据
-      * @param id 主键
      * @return 单条数据
      */
     @GetMapping("selectOne")
-    public Business selectOne(Integer id) {
-        return this.BusinessService.queryById(id);
+    public ReturnBean selectOne(Integer businessId) {
+        Business business = this.BusinessService.queryById(businessId);
+        List<Business> list = new ArrayList<>();
+        list.add(business);
+        return returnSuccess(list);
     }
 
 
@@ -51,7 +51,7 @@ public class BusinessController extends BaseController {
         returnBean.setCount(count);
         return returnBean;
     }
-    @RequestMapping("add")
+    @PostMapping("add")
     public ReturnBean addBusiness(Business tb) {
         try {
             tb.setCreateTime(new Date());
@@ -62,11 +62,11 @@ public class BusinessController extends BaseController {
         }
     }
 
-    @RequestMapping("edit")
+    @PostMapping("edit")
     public ReturnBean editBusiness(Business tb) {
         try {
+            tb.setUpdateTime(new Date());
             Business blist1 = BusinessService.update(tb);
-            blist1.setUpdateTime(new Date());
             return returnSuccess(blist1);
         } catch (Exception e) {
             return returnFail(null);

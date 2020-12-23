@@ -114,53 +114,17 @@
         business_id, applicant_code, applicant_time, business_top_type, business_name, trademark_type, business_second_type, price, proxy_money, upload_id, create_by, create_time, update_by, update_time, custom_id, remark
         from trademark.tbl_business
         <where>
-            <if test="tb.businessId != null">
-                and business_id = #{tb.businessId}
-            </if>
-            <if test="tb.applicantCode != null">
-                and applicant_code like #{tb.applicantCode}
-            </if>
-            <if test="tb.applicantTime != null">
-                and applicant_time like #{tb.applicantTime}
-            </if>
-            <if test="tb.businessTopType != null and tb.businessTopType != ''">
-                and business_top_type like #{tb.businessTopType}
-            </if>
             <if test="tb.businessName != null and tb.businessName != ''">
                 and business_name like "%"#{tb.businessName}"%"
-            </if>
-            <if test="tb.trademarkType != null and tb.trademarkType != ''">
-                and trademark_type like #{tb.trademarkType}
-            </if>
-            <if test="tb.businessSecondType != null and tb.businessSecondType != ''">
-                and business_second_type like #{tb.businessSecondType}
-            </if>
-            <if test="tb.price != null and tb.price != ''">
-                and price like #{tb.price}
-            </if>
-            <if test="tb.proxyMoney != null and tb.proxyMoney != ''">
-                and proxy_money like #{tb.proxyMoney}
-            </if>
-            <if test="tb.uploadId != null">
-                and upload_id like #{tb.uploadId}
             </if>
             <if test="tb.createBy != null and tb.createBy != ''">
                 and create_by like "%"#{tb.createBy}"%"
             </if>
-            <if test="tb.createTime != null">
-                and create_time like #{tb.createTime}
-            </if>
             <if test="tb.updateBy != null and tb.updateBy != ''">
                 and update_by like "%"#{tb.updateBy}"%"
             </if>
-            <if test="tb.updateTime != null">
-                and update_time like #{tb.updateTime}
-            </if>
             <if test="tb.customId != null and tb.customId != 0">
                 and custom_id = #{tb.customId}
-            </if>
-            <if test="tb.remark != null and tb.remark != ''">
-                and remark like #{tb.remark}
             </if>
         </where>
         limit #{offset}, #{limit}

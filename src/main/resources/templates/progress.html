@@ -8,7 +8,9 @@
 </head>
 
 <body>
+<table id="businessTable" lay-filter="businessFilter"></table>
 <table id="showProgress"></table>
+
 </body>
 
 <!--顶部工具栏-->
@@ -111,62 +113,7 @@
 <script type="text/html" id="progressBar">
     <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="edit">修改进度</a>
 </script>
-<!--修改进度表单-->
-<form class="layui-form" action="" id="updateCustomForm" lay-filter="updateCustomFormFilter"
-      style="display: none;margin-right: 40px;margin-top: 20px">
-    <!--修改人-->
-    <input hidden th:value="${session.username}" name="updateBy">
-    <div class="layui-form-item">
-        <label class="layui-form-label">客户ID：</label>
-        <div class="layui-input-inline">
-            <input type="text" name="customId" lay-verify="required" placeholder="" autocomplete="off"
-                   class="layui-input" readonly>
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">联系人：</label>
-        <div class="layui-input-inline">
-            <input type="text" name="contact" lay-verify="required" placeholder="" autocomplete="off"
-                   class="layui-input">
-        </div>
-        <label class="layui-form-label">申请人：</label>
-        <div class="layui-input-inline">
-            <input type="text" name="applicant" lay-verify="required" placeholder="" autocomplete="off"
-                   class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">手机号：</label>
-        <div class="layui-input-inline">
-            <input type="text" name="phone" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
-        </div>
-        <div class="layui-inline">
-            <label class="layui-form-label">代理人ID：</label>
-            <div class="layui-input-inline">
-                <input type="text" name="proxyId" lay-verify="required" placeholder="" autocomplete="off"
-                       class="layui-input">
-            </div>
-        </div>
-    </div>
-    <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">邮寄地址：</label>
-        <div class="layui-input-block">
-            <textarea name="customAddress" placeholder="" class="layui-textarea"></textarea>
-        </div>
-    </div>
-    <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">备注：</label>
-        <div class="layui-input-block">
-            <textarea type="text" name="remark" placeholder="" class="layui-textarea"></textarea>
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <div class="layui-input-block" align="center">
-            <button type="submit" class="layui-btn" lay-submit="" lay-filter="updateCustomFilter">立即提交</button>
-            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-        </div>
-    </div>
-</form>
+
 
 
 <script>
@@ -175,14 +122,55 @@
         let $ = layui.jquery;
         let form = layui.form;
         let table = layui.table;
+
+
+        //获取传过来的businessId
+        var businesseId = "";
+        businesseId = [[${businessId}]]+"";
+
+        if (businesseId == 0){
+            document.getElementById("businessTable").hidden = true
+        }else {
+            document.getElementById("businessTable").hidden = false
+            let businessUrl = '/business/selectOne?businessId='+businesseId
+            var businessTable = table.render({
+                elem: '#businessTable'
+                , url: businessUrl //数据接口
+                , page: false //开启分页
+                , cols: [
+                    [ //表头
+                        {field: 'businessId', title: '业务编号', width: 100, sort: true}
+                        , {field: 'applicantCode', title: '申请号', width: 160}
+                        , {field: 'applicantTime', title: '申请时间', width: 160}
+                        , {field: 'businessName', title: '业务名', width: 160}
+                        , {field: 'businessTopType', title: '业务类型', width: 100,}
+                        , {field: 'businessSecondType', title: '业务种类', width: 160}
+                        , {field: 'trademarkType', title: '商标类型', width: 200}
+                        , {field: 'price', title: '成交价格', width: 100}
+                        , {field: 'proxyMoney', title: '代理费', width: 100}
+                        , {field: 'uploadId', title: '文件', width: 80}
+                        , {field: 'createBy', title: '创建人', width: 80}
+                        , {field: 'createTime', title: '创建时间', width: 160}
+                        , {field: 'updateBy', title: '修改人', width: 80}
+                        , {field: 'updateTime', title: '修改时间', width: 160}
+                        , {field: 'customId', title: '客户ID', width: 100}
+                        , {field: 'remark', title: '备注', width: 100}
+                    ]
+                ]
+            });
+        }
+
+
+
         //生成menuTable表格
+        let businessUrl = '/progress/queryAll?businessId='+businesseId
         let progressTable = table.render({
             elem: '#showProgress'
-            , url: '/progress/queryAll'
+            , url: businessUrl
             , toolbar: '#progressToolbar'
             , title: 'menuTable'
             , page: true
-            , defaultToolbar: ['filter', 'exports', 'print']
+            , defaultToolbar: ''
             , cols: [
                 [
                     {field: 'progressId', title: '进度ID', width: 80, fixed: 'left'},

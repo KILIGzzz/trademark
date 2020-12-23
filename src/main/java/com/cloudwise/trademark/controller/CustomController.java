@@ -33,11 +33,9 @@ public class CustomController extends BaseController {
      */
     @GetMapping("selectOne")
     public ReturnBean selectOne(Integer customId) {
-        System.out.println(customId);
         Custom custom = this.customService.queryById(customId);
         List<Custom> list = new ArrayList<>();
         list.add(custom);
-        System.out.println(list);
         return returnSuccess(list);
     }
     

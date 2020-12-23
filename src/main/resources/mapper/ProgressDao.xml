@@ -103,8 +103,8 @@
             <if test="progress.progressId != null and progress.progressId != ''">
                 and progress_id like "%"#{progress.progressId}"%"
             </if>
-            <if test="progress.businessId != null and progress.businessId != ''">
-                and business_id like "%"#{progress.businessId}"%"
+            <if test="progress.businessId != null and progress.businessId != 0">
+                and business_id = #{progress.businessId}
             </if>
             <if test="progress.createBy != null and progress.createBy != ''">
                 and create_by like "%"#{progress.createBy}"%"
@@ -120,8 +120,8 @@
             <if test="progressId != null and progressId != ''">
                 and progress_id like "%"#{progressId}"%"
             </if>
-            <if test="businessId != null and businessId != ''">
-                and business_id like "%"#{businessId}"%"
+            <if test="businessId != null and businessId != 0">
+                and business_id = #{businessId}
             </if>
             <if test="createBy != null and createBy != ''">
                 and create_by like "%"#{createBy}"%"

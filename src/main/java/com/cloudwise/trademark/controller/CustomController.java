@@ -7,6 +7,7 @@ import com.cloudwise.trademark.service.CustomService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -28,12 +29,16 @@ public class CustomController extends BaseController {
     /**
      * 通过主键查询单条数据
      *
-     * @param id 主键
      * @return 单条数据
      */
     @GetMapping("selectOne")
-    public Custom selectOne(Integer id) {
-        return this.customService.queryById(id);
+    public ReturnBean selectOne(Integer customId) {
+        System.out.println(customId);
+        Custom custom = this.customService.queryById(customId);
+        List<Custom> list = new ArrayList<>();
+        list.add(custom);
+        System.out.println(list);
+        return returnSuccess(list);
     }
     
     /**

@@ -55,6 +55,16 @@ public class GotoController {
         return "custom";
     }
 
+    @GetMapping("toCharts")
+    public String toCharts() {
+        return "businessStateView";
+    }
+
+    @GetMapping("toBusiness")
+    public String toBusiness() {
+        return "business";
+    }
+
     @GetMapping("toUserinfo")
     public String toUserinfo() {
         return "userinfo";

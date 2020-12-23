@@ -87,12 +87,12 @@
     <div class="layui-form-item">
         <label class="layui-form-label">手机号：</label>
         <div class="layui-input-inline">
-            <input type="text" name="phone" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+            <input type="tel" name="phone" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
         </div>
         <div class="layui-inline">
             <label class="layui-form-label">代理人ID：</label>
             <div class="layui-input-inline">
-                <input type="text" name="proxyId" lay-verify="required" placeholder="" autocomplete="off"
+                <input type="number" name="proxyId" lay-verify="required" placeholder="" autocomplete="off"
                        class="layui-input">
             </div>
         </div>
@@ -224,7 +224,7 @@
                 });
             } else if (layEvent === 'register') {
                 //携带数据跳转到业务登记页面
-                layer.msg('携带数据跳转到业务登记页面');
+                location.href="/business/showCustomAndBusiness?customId="+data.customId
             }
         });
 

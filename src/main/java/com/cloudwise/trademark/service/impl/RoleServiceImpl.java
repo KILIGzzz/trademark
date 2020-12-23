@@ -35,7 +35,7 @@ public class RoleServiceImpl implements RoleService {
      * 查询多条数据
      *
      * @param offset 查询起始位置
-     * @param limit 查询条数
+     * @param limit  查询条数
      * @return 对象列表
      */
     @Override
@@ -96,7 +96,7 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public void insertRoleMenu(int roleId, String[] menusId) {
         for (int i = 0; i < menusId.length; i++) {
-            roleDao.insertRoleMenu(roleId,menusId[i]);
+            roleDao.insertRoleMenu(roleId, menusId[i]);
         }
     }
 
@@ -104,7 +104,7 @@ public class RoleServiceImpl implements RoleService {
     public void updateRoleMenu(Integer roleId, String[] menusId) {
         roleDao.deleteRoleMenu(roleId);
         for (int i = 0; i < menusId.length; i++) {
-            roleDao.insertRoleMenu(roleId,menusId[i]);
+            roleDao.insertRoleMenu(roleId, menusId[i]);
         }
     }
 

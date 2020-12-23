@@ -10,31 +10,31 @@
 <!--添加功能的form-->
 <form class="layui-form" action="" id="insertDicFrom"
       style="display: none;margin-right: 40px;margin-top: 20px">
-    <input hidden name="createBy" th:value="${session.username}">
-    <div class="layui-form-item">
-        <label class="layui-form-label">字典ID</label>
-        <div class="layui-input-block">
-            <input type="text" name="dictionaryId" autocomplete="off" placeholder="请输入字典ID"
-                   class="layui-input">
-        </div>
-    </div>
+    <input hidden name="createBy" th:value="${session.user.userName}">
     <div class="layui-form-item">
         <label class="layui-form-label">字典类型</label>
         <div class="layui-input-block">
-            <input type="text" name="typeId" autocomplete="off" placeholder="请输入字典类型ID"
+            <input type="text" name="typeId" autocomplete="off" placeholder="字典类型"
                    class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">字典名称</label>
         <div class="layui-input-block">
-            <input type="text" name="typeId" autocomplete="off" placeholder="请输入字典类型ID"
+            <input type="text" name="dictionaryName" autocomplete="off" placeholder="字典名称"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">备注</label>
+        <div class="layui-input-block">
+            <input type="text" name="remark" autocomplete="off" placeholder="备注"
                    class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn" lay-submit lay-filter="insertDeptFilter">立即提交</button>
+            <button class="layui-btn" lay-submit lay-filter="insertDic">立即提交</button>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
     </div>
@@ -44,7 +44,7 @@
     layui.use('form', function () {
         var form = layui.form;
         //监听提交
-        form.on('submit(insertDeptFilter)', function (data) {
+        form.on('submit(insertDic)', function (data) {
             layer.msg(JSON.stringify(data.field));
             return false;
         });
@@ -52,34 +52,40 @@
 </script>
 
 <!--编辑功能的form-->
-<form class="layui-form" action="" id="updateDictionaryFrom" lay-filter="updateDictionaryFrom"
+<form class="layui-form" action="" id="updateDicFrom" lay-filter="updateDicFrom"
       style="display: none;margin-right: 40px;margin-top: 20px">
-    <input hidden name="updateBy" th:value="${session.username}">
-    <input type="hidden" name="dictionaryId">
+    <input hidden name="updateBy" th:value="${session.user.userName}">
     <div class="layui-form-item">
-        <label class="layui-form-label">部门名称</label>
+        <label class="layui-form-label">字典ID</label>
         <div class="layui-input-block">
-            <input type="text" name="typeId" autocomplete="off" placeholder="请输入部门名称"
+            <input type="text" name="dictionaryId" autocomplete="off" placeholder="字典ID"
+                   readonly="readonly" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">字典类型</label>
+        <div class="layui-input-block">
+            <input type="text" name="typeId" autocomplete="off" placeholder="字典类型"
                    class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">排序</label>
+        <label class="layui-form-label">字典名称</label>
         <div class="layui-input-block">
-            <input type="number" name="dictionaryName" autocomplete="off" placeholder="请输入排序"
+            <input type="text" name="dictionaryName" autocomplete="off" placeholder="字典名称"
                    class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">状态</label>
+        <label class="layui-form-label">备注</label>
         <div class="layui-input-block">
-            <input type="checkbox" id="status" name="status" lay-skin="switch" lay-filter="switchStatus"
-                   lay-text="可用|不可用">
+            <input type="text" name="remark" autocomplete="off" placeholder="备注"
+                   class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn" lay-submit lay-filter="updateDeptFilter">立即提交</button>
+            <button class="layui-btn" lay-submit lay-filter="updateDicFilter">立即提交</button>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
     </div>
@@ -87,9 +93,9 @@
 
 <script>
     layui.use('form', function () {
-        var form = layui.form;
+        let form = layui.form;
         //监听提交
-        form.on('submit(updateDeptFilter)', function (data) {
+        form.on('submit(updateDicFilter)', function (data) {
             layer.msg(JSON.stringify(data.field));
             return false;
         });
@@ -100,19 +106,19 @@
     <div class="layui-inline">
         <label class="layui-form-label">字典ID</label>
         <div class="layui-input-inline">
-            <input type="text" name="typeId" autocomplete="off" placeholder="字典ID" class="layui-input">
+            <input type="text" name="dictionaryId" autocomplete="off" placeholder="字典ID" class="layui-input">
         </div>
     </div>
     <div class="layui-inline">
         <label class="layui-form-label">字典名称</label>
         <div class="layui-input-inline">
-            <input type="text" name="createBy" autocomplete="off" placeholder="字典名称" class="layui-input">
+            <input type="text" name="dictionaryName" autocomplete="off" placeholder="字典名称" class="layui-input">
         </div>
     </div>
     <div class="layui-inline">
         <label class="layui-form-label">创建人</label>
         <div class="layui-input-inline">
-            <input type="text" name="updateBy" autocomplete="off" placeholder="创建人" class="layui-input">
+            <input type="text" name="createBy" autocomplete="off" placeholder="创建人" class="layui-input">
         </div>
     </div>
     <div class="layui-inline">
@@ -122,21 +128,18 @@
         </div>
     </div>
 </form>
-<table id="showDic" lay-filter="deptFilter"></table>
+<table id="showDic" lay-filter="dicFilter"></table>
 </body>
 <!--顶部工具栏-->
 <script type="text/html" id="dicToolbar">
     <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-xs" lay-event="addDept"><i class="layui-icon layui-icon-add-1"></i>
+        <button class="layui-btn layui-btn-xs" lay-event="addDic"><i class="layui-icon layui-icon-add-1"></i>
         </button>
-        <button class="layui-btn layui-btn-danger layui-btn-xs" lay-event="deleteDepts"><i
-                class="layui-icon layui-icon-delete"></i></button>
     </div>
 </script>
-<!--实现部门管理操作功能按钮-->
-<script type="text/html" id="deptBar">
+<!--实现操作功能按钮-->
+<script type="text/html" id="dicBar">
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
 <script>
     layui.use(['table', 'layer', 'jquery', 'form'], function () {
@@ -156,7 +159,7 @@
             , cols: [
                 [ //表头
                     {type: 'checkbox', fixed: 'left'}
-                    , {field: 'dictionaryId', title: '编号', width: 80, sort: true, fixed: true}
+                    , {field: 'dictionaryId', title: '字典ID', width: 100, sort: true, fixed: true}
                     , {field: 'typeId', title: '类型ID', width: 100}
                     , {field: 'dictionaryName', title: '字典名称', width: 300}
                     , {field: 'createBy', title: '创建人', width: 80}
@@ -164,71 +167,34 @@
                     , {field: 'updateBy', title: '修改人', width: 100}
                     , {field: 'updateTime', title: '修改时间', width: 200}
                     , {field: 'remark', title: '备注', width: 200}
-                    , {fixed: 'right', align: 'center', title: '操作', toolbar: '#deptBar', width: 120}
+                    , {fixed: 'right', align: 'center', title: '操作', toolbar: '#dicBar', width: 120}
                 ]
             ]
         });
         //监听行工具事件
-        table.on('tool(deptFilter)', function (obj) {
+        table.on('tool(dicFilter)', function (obj) {
             let data = obj.data //获得当前行数据
                 , layEvent = obj.event; //获得 lay-event 对应的值
-            if (layEvent === 'del') {
-                layer.confirm('真的删除行么', function (index) {
-                    //删除数据库中的数据
-                    $.ajax({
-                        url: "/dept/deleteById",
-                        type: "PUT",
-                        dataType: "JSON",
-                        data: {dictionaryId: data.dictionaryId},
-                        success: function (ret) {
-                            if (ret.code == 0) {
-                                //刷新表格数据
-                                dicTable.reload({
-                                    page: {
-                                        curr: 1 //重新从第 1 页开始
-                                    }
-                                });
-                                layer.msg(ret.msg, {icon: 6});
-                            } else {
-                                layer.msg(ret.msg, {icon: 5});
-                            }
-
-                        }
-                    })
-                    layer.close(index);
-                    //向服务端发送删除指令
-                });
-            } else if (layEvent === 'edit') {
-                if (data.status == 0) {
-                    document.getElementById("status").checked = true;
-                } else {
-                    document.getElementById("status").checked = false;
-                }
-                form.val('updateDictionaryFrom', {
+            if (layEvent === 'edit') {
+                form.val('updateDicFrom', {
                     'dictionaryId': data.dictionaryId,
                     'typeId': data.typeId,
                     'dictionaryName': data.dictionaryName,
+                    'remark': data.remark
                 });
-                form.render();
                 layer.open({
-                    title: '编辑部门',
+                    title: '编辑字典',
                     type: 1,
                     area: ['500px', '500px'],
-                    content: $("#updateDictionaryFrom")//这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+                    content: $("#updateDicFrom")//这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
                 });
             }
         });
-
         //form表单实现更新功能
-        form.on('submit(updateDeptFilter)', function (data) {
-            if (data.field.status === 'on') {
-                data.field.status = 0;
-            } else {
-                data.field.status = 1;
-            }
+        form.on('submit(updateDicFilter)', function (data) {
             //提交表单数据
             $.ajax({
-                url: "/dept/updateDept",
+                url: "/dictionary/update",
                 type: "PUT",
                 dataType: "JSON",
                 data: data.field,
@@ -253,11 +219,9 @@
         });
 
         //监听头工具栏事件
-        table.on('toolbar(deptFilter)', function (obj) {
-            let checkStatus = table.checkStatus(obj.config.id)
-                , data = checkStatus.data; //获取选中的数据
+        table.on('toolbar(dicFilter)', function (obj) {
             switch (obj.event) {
-                case 'addDept':
+                case 'addDic':
                     document.getElementById("insertDicFrom").reset();
                     layer.open({
                         title: '添加部门',
@@ -266,76 +230,34 @@
                         content: $("#insertDicFrom")
                     });
                     break;
-                case 'deleteDepts':
-                    if (data.length == 0) {
-                        layer.msg('请选择一行');
-                    } else {
-                        layer.confirm('真的删除行么', function () {
-                            //for循环收集所有选中的id
-                            let ids = [];
-                            for (let i = 0; i < data.length; i++) {
-                                ids[i] = data[i].dictionaryId;
-                            }
-                            $.ajax({
-                                url: "/dept/deleteByIds",
-                                type: "PUT",
-                                dataType: "JSON",
-                                data: {ids: ids.join(",")},
-                                success: function (ret) {
-                                    if (ret.code == 0) {
-                                        //刷新表格数据
-                                        dicTable.reload({
-                                            page: {
-                                                curr: 1 //重新从第 1 页开始
-                                            }
-                                        });
-                                        layer.msg(ret.msg, {icon: 6});
-                                    } else {
-                                        layer.msg(ret.msg, {icon: 5});
-                                    }
-                                }
-                            })
-                        });
-                    }
-                    break;
             }
         });
 
         //form表单实现添加功能
-        form.on('submit(insertDeptFilter)', function (data) {
-            if (data.field.status === 'on') {
-                data.field.status = 0;
-            } else {
-                data.field.status = 1;
-            }
+        form.on('submit(insertDic)', function (data) {
             //提交表单数据
-            if (!isNaN(data.field.dictionaryName)) {
-                $.ajax({
-                    url: "/dept/insertDept",
-                    type: "POST",
-                    dataType: "JSON",
-                    data: data.field,
-                    success: function (ret) {
-                        if (ret.code == 0) {
-                            //关闭对话框
-                            layer.closeAll();
-                            //刷新表格数据
-                            dicTable.reload({
-                                page: {
-                                    curr: 1 //重新从第 1 页开始
-                                }
-                            });
-                            layer.msg(ret.msg, {icon: 6});
-                        } else {
-                            layer.msg(ret.msg, {icon: 5});
-                        }
-
+            $.ajax({
+                url: "/dictionary/insert",
+                type: "POST",
+                dataType: "JSON",
+                data: data.field,
+                success: function (ret) {
+                    if (ret.code == 0) {
+                        //关闭对话框
+                        layer.closeAll();
+                        //刷新表格数据
+                        dicTable.reload({
+                            page: {
+                                curr: 1 //重新从第 1 页开始
+                            }
+                        });
+                        layer.msg(ret.msg, {icon: 6});
+                    } else {
+                        layer.msg(ret.msg, {icon: 5});
                     }
-                });
-            } else {
-                layer.msg("排序只能是数字！")
-            }
 
+                }
+            });
             return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
         });
 
@@ -344,9 +266,9 @@
             //执行重载
             dicTable.reload({
                 where: {
-                    typeId: data.field.typeId,
-                    createBy: data.field.createBy,
-                    updateBy: data.field.updateBy
+                    dictionaryId: data.field.dictionaryId,
+                    dictionaryName: data.field.dictionaryName,
+                    createBy: data.field.createBy
                 }
                 , page: {
                     curr: 1 //重新从第 1 页开始
@@ -358,15 +280,15 @@
         $("#myButton").click(function () {
             dicTable.reload({
                 where: { //设定异步数据接口的额外参数，任意设
-                    typeId: ""
+                    dictionaryId: ""
+                    , dictionaryName: ""
                     , createBy: ""
-                    , updateBy: ""
                 }
                 , page: {
                     curr: 1 //重新从第 1 页开始
                 }
             });
-        })
+        });
     });
 </script>
 </html>

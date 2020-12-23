@@ -5,11 +5,10 @@ import com.cloudwise.trademark.entity.DictionaryType;
 import com.cloudwise.trademark.entity.PageBean;
 import com.cloudwise.trademark.entity.ReturnBean;
 import com.cloudwise.trademark.service.DictionaryTypeService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -44,5 +43,25 @@ public class DictionaryTypeController extends BaseController {
         List<DictionaryType> dictionaryTypes = dictionaryTypeService.queryAllByConditionAndLimit(dictionaryType, offset, pageBean.getLimit());
         long rowCount = dictionaryTypeService.getRowCount(dictionaryType);
         return returnSuccess(dictionaryTypes, rowCount);
+    }
+
+    @PutMapping("update")
+    public ReturnBean update(DictionaryType dictionaryType, HttpServletRequest request) {
+        try {
+            dictionaryTypeService.update(dictionaryType);
+            return returnSuccess(null);
+        } catch (Exception e) {
+            return returnFail(null);
+        }
+    }
+
+    @PostMapping("insert")
+    public ReturnBean insert(DictionaryType dictionaryType) {
+        try {
+            dictionaryTypeService.insert(dictionaryType);
+            return returnSuccess(null);
+        } catch (Exception e) {
+            return returnFail(null);
+        }
     }
 }

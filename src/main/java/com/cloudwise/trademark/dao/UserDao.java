@@ -2,6 +2,7 @@ package com.cloudwise.trademark.dao;
 
 import com.cloudwise.trademark.entity.User;
 import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 import java.util.Map;
 
@@ -34,47 +35,47 @@ public interface UserDao {
      * 查询指定行数据
      *
      * @param offset 查询起始位置
-     * @param limit 查询条数
+     * @param limit  查询条数
      * @return 对象列表
      */
-    List<User> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit,User user);
+    List<User> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit, User user);
 
 
     /**
+     * @param :
+     * @return long
      * @create by: IvanZ
      * @description : 得到行数
      * @create time: 2020/12/17 9:58
-     * @param :
-     * @return long
      */
     long getCount(User user);
 
     /**
+     * @param list:
+     * @return int
      * @create by: IvanZ
      * @description : 根据选中的id删除数据
      * @create time: 2020/12/17 11:20
-     * @param list:
-     * @return int
      */
     int delSelected(List<String> list);
 
     /**
+     * @param :
+     * @return java.util.List<java.util.Map < java.lang.String, java.lang.Object>>
      * @create by: IvanZ
      * @description : 查询所有部门
      * @create time: 2020/12/17 17:31
-     * @param :
-     * @return java.util.List<java.util.Map<java.lang.String,java.lang.Object>>
      */
-    List<Map<String,Object>> findAllDept();
+    List<Map<String, Object>> findAllDept();
 
     /**
+     * @param :
+     * @return java.util.List<java.util.Map < java.lang.String, java.lang.Object>>
      * @create by: IvanZ
      * @description : 查询所有角色
      * @create time: 2020/12/17 19:41
-     * @param :
-     * @return java.util.List<java.util.Map<java.lang.String,java.lang.Object>>
      */
-    List<Map<String,Object>> findAllRole();
+    List<Map<String, Object>> findAllRole();
 
 
     /**
@@ -94,15 +95,17 @@ public interface UserDao {
     int insert(User user);
 
     /**
-     * @create by: IvanZ
-     * @description : 修改tbl_user_role的数据
-     * @create time: 2020/12/18 11:57
      * @param userId:
      * @param roleId:
      * @return int
+     * @create by: IvanZ
+     * @description : 修改tbl_user_role的数据
+     * @create time: 2020/12/18 11:57
      */
     int insertUserRole(@Param("userId") int userId, @Param("roleId") String roleId);
+
     void deleteUserRole(int userId);
+
     List<String> findUserRole(int usreId);
 
     /**
@@ -132,11 +135,11 @@ public interface UserDao {
     User queryByUsername(String username);
 
     /**
+     * @param userId:
+     * @return java.util.List<java.lang.Integer>
      * @create by: IvanZ
      * @description : 查询选中的roleId
      * @create time: 2020/12/21 16:21
-     * @param userId:
-     * @return java.util.List<java.lang.Integer>
      */
     List<Integer> findSelectRole(Integer userId);
 }

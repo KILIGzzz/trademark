@@ -73,7 +73,7 @@
         from trademark.tbl_dictionary_type
         <where>
             <if test="dictionaryType.typeId != null and dictionaryType.typeId != ''">
-                and type_id like "%"#{dictionaryType.typeId}"%"
+                and type_id = #{dictionaryType.typeId}
             </if>
             <if test="dictionaryType.typeName != null and dictionaryType.typeName != ''">
                 and type_name like "%"#{dictionaryType.typeName}"%"
@@ -89,7 +89,7 @@
         from trademark.tbl_dictionary_type
         <where>
             <if test="typeId != null and typeId != ''">
-                and type_id like "%"#{typeId}"%"
+                and type_id = #{typeId}
             </if>
             <if test="typeName != null and typeName != ''">
                 and type_name like "%"#{typeName}"%"
@@ -103,7 +103,7 @@
     <!--新增所有列-->
     <insert id="insert" keyProperty="typeId" useGeneratedKeys="true">
         insert into trademark.tbl_dictionary_type(type_name, create_by, create_time, update_by, update_time, remark)
-        values (#{typeName}, #{createBy}, #{createTime}, #{updateBy}, #{updateTime}, #{remark})
+        values (#{typeName}, #{createBy}, now(), #{updateBy}, #{updateTime}, #{remark})
     </insert>
 
     <insert id="insertBatch" keyProperty="typeId" useGeneratedKeys="true">
@@ -143,12 +143,10 @@
             <if test="updateBy != null and updateBy != ''">
                 update_by = #{updateBy},
             </if>
-            <if test="updateTime != null">
-                update_time = #{updateTime},
-            </if>
             <if test="remark != null and remark != ''">
                 remark = #{remark},
             </if>
+            update_time = now(),
         </set>
         where type_id = #{typeId}
     </update>

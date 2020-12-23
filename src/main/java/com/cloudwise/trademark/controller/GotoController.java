@@ -46,16 +46,6 @@ public class GotoController {
         return "role";
     }
 
-    @GetMapping("toDept")
-    public String toDept() {
-        return "dept";
-    }
-
-    @GetMapping("toMenu")
-    public String toMenu() {
-        return "menu";
-    }
-
     @GetMapping("toProgress")
     public String toProgress() {
         return "progress";

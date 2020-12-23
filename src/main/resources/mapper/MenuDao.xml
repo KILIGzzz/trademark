@@ -22,19 +22,19 @@
     <!--查询单个-->
     <select id="queryById" resultMap="MenuMap">
         select menu_id,
-               menu_name,
-               parent_id,
-               order_num,
-               url,
-               menu_type,
-               visible,
-               perms,
-               icon,
-               create_by,
-               create_time,
-               update_by,
-               update_time,
-               remark
+        menu_name,
+        parent_id,
+        order_num,
+        url,
+        menu_type,
+        visible,
+        perms,
+        icon,
+        create_by,
+        create_time,
+        update_by,
+        update_time,
+        remark
         from trademark.tbl_menu
         where menu_id = #{menuId}
     </select>
@@ -42,19 +42,19 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="MenuMap">
         select menu_id,
-               menu_name,
-               parent_id,
-               order_num,
-               url,
-               menu_type,
-               visible,
-               perms,
-               icon,
-               create_by,
-               create_time,
-               update_by,
-               update_time,
-               remark
+        menu_name,
+        parent_id,
+        order_num,
+        url,
+        menu_type,
+        visible,
+        perms,
+        icon,
+        create_by,
+        create_time,
+        update_by,
+        update_time,
+        remark
         from trademark.tbl_menu
         limit #{offset}, #{limit}
     </select>
@@ -129,19 +129,19 @@
     <!--查询所有菜单-->
     <select id="queryAllMenu" resultMap="MenuMap">
         select menu_id,
-               menu_name,
-               parent_id,
-               order_num,
-               url,
-               menu_type,
-               visible,
-               perms,
-               icon,
-               create_by,
-               create_time,
-               update_by,
-               update_time,
-               remark
+        menu_name,
+        parent_id,
+        order_num,
+        url,
+        menu_type,
+        visible,
+        perms,
+        icon,
+        create_by,
+        create_time,
+        update_by,
+        update_time,
+        remark
         from trademark.tbl_menu
         where visible = 0
     </select>
@@ -149,7 +149,7 @@
     <select id="findParentNameId" resultMap="MenuMap" parameterType="int">
         select tm.*
         from tbl_menu tm
-                 inner join (select parent_id from tbl_menu where menu_id = #{menuId}) pid on tm.menu_id = pid.parent_id
+        inner join (select parent_id from tbl_menu where menu_id = #{menuId}) pid on tm.menu_id = pid.parent_id
     </select>
     <select id="selectAllRole" resultType="java.lang.Integer">
         select distinct role_id
@@ -157,11 +157,11 @@
     </select>
 
     <!--新增所有列-->
-    <insert id="insert" keyProperty="menuId" useGeneratedKeys="true" >
+    <insert id="insert" keyProperty="menuId" useGeneratedKeys="true">
         insert into trademark.tbl_menu(menu_name, parent_id, order_num, url, menu_type, visible, perms, icon, create_by,
-                                       create_time, update_by, update_time, remark)
+        create_time, update_by, update_time, remark)
         values (#{menuName}, #{parentId}, #{orderNum}, #{url}, #{menuType}, 0, #{perms}, #{icon}, #{createBy},
-                now(), #{updateBy}, #{updateTime}, #{remark})
+        now(), #{updateBy}, #{updateTime}, #{remark})
     </insert>
 
     <insert id="insertBatch" keyProperty="menuId" useGeneratedKeys="true">

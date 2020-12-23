@@ -79,10 +79,10 @@
         from trademark.tbl_dictionary
         <where>
             <if test="dictionary.dictionaryId != null and dictionary.dictionaryId != ''">
-                and dictionar_id like "%"#{dictionary.dictionaryId}"%"
+                and dictionary_id = #{dictionary.dictionaryId}
             </if>
             <if test="dictionary.dictionaryName != null and dictionary.dictionaryName != ''">
-                and dictionar_name like "%"#{dictionary.dictionaryName}"%"
+                and dictionary_name like "%"#{dictionary.dictionaryName}"%"
             </if>
             <if test="dictionary.createBy != null and dictionary.createBy != ''">
                 and create_by like "%"#{dictionary.createBy}"%"
@@ -95,10 +95,10 @@
         from trademark.tbl_dictionary
         <where>
             <if test="dictionaryId != null and dictionaryId != ''">
-                and dictionar_id like "%"#{dictionaryId}"%"
+                and dictionary_id = #{dictionaryId}
             </if>
             <if test="dictionaryName != null and dictionaryName != ''">
-                and dictionar_name like "%"#{dictionaryName}"%"
+                and dictionary_name like "%"#{dictionaryName}"%"
             </if>
             <if test="createBy != null and createBy != ''">
                 and create_by like "%"#{createBy}"%"
@@ -110,7 +110,7 @@
     <insert id="insert" keyProperty="dictionaryId" useGeneratedKeys="true">
         insert into trademark.tbl_dictionary(type_id, dictionary_name, create_by, create_time, update_by, update_time,
                                              remark)
-        values (#{typeId}, #{dictionaryName}, #{createBy}, #{createTime}, #{updateBy}, #{updateTime}, #{remark})
+        values (#{typeId}, #{dictionaryName}, #{createBy}, now(), #{updateBy}, #{updateTime}, #{remark})
     </insert>
 
     <insert id="insertBatch" keyProperty="dictionaryId" useGeneratedKeys="true">
@@ -156,12 +156,10 @@
             <if test="updateBy != null and updateBy != ''">
                 update_by = #{updateBy},
             </if>
-            <if test="updateTime != null">
-                update_time = #{updateTime},
-            </if>
             <if test="remark != null and remark != ''">
                 remark = #{remark},
             </if>
+            update_time = now(),
         </set>
         where dictionary_id = #{dictionaryId}
     </update>

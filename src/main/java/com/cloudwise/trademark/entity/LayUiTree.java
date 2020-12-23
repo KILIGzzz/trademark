@@ -1,4 +1,5 @@
 package com.cloudwise.trademark.entity;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

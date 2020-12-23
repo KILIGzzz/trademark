@@ -5,9 +5,7 @@ import com.cloudwise.trademark.entity.Dictionary;
 import com.cloudwise.trademark.entity.PageBean;
 import com.cloudwise.trademark.entity.ReturnBean;
 import com.cloudwise.trademark.service.DictionaryService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -44,5 +42,25 @@ public class DictionaryController extends BaseController {
         List<Dictionary> dictionaries = dictionaryService.queryAllByConditionAndLimit(dictionary, offset, pageBean.getLimit());
         long rowCount = dictionaryService.getRowCount(dictionary);
         return returnSuccess(dictionaries, rowCount);
+    }
+
+    @PutMapping("update")
+    public ReturnBean update(Dictionary dictionary) {
+        try {
+            dictionaryService.update(dictionary);
+            return returnSuccess(null);
+        } catch (Exception e) {
+            return returnFail(null);
+        }
+    }
+
+    @PostMapping("insert")
+    public ReturnBean insert(Dictionary dictionary) {
+        try {
+            dictionaryService.insert(dictionary);
+            return returnSuccess(null);
+        } catch (Exception e) {
+            return returnFail(null);
+        }
     }
 }

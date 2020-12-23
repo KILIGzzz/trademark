@@ -41,20 +41,20 @@ public class UserServiceImpl implements UserService {
      * 查询多条数据
      *
      * @param offset 查询起始位置
-     * @param limit 查询条数
+     * @param limit  查询条数
      * @return 对象列表
      */
     @Override
-    public List<User> queryAllByLimit(int offset, int limit,User user) {
-        return this.userDao.queryAllByLimit(offset,limit,user);
+    public List<User> queryAllByLimit(int offset, int limit, User user) {
+        return this.userDao.queryAllByLimit(offset, limit, user);
     }
 
     /**
+     * @param :
+     * @return long
      * @create by: IvanZ
      * @description : 得到行数
      * @create time: 2020/12/17 9:58
-     * @param :
-     * @return long
      */
     @Override
     public long getCount(User user) {
@@ -110,7 +110,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Map<String,Object>> findAllDept() {
+    public List<Map<String, Object>> findAllDept() {
         return userDao.findAllDept();
     }
 
@@ -122,7 +122,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void insertUserRole(int userId, String[] roles) {
         for (int i = 0; i < roles.length; i++) {
-            userDao.insertUserRole(userId,roles[i]);
+            userDao.insertUserRole(userId, roles[i]);
         }
     }
 
@@ -137,7 +137,7 @@ public class UserServiceImpl implements UserService {
         String[] roles = replace.split(",");
         userDao.deleteUserRole(userId);
         for (int i = 0; i < roles.length; i++) {
-            userDao.insertUserRole(userId,roles[i]);
+            userDao.insertUserRole(userId, roles[i]);
         }
     }
 

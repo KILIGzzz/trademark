@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>进度列表</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <script src="/layui/layui.js"></script>
+</head>
+
+<body>
+<table id="businessTable" lay-filter="businessFilter"></table>
+<table id="showProgress"></table>
+
+</body>
+
+<!--顶部工具栏-->
+<script type="text/html" id="progressToolbar">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="addProgress">添加进度</button>
+    </div>
+</script>
+<!--添加进度表单-->
+<form class="layui-form" action="" id="addProgressForm" style="display: none;margin-right: 40px;margin-top: 20px">
+    <!--创建人-->
+    <input hidden th:value="${session.username}" name="createBy">
+    <div class="layui-form-item">
+        <label class="layui-form-label">进度类型：</label>
+        <div class="layui-input-inline">
+            <select name="progressType">
+            </select>
+        </div>
+        <label class="layui-form-label">上传文件ID：</label>
+        <div class="layui-input-inline">
+            <input type="number" name="uploadId" lay-verify="required" placeholder="" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">通知文件ID：</label>
+        <div class="layui-input-inline">
+            <input type="number" name="notice" lay-verify="required" placeholder="" autocomplete="off"
+                   class="layui-input">
+        </div>
+        <label class="layui-form-label">业务ID：</label>
+        <div class="layui-input-inline">
+            <input type="number" name="businessId" lay-verify="required" placeholder="" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">备注：</label>
+        <div class="layui-input-block">
+            <textarea type="text" name="remark" placeholder="" class="layui-textarea"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block" align="center">
+            <button type="submit" class="layui-btn" lay-submit="" lay-filter="addProgressFilter">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+<!--修改进度表单-->
+<form class="layui-form" action="" id="updateProgressForm" lay-filter="updateProgressFormFilter" style="display: none;margin-right: 40px;margin-top: 20px">
+    <!--修改人-->
+    <input hidden th:value="${session.username}" name="updateBy">
+    <div class="layui-form-item">
+        <label class="layui-form-label">进度ID：</label>
+        <div class="layui-input-inline">
+            <input type="text" name="progressId" lay-verify="required" placeholder="" autocomplete="off"
+                   class="layui-input" readonly>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">进度类型：</label>
+        <div class="layui-input-inline">
+            <select name="progressType">
+            </select>
+        </div>
+        <label class="layui-form-label">上传文件ID：</label>
+        <div class="layui-input-inline">
+            <input type="number" name="uploadId" lay-verify="required" placeholder="" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">通知文件ID：</label>
+        <div class="layui-input-inline">
+            <input type="number" name="notice" lay-verify="required" placeholder="" autocomplete="off"
+                   class="layui-input">
+        </div>
+        <label class="layui-form-label">业务ID：</label>
+        <div class="layui-input-inline">
+            <input type="number" name="businessId" lay-verify="required" placeholder="" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">备注：</label>
+        <div class="layui-input-block">
+            <textarea type="text" name="remark" placeholder="" class="layui-textarea"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block" align="center">
+            <button type="submit" class="layui-btn" lay-submit="" lay-filter="updateProgressFilter">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+<!--实现菜单管理操作功能按钮-->
+<script type="text/html" id="progressBar">
+    <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="edit">修改进度</a>
+</script>
+
+
+
+<script>
+    layui.use(['table', 'layer', 'jquery', 'form'], function () {
+        let layer = layui.layer;
+        let $ = layui.jquery;
+        let form = layui.form;
+        let table = layui.table;
+
+
+        //获取传过来的businessId
+        var businesseId = "";
+        businesseId = [[${businessId}]]+"";
+
+        if (businesseId == 0){
+            document.getElementById("businessTable").hidden = true
+        }else {
+            document.getElementById("businessTable").hidden = false
+            let businessUrl = '/business/selectOne?businessId='+businesseId
+            var businessTable = table.render({
+                elem: '#businessTable'
+                , url: businessUrl //数据接口
+                , page: false //开启分页
+                , cols: [
+                    [ //表头
+                        {field: 'businessId', title: '业务编号', width: 100, sort: true}
+                        , {field: 'applicantCode', title: '申请号', width: 160}
+                        , {field: 'applicantTime', title: '申请时间', width: 160}
+                        , {field: 'businessName', title: '业务名', width: 160}
+                        , {field: 'businessTopType', title: '业务类型', width: 100,}
+                        , {field: 'businessSecondType', title: '业务种类', width: 160}
+                        , {field: 'trademarkType', title: '商标类型', width: 200}
+                        , {field: 'price', title: '成交价格', width: 100}
+                        , {field: 'proxyMoney', title: '代理费', width: 100}
+                        , {field: 'uploadId', title: '文件', width: 80}
+                        , {field: 'createBy', title: '创建人', width: 80}
+                        , {field: 'createTime', title: '创建时间', width: 160}
+                        , {field: 'updateBy', title: '修改人', width: 80}
+                        , {field: 'updateTime', title: '修改时间', width: 160}
+                        , {field: 'customId', title: '客户ID', width: 100}
+                        , {field: 'remark', title: '备注', width: 100}
+                    ]
+                ]
+            });
+        }
+
+
+
+        //生成menuTable表格
+        let businessUrl = '/progress/queryAll?businessId='+businesseId
+        let progressTable = table.render({
+            elem: '#showProgress'
+            , url: businessUrl
+            , toolbar: '#progressToolbar'
+            , title: 'menuTable'
+            , page: true
+            , defaultToolbar: ''
+            , cols: [
+                [
+                    {field: 'progressId', title: '进度ID', width: 80, fixed: 'left'},
+                    {field: 'progressType', title: '进度类型', width: 100},
+                    {field: 'uploadId', title: '上传文件ID', width: 120},
+                    {field: 'notice', title: '通知文件ID', width: 120},
+                    {field: 'businessId', title: '业务ID', width: 80},
+                    {field: 'createBy', title: '创建人', width: 80},
+                    {field: 'createTime', title: '创建时间', width: 100},
+                    {field: 'updateBy', title: '更新人', width: 80},
+                    {field: 'updateTime', title: '更新时间', width: 100},
+                    {field: 'remark', title: '备注', width: 100},
+                    {fixed: 'right', align: 'center', toolbar: '#progressBar', title: '操作', width: 100}
+                ]
+            ]
+        });
+        let options = '';
+        var $progressTypeSelect = $("select[name=progressType]");
+        $.ajax({
+            url: "/progress/findAllProgress",
+            type: "GET",
+            dataType: "JSON",
+            success: function (allProgress) {
+                //将数据放到select中
+                for (let i = 0; i < allProgress.length; i++) {
+                    options += '<option value="' + allProgress[i].dictionary_name + '">' + allProgress[i].dictionary_name+ '</option>';
+                }
+                $progressTypeSelect.html(options)
+            }
+        });
+
+        //监听头部工具栏事件
+        table.on('toolbar', function (obj) {
+            switch (obj.event) {
+                case 'addProgress':
+                    //重新渲染表单
+                    form.render()
+                    layer.open({
+                        title: '添加进度',
+                        type: 1,
+                        area: ['800px', '550px'],
+                        content: $('#addProgressForm')//这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+                    });
+                    break;
+            }
+            ;
+        });
+
+        //监听行工具栏事件
+        table.on('tool', function (obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+            var data = obj.data //获得当前行数据
+                , layEvent = obj.event; //获得 lay-event 对应的值
+            if (layEvent === 'edit') {
+                //弹出对话框之前，需要填充表单数据
+                form.val('updateProgressFormFilter', {
+                    "progressType": data.progressType // "name": "value"
+                    , "uploadId": data.uploadId
+                    , "progressId": data.progressId
+                    , "notice": data.notice
+                    , "businessId": data.businessId
+                    , "remark": data.remark
+                });
+                layer.open({
+                    title: '修改进度',
+                    type: 1,
+                    area: ['800px', '550px'],
+                    content: $("#updateProgressForm")//这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+                });
+            }
+        });
+
+        //添加表单提交按钮事件
+        form.on('submit(addProgressFilter)', function (data) {
+            console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+            //提交表单数据
+            $.ajax({
+                url: "/progress/add",
+                type: "POST",
+                dataType: "JSON",
+                data: data.field,
+                success: function (ret) {
+                    if (ret.code == 0) {
+                        //关闭对话框
+                        layer.closeAll();
+                        //刷新表格数据
+                        progressTable.reload({
+                            page: {
+                                curr: 1 //重新从第 1 页开始
+                            }
+                        });
+                        layer.msg(ret.msg, {icon: 6});
+                    } else {
+                        layer.msg(ret.msg, {icon: 5});
+                    }
+
+                }
+            })
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+
+        //修改表单提交按钮事件
+        form.on('submit(updateProgressFilter)', function (data) {
+            console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+            //提交表单数据
+            $.ajax({
+                url: "/progress/update",
+                type: "POST",
+                dataType: "JSON",
+                data: data.field,
+                success: function (ret) {
+                    if (ret.code == 0) {
+                        //关闭对话框
+                        layer.closeAll();
+                        //刷新表格数据
+                        progressTable.reload({
+                            page: {
+                                curr: 1 //重新从第 1 页开始
+                            }
+                        });
+                        layer.msg(ret.msg, {icon: 6});
+                    } else {
+                        layer.msg(ret.msg, {icon: 5});
+                    }
+                }
+            })
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+
+    });
+</script>
+</html>

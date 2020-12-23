@@ -12,12 +12,12 @@
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">
-                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                    <img th:src="${session.user.avatar}" class="layui-nav-img">
                     [[${session.username}]]
                 </a>
                 <dl class="layui-nav-child">
-                    <dd><a href="">基本资料</a></dd>
-                    <dd><a href="">安全设置</a></dd>
+                    <dd><a href="/goto/toUserinfo">基本资料</a></dd>
+                    <dd><a href="#">安全设置</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item"><a href="/logout">注销</a></li>

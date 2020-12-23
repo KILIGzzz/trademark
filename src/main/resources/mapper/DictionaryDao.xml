@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloudwise.trademark.dao.DictionaryDao">
+
+    <resultMap type="com.cloudwise.trademark.entity.Dictionary" id="DictionaryMap">
+        <result property="dictionaryId" column="dictionary_id" jdbcType="INTEGER"/>
+        <result property="typeId" column="type_id" jdbcType="INTEGER"/>
+        <result property="dictionaryName" column="dictionary_name" jdbcType="VARCHAR"/>
+        <result property="createBy" column="create_by" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="OTHER"/>
+        <result property="updateBy" column="update_by" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="update_time" jdbcType="OTHER"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="DictionaryMap">
+        select dictionary_id,
+               type_id,
+               dictionary_name,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               remark
+        from trademark.tbl_dictionary
+        where dictionary_id = #{dictionaryId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="DictionaryMap">
+        select dictionary_id,
+               type_id,
+               dictionary_name,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               remark
+        from trademark.tbl_dictionary
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="DictionaryMap">
+        select
+        dictionary_id, type_id, dictionary_name, create_by, create_time, update_by, update_time, remark
+        from trademark.tbl_dictionary
+        <where>
+            <if test="dictionaryId != null">
+                and dictionary_id = #{dictionaryId}
+            </if>
+            <if test="typeId != null">
+                and type_id = #{typeId}
+            </if>
+            <if test="dictionaryName != null and dictionaryName != ''">
+                and dictionary_name = #{dictionaryName}
+            </if>
+            <if test="createBy != null and createBy != ''">
+                and create_by = #{createBy}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateBy != null and updateBy != ''">
+                and update_by = #{updateBy}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="remark != null and remark != ''">
+                and remark = #{remark}
+            </if>
+        </where>
+    </select>
+    <select id="queryAllByConditionAndLimit" resultMap="DictionaryMap" parameterType="com.cloudwise.trademark.entity.Dictionary">
+        select
+        dictionary_id, type_id, dictionary_name, create_by, create_time, update_by, update_time, remark
+        from trademark.tbl_dictionary
+        <where>
+            <if test="dictionary.dictionaryId != null and dictionary.dictionaryId != ''">
+                and dictionar_id like "%"#{dictionary.dictionaryId}"%"
+            </if>
+            <if test="dictionary.dictionaryName != null and dictionary.dictionaryName != ''">
+                and dictionar_name like "%"#{dictionary.dictionaryName}"%"
+            </if>
+            <if test="dictionary.createBy != null and dictionary.createBy != ''">
+                and create_by like "%"#{dictionary.createBy}"%"
+            </if>
+        </where>
+        limit #{offset}, #{limit}
+    </select>
+    <select id="getRowCount" resultType="java.lang.Long">
+        select count(*) count
+        from trademark.tbl_dictionary
+        <where>
+            <if test="dictionaryId != null and dictionaryId != ''">
+                and dictionar_id like "%"#{dictionaryId}"%"
+            </if>
+            <if test="dictionaryName != null and dictionaryName != ''">
+                and dictionar_name like "%"#{dictionaryName}"%"
+            </if>
+            <if test="createBy != null and createBy != ''">
+                and create_by like "%"#{createBy}"%"
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="dictionaryId" useGeneratedKeys="true">
+        insert into trademark.tbl_dictionary(type_id, dictionary_name, create_by, create_time, update_by, update_time,
+                                             remark)
+        values (#{typeId}, #{dictionaryName}, #{createBy}, #{createTime}, #{updateBy}, #{updateTime}, #{remark})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="dictionaryId" useGeneratedKeys="true">
+        insert into trademark.tbl_dictionary(type_id, dictionary_name, create_by, create_time, update_by, update_time,
+        remark)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.typeId}, #{entity.dictionaryName}, #{entity.createBy}, #{entity.createTime}, #{entity.updateBy},
+            #{entity.updateTime}, #{entity.remark})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="dictionaryId" useGeneratedKeys="true">
+        insert into trademark.tbl_dictionary(type_id, dictionary_name, create_by, create_time, update_by, update_time,
+        remark)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.typeId}, #{entity.dictionaryName}, #{entity.createBy}, #{entity.createTime}, #{entity.updateBy},
+            #{entity.updateTime}, #{entity.remark})
+        </foreach>
+        on duplicate key update
+        type_id = values(type_id) , dictionary_name = values(dictionary_name) , create_by = values(create_by) ,
+        create_time = values(create_time) , update_by = values(update_by) , update_time = values(update_time) , remark =
+        values(remark)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update trademark.tbl_dictionary
+        <set>
+            <if test="typeId != null">
+                type_id = #{typeId},
+            </if>
+            <if test="dictionaryName != null and dictionaryName != ''">
+                dictionary_name = #{dictionaryName},
+            </if>
+            <if test="createBy != null and createBy != ''">
+                create_by = #{createBy},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateBy != null and updateBy != ''">
+                update_by = #{updateBy},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="remark != null and remark != ''">
+                remark = #{remark},
+            </if>
+        </set>
+        where dictionary_id = #{dictionaryId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from trademark.tbl_dictionary
+        where dictionary_id = #{dictionaryId}
+    </delete>
+
+</mapper>

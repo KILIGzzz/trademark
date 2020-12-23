@@ -55,4 +55,39 @@ public class GotoController {
     public String toMenu() {
         return "menu";
     }
+
+    @GetMapping("toProgress")
+    public String toProgress() {
+        return "progress";
+    }
+
+    @GetMapping("toCustom")
+    public String toCustom() {
+        return "custom";
+    }
+
+    @GetMapping("toCharts")
+    public String toCharts() {
+        return "businessStateView";
+    }
+
+    @GetMapping("toBusiness")
+    public String toBusiness() {
+        return "business";
+    }
+
+    @GetMapping("toUserinfo")
+    public String toUserinfo() {
+        return "userinfo";
+    }
+
+    @GetMapping("toDictionary")
+    public String toDictionary() {
+        return "dictionary";
+    }
+
+    @GetMapping("toDictionaryType")
+    public String toDictionaryType() {
+        return "dictionaryType";
+    }
 }

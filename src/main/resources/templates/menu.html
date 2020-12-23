@@ -52,7 +52,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">显示排序</label>
         <div class="layui-input-inline">
-            <input type="text" name="orderNum" required lay-verify="required" placeholder="请输入显示排序" autocomplete="off"
+            <input type="number" name="orderNum" required lay-verify="required" placeholder="请输入显示排序" autocomplete="off"
                    class="layui-input">
         </div>
     </div>
@@ -116,7 +116,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">显示排序</label>
         <div class="layui-input-inline">
-            <input type="text" name="orderNum" required lay-verify="required" placeholder="请输入显示排序" autocomplete="off"
+            <input type="number" name="orderNum" required lay-verify="required" placeholder="请输入显示排序" autocomplete="off"
                    class="layui-input">
         </div>
     </div>
@@ -211,7 +211,7 @@
                     {field: 'perms', title: '权限标识'},
                     {field: 'remark', title: '备注'},
                     {field: 'createTime', title: '创建时间'},
-                    {field: 'right', toolbar: '#menuBar', title: '操作', width: 120}
+                    {fixed: 'right', align: 'center', toolbar: '#menuBar', title: '操作', width: 120}
                 ]
             ]
         });
@@ -289,7 +289,7 @@
                             , "remark": obj.data.remark
                         });
                     }
-                })
+                });
 
             }
         });
@@ -345,40 +345,32 @@
         });
         //添加提交
         form.on('submit(formSaveMenu)', function (data) {
-            if (!isNaN(data.field.orderNum)) {
-                $.ajax({
-                    url: '/menu/insertMenu',
-                    dataType: 'json',
-                    type: 'POST',
-                    data: data.field,
-                    success: function (result) {
-                        layer.closeAll();//关闭对话框
-                        layer.msg(result.msg);
-                        menuTable.reload();
-                    }
-                });
-            } else {
-                layer.msg("显示排序只能为数字！")
-            }
+            $.ajax({
+                url: '/menu/insertMenu',
+                dataType: 'json',
+                type: 'POST',
+                data: data.field,
+                success: function (result) {
+                    layer.closeAll();//关闭对话框
+                    layer.msg(result.msg);
+                    menuTable.reload();
+                }
+            });
             return false;
         });
         //修改提交
         form.on('submit(formUpdateMenu)', function (data) {
-            if (!isNaN(data.field.orderNum)) {
-                $.ajax({
-                    url: '/menu/updateMenu',
-                    dataType: 'json',
-                    type: 'PUT',
-                    data: data.field,
-                    success: function (result) {
-                        layer.closeAll();//关闭对话框
-                        layer.msg(result.msg);
-                        menuTable.reload();
-                    }
-                });
-            } else {
-                layer.msg("显示排序只能为数字！")
-            }
+            $.ajax({
+                url: '/menu/updateMenu',
+                dataType: 'json',
+                type: 'PUT',
+                data: data.field,
+                success: function (result) {
+                    layer.closeAll();//关闭对话框
+                    layer.msg(result.msg);
+                    menuTable.reload();
+                }
+            });
             return false;
         });
         // 全部展开

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en" class="no-js" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,15 +22,17 @@
             <canvas id="demo-canvas"></canvas>
             <div class="logo_box">
                 <h3>欢迎你</h3>
+                <th:block th:text="${message}"/>
                 <form id="loginForm" action="/login" method="post" onsubmit="return checkLogin()">
                     <div class="input_outer">
                         <span class="u_user"></span>
-                        <input name="username" id="username" value="admin" class="text" style="color: #FFFFFF !important" type="text"
+                        <input name="username" id="username" value="admin" class="text"
+                               style="color: #FFFFFF !important" type="text"
                                placeholder="请输入用户名">
                     </div>
                     <div class="input_outer">
                         <span class="us_uer"></span>
-                        <input name="password" id="password"  class="text"
+                        <input name="password" id="password" class="text"
                                style="color: #FFFFFF !important; position:absolute; z-index:100;" value="123456"
                                type="password" placeholder="请输入密码">
                     </div>

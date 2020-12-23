@@ -186,4 +186,23 @@ public class UserController extends BaseController {
     public List<Integer> findSelectRole(int userId) {
         return userService.findSelectRole(userId);
     }
+
+    /**
+     * 更新用户基本信息
+     *
+     * @param user
+     * @return ReturnBean
+     * @createBy Enzo
+     * @createTime 2020/12/23 17:44
+     */
+    @PutMapping("/updateUserInfo")
+    public ReturnBean updateUserInfo(User user) {
+        try {
+            userService.update(user);
+            return returnSuccess(null);
+        } catch (Exception e) {
+            return returnFail(null);
+        }
+
+    }
 }

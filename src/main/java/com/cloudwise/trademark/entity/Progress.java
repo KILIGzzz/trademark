@@ -1,5 +1,7 @@
 package com.cloudwise.trademark.entity;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -9,6 +11,7 @@ import java.util.Date;
  * @author makejava
  * @since 2020-12-23 12:29:05
  */
+@Data
 public class Progress implements Serializable {
     private static final long serialVersionUID = -98237681343849720L;
 

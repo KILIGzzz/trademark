@@ -86,8 +86,8 @@
             </if>
         </where>
     </select>
-    <select id="queryAllByConditionAndLimit" parameterType="com.cloudwise.trademark.entity.Progress"
-            resultMap="ProgressMap">
+
+    <select id="queryAllByConditionAndLimit" resultMap="ProgressMap">
         select progress_id,
         progress_type,
         upload_id,
@@ -112,6 +112,7 @@
         </where>
         limit #{offset}, #{limit}
     </select>
+
     <select id="getRowCount" resultType="java.lang.Long" parameterType="com.cloudwise.trademark.entity.Progress">
         select count(*) count
         from trademark.tbl_progress
@@ -126,6 +127,9 @@
                 and create_by like "%"#{createBy}"%"
             </if>
         </where>
+    </select>
+    <select id="findAllProgress" resultType="java.util.Map">
+        select dictionary_id, dictionary_name from tbl_dictionary where type_id=(select type_id from tbl_dictionary_type where type_name='进度类型');
     </select>
 
     <!--新增所有列-->

@@ -4,6 +4,7 @@ import com.cloudwise.trademark.entity.Progress;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * (Progress)表数据库访问层
@@ -36,7 +37,7 @@ public interface ProgressDao {
      * @createBy Enzo
      * @createTime 2020/12/23 12:35
      */
-    List<Progress> queryAllByConditionAndLimit(Progress progress, @Param("offset") int offset, @Param("limit") int limit);
+    List<Progress> queryAllByConditionAndLimit(@Param("progress") Progress progress, @Param("offset") int offset, @Param("limit") int limit);
 
 
     /**
@@ -87,6 +88,23 @@ public interface ProgressDao {
      */
     int deleteById(Integer progressId);
 
+    /**
+     * @create by: ydq
+     * @description: 方法作用：获取数据总条数
+     * @create time: 2020/12/23 15:13
+     * @param: progress查询条件
+     * @return getRowCount总条数
+     */
     long getRowCount(Progress progress);
+
+    /**
+     * @create by: ydq
+     * @description: 方法作用：查询所有的进度类型
+     * @create time: 2020/12/23 16:26
+     * @param:
+     * @return
+     */
+    List<Map<String,Object>> findAllProgress();
+
 
 }

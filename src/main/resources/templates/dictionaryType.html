@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>字典类型</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <script src="/layui/layui.js"></script>
+</head>
+<body>
+<!--顶部搜索框-->
+<form class="layui-form" action="" style="margin-top: 10px">
+    <div class="layui-inline">
+        <label class="layui-form-label">类型ID</label>
+        <div class="layui-input-inline">
+            <input type="text" name="typeId" autocomplete="off" placeholder="类型ID" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-inline">
+        <label class="layui-form-label">类型名称</label>
+        <div class="layui-input-inline">
+            <input type="text" name="createBy" autocomplete="off" placeholder="类型名称" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-inline">
+        <label class="layui-form-label">创建人</label>
+        <div class="layui-input-inline">
+            <input type="text" name="updateBy" autocomplete="off" placeholder="创建人" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-inline">
+        <div class="layui-input-inline">
+            <button class="layui-btn" lay-submit lay-filter="searchFilter">搜索</button>
+            <button type="reset" class="layui-btn layui-btn-primary" id="myButton">重置</button>
+        </div>
+    </div>
+</form>
+<table id="showDicType" lay-filter="deptFilter"></table>
+</body>
+<!--顶部工具栏-->
+<script type="text/html" id="dicToolbar">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-xs" lay-event="addDept"><i class="layui-icon layui-icon-add-1"></i>
+        </button>
+        <button class="layui-btn layui-btn-danger layui-btn-xs" lay-event="deleteDepts"><i
+                class="layui-icon layui-icon-delete"></i></button>
+    </div>
+</script>
+<!--实现部门管理操作功能按钮-->
+<script type="text/html" id="deptBar">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script>
+    layui.use(['table', 'layer', 'jquery', 'form'], function () {
+        let table = layui.table;
+        let layer = layui.layer;
+        let $ = layui.jquery;
+        let form = layui.form;
+
+        let dicTable = table.render({
+            elem: '#showDicType'
+            , url: '/dictionaryType/selectAll' //数据接口
+            , toolbar: '#dicToolbar' //开启头部工具栏，并为其绑定左侧模板
+            , defaultToolbar: ['filter', 'exports', 'print']
+            , title: 'dicTable'
+            , page: true
+            , limit: 10
+            , cols: [
+                [ //表头
+                    {type: 'checkbox', fixed: 'left'}
+                    , {field: 'typeId', title: '类型ID', width: 100}
+                    , {field: 'typeName', title: '类型名称', width: 300}
+                    , {field: 'createBy', title: '创建人', width: 80}
+                    , {field: 'createTime', title: '创建时间', width: 200}
+                    , {field: 'updateBy', title: '修改人', width: 100}
+                    , {field: 'updateTime', title: '修改时间', width: 200}
+                    , {field: 'remark', title: '备注', width: 200}
+                    , {fixed: 'right', align: 'center', title: '操作', toolbar: '#deptBar', width: 120}
+                ]
+            ]
+        });
+    });
+</script>
+</html>

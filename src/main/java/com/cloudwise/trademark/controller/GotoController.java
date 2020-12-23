@@ -69,4 +69,14 @@ public class GotoController {
     public String toUserinfo() {
         return "userinfo";
     }
+
+    @GetMapping("toDictionary")
+    public String toDictionary() {
+        return "dictionary";
+    }
+
+    @GetMapping("toDictionaryType")
+    public String toDictionaryType() {
+        return "dictionaryType";
+    }
 }

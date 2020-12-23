@@ -2,34 +2,34 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>后台布局</title>
+    <title>字典种类</title>
     <link rel="stylesheet" href="/layui/css/layui.css">
     <script src="/layui/layui.js"></script>
 </head>
 <body class="layui-layout-body">
 <!--添加功能的form-->
-<form class="layui-form" action="" id="insertDeptForm"
+<form class="layui-form" action="" id="insertDicFrom"
       style="display: none;margin-right: 40px;margin-top: 20px">
     <input hidden name="createBy" th:value="${session.username}">
     <div class="layui-form-item">
-        <label class="layui-form-label">部门名称</label>
+        <label class="layui-form-label">字典ID</label>
         <div class="layui-input-block">
-            <input type="text" name="deptName" autocomplete="off" placeholder="请输入部门名称"
+            <input type="text" name="dictionaryId" autocomplete="off" placeholder="请输入字典ID"
                    class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">排序</label>
+        <label class="layui-form-label">字典类型</label>
         <div class="layui-input-block">
-            <input type="number" name="orderNum" autocomplete="off" placeholder="请输入排序"
+            <input type="text" name="typeId" autocomplete="off" placeholder="请输入字典类型ID"
                    class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">状态</label>
+        <label class="layui-form-label">字典名称</label>
         <div class="layui-input-block">
-            <input type="checkbox" checked="" name="status" lay-skin="switch" lay-filter="switchStatus"
-                   lay-text="可用|不可用">
+            <input type="text" name="typeId" autocomplete="off" placeholder="请输入字典类型ID"
+                   class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
@@ -52,21 +52,21 @@
 </script>
 
 <!--编辑功能的form-->
-<form class="layui-form" action="" id="updateDeptForm" lay-filter="updateDeptForm"
+<form class="layui-form" action="" id="updateDictionaryFrom" lay-filter="updateDictionaryFrom"
       style="display: none;margin-right: 40px;margin-top: 20px">
     <input hidden name="updateBy" th:value="${session.username}">
-    <input type="hidden" name="deptId">
+    <input type="hidden" name="dictionaryId">
     <div class="layui-form-item">
         <label class="layui-form-label">部门名称</label>
         <div class="layui-input-block">
-            <input type="text" name="deptName" autocomplete="off" placeholder="请输入部门名称"
+            <input type="text" name="typeId" autocomplete="off" placeholder="请输入部门名称"
                    class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">排序</label>
         <div class="layui-input-block">
-            <input type="number" name="orderNum" autocomplete="off" placeholder="请输入排序"
+            <input type="number" name="dictionaryName" autocomplete="off" placeholder="请输入排序"
                    class="layui-input">
         </div>
     </div>
@@ -98,21 +98,21 @@
 <!--顶部搜索框-->
 <form class="layui-form" action="" style="margin-top: 10px">
     <div class="layui-inline">
-        <label class="layui-form-label">部门名称:</label>
+        <label class="layui-form-label">字典ID</label>
         <div class="layui-input-inline">
-            <input type="text" name="deptName" autocomplete="off" placeholder="部门名称" class="layui-input">
+            <input type="text" name="typeId" autocomplete="off" placeholder="字典ID" class="layui-input">
         </div>
     </div>
     <div class="layui-inline">
-        <label class="layui-form-label">创建人:</label>
+        <label class="layui-form-label">字典名称</label>
         <div class="layui-input-inline">
-            <input type="text" name="createBy" autocomplete="off" placeholder="创建人" class="layui-input">
+            <input type="text" name="createBy" autocomplete="off" placeholder="字典名称" class="layui-input">
         </div>
     </div>
     <div class="layui-inline">
-        <label class="layui-form-label">修改人:</label>
+        <label class="layui-form-label">创建人</label>
         <div class="layui-input-inline">
-            <input type="text" name="updateBy" autocomplete="off" placeholder="修改人" class="layui-input">
+            <input type="text" name="updateBy" autocomplete="off" placeholder="创建人" class="layui-input">
         </div>
     </div>
     <div class="layui-inline">
@@ -122,10 +122,10 @@
         </div>
     </div>
 </form>
-<table id="showDept" lay-filter="deptFilter"></table>
+<table id="showDic" lay-filter="deptFilter"></table>
 </body>
 <!--顶部工具栏-->
-<script type="text/html" id="deptToolbar">
+<script type="text/html" id="dicToolbar">
     <div class="layui-btn-container">
         <button class="layui-btn layui-btn-xs" lay-event="addDept"><i class="layui-icon layui-icon-add-1"></i>
         </button>
@@ -145,25 +145,25 @@
         let $ = layui.jquery;
         let form = layui.form;
 
-        let deptTable = table.render({
-            elem: '#showDept'
-            , url: '/dept/selectAll' //数据接口
-            , toolbar: '#deptToolbar' //开启头部工具栏，并为其绑定左侧模板
+        let dicTable = table.render({
+            elem: '#showDic'
+            , url: '/dictionary/selectAll' //数据接口
+            , toolbar: '#dicToolbar' //开启头部工具栏，并为其绑定左侧模板
             , defaultToolbar: ['filter', 'exports', 'print']
-            , title: 'deptTable'
+            , title: 'dicTable'
             , page: true
             , limit: 10
             , cols: [
                 [ //表头
                     {type: 'checkbox', fixed: 'left'}
-                    , {field: 'deptId', title: '编号', width: 80, sort: true, fixed: true}
-                    , {field: 'deptName', title: '部门名称', width: 100}
-                    , {field: 'orderNum', title: '排序', width: 80, sort: true}
-                    , {field: 'status', title: '状态', width: 80}
-                    , {field: 'createBy', title: '创建人', width: 80, sort: true}
-                    , {field: 'createTime', title: '创建时间', width: 200, sort: true}
+                    , {field: 'dictionaryId', title: '编号', width: 80, sort: true, fixed: true}
+                    , {field: 'typeId', title: '类型ID', width: 100}
+                    , {field: 'dictionaryName', title: '字典名称', width: 300}
+                    , {field: 'createBy', title: '创建人', width: 80}
+                    , {field: 'createTime', title: '创建时间', width: 200}
                     , {field: 'updateBy', title: '修改人', width: 100}
-                    , {field: 'updateTime', title: '修改时间', width: 200, sort: true}
+                    , {field: 'updateTime', title: '修改时间', width: 200}
+                    , {field: 'remark', title: '备注', width: 200}
                     , {fixed: 'right', align: 'center', title: '操作', toolbar: '#deptBar', width: 120}
                 ]
             ]
@@ -179,11 +179,11 @@
                         url: "/dept/deleteById",
                         type: "PUT",
                         dataType: "JSON",
-                        data: {deptId: data.deptId},
+                        data: {dictionaryId: data.dictionaryId},
                         success: function (ret) {
                             if (ret.code == 0) {
                                 //刷新表格数据
-                                deptTable.reload({
+                                dicTable.reload({
                                     page: {
                                         curr: 1 //重新从第 1 页开始
                                     }
@@ -204,17 +204,17 @@
                 } else {
                     document.getElementById("status").checked = false;
                 }
-                form.val('updateDeptForm', {
-                    'deptId': data.deptId,
-                    'deptName': data.deptName,
-                    'orderNum': data.orderNum,
+                form.val('updateDictionaryFrom', {
+                    'dictionaryId': data.dictionaryId,
+                    'typeId': data.typeId,
+                    'dictionaryName': data.dictionaryName,
                 });
                 form.render();
                 layer.open({
                     title: '编辑部门',
                     type: 1,
                     area: ['500px', '500px'],
-                    content: $("#updateDeptForm")//这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+                    content: $("#updateDictionaryFrom")//这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
                 });
             }
         });
@@ -237,7 +237,7 @@
                         //关闭对话框
                         layer.closeAll();
                         //刷新表格数据
-                        deptTable.reload({
+                        dicTable.reload({
                             page: {
                                 curr: 1 //重新从第 1 页开始
                             }
@@ -258,12 +258,12 @@
                 , data = checkStatus.data; //获取选中的数据
             switch (obj.event) {
                 case 'addDept':
-                    document.getElementById("insertDeptForm").reset();
+                    document.getElementById("insertDicFrom").reset();
                     layer.open({
                         title: '添加部门',
                         type: 1,
                         area: ['500px', '450px'],
-                        content: $("#insertDeptForm")
+                        content: $("#insertDicFrom")
                     });
                     break;
                 case 'deleteDepts':
@@ -274,7 +274,7 @@
                             //for循环收集所有选中的id
                             let ids = [];
                             for (let i = 0; i < data.length; i++) {
-                                ids[i] = data[i].deptId;
+                                ids[i] = data[i].dictionaryId;
                             }
                             $.ajax({
                                 url: "/dept/deleteByIds",
@@ -284,7 +284,7 @@
                                 success: function (ret) {
                                     if (ret.code == 0) {
                                         //刷新表格数据
-                                        deptTable.reload({
+                                        dicTable.reload({
                                             page: {
                                                 curr: 1 //重新从第 1 页开始
                                             }
@@ -309,7 +309,7 @@
                 data.field.status = 1;
             }
             //提交表单数据
-            if (!isNaN(data.field.orderNum)) {
+            if (!isNaN(data.field.dictionaryName)) {
                 $.ajax({
                     url: "/dept/insertDept",
                     type: "POST",
@@ -320,7 +320,7 @@
                             //关闭对话框
                             layer.closeAll();
                             //刷新表格数据
-                            deptTable.reload({
+                            dicTable.reload({
                                 page: {
                                     curr: 1 //重新从第 1 页开始
                                 }
@@ -342,9 +342,9 @@
         //实现顶部搜索框
         form.on('submit(searchFilter)', function (data) {
             //执行重载
-            deptTable.reload({
+            dicTable.reload({
                 where: {
-                    deptName: data.field.deptName,
+                    typeId: data.field.typeId,
                     createBy: data.field.createBy,
                     updateBy: data.field.updateBy
                 }
@@ -356,9 +356,9 @@
         });
         //重置条件查询表单，刷新table数据
         $("#myButton").click(function () {
-            deptTable.reload({
+            dicTable.reload({
                 where: { //设定异步数据接口的额外参数，任意设
-                    deptName: ""
+                    typeId: ""
                     , createBy: ""
                     , updateBy: ""
                 }

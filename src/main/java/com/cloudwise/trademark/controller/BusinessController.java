@@ -5,6 +5,7 @@ import com.cloudwise.trademark.entity.ReturnBean;
 import com.cloudwise.trademark.entity.Business;
 import com.cloudwise.trademark.service.BusinessService;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -53,10 +54,7 @@ public class BusinessController extends BaseController {
     @RequestMapping("add")
     public ReturnBean addBusiness(Business tb) {
         try {
-            int applicantCode = (int) (Math.random() * 100000000+100000000);
-            tb.setApplicantCode(applicantCode);
             tb.setCreateTime(new Date());
-            System.out.println(tb);
             Business emp1 = BusinessService.insert(tb);
             return returnSuccess(emp1);
         } catch (Exception e) {
@@ -78,6 +76,20 @@ public class BusinessController extends BaseController {
     public List<Map<String, Object>> findAllDictionary() {
         List<Map<String, Object>> allDictionary = BusinessService.findAllDictionary();
         return allDictionary;
+    }
+
+    /**
+     * @create by: IvanZ
+     * @description : 显示客户信息和业务信息
+     * @create time: 2020/12/23 15:56
+     * @param mv:
+     * @return org.springframework.web.servlet.ModelAndView
+     */
+    @GetMapping("showCustomAndBusiness")
+    public ModelAndView showCustomAndBusiness(int customId,ModelAndView mv){
+        mv.addObject("customId",customId);
+        mv.setViewName("business");
+        return mv;
     }
 
 }

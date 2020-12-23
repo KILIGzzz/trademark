@@ -86,7 +86,7 @@
             <if test="updateTime != null">
                 and update_time = #{updateTime}
             </if>
-            <if test="customId != null">
+            <if test="customId != 0 and custom != null">
                 and custom_id = #{customId}
             </if>
             <if test="remark != null and remark != ''">
@@ -102,49 +102,49 @@
                 and business_id = #{businessId}
             </if>
             <if test="applicantCode != null">
-                and applicant_code like "%"#{applicantCode}"%"
+                and applicant_code like #{applicantCode}
             </if>
             <if test="applicantTime != null">
-                and applicant_time like "%"#{applicantTime}"%"
+                and applicant_time like #{applicantTime}
             </if>
             <if test="businessTopType != null and businessTopType != ''">
-                and business_top_type like "%"#{businessTopType}"%"
+                and business_top_type like #{businessTopType}
             </if>
             <if test="businessName != null and businessName != ''">
                 and business_name like "%"#{businessName}"%"
             </if>
             <if test="trademarkType != null and trademarkType != ''">
-                and trademark_type like "%"#{trademarkType}"%"
+                and trademark_type like #{trademarkType}
             </if>
             <if test="businessSecondType != null and businessSecondType != ''">
-                and business_second_type like "%"#{businessSecondType}"%"
+                and business_second_type like #{businessSecondType}
             </if>
             <if test="price != null and price != ''">
-                and price like "%"#{price}"%"
+                and price like #{price}
             </if>
             <if test="proxyMoney != null and proxyMoney != ''">
-                and proxy_money like "%"#{proxyMoney}"%"
+                and proxy_money like #{proxyMoney}
             </if>
             <if test="uploadId != null">
-                and upload_id like "%"#{uploadId}"%"
+                and upload_id like #{uploadId}
             </if>
             <if test="createBy != null and createBy != ''">
                 and create_by like "%"#{createBy}"%"
             </if>
             <if test="createTime != null">
-                and create_time like "%"#{createTime}"%"
+                and create_time like #{createTime}
             </if>
             <if test="updateBy != null and updateBy != ''">
                 and update_by like "%"#{updateBy}"%"
             </if>
             <if test="updateTime != null">
-                and update_time like "%"#{updateTime}"%"
+                and update_time like #{updateTime}
             </if>
             <if test="customId != null">
-                and custom_id = "%"#{customId}"%"
+                and custom_id = #{customId}
             </if>
             <if test="remark != null and remark != ''">
-                and remark like "%"#{remark}"%"
+                and remark like #{remark}
             </if>
         </where>
     </select>
@@ -157,49 +157,49 @@
                 and business_id = #{tb.businessId}
             </if>
             <if test="tb.applicantCode != null">
-                and applicant_code like "%"#{tb.applicantCode}"%"
+                and applicant_code like #{tb.applicantCode}
             </if>
             <if test="tb.applicantTime != null">
-                and applicant_time like "%"#{tb.applicantTime}"%"
+                and applicant_time like #{tb.applicantTime}
             </if>
             <if test="tb.businessTopType != null and tb.businessTopType != ''">
-                and business_top_type like "%"#{tb.businessTopType}"%"
+                and business_top_type like #{tb.businessTopType}
             </if>
             <if test="tb.businessName != null and tb.businessName != ''">
                 and business_name like "%"#{tb.businessName}"%"
             </if>
             <if test="tb.trademarkType != null and tb.trademarkType != ''">
-                and trademark_type like "%"#{tb.trademarkType}"%"
+                and trademark_type like #{tb.trademarkType}
             </if>
             <if test="tb.businessSecondType != null and tb.businessSecondType != ''">
-                and business_second_type like "%"#{tb.businessSecondType}"%"
+                and business_second_type like #{tb.businessSecondType}
             </if>
             <if test="tb.price != null and tb.price != ''">
-                and price like "%"#{tb.price}"%"
+                and price like #{tb.price}
             </if>
             <if test="tb.proxyMoney != null and tb.proxyMoney != ''">
-                and proxy_money like "%"#{tb.proxyMoney}"%"
+                and proxy_money like #{tb.proxyMoney}
             </if>
             <if test="tb.uploadId != null">
-                and upload_id like "%"#{tb.uploadId}"%"
+                and upload_id like #{tb.uploadId}
             </if>
             <if test="tb.createBy != null and tb.createBy != ''">
                 and create_by like "%"#{tb.createBy}"%"
             </if>
             <if test="tb.createTime != null">
-                and create_time like "%"#{tb.createTime}"%"
+                and create_time like #{tb.createTime}
             </if>
             <if test="tb.updateBy != null and tb.updateBy != ''">
                 and update_by like "%"#{tb.updateBy}"%"
             </if>
             <if test="tb.updateTime != null">
-                and update_time like "%"#{tb.updateTime}"%"
+                and update_time like #{tb.updateTime}
             </if>
-            <if test="tb.customId != null">
-                and custom_id = "%"#{tb.customId}"%"
+            <if test="tb.customId != null and tb.customId != 0">
+                and custom_id = #{tb.customId}
             </if>
             <if test="tb.remark != null and tb.remark != ''">
-                and remark like "%"#{tb.remark}"%"
+                and remark like #{tb.remark}
             </if>
         </where>
         limit #{offset}, #{limit}

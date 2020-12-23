@@ -66,19 +66,19 @@
     <div class="layui-form-item">
         <label class="layui-form-label">成交价格</label>
         <div class="layui-input-inline">
-            <input type="text" name="price" required lay-verify="required" placeholder="请输入成交价格" autocomplete="off"
+            <input type="number" name="price" required lay-verify="required" placeholder="请输入成交价格" autocomplete="off"
                    class="layui-input">
         </div>
         <label class="layui-form-label">代理费</label>
         <div class="layui-input-inline">
-            <input type="text" name="proxyMoney" required lay-verify="required" placeholder="请输入代理费" autocomplete="off"
+            <input type="number" name="proxyMoney" required lay-verify="required" placeholder="请输入代理费" autocomplete="off"
                    class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">客户编号</label>
         <div class="layui-input-inline">
-            <input type="text" name="customId" required lay-verify="required" placeholder="请输入客户名" autocomplete="off"
+            <input type="number" name="customId" required lay-verify="required" placeholder="请输入客户名" autocomplete="off"
                    class="layui-input">
         </div>
         <label class="layui-form-label">备注</label>
@@ -102,14 +102,14 @@
       style="display: none;margin-right: 40px;margin-top: 20px">
 
     <input hidden type="text" name="businessId">
-<!--    <div class="layui-form-item">-->
-<!--        <label class="layui-form-label">申请号</label>-->
-<!--        <div class="layui-input-block">-->
-<!--            <input type="text" name="applicantCode" required lay-verify="required" placeholder="请输入申请号"-->
-<!--                   autocomplete="off"-->
-<!--                   class="layui-input">-->
-<!--        </div>-->
-<!--    </div>-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">申请号</label>
+        <div class="layui-input-block">
+            <input type="number" name="applicantCode" required lay-verify="required" placeholder="请输入申请号"
+                   autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
     <div class="layui-form-item">
         <label class="layui-form-label">申请时间</label>
         <div class="layui-input-inline">
@@ -150,19 +150,19 @@
     <div class="layui-form-item">
         <label class="layui-form-label">成交价格</label>
         <div class="layui-input-inline">
-            <input type="text" name="price" required lay-verify="required" placeholder="请输入成交价格" autocomplete="off"
+            <input type="number" name="price" required lay-verify="required" placeholder="请输入成交价格" autocomplete="off"
                    class="layui-input">
         </div>
         <label class="layui-form-label">代理费</label>
         <div class="layui-input-inline">
-            <input type="text" name="proxyMoney" required lay-verify="required" placeholder="请输入代理费" autocomplete="off"
+            <input type="number" name="proxyMoney" required lay-verify="required" placeholder="请输入代理费" autocomplete="off"
                    class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">客户编号</label>
         <div class="layui-input-inline">
-            <input type="text" name="customId" required lay-verify="required" placeholder="请输入客户名" autocomplete="off"
+            <input type="number" name="customId" required lay-verify="required" placeholder="请输入客户名" autocomplete="off"
                    class="layui-input">
         </div>
         <label class="layui-form-label">备注</label>
@@ -210,6 +210,7 @@
         </div>
     </div>
 </form>
+<table id="customTable" lay-filter="customFilter"></table>
 <table id="demo" lay-filter="test"></table>
 </body>
 <!--商标类别弹窗-->
@@ -241,7 +242,6 @@
         </div>
     </div>
 </form>
-
 <script>
     layui.use(['table', 'layer', 'jquery', 'laydate', 'form'], function () {
         var table = layui.table;
@@ -249,7 +249,6 @@
         var $ = layui.jquery;
         var form = layui.form;
         var laydate = layui.laydate;
-
         //日期
         laydate.render({
             elem: '#date'
@@ -260,12 +259,43 @@
             elem: '#date1'
             , type: 'datetime'
         });
-        //第一个实例
 
+        //获取传过来的customId
+        var customeId = "";
+        customeId = [[${customId}]]+"";
+
+        if (customeId == 0){
+            document.getElementById("customTable").hidden = true
+        }else {
+            document.getElementById("customTable").hidden = false
+            let customUrl = '/custom/selectOne?customId='+customeId
+            var customTable = table.render({
+                elem: '#customTable'
+                , url: customUrl //数据接口
+                , page: false //开启分页
+                , cols: [
+                    [ //表头
+                        {field: 'customId', title: '客户ID', align: 'center', sort: true, width: 90}
+                        , {field: 'contact', title: '联系人姓名', align: 'center', width: 120}
+                        , {field: 'phone', title: '手机号', align: 'center', width: 140}
+                        , {field: 'applicant', title: '申请人', align: 'center', width: 120}
+                        , {field: 'customAddress', title: '邮寄地址', align: 'center', width: 120}
+                        , {field: 'createBy', title: '创建人', align: 'center', width: 120}
+                        , {field: 'createTime', title: '创建时间', align: 'center', width: 160}
+                        , {field: 'updateBy', title: '修改人', align: 'center', width: 120}
+                        , {field: 'updateTime', title: '修改时间', align: 'center', width: 160}
+                        , {field: 'proxyId', title: '代理人ID', align: 'center', width: 120}
+                        , {field: 'remark', title: '备注', align: 'center', width: 120}
+                    ]
+                ]
+            });
+        }
+
+        let businessUrl = '/business/queryByCondition?customId='+customeId
         var myTable = table.render({
             elem: '#demo'
             , height: 400
-            , url: '/business/queryByCondition' //数据接口
+            , url: businessUrl //数据接口
             , page: true //开启分页
             , limit: 5
             , limits: [5, 10, 15, 20, 25, 30]
@@ -340,7 +370,7 @@
                     layer.open({
                         title: '添加业务',
                         type: 1,
-                        area: ['660px', '450px'],
+                        area: ['670px', '450px'],
                         content: $("#saveForm")//这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
                     });
                     break;
@@ -353,14 +383,11 @@
             var data = obj.data //获得当前行数据
                 , layEvent = obj.event; //获得 lay-event 对应的值
             if (layEvent === 'updateProgress') {
-                    layer.open({
-                        title: '更新进度',
-                        type: 1,
-                        area: ['660px', '450px'],
 
-                        content: $("#showForm"),//这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
 
-                    });
+
+
+
             } else if (layEvent === 'del') {
                 layer.confirm('真的删除行么', function (index) {
                     obj.del(); //删除对应行（tr）的DOM结构
@@ -386,7 +413,7 @@
                 layer.open({
                     title: '修改业务',
                     type: 1,
-                    area: ['660px', '450px'],
+                    area: ['670px', '450px'],
 
                     content: $("#editForm"),//这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
 

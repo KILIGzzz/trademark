@@ -54,4 +54,9 @@ public class GotoController {
     public String toCustom() {
         return "custom";
     }
+
+    @GetMapping("toUserinfo")
+    public String toUserinfo() {
+        return "userinfo";
+    }
 }

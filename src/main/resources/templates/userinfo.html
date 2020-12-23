@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户信息</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <script src="/layui/layui.js"></script>
+    <style>
+        #image {
+            height: 100px;
+            width: 150px;
+
+        }
+
+        .layui-upload {
+            padding-left: 80px;
+        }
+    </style>
+</head>
+<body>
+<!--更新用户信息-->
+<form class="layui-form" action="" id="update_user_form" lay-filter="update_user_form">
+    <!-- 隐藏输入框，保存主键-->
+    <input type="hidden" name="userId" th:value="${session.user.userId}">
+    <input type="hidden" name="avatar" id="avatar">
+
+    <div class="layui-form-item">
+
+        <div class="layui-upload">
+
+            <div class="layui-upload-list">
+                <img class="layui-upload-img" id="image" th:src="${session.user.avatar}">
+                <p id="updateText"></p>
+            </div>
+            <button type="button" class="layui-btn" id="test1">修改头像</button>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">邮箱</label>
+        <div class="layui-input-inline">
+            <input type="text" name="email" th:value="${session.user.email}" required lay-verify="email" placeholder="请输入电子邮箱"
+                   autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">手机号</label>
+        <div class="layui-input-inline">
+            <input type="text" name="phonenumber" th:value="${session.user.phonenumber}" required lay-verify="required|phone"
+                   placeholder="请输入手机号"
+                   autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="updateUserForm">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+</body>
+<script>
+    layui.use(['layer', 'form', 'jquery', 'upload'], function () {
+        let upload = layui.upload;
+        let form = layui.form;
+        let $ = layui.jquery;
+        //普通图片上传
+        let uploadInst = upload.render({
+            elem: '#test1'
+            , url: '/file/upload' //改成您自己的上传接口
+            , done: function (res) {
+
+
+                //如果上传失败
+                if (res.response === 'success') {
+                    let src = "https://" + res.name;
+                    //给隐藏input赋值，传入后台数据库
+                    $("#avatar").val(src);
+                    //回显最新的图片
+                    $('#image').attr('src', src);
+                } else {
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+            }
+            , error: function () {
+                //演示失败状态，并实现重传
+                let updateText = $('#updateText');
+                updateText.html('<span style="color: #ff5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                updateText.find('.demo-reload').on('click', function () {
+                    uploadInst.upload();
+                });
+            }
+        });
+        //监听修改用户表单的提交
+        form.on('submit(updateUserForm)', function (data) {
+            $.ajax({
+                url: '/user/updateUserInfo',
+                dataType: 'json',
+                type: 'PUT',
+                data: data.field,
+                success: function (result) {
+                    layer.closeAll();//关闭对话框
+                    layer.msg(result.msg);
+                }
+            })
+            return false;
+        });
+    });
+</script>
+</html>

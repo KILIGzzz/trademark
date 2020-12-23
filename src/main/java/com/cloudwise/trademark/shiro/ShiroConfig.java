@@ -71,7 +71,7 @@ public class ShiroConfig {
         map.put("/model/**", "anon");
         map.put("/layui/**", "anon");
         //过滤所有的请求
-        //map.put("/**", "authc");
+        map.put("/goto/**", "authc");
         //所有的未认证的请求都去登录页面
         shiroFilterFactoryBean.setLoginUrl("/goto/toLogin");
         //登录成功去哪

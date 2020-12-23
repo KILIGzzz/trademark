@@ -78,7 +78,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">客户编号</label>
         <div class="layui-input-inline">
-            <input type="number" name="customId" required lay-verify="required" placeholder="请输入客户名" autocomplete="off"
+            <input type="number" name="customId" th:value="${customId}" required lay-verify="required" placeholder="请输入客户编号" autocomplete="off"
                    class="layui-input">
         </div>
         <label class="layui-form-label">备注</label>
@@ -367,6 +367,7 @@
                 , data = checkStatus.data; //获取选中的数据
             switch (obj.event) {
                 case 'add':
+                    document.getElementById("saveForm").reset()
                     layer.open({
                         title: '添加业务',
                         type: 1,
@@ -384,7 +385,7 @@
                 , layEvent = obj.event; //获得 lay-event 对应的值
             if (layEvent === 'updateProgress') {
                 //跳转到进度页面
-                location.href="/progress/showBusinessAndProgress?businessId="+data.businessId
+                location.href="/progress/showBusinessAndProgress?customId="+customeId+"&businessId="+data.businessId
             } else if (layEvent === 'del') {
                 layer.confirm('真的删除行么', function (index) {
                     obj.del(); //删除对应行（tr）的DOM结构

@@ -8,6 +8,7 @@
 </head>
 
 <body>
+<table id="customTable" lay-filter="customFilter"></table>
 <table id="businessTable" lay-filter="businessFilter"></table>
 <table id="showProgress"></table>
 
@@ -43,7 +44,7 @@
         </div>
         <label class="layui-form-label">业务ID：</label>
         <div class="layui-input-inline">
-            <input type="number" name="businessId" lay-verify="required" placeholder="" autocomplete="off"
+            <input type="number" name="businessId" th:value="${businessId}" lay-verify="required" placeholder="" autocomplete="off"
                    class="layui-input">
         </div>
     </div>
@@ -123,6 +124,36 @@
         let form = layui.form;
         let table = layui.table;
 
+        //获取传过来的customId
+        var customeId = "";
+        customeId = [[${customId}]]+"";
+
+        if (customeId == 0){
+            document.getElementById("customTable").hidden = true
+        }else {
+            document.getElementById("customTable").hidden = false
+            let customUrl = '/custom/selectOne?customId='+customeId
+            var customTable = table.render({
+                elem: '#customTable'
+                , url: customUrl //数据接口
+                , page: false //开启分页
+                , cols: [
+                    [ //表头
+                        {field: 'customId', title: '客户ID', align: 'center', sort: true, width: 90}
+                        , {field: 'contact', title: '联系人姓名', align: 'center', width: 120}
+                        , {field: 'phone', title: '手机号', align: 'center', width: 140}
+                        , {field: 'applicant', title: '申请人', align: 'center', width: 120}
+                        , {field: 'customAddress', title: '邮寄地址', align: 'center', width: 120}
+                        , {field: 'createBy', title: '创建人', align: 'center', width: 120}
+                        , {field: 'createTime', title: '创建时间', align: 'center', width: 160}
+                        , {field: 'updateBy', title: '修改人', align: 'center', width: 120}
+                        , {field: 'updateTime', title: '修改时间', align: 'center', width: 160}
+                        , {field: 'proxyId', title: '代理人ID', align: 'center', width: 120}
+                        , {field: 'remark', title: '备注', align: 'center', width: 120}
+                    ]
+                ]
+            });
+        }
 
         //获取传过来的businessId
         var businesseId = "";
@@ -163,10 +194,10 @@
 
 
         //生成menuTable表格
-        let businessUrl = '/progress/queryAll?businessId='+businesseId
+        let progressUrl = '/progress/queryAll?businessId='+businesseId
         let progressTable = table.render({
             elem: '#showProgress'
-            , url: businessUrl
+            , url: progressUrl
             , toolbar: '#progressToolbar'
             , title: 'menuTable'
             , page: true

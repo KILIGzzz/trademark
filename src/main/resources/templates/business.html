@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <script src="/layui/layui.js"></script>
+    <title>业务列表</title>
+</head>
+<body>
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="add">添加业务</button>
+    </div>
+</script>
+<script type="text/html" id="ListDemo">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="updateProgress">更新进度</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+</script>
+
+<!--添加-->
+<form class="layui-form" action="" id="saveForm" style="display: none;margin-right: 40px;margin-top: 20px">
+<!--    <div class="layui-form-item">-->
+<!--        <label class="layui-form-label">申请号</label>-->
+<!--        <div class="layui-input-block">-->
+<!--            <input type="text" name="applicantCode" required lay-verify="required" placeholder="请输入申请号"-->
+<!--                   autocomplete="off"-->
+<!--                   class="layui-input">-->
+<!--        </div>-->
+<!--    </div>-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">申请时间</label>
+        <div class="layui-input-inline">
+            <input type="text" name="applicantTime" id="date" lay-verify="datetime" placeholder="yyyy-MM-dd HH:mm:ss"
+                   autocomplete="off" class="layui-input">
+        </div>
+        <label class="layui-form-label">业务类型</label>
+        <div class="layui-input-inline">
+            <select id="topType" name="businessTopType">
+
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">业务名</label>
+        <div class="layui-input-block">
+            <input type="text" name="businessName" required lay-verify="required" placeholder="请输入业务名"
+                   autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">业务种类</label>
+        <div class="layui-input-block">
+            <input type="text" name="businessSecondType" readonly id="addBusinessType" required lay-verify="required" placeholder="请选择业务种类"
+                   autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">商标类别</label>
+        <div class="layui-input-block">
+            <input type="text" name="trademarkType" readonly id="addTrademarkType" required lay-verify="required" placeholder="请选择商标类别"
+                   autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">成交价格</label>
+        <div class="layui-input-inline">
+            <input type="text" name="price" required lay-verify="required" placeholder="请输入成交价格" autocomplete="off"
+                   class="layui-input">
+        </div>
+        <label class="layui-form-label">代理费</label>
+        <div class="layui-input-inline">
+            <input type="text" name="proxyMoney" required lay-verify="required" placeholder="请输入代理费" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">客户编号</label>
+        <div class="layui-input-inline">
+            <input type="text" name="customId" required lay-verify="required" placeholder="请输入客户名" autocomplete="off"
+                   class="layui-input">
+        </div>
+        <label class="layui-form-label">备注</label>
+        <div class="layui-input-inline">
+            <input type="text" name="remark" required lay-verify="required" placeholder="请输入备注" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <!--创建人-->
+    <input hidden th:value="${session.username}" name="createBy">
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="saveFilter">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+
+<form class="layui-form" id="editForm" lay-filter="example" name="edit"
+      style="display: none;margin-right: 40px;margin-top: 20px">
+
+    <input hidden type="text" name="businessId">
+<!--    <div class="layui-form-item">-->
+<!--        <label class="layui-form-label">申请号</label>-->
+<!--        <div class="layui-input-block">-->
+<!--            <input type="text" name="applicantCode" required lay-verify="required" placeholder="请输入申请号"-->
+<!--                   autocomplete="off"-->
+<!--                   class="layui-input">-->
+<!--        </div>-->
+<!--    </div>-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">申请时间</label>
+        <div class="layui-input-inline">
+            <input type="text" name="applicantTime" id="date1" lay-verify="datetime" placeholder="yyyy-MM-dd HH:mm:ss"
+                   autocomplete="off" class="layui-input">
+        </div>
+        <label class="layui-form-label">业务类型</label>
+        <div class="layui-input-inline">
+            <select id="updateTopType" name="businessTopType">
+
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">业务名</label>
+        <div class="layui-input-block">
+            <input type="text" name="businessName" required lay-verify="required" placeholder="请输入业务名"
+                   autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">业务种类</label>
+        <div class="layui-input-block">
+            <input type="text" name="businessSecondType" readonly id="updateBusinessType" required lay-verify="required" placeholder="请选择业务种类"
+                   autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">商标类别</label>
+        <div class="layui-input-block">
+            <input type="text" name="trademarkType" readonly required lay-verify="required" id="updateTrademarkType" placeholder="请选择商标类别"
+                   autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">成交价格</label>
+        <div class="layui-input-inline">
+            <input type="text" name="price" required lay-verify="required" placeholder="请输入成交价格" autocomplete="off"
+                   class="layui-input">
+        </div>
+        <label class="layui-form-label">代理费</label>
+        <div class="layui-input-inline">
+            <input type="text" name="proxyMoney" required lay-verify="required" placeholder="请输入代理费" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">客户编号</label>
+        <div class="layui-input-inline">
+            <input type="text" name="customId" required lay-verify="required" placeholder="请输入客户名" autocomplete="off"
+                   class="layui-input">
+        </div>
+        <label class="layui-form-label">备注</label>
+        <div class="layui-input-inline">
+            <input type="text" name="remark" required lay-verify="required" placeholder="请输入备注" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <!--修改人-->
+    <input hidden th:value="${session.username}" name="updateBy">
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="editFilter">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+
+</form>
+
+
+<form class="layui-form" id="query" action="" style="margin-top: 20px">
+    <div class="layui-inline">
+        <label class="layui-form-label">业务名</label>
+        <div class="layui-input-inline">
+            <input type="text" name="businessName" placeholder="请输入业务名" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-inline">
+        <label class="layui-form-label">创建人</label>
+        <div class="layui-input-inline">
+            <input type="text" name="createBy" placeholder="请输入创建人" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-inline">
+        <label class="layui-form-label">修改人</label>
+        <div class="layui-input-inline">
+            <input type="text" name="updateBy" placeholder="请输入修改人" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-inline" style="margin-left: 20px">
+        <div class="layui-input-inline">
+            <button class="layui-btn" lay-submit lay-filter="selectFormfilter">查询</button>
+            <button type="reset" class="layui-btn layui-btn-primary" id="myButton">重置</button>
+        </div>
+    </div>
+</form>
+<table id="demo" lay-filter="test"></table>
+</body>
+<!--商标类别弹窗-->
+<form class="layui-form" action="" id="trademarkTypeSelect"
+      style="display: none;margin-right: 40px;margin-top: 20px">
+    <div class="layui-form-item">
+        <div class="layui-input-block" id="trademarkRadios">
+
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="trademarkFilter">确认</button>
+        </div>
+    </div>
+</form>
+
+<!--业务种类弹窗-->
+<form class="layui-form" action="" id="businessSecondTypeSelect"
+      style="display: none;margin-right: 40px;margin-top: 20px">
+    <div class="layui-form-item">
+        <div class="layui-input-block" id="businessSecondTypeRadios">
+
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="businessFilter">确认</button>
+        </div>
+    </div>
+</form>
+
+<script>
+    layui.use(['table', 'layer', 'jquery', 'laydate', 'form'], function () {
+        var table = layui.table;
+        var layer = layui.layer;
+        var $ = layui.jquery;
+        var form = layui.form;
+        var laydate = layui.laydate;
+
+        //日期
+        laydate.render({
+            elem: '#date'
+            , type: 'datetime'
+        });
+        //日期
+        laydate.render({
+            elem: '#date1'
+            , type: 'datetime'
+        });
+        //第一个实例
+
+        var myTable = table.render({
+            elem: '#demo'
+            , height: 400
+            , url: '/business/queryByCondition' //数据接口
+            , page: true //开启分页
+            , limit: 5
+            , limits: [5, 10, 15, 20, 25, 30]
+            , toolbar: '#toolbarDemo'
+            , cols: [
+                [ //表头
+                    {field: 'businessId', title: '业务编号', width: 100, sort: true}
+                    , {field: 'applicantCode', title: '申请号', width: 160}
+                    , {field: 'applicantTime', title: '申请时间', width: 160}
+                    , {field: 'businessName', title: '业务名', width: 160}
+                    , {field: 'businessTopType', title: '业务类型', width: 100,}
+                    , {field: 'businessSecondType', title: '业务种类', width: 160}
+                    , {field: 'trademarkType', title: '商标类型', width: 200}
+                    , {field: 'price', title: '成交价格', width: 100}
+                    , {field: 'proxyMoney', title: '代理费', width: 100}
+                    , {field: 'uploadId', title: '文件', width: 80}
+                    , {field: 'createBy', title: '创建人', width: 80}
+                    , {field: 'createTime', title: '创建时间', width: 160}
+                    , {field: 'updateBy', title: '修改人', width: 80}
+                    , {field: 'updateTime', title: '修改时间', width: 160}
+                    , {field: 'customId', title: '客户ID', width: 100}
+                    , {field: 'remark', title: '备注', width: 100}
+                    , {fixed: 'right', align: 'center', title: '操作', width: 160, toolbar: '#ListDemo'}
+                ]]
+        });
+
+        var $topType = $("#topType");
+        var $updateTopType = $("#updateTopType");
+        var $trademarkRadios = $('#trademarkRadios')
+        var $businessSecondTypeRadios = $('#businessSecondTypeRadios')
+        var options = '';
+        var trademarkRadios = '';
+        var businessSecondTypeRadios = '';
+        //填充下拉框
+        $.ajax({
+            url: "/business/findAllDictionary",
+            type: "GET",
+            dataType: "JSON",
+            success: function (allDictionary) {
+                //将数据放到select中
+                for (let i = 0; i < allDictionary.length; i++) {
+                    if (allDictionary[i].type_id == 2) {
+                        options += '<option value="' + allDictionary[i].dictionary_id + '">' + allDictionary[i].dictionary_name + '</option>';
+                    }
+                }
+                //将数据放到商标类别选择框中
+                for (let i = 0; i < allDictionary.length; i++) {
+                    if (allDictionary[i].type_id == 1) {
+                        trademarkRadios += '<input type="radio" name="trademarkInput" title="'+allDictionary[i].dictionary_name+'" value="' + allDictionary[i].dictionary_id + '"/>';
+                    }
+                }
+                //将数据放到业务种类选择框中
+                for (let i = 0; i < allDictionary.length; i++) {
+                    if (allDictionary[i].type_id == 3) {
+                        businessSecondTypeRadios += '<input type="radio" name="businessInput" title="'+allDictionary[i].dictionary_name+'" value="' + allDictionary[i].dictionary_id + '"/>';
+                    }
+                }
+
+                $businessSecondTypeRadios.html(businessSecondTypeRadios)
+                $trademarkRadios.html(trademarkRadios)
+                $topType.html(options)
+                $updateTopType.html(options)
+                form.render()
+            }
+        })
+        //监听头工具栏事件
+        table.on('toolbar(test)', function (obj) {
+            var checkStatus = table.checkStatus(obj.config.id)
+                , data = checkStatus.data; //获取选中的数据
+            switch (obj.event) {
+                case 'add':
+                    layer.open({
+                        title: '添加业务',
+                        type: 1,
+                        area: ['660px', '450px'],
+                        content: $("#saveForm")//这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+                    });
+                    break;
+            }
+        });
+
+
+        //监听行工具事件
+        table.on('tool(test)', function (obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+            var data = obj.data //获得当前行数据
+                , layEvent = obj.event; //获得 lay-event 对应的值
+            if (layEvent === 'updateProgress') {
+                    layer.open({
+                        title: '更新进度',
+                        type: 1,
+                        area: ['660px', '450px'],
+
+                        content: $("#showForm"),//这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+
+                    });
+            } else if (layEvent === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    obj.del(); //删除对应行（tr）的DOM结构
+                    layer.close(index);
+                    //向服务端发送删除指令
+                });
+            } else if (layEvent === 'edit') {
+                    form.val('example', {
+                        "businessId": data.businessId
+                        , "applicantCode": data.applicantCode// "name": "value"
+                        , "applicantTime": data.applicantTime
+                        , "businessTopType": data.businessTopType
+                        , "businessName": data.businessName
+                        , "trademarkType": data.trademarkType
+                        , "businessSecondType": data.businessSecondType
+                        , "price": data.price
+                        , "proxyMoney": data.proxyMoney
+                        , "uploadId": data.uploadId
+                        , "customId": data.customId
+                        , "remark": data.remark
+                        , "updateBy": data.updateBy
+                    });
+                layer.open({
+                    title: '修改业务',
+                    type: 1,
+                    area: ['660px', '450px'],
+
+                    content: $("#editForm"),//这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+
+                });
+            }
+        });
+
+        form.on('submit(saveFilter)', function (data) {
+            console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+            //提交表单数据
+            $.ajax({
+                url: "/business/add",
+                type: "POST",
+                dataType: "JSON",
+                data: data.field,
+                success: function (ret) {
+                    if (ret.code == 0) {
+                        //关闭对话框
+                        layer.closeAll();
+                        //刷新表格数据
+                        myTable.reload({
+                            page: {
+                                curr: 1 //重新从第 1 页开始
+                            }
+                        });
+                        layer.msg(ret.msg, {icon: 6});
+                    } else {
+                        layer.msg(ret.msg, {icon: 5});
+                    }
+
+                }
+            })
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+        form.on('submit(editFilter)', function (data) {
+            console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+            //提交表单数据
+            $.ajax({
+                url: "/business/edit",
+                type: "POST",
+                dataType: "JSON",
+                data: data.field,
+                success: function (ret) {
+                    if (ret.code == 0) {
+                        //关闭对话框
+                        layer.closeAll();
+                        //刷新表格数据
+                        myTable.reload({
+                            page: {
+                                curr: 1 //重新从第 1 页开始
+                            }
+                        });
+                        layer.msg(ret.msg, {icon: 6});
+                    } else {
+                        layer.msg(ret.msg, {icon: 5});
+                    }
+
+                }
+            })
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+        //提交表单数据
+        form.on('submit(selectFormfilter)', function (data) {
+            console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+            myTable.reload({
+                where: { //设定异步数据接口的额外参数，任意设
+                    businessName: data.field.businessName
+                    , createBy: data.field.createBy
+                    , updateBy: data.field.updateBy
+                }
+                , page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+            });
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+        //重置条件查询表单，刷新table数据
+        $("#myButton").click(function () {
+            myTable.reload({
+                where: { //设定异步数据接口的额外参数，任意设
+                    businessName: ""
+                    , createBy: ""
+                    , updateBy: ""
+                }
+                , page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+            });
+        })
+
+        //商标弹窗
+        let trademarkTypeOpen;
+        //业务种类弹窗
+        let businessSecondTypeOpen;
+
+        //点击弹出选择商标类别框
+        $("input[name=trademarkType]").click(function () {
+            trademarkTypeOpen = layer.open({
+                title: '选择商标类别',
+                type: 1,
+                content: $('#trademarkTypeSelect'),
+                area: ['650px', '830px']
+            });
+        })
+
+        //点击弹出选择业务种类框
+        $("input[name=businessSecondType]").click(function () {
+            businessSecondTypeOpen= layer.open({
+                title: '选择业务种类',
+                type: 1,
+                content: $('#businessSecondTypeSelect'),
+                area: ['670px', '830px']
+            });
+        })
+
+        //选择好商标类型，关闭弹窗
+        form.on('submit(trademarkFilter)', function (data) {
+            layer.close(trademarkTypeOpen)
+            $("#addTrademarkType").val(data.field.trademarkInput);
+            $("#updateTrademarkType").val(data.field.trademarkInput);
+            return false;
+        })        
+        //选择好业务种类，关闭弹窗
+        form.on('submit(businessFilter)', function (data) {
+            layer.close(businessSecondTypeOpen)
+            $("#addBusinessType").val(data.field.businessInput);
+            $("#updateBusinessType").val(data.field.businessInput);
+            return false;
+        })
+
+    });
+</script>
+
+</html>

@@ -44,4 +44,14 @@ public class GotoController {
     public String toMenu() {
         return "menu";
     }
+
+    @GetMapping("toCharts")
+    public String toCharts() {
+        return "businessStateView";
+    }
+
+    @GetMapping("toBusiness")
+    public String toBusiness() {
+        return "business";
+    }
 }

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloudwise.trademark.dao.CustomDao">
+
+    <resultMap type="com.cloudwise.trademark.entity.Custom" id="CustomMap">
+        <result property="customId" column="custom_id" jdbcType="INTEGER"/>
+        <result property="contact" column="contact" jdbcType="VARCHAR"/>
+        <result property="phone" column="phone" jdbcType="VARCHAR"/>
+        <result property="applicant" column="applicant" jdbcType="VARCHAR"/>
+        <result property="customAddress" column="custom_address" jdbcType="VARCHAR"/>
+        <result property="createBy" column="create_by" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateBy" column="update_by" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="proxyId" column="proxy_id" jdbcType="INTEGER"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="CustomMap">
+        select custom_id,
+               contact,
+               phone,
+               applicant,
+               custom_address,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               proxy_id,
+               remark
+        from trademark.tbl_custom
+        where custom_id = #{customId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="CustomMap">
+        select custom_id,
+               contact,
+               phone,
+               applicant,
+               custom_address,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               proxy_id,
+               remark
+        from trademark.tbl_custom
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="CustomMap">
+        select
+        custom_id, contact, phone, applicant, custom_address, create_by, create_time, update_by, update_time, proxy_id,
+        remark
+        from trademark.tbl_custom
+        <where>
+            <if test="customId != null">
+                and custom_id = #{customId}
+            </if>
+            <if test="contact != null and contact != ''">
+                and contact like "%"#{contact}"%"
+            </if>
+            <if test="phone != null and phone != ''">
+                and phone like "%"#{phone}"%"
+            </if>
+            <if test="applicant != null and applicant != ''">
+                and applicant = #{applicant}
+            </if>
+            <if test="customAddress != null and customAddress != ''">
+                and custom_address = #{customAddress}
+            </if>
+            <if test="createBy != null and createBy != ''">
+                and create_by = #{createBy}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateBy != null and updateBy != ''">
+                and update_by = #{updateBy}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="proxyId != null">
+                and proxy_id = #{proxyId}
+            </if>
+            <if test="remark != null and remark != ''">
+                and remark = #{remark}
+            </if>
+        </where>
+    </select>
+
+    <!--条件查询加分页-->
+    <select id="queryAllByConditionAndLimit" resultMap="CustomMap">
+        select
+        custom_id, contact, phone, applicant, custom_address, create_by, create_time, update_by, update_time, proxy_id,
+        remark
+        from trademark.tbl_custom
+        <where>
+            <if test="custom.customId != null">
+                and custom_id = #{custom.customId}
+            </if>
+            <if test="custom.contact != null and custom.contact != ''">
+                and contact like "%"#{custom.contact}"%"
+            </if>
+            <if test="custom.phone != null and custom.phone != ''">
+                and phone like "%"#{custom.phone}"%"
+            </if>
+        </where>
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="customId" useGeneratedKeys="true">
+        insert into trademark.tbl_custom(contact, phone, applicant, custom_address, create_by, create_time, update_by,
+                                         update_time, proxy_id, remark)
+        values (#{contact}, #{phone}, #{applicant}, #{customAddress}, #{createBy}, #{createTime}, #{updateBy},
+                #{updateTime}, #{proxyId}, #{remark})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="customId" useGeneratedKeys="true">
+        insert into trademark.tbl_custom(contact, phone, applicant, custom_address, create_by, create_time, update_by,
+        update_time, proxy_id, remark)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.contact}, #{entity.phone}, #{entity.applicant}, #{entity.customAddress}, #{entity.createBy},
+            #{entity.createTime}, #{entity.updateBy}, #{entity.updateTime}, #{entity.proxyId}, #{entity.remark})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="customId" useGeneratedKeys="true">
+        insert into trademark.tbl_custom(contact, phone, applicant, custom_address, create_by, create_time, update_by,
+        update_time, proxy_id, remark)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.contact}, #{entity.phone}, #{entity.applicant}, #{entity.customAddress}, #{entity.createBy},
+            #{entity.createTime}, #{entity.updateBy}, #{entity.updateTime}, #{entity.proxyId}, #{entity.remark})
+        </foreach>
+        on duplicate key update
+        contact = values(contact) , phone = values(phone) , applicant = values(applicant) , custom_address =
+        values(custom_address) , create_by = values(create_by) , create_time = values(create_time) , update_by =
+        values(update_by) , update_time = values(update_time) , proxy_id = values(proxy_id) , remark = values(remark)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update trademark.tbl_custom
+        <set>
+            <if test="contact != null and contact != ''">
+                contact = #{contact},
+            </if>
+            <if test="phone != null and phone != ''">
+                phone = #{phone},
+            </if>
+            <if test="applicant != null and applicant != ''">
+                applicant = #{applicant},
+            </if>
+            <if test="customAddress != null and customAddress != ''">
+                custom_address = #{customAddress},
+            </if>
+            <if test="createBy != null and createBy != ''">
+                create_by = #{createBy},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateBy != null and updateBy != ''">
+                update_by = #{updateBy},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="proxyId != null">
+                proxy_id = #{proxyId},
+            </if>
+            <if test="remark != null and remark != ''">
+                remark = #{remark},
+            </if>
+        </set>
+        where custom_id = #{customId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from trademark.tbl_custom
+        where custom_id = #{customId}
+    </delete>
+
+</mapper>

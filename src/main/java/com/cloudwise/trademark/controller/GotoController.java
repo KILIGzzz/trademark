@@ -44,4 +44,9 @@ public class GotoController {
     public String toMenu() {
         return "menu";
     }
+
+    @GetMapping("toProgress")
+    public String toProgress() {
+        return "progress";
+    }
 }

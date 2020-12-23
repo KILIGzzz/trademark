@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>进度列表</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <script src="/layui/layui.js"></script>
+</head>
+<body>
+<table id="showProgress"></table>
+</body>
+<!--顶部工具栏-->
+<script type="text/html" id="progressToolbar">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="addProgress">添加进度</button>
+    </div>
+</script>
+<!--实现菜单管理操作功能按钮-->
+<script type="text/html" id="progressBar">
+    <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="edit">修改进度</a>
+</script>
+<script>
+    layui.use(['table', 'layer', 'jquery', 'form'], function () {
+        let layer = layui.layer;
+        let $ = layui.jquery;
+        let form = layui.form;
+        let table = layui.table;
+        //生成menuTable表格
+        let progressTable = table.render({
+            elem: '#showProgress'
+            , url: '/progress/queryAll'
+            , toolbar: '#progressToolbar'
+            , title: 'menuTable'
+            , page: true
+            , defaultToolbar: ['filter', 'exports', 'print']
+            , cols: [
+                [
+                    {field: 'progressId', title: '进度ID', minWidth: 80},
+                    {field: 'progressType', title: '进度类型', minWidth: 140},
+                    {field: 'uploadId', title: '上传文件ID', minWidth: 30},
+                    {field: 'notice', title: '通知文件ID', minWidth: 80},
+                    {field: 'businessId', title: '业务ID'},
+                    {field: 'createBy', title: '创建人'},
+                    {field: 'createTime', title: '创建时间'},
+                    {field: 'updateBy', title: '更新人'},
+                    {field: 'updateTime', title: '创建时间'},
+                    {field: 'remark', title: '创建时间'},
+                    {fixed: 'right', align: 'center', toolbar: '#progressBar', title: '操作', width: 100}
+                ]
+            ]
+        });
+    });
+</script>
+</html>

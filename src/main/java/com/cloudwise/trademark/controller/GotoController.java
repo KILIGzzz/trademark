@@ -45,6 +45,16 @@ public class GotoController {
         return "menu";
     }
 
+    @GetMapping("toProgress")
+    public String toProgress() {
+        return "progress";
+    }
+
+    @GetMapping("toCustom")
+    public String toCustom() {
+        return "custom";
+    }
+
     @GetMapping("toCharts")
     public String toCharts() {
         return "businessStateView";

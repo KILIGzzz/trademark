@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>客户列表</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <script src="/layui/layui.js"></script>
+</head>
+<!--头部工具栏-->
+<script type="text/html" id="toolbarDemo" lay-event="toolbar">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="addCustom">添加客户</button>
+    </div>
+</script>
+<!--添加表单-->
+<form class="layui-form" action="" id="addCustomForm" style="display: none;margin-right: 40px;margin-top: 20px">
+    <!--创建人-->
+    <input hidden th:value="${session.username}" name="createBy">
+    <div class="layui-form-item">
+        <label class="layui-form-label">联系人：</label>
+        <div class="layui-input-inline">
+            <input type="text" name="contact" lay-verify="required" placeholder="请输入中文" autocomplete="off"
+                   class="layui-input">
+        </div>
+        <label class="layui-form-label">申请人：</label>
+        <div class="layui-input-inline">
+            <input type="text" name="applicant" lay-verify="required" placeholder="请输入中文" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">手机号：</label>
+        <div class="layui-input-inline">
+            <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">代理人ID：</label>
+            <div class="layui-input-inline">
+                <input type="number" name="proxyId" lay-verify="required" placeholder="" autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">邮寄地址：</label>
+        <div class="layui-input-block">
+            <textarea name="customAddress" placeholder="请输入邮寄地址" class="layui-textarea"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">备注：</label>
+        <div class="layui-input-block">
+            <textarea type="text" name="remark" placeholder="" class="layui-textarea"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block" align="center">
+            <button type="submit" class="layui-btn" lay-submit="" lay-filter="addCustomFilter">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+<!--修改表单-->
+<form class="layui-form" action="" id="updateCustomForm" lay-filter="updateCustomFormFilter"
+      style="display: none;margin-right: 40px;margin-top: 20px">
+    <!--修改人-->
+    <input hidden th:value="${session.username}" name="updateBy">
+    <div class="layui-form-item">
+        <label class="layui-form-label">客户ID：</label>
+        <div class="layui-input-inline">
+            <input type="text" name="customId" lay-verify="required" placeholder="" autocomplete="off"
+                   class="layui-input" readonly>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">联系人：</label>
+        <div class="layui-input-inline">
+            <input type="text" name="contact" lay-verify="required" placeholder="" autocomplete="off"
+                   class="layui-input">
+        </div>
+        <label class="layui-form-label">申请人：</label>
+        <div class="layui-input-inline">
+            <input type="text" name="applicant" lay-verify="required" placeholder="" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">手机号：</label>
+        <div class="layui-input-inline">
+            <input type="text" name="phone" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">代理人ID：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="proxyId" lay-verify="required" placeholder="" autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">邮寄地址：</label>
+        <div class="layui-input-block">
+            <textarea name="customAddress" placeholder="" class="layui-textarea"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">备注：</label>
+        <div class="layui-input-block">
+            <textarea type="text" name="remark" placeholder="" class="layui-textarea"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block" align="center">
+            <button type="submit" class="layui-btn" lay-submit="" lay-filter="updateCustomFilter">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+<!--行工具栏-->
+<script type="text/html" id="barDemo" lay-event="tool">
+    <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="register">业务登记</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+</script>
+<!--查询表单-->
+<form class="layui-form" action="" style="margin-top: 10px">
+    <div class="layui-inline">
+        <label class="layui-form-label">客户编号</label>
+        <div class="layui-input-inline">
+            <input type="text" name="customId" placeholder="请输入客户编号" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-inline">
+        <label class="layui-form-label">联系人姓名</label>
+        <div class="layui-input-inline">
+            <input type="text" name="contact" placeholder="请输入联系人姓名" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-inline">
+        <label class="layui-form-label">手机号</label>
+        <div class="layui-input-inline">
+            <input type="number" name="phone" placeholder="请输入手机号" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-inline">
+        <div class="layui-input-inline">
+            <button class="layui-btn" lay-submit lay-filter="selectFormfilter">查询</button>
+            <button type="reset" class="layui-btn layui-btn-primary" id="myButton">重置</button>
+        </div>
+    </div>
+</form>
+
+<body>
+<table id="demo" lay-filter="test"></table>
+</body>
+
+<script>
+    layui.use('table', function () {
+        var table = layui.table;
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var form = layui.form;
+        //第一个实例
+        var myTable = table.render({
+            elem: '#demo'
+            , url: '/custom/selectAll' //数据接口
+            , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+            , page: true //开启分页
+            , limit: 5
+            , limits: [5, 10, 15, 20, 25, 30]
+            , cols: [
+                [ //表头
+                    {field: 'customId', title: '客户ID', align: 'center', sort: true, width: 90}
+                    , {field: 'contact', title: '联系人姓名', align: 'center', width: 120}
+                    , {field: 'phone', title: '手机号', align: 'center', width: 140}
+                    , {field: 'applicant', title: '申请人', align: 'center', width: 120}
+                    , {field: 'customAddress', title: '邮寄地址', align: 'center', width: 120}
+                    , {field: 'createBy', title: '创建人', align: 'center', width: 120}
+                    , {field: 'createTime', title: '创建时间', align: 'center', width: 160}
+                    , {field: 'updateBy', title: '修改人', align: 'center', width: 120}
+                    , {field: 'updateTime', title: '修改时间', align: 'center', width: 160}
+                    , {field: 'proxyId', title: '代理人ID', align: 'center', width: 120}
+                    , {field: 'remark', title: '备注', align: 'center', width: 120}
+                    , {fixed: 'right', align: 'center', title: '操作', toolbar: '#barDemo', width: 140}
+                ]
+            ]
+        });
+
+        //监听头部工具栏事件
+        table.on('toolbar(test)', function (obj) {
+            switch (obj.event) {
+                case 'addCustom':
+                    layer.open({
+                        title: '添加',
+                        type: 1,
+                        // data: data,
+                        area: ['800px', '550px'],
+                        content: $('#addCustomForm')//这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+                    });
+                    break;
+            }
+            ;
+        });
+
+        //监听行工具栏事件
+        table.on('tool(test)', function (obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+            var data = obj.data //获得当前行数据
+                , layEvent = obj.event; //获得 lay-event 对应的值
+            if (layEvent === 'edit') {
+                //弹出对话框之前，需要填充表单数据
+                form.val('updateCustomFormFilter', {
+                    "customId": data.customId // "name": "value"
+                    , "contact": data.contact
+                    , "applicant": data.applicant
+                    , "phone": data.phone
+                    , "proxyId": data.proxyId
+                    , "customAddress": data.customAddress
+                    , "remark": data.remark
+                });
+                layer.open({
+                    title: '修改',
+                    type: 1,
+                    area: ['800px', '550px'],
+                    content: $("#updateCustomForm")//这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+                });
+            } else if (layEvent === 'register') {
+                //携带数据跳转到业务登记页面
+                layer.msg('携带数据跳转到业务登记页面');
+            }
+        });
+
+        //添加表单提交按钮事件
+        form.on('submit(addCustomFilter)', function (data) {
+            console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+            //提交表单数据
+            $.ajax({
+                url: "/custom/add",
+                type: "POST",
+                dataType: "JSON",
+                data: data.field,
+                success: function (ret) {
+                    if (ret.code == 0) {
+                        //关闭对话框
+                        layer.closeAll();
+                        //刷新表格数据
+                        myTable.reload({
+                            page: {
+                                curr: 1 //重新从第 1 页开始
+                            }
+                        });
+                        layer.msg(ret.msg, {icon: 6});
+                    } else {
+                        layer.msg(ret.msg, {icon: 5});
+                    }
+
+                }
+            })
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+
+        //修改表单提交按钮事件
+        form.on('submit(updateCustomFilter)', function (data) {
+            console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+            //提交表单数据
+            $.ajax({
+                url: "/custom/update",
+                type: "PUT",
+                dataType: "JSON",
+                data: data.field,
+                success: function (ret) {
+                    if (ret.code == 0) {
+                        //关闭对话框
+                        layer.closeAll();
+                        //刷新表格数据
+                        myTable.reload({
+                            page: {
+                                curr: 1 //重新从第 1 页开始
+                            }
+                        });
+                        layer.msg(ret.msg, {icon: 6});
+                    } else {
+                        layer.msg(ret.msg, {icon: 5});
+                    }
+                }
+            })
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+
+        //查询提交按钮
+        form.on('submit(selectFormfilter)', function (data) {
+            console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+            myTable.reload({
+                where: { //设定异步数据接口的额外参数，任意设
+                    customId: data.field.customId
+                    , contact: data.field.contact
+                    , phone: data.field.phone
+                    //…
+                }
+                , page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+            });
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+
+        //重置条件查询表单，刷新table数据
+        $("#myButton").click(function () {
+            myTable.reload({
+                where: { //设定异步数据接口的额外参数，任意设
+                    customId: ""
+                    , contact: ""
+                    , phone: ""
+                    //…
+                }
+                , page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+            });
+        })
+
+    });
+</script>
+</html>

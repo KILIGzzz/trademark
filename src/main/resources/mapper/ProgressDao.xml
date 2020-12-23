@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloudwise.trademark.dao.ProgressDao">
+
+    <resultMap type="com.cloudwise.trademark.entity.Progress" id="ProgressMap">
+        <result property="progressId" column="progress_id" jdbcType="INTEGER"/>
+        <result property="progressType" column="progress_type" jdbcType="VARCHAR"/>
+        <result property="uploadId" column="upload_id" jdbcType="INTEGER"/>
+        <result property="notice" column="notice" jdbcType="VARCHAR"/>
+        <result property="businessId" column="business_id" jdbcType="INTEGER"/>
+        <result property="createBy" column="create_by" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateBy" column="update_by" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ProgressMap">
+        select progress_id,
+               progress_type,
+               upload_id,
+               notice,
+               business_id,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               remark
+        from trademark.tbl_progress
+        where progress_id = #{progressId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ProgressMap">
+        select progress_id,
+               progress_type,
+               upload_id,
+               notice,
+               business_id,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               remark
+        from trademark.tbl_progress
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="ProgressMap">
+        select
+        progress_id, progress_type, upload_id, notice, business_id, create_by, create_time, update_by, update_time,
+        remark
+        from trademark.tbl_progress
+        <where>
+            <if test="progressId != null">
+                and progress_id = #{progressId}
+            </if>
+            <if test="progressType != null and progressType != ''">
+                and progress_type = #{progressType}
+            </if>
+            <if test="uploadId != null">
+                and upload_id = #{uploadId}
+            </if>
+            <if test="notice != null and notice != ''">
+                and notice = #{notice}
+            </if>
+            <if test="businessId != null">
+                and business_id = #{businessId}
+            </if>
+            <if test="createBy != null and createBy != ''">
+                and create_by = #{createBy}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateBy != null and updateBy != ''">
+                and update_by = #{updateBy}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="remark != null and remark != ''">
+                and remark = #{remark}
+            </if>
+        </where>
+    </select>
+    <select id="queryAllByConditionAndLimit" parameterType="com.cloudwise.trademark.entity.Progress"
+            resultMap="ProgressMap">
+        select progress_id,
+        progress_type,
+        upload_id,
+        notice,
+        business_id,
+        create_by,
+        create_time,
+        update_by,
+        update_time,
+        remark
+        from trademark.tbl_progress
+        <where>
+            <if test="progress.progressId != null and progress.progressId != ''">
+                and progress_id like "%"#{progress.progressId}"%"
+            </if>
+            <if test="progress.businessId != null and progress.businessId != ''">
+                and business_id like "%"#{progress.businessId}"%"
+            </if>
+            <if test="progress.createBy != null and progress.createBy != ''">
+                and create_by like "%"#{progress.createBy}"%"
+            </if>
+        </where>
+        limit #{offset}, #{limit}
+    </select>
+    <select id="getRowCount" resultType="java.lang.Long" parameterType="com.cloudwise.trademark.entity.Progress">
+        select count(*) count
+        from trademark.tbl_progress
+        <where>
+            <if test="progressId != null and progressId != ''">
+                and progress_id like "%"#{progressId}"%"
+            </if>
+            <if test="businessId != null and businessId != ''">
+                and business_id like "%"#{businessId}"%"
+            </if>
+            <if test="createBy != null and createBy != ''">
+                and create_by like "%"#{createBy}"%"
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="progressId" useGeneratedKeys="true">
+        insert into trademark.tbl_progress(progress_type, upload_id, notice, business_id, create_by, create_time,
+                                           update_by, update_time, remark)
+        values (#{progressType}, #{uploadId}, #{notice}, #{businessId}, #{createBy}, #{createTime}, #{updateBy},
+                #{updateTime}, #{remark})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="progressId" useGeneratedKeys="true">
+        insert into trademark.tbl_progress(progress_type, upload_id, notice, business_id, create_by, create_time,
+        update_by, update_time, remark)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.progressType}, #{entity.uploadId}, #{entity.notice}, #{entity.businessId}, #{entity.createBy},
+            #{entity.createTime}, #{entity.updateBy}, #{entity.updateTime}, #{entity.remark})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="progressId" useGeneratedKeys="true">
+        insert into trademark.tbl_progress(progress_type, upload_id, notice, business_id, create_by, create_time,
+        update_by, update_time, remark)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.progressType}, #{entity.uploadId}, #{entity.notice}, #{entity.businessId}, #{entity.createBy},
+            #{entity.createTime}, #{entity.updateBy}, #{entity.updateTime}, #{entity.remark})
+        </foreach>
+        on duplicate key update
+        progress_type = values(progress_type) , upload_id = values(upload_id) , notice = values(notice) , business_id =
+        values(business_id) , create_by = values(create_by) , create_time = values(create_time) , update_by =
+        values(update_by) , update_time = values(update_time) , remark = values(remark)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update trademark.tbl_progress
+        <set>
+            <if test="progressType != null and progressType != ''">
+                progress_type = #{progressType},
+            </if>
+            <if test="uploadId != null">
+                upload_id = #{uploadId},
+            </if>
+            <if test="notice != null and notice != ''">
+                notice = #{notice},
+            </if>
+            <if test="businessId != null">
+                business_id = #{businessId},
+            </if>
+            <if test="createBy != null and createBy != ''">
+                create_by = #{createBy},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateBy != null and updateBy != ''">
+                update_by = #{updateBy},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="remark != null and remark != ''">
+                remark = #{remark},
+            </if>
+        </set>
+        where progress_id = #{progressId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from trademark.tbl_progress
+        where progress_id = #{progressId}
+    </delete>
+
+</mapper>

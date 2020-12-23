@@ -49,4 +49,9 @@ public class GotoController {
     public String toProgress() {
         return "progress";
     }
+
+    @GetMapping("toCustom")
+    public String toCustom() {
+        return "custom";
+    }
 }

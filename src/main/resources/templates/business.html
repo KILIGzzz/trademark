@@ -18,14 +18,14 @@
 
 <!--添加-->
 <form class="layui-form" action="" id="saveForm" style="display: none;margin-right: 40px;margin-top: 20px">
-<!--    <div class="layui-form-item">-->
-<!--        <label class="layui-form-label">申请号</label>-->
-<!--        <div class="layui-input-block">-->
-<!--            <input type="text" name="applicantCode" required lay-verify="required" placeholder="请输入申请号"-->
-<!--                   autocomplete="off"-->
-<!--                   class="layui-input">-->
-<!--        </div>-->
-<!--    </div>-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">申请号</label>
+        <div class="layui-input-block">
+            <input type="text" name="applicantCode" required lay-verify="required" placeholder="请输入申请号"
+                   autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
     <div class="layui-form-item">
         <label class="layui-form-label">申请时间</label>
         <div class="layui-input-inline">
@@ -370,7 +370,7 @@
                     layer.open({
                         title: '添加业务',
                         type: 1,
-                        area: ['670px', '450px'],
+                        area: ['690px', '500px'],
                         content: $("#saveForm")//这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
                     });
                     break;
@@ -383,11 +383,8 @@
             var data = obj.data //获得当前行数据
                 , layEvent = obj.event; //获得 lay-event 对应的值
             if (layEvent === 'updateProgress') {
-
-
-
-
-
+                //跳转到进度页面
+                location.href="/progress/showBusinessAndProgress?businessId="+data.businessId
             } else if (layEvent === 'del') {
                 layer.confirm('真的删除行么', function (index) {
                     obj.del(); //删除对应行（tr）的DOM结构
@@ -408,12 +405,11 @@
                         , "uploadId": data.uploadId
                         , "customId": data.customId
                         , "remark": data.remark
-                        , "updateBy": data.updateBy
                     });
                 layer.open({
                     title: '修改业务',
                     type: 1,
-                    area: ['670px', '450px'],
+                    area: ['690px', '500px'],
 
                     content: $("#editForm"),//这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
 

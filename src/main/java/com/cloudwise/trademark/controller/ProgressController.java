@@ -5,6 +5,7 @@ import com.cloudwise.trademark.entity.Progress;
 import com.cloudwise.trademark.entity.ReturnBean;
 import com.cloudwise.trademark.service.ProgressService;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -92,7 +93,6 @@ public class ProgressController extends BaseController {
     @PostMapping("update")
     public ReturnBean update (Progress progress){
         try {
-            System.out.println(progress.toString());
             progress.setUpdateTime(new Date());
             progressService.update(progress);
             return returnSuccess(progress);
@@ -100,6 +100,20 @@ public class ProgressController extends BaseController {
             return returnFail(null);
         }
 
+    }
+
+    /**
+     * @create by: IvanZ
+     * @description : 显示客户信息和业务信息
+     * @create time: 2020/12/23 15:56
+     * @param mv:
+     * @return org.springframework.web.servlet.ModelAndView
+     */
+    @GetMapping("showBusinessAndProgress")
+    public ModelAndView showBusinessAndProgress(int businessId, ModelAndView mv){
+        mv.addObject("businessId",businessId);
+        mv.setViewName("progress");
+        return mv;
     }
 
 }

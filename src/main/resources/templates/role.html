@@ -77,7 +77,8 @@
 </form>
 
 <!--修改弹窗表格-->
-<form class="layui-form" action="" id="updateRoleForm" lay-filter="updateRoleFormFilter" style="display: none;margin-right: 40px;margin-top: 20px">
+<form class="layui-form" action="" id="updateRoleForm" lay-filter="updateRoleFormFilter"
+      style="display: none;margin-right: 40px;margin-top: 20px">
     <input hidden name="roleId">
     <div class="layui-form-item">
         <label class="layui-form-label">角色名称</label>
@@ -160,14 +161,15 @@
                     , {field: 'roleName', title: '名称', width: 100}
                     , {field: 'roleKey', title: '角色关键字', width: 120}
                     , {field: 'roleSort', title: '显示顺序', width: 160, sort: true}
-                    , {field: 'status', title: '状态', width: 160,toolbar: "#roleState"}
+                    , {field: 'status', title: '状态', width: 160, toolbar: "#roleState"}
                     , {field: 'createBy', title: '创建人', width: 100}
                     , {field: 'createTime', title: '创建时间', width: 160}
                     , {field: 'updateBy', title: '修改人', width: 100}
                     , {field: 'updateTime', title: '修改时间', width: 160}
                     //添加按钮
-                    , {field: '', title: '操作', width: 220, toolbar: "#roleOperation"}
-                ]]
+                    , {fixed: 'right', align: 'center', title: '操作', width: 220, toolbar: "#roleOperation"}
+                ]
+            ]
         });
 
 
@@ -199,15 +201,15 @@
                     console.log(data.status)
                     if (data.status == 0) {
                         document.getElementById("updateStatus").checked = true
-                    }else {
+                    } else {
                         document.getElementById("updateStatus").checked = false
                     }
                     form.val('updateRoleFormFilter', {
                         roleId: data.roleId
-                        ,roleName: data.roleName
-                        ,roleKey: data.roleKey
-                        ,roleSort: data.roleSort
-                        ,remark: data.remark
+                        , roleName: data.roleName
+                        , roleKey: data.roleKey
+                        , roleSort: data.roleSort
+                        , remark: data.remark
                     });
                     tree.reload('updateFormMenu')
                     //树形菜单回显
@@ -283,7 +285,7 @@
             } else {
                 data.field.status = 1;
             }
-            if (!isNaN(data.field.roleSort)){
+            if (!isNaN(data.field.roleSort)) {
                 //提交表单数据
                 $.ajax({
                     url: "/role/insertRole",
@@ -306,7 +308,7 @@
                         }
                     }
                 })
-            }else {
+            } else {
                 layer.msg("排序只能为数字！")
             }
             //将表单清空
@@ -327,7 +329,7 @@
                 } else {
                     data.field.status = 1;
                 }
-                if (!isNaN(data.field.roleSort)){
+                if (!isNaN(data.field.roleSort)) {
                     //提交表单数据
                     $.ajax({
                         url: "/role/updateRole",
@@ -346,7 +348,7 @@
                             }
                         }
                     })
-                }else {
+                } else {
                     layer.msg("排序只能为数字！")
                 }
                 //将表单清空

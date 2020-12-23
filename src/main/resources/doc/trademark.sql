@@ -11,7 +11,7 @@
  Target Server Version : 80022
  File Encoding         : 65001
 
- Date: 22/12/2020 09:50:04
+ Date: 22/12/2020 17:27:57
 */
 
 SET NAMES utf8mb4;
@@ -94,6 +94,9 @@ INSERT INTO `tbl_dept` VALUES (103, '测试部门', 3, '0', '0', 'admin', '2018-
 INSERT INTO `tbl_dept` VALUES (104, '财务部门', 4, '0', '0', 'admin', '2018-03-16 11:33:00', 'admin', '2018-03-16 11:33:00');
 INSERT INTO `tbl_dept` VALUES (105, '运维部门', 5, '0', '0', 'admin', '2018-03-16 11:33:00', 'admin', '2018-03-16 11:33:00');
 INSERT INTO `tbl_dept` VALUES (106, '市场部门', 6, '0', '0', 'admin', '2018-03-16 11:33:00', 'admin', '2018-03-16 11:33:00');
+INSERT INTO `tbl_dept` VALUES (108, 'ssssssttt', 444, '1', '1', '豆豆', '2020-12-22 10:25:59', '豆豆', '2020-12-22 10:26:16');
+INSERT INTO `tbl_dept` VALUES (109, 'asdasd', 444, '1', '0', '豆豆', '2020-12-22 10:34:07', '豆豆', '2020-12-22 11:13:19');
+INSERT INTO `tbl_dept` VALUES (110, 'asdasfasd', 66, '0', '0', '豆豆', '2020-12-22 11:13:42', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for tbl_dictionary
@@ -282,14 +285,17 @@ CREATE TABLE `tbl_menu`  (
 -- Records of tbl_menu
 -- ----------------------------
 INSERT INTO `tbl_menu` VALUES (1, '系统管理', 0, 1, '#', 'M', '0', '', 'layui-icon-set', 'admin', '2018-03-16 11:33:00', 'admin', '2018-03-16 11:33:00', '系统管理目录');
-INSERT INTO `tbl_menu` VALUES (2, '系统监控', 0, 2, '#', 'M', '0', '', 'layui-icon-camera-fill', 'admin', '2018-03-16 11:33:00', 'admin', '2018-03-16 11:33:00', '系统监控目录');
+INSERT INTO `tbl_menu` VALUES (2, '客户管理', 0, 2, '#', 'M', '0', '', 'layui-icon-camera-fill', 'admin', '2018-03-16 11:33:00', 'admin', '2018-03-16 11:33:00', '系统监控目录');
+INSERT INTO `tbl_menu` VALUES (3, '业务统计', 0, 3, '#', 'M', '0', '', 'layui-icon-camera-fill', 'admin', '2020-12-22 14:46:14', '', '2020-12-22 14:46:19', '业务统计菜单');
 INSERT INTO `tbl_menu` VALUES (100, '用户管理', 1, 1, '/goto/toUser', 'C', '0', 'system:user:view', '#', 'admin', '2018-03-16 11:33:00', 'admin', '2018-03-16 11:33:00', '用户管理菜单');
 INSERT INTO `tbl_menu` VALUES (101, '角色管理', 1, 2, '/goto/toRole', 'C', '0', 'system:role:view', '#', 'admin', '2018-03-16 11:33:00', 'admin', '2018-03-16 11:33:00', '角色管理菜单');
 INSERT INTO `tbl_menu` VALUES (102, '菜单管理', 1, 3, '/goto/toMenu', 'C', '0', 'system:menu:view', '#', 'admin', '2018-03-16 11:33:00', 'admin', '2018-03-16 11:33:00', '菜单管理菜单');
 INSERT INTO `tbl_menu` VALUES (103, '部门管理', 1, 4, '/goto/toDept', 'C', '0', 'system:dept:view', '#', 'admin', '2018-03-16 11:33:00', 'admin', '2018-03-16 11:33:00', '部门管理菜单');
-INSERT INTO `tbl_menu` VALUES (109, '在线用户', 2, 1, '/monitor/online', 'C', '0', 'monitor:online:view', '#', 'admin', '2018-03-16 11:33:00', 'admin', '2018-03-16 11:33:00', '在线用户菜单');
-INSERT INTO `tbl_menu` VALUES (111, '数据监控', 2, 3, '/monitor/data', 'C', '0', 'monitor:data:view', '#', 'admin', '2018-03-16 11:33:00', 'admin', '2018-03-16 11:33:00', '数据监控菜单');
-INSERT INTO `tbl_menu` VALUES (112, '服务监控', 2, 3, '/monitor/server', 'C', '0', 'monitor:server:view', '#', 'admin', '2018-03-16 11:33:00', 'admin', '2018-03-16 11:33:00', '服务监控菜单');
+INSERT INTO `tbl_menu` VALUES (109, '客户列表', 2, 1, '/goto/', 'C', '0', 'monitor:online:view', '#', 'admin', '2018-03-16 11:33:00', 'admin', '2018-03-16 11:33:00', '在线用户菜单');
+INSERT INTO `tbl_menu` VALUES (111, '业务列表', 2, 2, '/goto/', 'C', '0', 'monitor:data:view', '#', 'admin', '2018-03-16 11:33:00', 'admin', '2018-03-16 11:33:00', '数据监控菜单');
+INSERT INTO `tbl_menu` VALUES (112, '回访信息', 2, 3, '/goto/', 'C', '0', 'monitor:server:view', '#', 'admin', '2018-03-16 11:33:00', 'admin', '2018-03-16 11:33:00', '服务监控菜单');
+INSERT INTO `tbl_menu` VALUES (113, '柱状图', 3, 1, '#', 'C', '0', '', '#', 'admin', '2020-12-22 14:51:05', '', NULL, '');
+INSERT INTO `tbl_menu` VALUES (114, '折线图', 3, 2, '#', 'C', '0', '', '#', 'admin', '2020-12-22 14:53:01', '', NULL, '');
 INSERT INTO `tbl_menu` VALUES (1000, '用户查询', 100, 1, '#', 'F', '0', 'system:user:list', '#', 'admin', '2018-03-16 11:33:00', 'admin', '2018-03-16 11:33:00', '');
 INSERT INTO `tbl_menu` VALUES (1001, '用户新增', 100, 2, '#', 'F', '0', 'system:user:add', '#', 'admin', '2018-03-16 11:33:00', 'admin', '2018-03-16 11:33:00', '');
 INSERT INTO `tbl_menu` VALUES (1002, '用户修改', 100, 3, '#', 'F', '0', 'system:user:edit', '#', 'admin', '2018-03-16 11:33:00', 'admin', '2018-03-16 11:33:00', '');
@@ -373,6 +379,7 @@ CREATE TABLE `tbl_role_menu`  (
 -- ----------------------------
 INSERT INTO `tbl_role_menu` VALUES (1, 1);
 INSERT INTO `tbl_role_menu` VALUES (1, 2);
+INSERT INTO `tbl_role_menu` VALUES (1, 3);
 INSERT INTO `tbl_role_menu` VALUES (1, 100);
 INSERT INTO `tbl_role_menu` VALUES (1, 101);
 INSERT INTO `tbl_role_menu` VALUES (1, 102);
@@ -380,6 +387,8 @@ INSERT INTO `tbl_role_menu` VALUES (1, 103);
 INSERT INTO `tbl_role_menu` VALUES (1, 109);
 INSERT INTO `tbl_role_menu` VALUES (1, 111);
 INSERT INTO `tbl_role_menu` VALUES (1, 112);
+INSERT INTO `tbl_role_menu` VALUES (1, 113);
+INSERT INTO `tbl_role_menu` VALUES (1, 114);
 INSERT INTO `tbl_role_menu` VALUES (1, 1000);
 INSERT INTO `tbl_role_menu` VALUES (1, 1001);
 INSERT INTO `tbl_role_menu` VALUES (1, 1002);
@@ -399,12 +408,16 @@ INSERT INTO `tbl_role_menu` VALUES (1, 1015);
 INSERT INTO `tbl_role_menu` VALUES (1, 1016);
 INSERT INTO `tbl_role_menu` VALUES (1, 1017);
 INSERT INTO `tbl_role_menu` VALUES (1, 1018);
+INSERT INTO `tbl_role_menu` VALUES (1, 1032);
+INSERT INTO `tbl_role_menu` VALUES (1, 1033);
 INSERT INTO `tbl_role_menu` VALUES (2, 1);
 INSERT INTO `tbl_role_menu` VALUES (2, 100);
 INSERT INTO `tbl_role_menu` VALUES (2, 101);
 INSERT INTO `tbl_role_menu` VALUES (2, 1001);
 INSERT INTO `tbl_role_menu` VALUES (2, 1002);
 INSERT INTO `tbl_role_menu` VALUES (2, 1003);
+INSERT INTO `tbl_role_menu` VALUES (2, 1032);
+INSERT INTO `tbl_role_menu` VALUES (2, 1033);
 
 -- ----------------------------
 -- Table structure for tbl_upload

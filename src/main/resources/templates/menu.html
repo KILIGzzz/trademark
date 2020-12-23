@@ -74,7 +74,7 @@
 <form class="layui-form" action="" id="updateMenuForm" lay-filter="update_menu_form_filter" style="display: none">
     <input hidden name="updateBy" th:value="${session.username}">
     <div class="layui-form-item">
-        <input type="hidden" name="parentId" class="parent_id">
+        <input type="hidden" name="parentId" id="updateParentId">
         <input type="hidden" name="menuId">
         <label class="layui-form-label">上级菜单</label>
         <div class="layui-input-inline">
@@ -256,7 +256,7 @@
                             , data: result
                             , onlyIconControl: true
                             , click: function (treeObj) {
-                                $(".parent_id").val(treeObj.data.id);
+                                $("#updateParentId").val(treeObj.data.id);
                                 $(".parent_name").val(treeObj.data.title);
                                 layer.close(index);
                             }
@@ -309,7 +309,7 @@
                             , data: result
                             , onlyIconControl: true
                             , click: function (obj) {
-                                $(".parent_id").val(obj.data.id);
+                                $("#parent_id").val(obj.data.id);
                                 $(".parent_name").val(obj.data.title);
                                 layer.close(index);
                             }

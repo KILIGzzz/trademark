@@ -110,7 +110,8 @@ public class ProgressController extends BaseController {
      * @return org.springframework.web.servlet.ModelAndView
      */
     @GetMapping("showBusinessAndProgress")
-    public ModelAndView showBusinessAndProgress(int businessId, ModelAndView mv){
+    public ModelAndView showBusinessAndProgress(int customId, int businessId, ModelAndView mv){
+        mv.addObject("customId",customId);
         mv.addObject("businessId",businessId);
         mv.setViewName("progress");
         return mv;

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * (Progress)表服务实现类
@@ -85,6 +86,11 @@ public class ProgressServiceImpl implements ProgressService {
     @Override
     public long getRowCount(Progress progress) {
         return progressDao.getRowCount(progress);
+    }
+
+    @Override
+    public List<Map<String,Object>> findAllProgress() {
+        return progressDao.findAllProgress();
     }
 
 }

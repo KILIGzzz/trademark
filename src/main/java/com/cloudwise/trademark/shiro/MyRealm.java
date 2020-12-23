@@ -36,24 +36,31 @@ public class MyRealm extends AuthorizingRealm {
     /**
      * shiro框架登录验证
      *
-     * @param authenticationToken
-     * @return AuthenticationInfo
+     * @param authenticationToken 含有用户名和密码的token
+     * @return AuthenticationInfo 实体类
      * @createBy Enzo
      * @createTime 2020/12/19 21:34
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
-        UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) authenticationToken;
-        //校验用户名和密码
-        String username = usernamePasswordToken.getUsername();
-        User user = userService.queryByUsername(username);
-        if (null == user) {
+        UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
+        //通过token获取对应数据库用户
+        User user = userService.queryByUsername(token.getUsername());
+        if (user == null) {
             return null;
         }
-        String password = user.getPassword();
+        ShiroUtil shiroUtil = new ShiroUtil();
+        //获取数据库用户盐值
         String salt = user.getSalt();
+        String password = String.valueOf(token.getPassword());
+        //将当前用户的密码与数据库用户盐值拼接加盐加密生成相应密文
+        String cipher = shiroUtil.encryptionBySalt(salt, password);
+        //将当前密文与数据库密文作比较，相同登录成功，不同密码错误
+        if (!user.getPassword().equals(cipher)) {
+            return null;
+        }
         ByteSource byteSource = ByteSource.Util.bytes(salt);
-        SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(user, password, byteSource, getName());
-        return simpleAuthenticationInfo;
+        return new SimpleAuthenticationInfo(user, cipher, byteSource, getName());
     }
+
 }

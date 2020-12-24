@@ -35,17 +35,38 @@ public class MenuController extends BaseController {
         return this.menuService.queryById(id);
     }
 
+    /**
+     * @return
+     * @create by: Back
+     * @description: 查询全部菜单
+     * @create time: 2020/12/24 9:58
+     */
+
     @GetMapping("queryAllMenu")
     public ReturnBean queryAllMenu() {
         List<Menu> menus = menuService.queryAllMenu();
         return returnSuccess(menus);
     }
 
+    /**
+     * @return
+     * @create by: Back
+     * @description: 查询全部，并转换为layuiTree
+     * @create time: 2020/12/24 9:58
+     */
     @GetMapping("queryAllMenus")
     public List queryAllMenus() {
         List<Menu> menus = menuService.queryAllMenu();
         return TreeUtil.fromMenuListToTreeList(menus);
     }
+
+    /**
+     * @param menuId
+     * @return
+     * @create by: Back
+     * @description: 根据ID删除
+     * @create time: 2020/12/24 10:01
+     */
 
     @PutMapping("deleteMenuById")
     public ReturnBean deleteMenuById(Integer menuId) {
@@ -57,15 +78,30 @@ public class MenuController extends BaseController {
         }
     }
 
+    /**
+     * @param menu
+     * @return
+     * @create by: Back
+     * @description: 添加菜单
+     * @create time: 2020/12/24 10:01
+     */
+
     @PostMapping("insertMenu")
     public ReturnBean insertMenu(Menu menu) {
-
         final Menu insert = menuService.insert(menu);
         if (insert != null) {
             return returnSuccess(null);
         }
         return returnFail(null);
     }
+
+    /**
+     * @param menu
+     * @return
+     * @create by: Back
+     * @description: 编辑菜单
+     * @create time: 2020/12/24 10:01
+     */
 
     @PutMapping("updateMenu")
     public ReturnBean updateMenu(Menu menu) {
@@ -76,6 +112,14 @@ public class MenuController extends BaseController {
             return returnFail(null);
         }
     }
+
+    /**
+     * @param menuId
+     * @return
+     * @create by: Back
+     * @description: 查找父节点ID
+     * @create time: 2020/12/24 10:01
+     */
 
     @GetMapping("findParentNameId")
     public ReturnBean findParentNameId(Integer menuId) {

@@ -2,6 +2,7 @@ package com.cloudwise.trademark.dao;
 
 import com.cloudwise.trademark.entity.Business;
 import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +26,7 @@ public interface BusinessDao {
      * 查询指定行数据
      *
      * @param offset 查询起始位置
-     * @param limit 查询条数
+     * @param limit  查询条数
      * @return 对象列表
      */
     List<Business> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
@@ -63,8 +64,38 @@ public interface BusinessDao {
      */
     int deleteById(Integer businessId);
 
-
+    /**
+     * @param tb offset   limit
+     * @return
+     * @create by: Back
+     * @description: 包含分页和条件的查询，无参数传入则为查询全部
+     * @create time: 2020/12/24 9:32
+     */
     List<Business> queryAllByConditionAndLimit(Business tb, @Param("offset") int offset, @Param("limit") int limit);
+
+    /**
+     * @param tb
+     * @return
+     * @create by: Back
+     * @description: 根据传入实体类计算所查询出的数据条数
+     * @create time: 2020/12/24 9:34
+     */
     long getCount(Business tb);
-    List<Map<String,Object>> findAllDictionary();
+
+    /**
+     * @return
+     * @create by: Back
+     * @description: 查询字典表，并返回对应List
+     * @create time: 2020/12/24 9:35
+     */
+    List<Map<String, Object>> findAllDictionary();
+    /**
+     * @create by: Back
+     * @description: 根据ID查询进度类型
+     * @create time: 2020/12/24 11:25
+     * @param businessId
+     * @return
+     */
+
+    String findTypeById(Integer businessId);
 }

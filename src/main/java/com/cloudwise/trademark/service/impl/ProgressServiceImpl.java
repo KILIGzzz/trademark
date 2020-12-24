@@ -43,6 +43,15 @@ public class ProgressServiceImpl implements ProgressService {
         return this.progressDao.queryAllByLimit(offset, limit);
     }
 
+
+    /**
+     * @param progress,offset,limit
+     * @return
+     * @create by: Back
+     * @description: 条件查询并分页
+     * @create time: 2020/12/24 10:07
+     */
+
     @Override
     public List<Progress> queryAllByConditionAndLimit(Progress progress, int offset, int limit) {
         return progressDao.queryAllByConditionAndLimit(progress, offset, limit);
@@ -83,13 +92,28 @@ public class ProgressServiceImpl implements ProgressService {
         return this.progressDao.deleteById(progressId) > 0;
     }
 
+
+    /**
+     * @param progress
+     * @return
+     * @create by: Back
+     * @description: 获取数据条数
+     * @create time: 2020/12/24 10:07
+     */
     @Override
     public long getRowCount(Progress progress) {
         return progressDao.getRowCount(progress);
     }
 
+
+    /**
+     * @return
+     * @create by: Back
+     * @description: 查询全部进度
+     * @create time: 2020/12/24 10:09
+     */
     @Override
-    public List<Map<String,Object>> findAllProgress() {
+    public List<Map<String, Object>> findAllProgress() {
         return progressDao.findAllProgress();
     }
 

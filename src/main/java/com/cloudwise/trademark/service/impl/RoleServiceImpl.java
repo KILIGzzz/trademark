@@ -78,21 +78,51 @@ public class RoleServiceImpl implements RoleService {
         return this.roleDao.deleteById(roleId) > 0;
     }
 
+
+    /**
+     * @return
+     * @create by: Back
+     * @description: 获取数据条数
+     * @create time: 2020/12/24 10:09
+     */
     @Override
     public long getCount() {
         return roleDao.getCount();
     }
 
+
+    /**
+     * @param roleId
+     * @return
+     * @create by: Back
+     * @description: 根据角色ID删除
+     * @create time: 2020/12/24 10:10
+     */
     @Override
     public int deleteByRoleId(Integer roleId) {
         return roleDao.deleteByRoleId(roleId);
     }
 
+
+    /**
+     * @return
+     * @create by: Back
+     * @description: 查询全部菜单
+     * @create time: 2020/12/24 10:10
+     */
     @Override
     public List<Menu> findAllMenu() {
         return roleDao.findAllMenu();
     }
 
+
+    /**
+     * @param roleId,menusId
+     * @return
+     * @create by: Back
+     * @description: 添加角色菜单
+     * @create time: 2020/12/24 10:10
+     */
     @Override
     public void insertRoleMenu(int roleId, String[] menusId) {
         for (int i = 0; i < menusId.length; i++) {
@@ -100,6 +130,14 @@ public class RoleServiceImpl implements RoleService {
         }
     }
 
+
+    /**
+     * @param roleId,menusId
+     * @return
+     * @create by: Back
+     * @description: 修改角色菜单
+     * @create time: 2020/12/24 10:10
+     */
     @Override
     public void updateRoleMenu(Integer roleId, String[] menusId) {
         roleDao.deleteRoleMenu(roleId);
@@ -108,6 +146,14 @@ public class RoleServiceImpl implements RoleService {
         }
     }
 
+
+    /**
+     * @param roleId,menusId
+     * @return
+     * @create by: Back
+     * @description: 查询角色菜单
+     * @create time: 2020/12/24 10:10
+     */
     @Override
     public List<Integer> findSelectMenu(int roleId) {
         return roleDao.findSelectMenu(roleId);

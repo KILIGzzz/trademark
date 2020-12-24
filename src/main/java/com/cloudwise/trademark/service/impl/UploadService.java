@@ -36,6 +36,14 @@ public class UploadService {
     @Autowired
     private AliyunOssConfig aliyunOssConfig;
 
+
+    /**
+     * @param uploadFile
+     * @return
+     * @create by: Back
+     * @description: 上传文件并返回文件地址
+     * @create time: 2020/12/24 10:12
+     */
     public UploadResult upload(MultipartFile uploadFile) {
         // 校验文件格式
         boolean isLegal = false;

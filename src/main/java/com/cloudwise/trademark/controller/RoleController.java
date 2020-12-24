@@ -46,8 +46,7 @@ public class RoleController extends BaseController {
     public ReturnBean findAll(PageBean pageBean, User user){
         List<Role> roles = roleService.queryAllByLimit(getOffset(pageBean), pageBean.getLimit());
         long count = roleService.getCount();
-        ReturnBean returnBean = returnSuccess(roles,count);
-        return returnBean;
+        return returnSuccess(roles,count);
     }
 
     /**

@@ -35,6 +35,13 @@ public class DeptController extends BaseController {
         return this.deptService.queryById(id);
     }
 
+    /**
+     * @param pageBean dept
+     * @return
+     * @create by: Back
+     * @description: 查询全部
+     * @create time: 2020/12/24 9:53
+     */
 
     @GetMapping("selectAll")
     public ReturnBean selectAll(PageBean pageBean, Dept dept) {
@@ -43,6 +50,14 @@ public class DeptController extends BaseController {
         final long rowCount = deptService.getRowCount(dept);
         return returnSuccess(depts, rowCount);
     }
+
+    /**
+     * @param deptId
+     * @return
+     * @create by: Back
+     * @description: 根据ID删除
+     * @create time: 2020/12/24 9:53
+     */
 
     @PutMapping("deleteById")
     public ReturnBean deleteById(Integer deptId) {
@@ -53,6 +68,14 @@ public class DeptController extends BaseController {
         return returnFail(null);
     }
 
+    /**
+     * @param ids
+     * @return
+     * @create by: Back
+     * @description: 批量删除
+     * @create time: 2020/12/24 9:53
+     */
+
     @PutMapping("deleteByIds")
     public ReturnBean deleteByIds(String ids) {
         final boolean delete = deptService.deleteByIds(ids);
@@ -61,6 +84,14 @@ public class DeptController extends BaseController {
         }
         return returnFail(null);
     }
+
+    /**
+     * @param dept
+     * @return
+     * @create by: Back
+     * @description: 修改
+     * @create time: 2020/12/24 9:54
+     */
 
     @PutMapping("updateDept")
     public ReturnBean updateDept(Dept dept) {
@@ -72,6 +103,14 @@ public class DeptController extends BaseController {
             return returnFail(null);
         }
     }
+
+    /**
+     * @param dept
+     * @return
+     * @create by: Back
+     * @description: 添加
+     * @create time: 2020/12/24 9:54
+     */
 
     @PostMapping("insertDept")
     public ReturnBean insertDept(Dept dept) {

@@ -21,6 +21,14 @@ public class UserServiceImpl implements UserService {
     @Resource
     private UserDao userDao;
 
+
+    /**
+     * @param id
+     * @return
+     * @create by: Back
+     * @description: 根据ID进行查询
+     * @create time: 2020/12/24 10:13
+     */
     @Override
     public User queryById(int id) {
         return userDao.queryById(id);
@@ -109,16 +117,36 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
+    /**
+     * @return
+     * @create by: Back
+     * @description: 查询全部
+     * @create time: 2020/12/24 10:14
+     */
     @Override
     public List<Map<String, Object>> findAllDept() {
         return userDao.findAllDept();
     }
 
+
+    /**
+     * @return
+     * @create by: Back
+     * @description: 查询全部
+     * @create time: 2020/12/24 10:14
+     */
     @Override
     public List<Map<String, Object>> findAllRole() {
         return userDao.findAllRole();
     }
 
+
+    /**
+     * @return
+     * @create by: Back
+     * @description: 添加用户权限
+     * @create time: 2020/12/24 10:14
+     */
     @Override
     public void insertUserRole(int userId, String[] roles) {
         for (int i = 0; i < roles.length; i++) {
@@ -126,6 +154,13 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+
+    /**
+     * @return
+     * @create by: Back
+     * @description: 编辑用户权限
+     * @create time: 2020/12/24 10:14
+     */
     @Override
     public void updateUserRole(int userId, String role) {
         List<String> userRole = userDao.findUserRole(userId);
@@ -154,6 +189,14 @@ public class UserServiceImpl implements UserService {
         return userDao.queryByUsername(username);
     }
 
+
+    /**
+     * @param userId
+     * @return
+     * @create by: Back
+     * @description: 查询角色
+     * @create time: 2020/12/24 10:14
+     */
     @Override
     public List<Integer> findSelectRole(Integer userId) {
         return userDao.findSelectRole(userId);

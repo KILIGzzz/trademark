@@ -43,6 +43,13 @@ public class DeptServiceImpl implements DeptService {
         return this.deptDao.queryAllByLimit(offset, limit);
     }
 
+    /**
+     * @param dept,offset,limit
+     * @return
+     * @create by: Back
+     * @description:
+     * @create time: 2020/12/24 10:04
+     */
     @Override
     public List<Dept> queryAllByConditionAndLimit(Dept dept, int offset, int limit) {
         return deptDao.queryAllByConditionAndLimit(dept, offset, limit);

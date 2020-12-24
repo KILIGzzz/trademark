@@ -39,11 +39,11 @@ public class ProgressController extends BaseController {
     }
 
     /**
+     * @return ReturnBean
      * @create by: ydq
      * @description: 方法作用：条件查询加分页
      * @create time: 2020/12/23 15:16
      * @param: PageBean pageBean, Progress progress
-     * @return ReturnBean
      */
     @GetMapping("queryAll")
     public ReturnBean queryAll(PageBean pageBean, Progress progress) {
@@ -52,28 +52,28 @@ public class ProgressController extends BaseController {
         ReturnBean returnBean = returnSuccess(progresses, progressService.getRowCount(progress));
         return returnBean;
     }
-    
+
     /**
+     * @return
      * @create by: ydq
      * @description: 方法作用：查询进度类型
      * @create time: 2020/12/23 16:47
-     * @param: 
-     * @return 
+     * @param:
      */
     @GetMapping("findAllProgress")
-    public  List<Map<String,Object>> findAllProgress (){
+    public List<Map<String, Object>> findAllProgress() {
         return progressService.findAllProgress();
     }
 
     /**
+     * @return
      * @create by: ydq
      * @description: 方法作用：添加进度
      * @create time: 2020/12/23 17:48
      * @param:
-     * @return
      */
     @PostMapping("add")
-    public ReturnBean add (Progress progress){
+    public ReturnBean add(Progress progress) {
         try {
             progress.setCreateTime(new Date());
             progressService.insert(progress);
@@ -82,32 +82,32 @@ public class ProgressController extends BaseController {
             return returnFail(null);
         }
     }
-    
+
     /**
+     * @return
      * @create by: ydq
      * @description: 方法作用：修改进度
      * @create time: 2020/12/23 17:52
      * @param:
-     * @return
      */
     @PostMapping("update")
-    public ReturnBean update (Progress progress){
+    public ReturnBean update(Progress progress) {
         try {
             progress.setUpdateTime(new Date());
             progressService.update(progress);
             return returnSuccess(progress);
-        }catch (Exception e) {
+        } catch (Exception e) {
             return returnFail(null);
         }
 
     }
 
     /**
+     * @param mv:
+     * @return org.springframework.web.servlet.ModelAndView
      * @create by: IvanZ
      * @description : 显示客户信息和业务信息
      * @create time: 2020/12/23 15:56
-     * @param mv:
-     * @return org.springframework.web.servlet.ModelAndView
      */
     @GetMapping("showBusinessAndProgress")
     public ModelAndView showBusinessAndProgress(int customId, int businessId, ModelAndView mv){

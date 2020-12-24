@@ -35,7 +35,7 @@ public class BusinessServiceImpl implements BusinessService {
      * 查询多条数据
      *
      * @param offset 查询起始位置
-     * @param limit 查询条数
+     * @param limit  查询条数
      * @return 对象列表
      */
     @Override
@@ -78,16 +78,42 @@ public class BusinessServiceImpl implements BusinessService {
         return this.businessDao.deleteById(businessId) > 0;
     }
 
+    /**
+     * @param tb offset   limit
+     * @return
+     * @create by: Back
+     * @description: 包含分页和条件的查询，无参数传入则为查询全部
+     * @create time: 2020/12/24 9:32
+     */
     @Override
     public List<Business> queryAllByConditionAndLimit(Business tb, int offset, int limit) {
-        return this.businessDao.queryAllByConditionAndLimit(tb,offset,limit);
+        List<Business> businesses = this.businessDao.queryAllByConditionAndLimit(tb, offset, limit);
+        for (Business business : businesses) {
+            String status =  businessDao.findTypeById(business.getBusinessId());
+            business.setStatus(status);
+        }
+        return businesses;
     }
+
+    /**
+     * @param tb
+     * @return
+     * @create by: Back
+     * @description: 根据传入实体类计算所查询出的数据条数
+     * @create time: 2020/12/24 9:34
+     */
 
     @Override
     public long getCount(Business tb) {
         return this.businessDao.getCount(tb);
     }
 
+    /**
+     * @return
+     * @create by: Back
+     * @description: 查询字典表，并返回对应List
+     * @create time: 2020/12/24 9:35
+     */
     @Override
     public List<Map<String, Object>> findAllDictionary() {
         return this.businessDao.findAllDictionary();

@@ -30,6 +30,13 @@ public class LoginController {
     @Autowired
     private MenuService menuService;
 
+    /**
+     * @param username
+     * @return
+     * @create by: Back
+     * @description: 登录，用户名及密码验证
+     * @create time: 2020/12/24 9:56
+     */
 
     @PostMapping("login")
     public ModelAndView login(String username, String password, HttpServletRequest request) {
@@ -60,6 +67,12 @@ public class LoginController {
         return modelAndView;
     }
 
+    /**
+     * @return
+     * @create by: Back
+     * @description: 注销
+     * @create time: 2020/12/24 9:56
+     */
 
     @RequestMapping("logout")
     public String logout() {

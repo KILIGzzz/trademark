@@ -135,6 +135,11 @@
     <select id="findAllDictionary" resultType="java.util.Map">
         select * from tbl_dictionary
     </select>
+    <select id="findTypeById" resultType="java.lang.String">
+        select progress_type from tbl_progress
+        where business_id = #{businessId}
+        order by progress_id desc limit 1
+    </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="businessId" useGeneratedKeys="true">

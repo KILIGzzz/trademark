@@ -70,5 +70,14 @@ public class Business implements Serializable {
     private Integer customId;
     
     private String remark;
+    /**
+     * @create by: Back
+     * @description: 进度状态
+     * @create time: 2020/12/24 10:46
+     * @return
+     */
+
+    private String status;
+
 
 }

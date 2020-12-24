@@ -14,6 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("goto")
 public class GotoController {
+    /**
+     * @return
+     * @create by: Back
+     * @description: 页面跳转控制
+     * @create time: 2020/12/24 9:55
+     */
 
     @GetMapping("toHome")
     public String toShow() {

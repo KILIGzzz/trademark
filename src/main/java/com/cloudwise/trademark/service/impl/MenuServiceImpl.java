@@ -142,16 +142,39 @@ public class MenuServiceImpl implements MenuService {
         return layUiTreeList;
     }
 
+    /**
+     * @param loginName
+     * @return
+     * @create by: Back
+     * @description: 根据登录名查找菜单
+     * @create time: 2020/12/24 10:05
+     */
     @Override
     public List<Menu> findMenusByLoginName(String loginName) {
         return menuDao.findMenusByLoginName(loginName);
     }
 
+
+    /**
+     * @param menuId
+     * @return
+     * @create by: Back
+     * @description: 根据ID删除菜单
+     * @create time: 2020/12/24 10:06
+     */
     @Override
     public int deleteMenuById(Integer menuId) {
         return menuDao.deleteMenuById(menuId);
     }
 
+
+    /**
+     * @param menuId
+     * @return
+     * @create by: Back
+     * @description: 根据ID查找父节点
+     * @create time: 2020/12/24 10:06
+     */
     @Override
     public Menu findParentNameId(Integer menuId) {
         Menu parent = menuDao.findParentNameId(menuId);

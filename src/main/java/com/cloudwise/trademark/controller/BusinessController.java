@@ -28,6 +28,7 @@ public class BusinessController extends BaseController {
 
     /**
      * 通过主键查询单条数据
+     *
      * @return 单条数据
      */
     @GetMapping("selectOne")
@@ -39,18 +40,34 @@ public class BusinessController extends BaseController {
     }
 
 
+    /**
+     * @param pageBean,tb
+     * @return
+     * @create by: Back
+     * @description: 条件查询
+     * @create time: 2020/12/24 9:40
+     */
 
     @GetMapping("queryByCondition")
     public ReturnBean queryByCondition(PageBean pageBean, Business tb) {
         //计算分页参数
         int offset = getOffset(pageBean);
-        List<Business> tbList = BusinessService.queryAllByConditionAndLimit(tb,offset, pageBean.getLimit());
+        List<Business> tbList = BusinessService.queryAllByConditionAndLimit(tb, offset, pageBean.getLimit());
         long count = BusinessService.getCount(tb);
         //返回json结果
         ReturnBean returnBean = returnSuccess(tbList);
         returnBean.setCount(count);
         return returnBean;
     }
+
+    /**
+     * @param tb
+     * @return
+     * @create by: Back
+     * @description: 添加业务
+     * @create time: 2020/12/24 9:40
+     */
+
     @PostMapping("add")
     public ReturnBean addBusiness(Business tb) {
         try {
@@ -62,6 +79,14 @@ public class BusinessController extends BaseController {
         }
     }
 
+    /**
+     * @param tb
+     * @return
+     * @create by: Back
+     * @description: 编辑业务
+     * @create time: 2020/12/24 9:41
+     */
+
     @PostMapping("edit")
     public ReturnBean editBusiness(Business tb) {
         try {
@@ -72,6 +97,14 @@ public class BusinessController extends BaseController {
             return returnFail(null);
         }
     }
+
+    /**
+     * @return
+     * @create by: Back
+     * @description: 查询字典，填充下拉列表
+     * @create time: 2020/12/24 9:41
+     */
+
     @GetMapping("findAllDictionary")
     public List<Map<String, Object>> findAllDictionary() {
         List<Map<String, Object>> allDictionary = BusinessService.findAllDictionary();
@@ -79,15 +112,15 @@ public class BusinessController extends BaseController {
     }
 
     /**
+     * @param mv:
+     * @return org.springframework.web.servlet.ModelAndView
      * @create by: IvanZ
      * @description : 显示客户信息和业务信息
      * @create time: 2020/12/23 15:56
-     * @param mv:
-     * @return org.springframework.web.servlet.ModelAndView
      */
     @GetMapping("showCustomAndBusiness")
-    public ModelAndView showCustomAndBusiness(int customId,ModelAndView mv){
-        mv.addObject("customId",customId);
+    public ModelAndView showCustomAndBusiness(int customId, ModelAndView mv) {
+        mv.addObject("customId", customId);
         mv.setViewName("business");
         return mv;
     }

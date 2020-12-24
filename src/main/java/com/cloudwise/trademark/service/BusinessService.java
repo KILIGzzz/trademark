@@ -25,7 +25,7 @@ public interface BusinessService {
      * 查询多条数据
      *
      * @param offset 查询起始位置
-     * @param limit 查询条数
+     * @param limit  查询条数
      * @return 对象列表
      */
     List<Business> queryAllByLimit(int offset, int limit);
@@ -54,8 +54,31 @@ public interface BusinessService {
      */
     boolean deleteById(Integer businessId);
 
+    /**
+     * @param tb offset   limit
+     * @return
+     * @create by: Back
+     * @description: 包含分页和条件的查询，无参数传入则为查询全部
+     * @create time: 2020/12/24 9:32
+     */
+
     List<Business> queryAllByConditionAndLimit(Business tb, int offset, int limit);
+
+    /**
+     * @param tb
+     * @return
+     * @create by: Back
+     * @description: 根据传入实体类计算所查询出的数据条数
+     * @create time: 2020/12/24 9:34
+     */
     long getCount(Business tb);
-    List<Map<String,Object>> findAllDictionary();
+
+    /**
+     * @return
+     * @create by: Back
+     * @description: 查询字典表，并返回对应List
+     * @create time: 2020/12/24 9:35
+     */
+    List<Map<String, Object>> findAllDictionary();
 
 }

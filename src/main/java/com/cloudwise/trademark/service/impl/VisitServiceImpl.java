@@ -38,8 +38,8 @@ public class VisitServiceImpl implements VisitService {
      * @return 对象列表
      */
     @Override
-    public List<Visit> queryAllByLimit(int offset, int limit) {
-        return this.visitDao.queryAllByLimit(offset, limit);
+    public List<Visit> queryAllByLimit(Visit visit,int offset, int limit) {
+        return this.visitDao.queryAllByLimit(visit,offset, limit);
     }
 
     /**
@@ -78,8 +78,7 @@ public class VisitServiceImpl implements VisitService {
     }
 
     @Override
-    public long getCount() {
-        long a = visitDao.queryAll(null).size();
-        return a;
+    public long getCount(Visit visit) {
+        return visitDao.getCount(visit);
     }
 }

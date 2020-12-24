@@ -27,7 +27,7 @@ public interface VisitService {
      * @param limit  查询条数
      * @return 对象列表
      */
-    List<Visit> queryAllByLimit(int offset, int limit);
+    List<Visit> queryAllByLimit(Visit visit,int offset, int limit);
 
     /**
      * 新增数据
@@ -53,5 +53,5 @@ public interface VisitService {
      */
     boolean deleteById(Integer visitId);
 
-    long getCount ();
+    long getCount (Visit visit);
 }

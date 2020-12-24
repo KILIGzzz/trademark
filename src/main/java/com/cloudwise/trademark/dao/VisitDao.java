@@ -28,8 +28,16 @@ public interface VisitDao {
      * @param limit  查询条数
      * @return 对象列表
      */
-    List<Visit> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
+    List<Visit> queryAllByLimit(@Param("visit") Visit visit,@Param("offset") int offset, @Param("limit") int limit);
 
+    /**
+     * @create by: IvanZ
+     * @description : 得到行数
+     * @create time: 2020/12/24 10:14
+     * @param visit:
+     * @return long
+     */
+    long getCount(Visit visit);
 
     /**
      * 通过实体作为筛选条件查询

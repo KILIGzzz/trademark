@@ -7,6 +7,7 @@ import com.cloudwise.trademark.service.VisitService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -46,11 +47,11 @@ public class VisitController extends BaseController {
      * @return
      */
     @GetMapping("selectAll")
-    public ReturnBean selectAll (PageBean pageBean){
+    public ReturnBean selectAll (Visit visit,PageBean pageBean){
         try {
             int offset = getOffset(pageBean);
-            List<Visit> visits = visitService.queryAllByLimit(offset, pageBean.getLimit());
-            return returnSuccess(visits,visitService.getCount());
+            List<Visit> visits = visitService.queryAllByLimit(visit,offset, pageBean.getLimit());
+            return returnSuccess(visits,visitService.getCount(visit));
         }catch (Exception e) {
             return returnFail(null);
         }
@@ -90,6 +91,20 @@ public class VisitController extends BaseController {
         }catch (Exception e) {
             return returnFail(null);
         }
+    }
+
+    /**
+     * @create by: IvanZ
+     * @description : 显示客户信息和回访信息
+     * @create time: 2020/12/23 15:56
+     * @param mv:
+     * @return org.springframework.web.servlet.ModelAndView
+     */
+    @GetMapping("showCustomAndVisit")
+    public ModelAndView showCustomAndBusiness(int customId, ModelAndView mv){
+        mv.addObject("customId",customId);
+        mv.setViewName("visit");
+        return mv;
     }
 
 }

@@ -44,7 +44,7 @@
         </div>
         <label class="layui-form-label">业务ID：</label>
         <div class="layui-input-inline">
-            <input type="number" name="businessId" th:value="${businessId}" lay-verify="required" placeholder="" autocomplete="off"
+            <input type="number" name="businessId"  readonly id="addBusinessTableSelect" th:value="${businessId}" lay-verify="required" placeholder="" autocomplete="off"
                    class="layui-input">
         </div>
     </div>
@@ -92,7 +92,7 @@
         </div>
         <label class="layui-form-label">业务ID：</label>
         <div class="layui-input-inline">
-            <input type="number" name="businessId" lay-verify="required" placeholder="" autocomplete="off"
+            <input type="number" name="businessId" readonly id="updateBusinessTableSelect" lay-verify="required" placeholder="" autocomplete="off"
                    class="layui-input">
         </div>
     </div>
@@ -118,11 +118,74 @@
 
 
 <script>
-    layui.use(['table', 'layer', 'jquery', 'form'], function () {
+    //自定义layui组件的目录
+    layui.config({
+        base: '/layui/lay/modules/'
+    }).extend({
+        //设定组件别名
+        tableSelect: 'tableSelect',
+    });
+    layui.use(['table', 'layer', 'jquery', 'form' ,'tableSelect'], function () {
         let layer = layui.layer;
         let $ = layui.jquery;
         let form = layui.form;
         let table = layui.table;
+        let tableSelect = layui.tableSelect;
+
+        //添加业务编号选择表格
+        tableSelect.render({
+            elem: '#addBusinessTableSelect',	//定义输入框input对象 必填
+            checkedKey: 'businessId', //表格的唯一建值，非常重要，影响到选中状态 必填
+            searchKey: 'businessName',	//搜索输入框的name值 默认keyword
+            searchPlaceholder: '业务名搜索',	//搜索输入框的提示文字 默认关键词搜索
+            table: {	//定义表格参数，与LAYUI的TABLE模块一致，只是无需再定义表格elem
+                url: '/business/queryByCondition',
+                cols: [
+                    [
+                        {type: 'radio'}
+                        , {field: 'businessId', title: '业务编号', width: 100, sort: true}
+                        , {field: 'applicantCode', title: '申请号', width: 160}
+                        , {field: 'applicantTime', title: '申请时间', width: 160}
+                        , {field: 'businessName', title: '业务名', width: 160}
+                        , {field: 'businessTopType', title: '业务类型', width: 100,}
+                        , {field: 'businessSecondType', title: '业务种类', width: 160}
+                    ]
+                ]
+            },
+            done: function (elem, data) {
+                //选择完后的回调，包含2个返回值 elem:返回之前input对象；data:表格返回的选中的数据 []
+                //拿到data[]后 就按照业务需求做想做的事情啦~比如加个隐藏域放ID...
+                elem.val(data.data[0].businessId)
+            }
+        })
+
+        //修改业务编号选择表格
+        tableSelect.render({
+            elem: '#updateBusinessTableSelect',	//定义输入框input对象 必填
+            checkedKey: 'businessId', //表格的唯一建值，非常重要，影响到选中状态 必填
+            searchKey: 'contact',	//搜索输入框的name值 默认keyword
+            searchPlaceholder: '联系人姓名搜索',	//搜索输入框的提示文字 默认关键词搜索
+            table: {	//定义表格参数，与LAYUI的TABLE模块一致，只是无需再定义表格elem
+                url: '/business/queryByCondition',
+                cols: [
+                    [
+                        {type: 'radio'}
+                        , {field: 'businessId', title: '业务编号', width: 100, sort: true}
+                        , {field: 'applicantCode', title: '申请号', width: 160}
+                        , {field: 'applicantTime', title: '申请时间', width: 160}
+                        , {field: 'businessName', title: '业务名', width: 160}
+                        , {field: 'businessTopType', title: '业务类型', width: 100,}
+                        , {field: 'businessSecondType', title: '业务种类', width: 160}
+                    ]
+                ]
+            },
+            done: function (elem, data) {
+                //选择完后的回调，包含2个返回值 elem:返回之前input对象；data:表格返回的选中的数据 []
+                //拿到data[]后 就按照业务需求做想做的事情啦~比如加个隐藏域放ID...
+                elem.val(data.data[0].businessId)
+            }
+        })
+
 
         //获取传过来的customId
         var customeId = "";

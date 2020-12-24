@@ -38,6 +38,11 @@
                update_time,
                remark
         from trademark.tbl_visit
+        <where>
+            <if test="visit.customId != null and visit.customId != 0">
+                and custom_id = #{visit.customId}
+            </if>
+        </where>
         limit #{offset}, #{limit}
     </select>
 
@@ -70,6 +75,16 @@
             </if>
             <if test="remark != null and remark != ''">
                 and remark = #{remark}
+            </if>
+        </where>
+    </select>
+    <!--得到所有行数-->
+    <select id="getCount" resultType="java.lang.Long">
+        select count(*)
+        from trademark.tbl_visit
+        <where>
+            <if test="customId != null and customId != 0">
+                and custom_id = #{customId}
             </if>
         </where>
     </select>

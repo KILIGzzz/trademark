@@ -67,7 +67,8 @@
     <div class="layui-form-item">
         <label class="layui-form-label">业务编号</label>
         <div class="layui-input-block">
-            <input type="number" name="businessId" readonly id="addBusinessTableSelect" th:value="${businessId}" lay-verify="required" placeholder=""
+            <input type="number" name="businessId" readonly id="addBusinessTableSelect" th:value="${businessId}"
+                   lay-verify="required" placeholder=""
                    autocomplete="off"
                    class="layui-input">
         </div>
@@ -115,8 +116,10 @@
 <!--修改进度表单-->
 <form class="layui-form" action="" id="updateProgressForm" lay-filter="updateProgressFormFilter"
       style="display: none;margin-right: 40px;margin-top: 20px">
-    <!--修改人-->
+    <!--隐藏input框，获取相应值-->
     <input hidden th:value="${session.username}" name="updateBy">
+    <input type="hidden" name="sourceName" id="updateSourceName">
+    <input type="hidden" name="destinationName" id="updateDestinationName">
     <div class="layui-form-item">
         <label class="layui-form-label">进度编号</label>
         <div class="layui-input-inline">
@@ -126,32 +129,45 @@
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">进度类型</label>
-        <div class="layui-input-inline">
+        <div class="layui-input-block">
             <select name="progressType">
             </select>
         </div>
-        <label class="layui-form-label">上传文件</label>
-        <div class="layui-input-inline">
-            <input type="number" name="uploadId" lay-verify="required" placeholder="" autocomplete="off"
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">业务编号</label>
+        <div class="layui-input-block">
+            <input type="number" name="businessId" readonly id="updateBusinessTableSelect" th:value="${businessId}"
+                   lay-verify="required" placeholder=""
+                   autocomplete="off"
                    class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">通知文件</label>
-        <div class="layui-input-inline">
-            <input type="number" name="notice" lay-verify="required" placeholder="" autocomplete="off"
-                   class="layui-input">
+        <label class="layui-form-label">上传文件</label>
+        <div class="layui-upload-drag" id="test12">
+            <i class="layui-icon"></i>
+            <p>点击上传，或将文件拖拽到此处</p>
+            <div class="layui-hide" id="uploadDemoView2">
+                <img src="" alt="上传成功后渲染" style="max-width: 196px">
+            </div>
         </div>
-        <label class="layui-form-label">业务编号</label>
-        <div class="layui-input-inline">
-            <input type="number" name="businessId" readonly id="updateBusinessTableSelect" lay-verify="required" placeholder="" autocomplete="off"
-                   class="layui-input">
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">通知文件</label>
+        <div class="layui-upload-drag" id="test13">
+            <i class="layui-icon"></i>
+            <p>点击上传，或将文件拖拽到此处</p>
+            <div class="layui-hide" id="uploadDemoView3">
+                <img src="" alt="上传成功后渲染" style="max-width: 196px">
+            </div>
         </div>
     </div>
     <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">备注</label>
         <div class="layui-input-block">
-            <textarea type="text" name="remark" placeholder="" class="layui-textarea"></textarea>
+            <input type="text" name="remark" lay-verify="required" placeholder=""
+                   autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
@@ -168,7 +184,6 @@
 </script>
 
 
-
 <script>
     //自定义layui组件的目录
     layui.config({
@@ -177,7 +192,7 @@
         //设定组件别名
         tableSelect: 'tableSelect',
     });
-    layui.use(['table', 'layer', 'jquery', 'form' ,'tableSelect', 'upload'], function () {
+    layui.use(['table', 'layer', 'jquery', 'form', 'tableSelect', 'upload'], function () {
         let layer = layui.layer;
         let $ = layui.jquery;
         let form = layui.form;
@@ -308,7 +323,6 @@
         }
 
 
-
         //生成menuTable表格
         let progressUrl = '/progress/queryAll?businessId=' + businesseId
         let progressTable = table.render({
@@ -382,7 +396,7 @@
                 layer.open({
                     title: '修改进度',
                     type: 1,
-                    area: ['800px', '550px'],
+                    area: ['500px', '550px'],
                     content: $("#updateProgressForm")//这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
                 });
             }
@@ -448,8 +462,8 @@
         //文件上传
         upload.render({
             elem: '#test10'
-            ,url: 'https://httpbin.org/post' //改成您自己的上传接口
-            ,done: function(res){
+            , url: 'https://httpbin.org/post' //改成您自己的上传接口
+            , done: function (res) {
                 layer.msg('上传成功');
                 layui.$('#uploadDemoView').removeClass('layui-hide').find('img').attr('src', res.files.file);
                 console.log(res)
@@ -458,8 +472,28 @@
         //通知文件
         upload.render({
             elem: '#test11'
-            ,url: 'https://httpbin.org/post' //改成您自己的上传接口
-            ,done: function(res){
+            , url: 'https://httpbin.org/post' //改成您自己的上传接口
+            , done: function (res) {
+                layer.msg('上传成功');
+                layui.$('#uploadDemoView1').removeClass('layui-hide').find('img').attr('src', res.files.file);
+                console.log(res)
+            }
+        });
+        //文件上传
+        upload.render({
+            elem: '#test12'
+            , url: 'https://httpbin.org/post' //改成您自己的上传接口
+            , done: function (res) {
+                layer.msg('上传成功');
+                layui.$('#uploadDemoView').removeClass('layui-hide').find('img').attr('src', res.files.file);
+                console.log(res)
+            }
+        });
+        //通知文件
+        upload.render({
+            elem: '#test13'
+            , url: 'https://httpbin.org/post' //改成您自己的上传接口
+            , done: function (res) {
                 layer.msg('上传成功');
                 layui.$('#uploadDemoView1').removeClass('layui-hide').find('img').attr('src', res.files.file);
                 console.log(res)

@@ -29,4 +29,12 @@ public class UploadResult implements Serializable {
      * 服务端响应内容
      */
     private String response;
+
+    /**
+     * 文件原始名
+     *
+     * @createBy Enzo
+     * @createTime 2020/12/24 12:00
+     */
+    private String fileName;
 }

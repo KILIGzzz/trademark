@@ -145,11 +145,11 @@
 <!--menu顶部工具栏-->
 <script type="text/html" id="menuToolbar">
     <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm" lay-event="addMenu">添加菜单</button>
-        <button id="expandAll" class="layui-btn layui-btn-sm layui-btn-primary">
+        <button class="layui-btn layui-btn-xs" lay-event="addMenu">添加菜单</button>
+        <button id="expandAll" class="layui-btn layui-btn-xs layui-btn-primary">
             <i class="layui-icon layui-icon-shrink-right"></i>展开全部
         </button>
-        <button id="foldAll" class="layui-btn layui-btn-sm layui-btn-primary">
+        <button id="foldAll" class="layui-btn layui-btn-xs layui-btn-primary">
             <i class="layui-icon layui-icon-spread-left"></i>折叠全部
         </button>
     </div>
@@ -192,7 +192,7 @@
             , cols: [
                 [
                     {type: 'numbers'},
-                    {field: 'menuId', title: '菜单编号', minWidth: 80},
+                    {field: 'menuId', title: '编号', minWidth: 40},
                     {field: 'menuName', title: '菜单名称', minWidth: 140},
                     {field: 'orderNum', title: '排序', minWidth: 30},
                     {field: 'url', title: '请求地址', minWidth: 80},

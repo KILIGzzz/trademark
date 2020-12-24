@@ -32,7 +32,7 @@
                 <img class="layui-upload-img" id="image" th:src="${session.user.avatar}">
                 <p id="updateText"></p>
             </div>
-            <button type="button" class="layui-btn" id="test1">修改头像</button>
+            <button type="button" class="layui-btn" id="updateAvatar">修改头像</button>
         </div>
     </div>
     <div class="layui-form-item">
@@ -68,11 +68,9 @@
         let $ = layui.jquery;
         //普通图片上传
         let uploadInst = upload.render({
-            elem: '#test1'
+            elem: '#updateAvatar'
             , url: '/file/upload' //改成您自己的上传接口
             , done: function (res) {
-
-
                 //如果上传失败
                 if (res.response === 'success') {
                     let src = "https://" + res.name;

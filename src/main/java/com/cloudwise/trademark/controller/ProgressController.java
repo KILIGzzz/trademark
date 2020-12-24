@@ -110,8 +110,9 @@ public class ProgressController extends BaseController {
      * @create time: 2020/12/23 15:56
      */
     @GetMapping("showBusinessAndProgress")
-    public ModelAndView showBusinessAndProgress(int businessId, ModelAndView mv) {
-        mv.addObject("businessId", businessId);
+    public ModelAndView showBusinessAndProgress(int customId, int businessId, ModelAndView mv){
+        mv.addObject("customId",customId);
+        mv.addObject("businessId",businessId);
         mv.setViewName("progress");
         return mv;
     }

@@ -9,9 +9,9 @@ package com.cloudwise.trademark.util;
  */
 public enum ReturnStatusEnum {
     //成功信息
-    SUCCESS(0,"操作成功"),
+    SUCCESS(0, "操作成功"),
     //失败信息
-    FAIL(1,"操作失败");
+    FAIL(1, "操作失败");
 
     int code;
     String msg;

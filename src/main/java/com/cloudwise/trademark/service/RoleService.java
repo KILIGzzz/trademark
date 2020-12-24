@@ -26,7 +26,7 @@ public interface RoleService {
      * 查询多条数据
      *
      * @param offset 查询起始位置
-     * @param limit 查询条数
+     * @param limit  查询条数
      * @return 对象列表
      */
     List<Role> queryAllByLimit(int offset, int limit);
@@ -56,57 +56,57 @@ public interface RoleService {
     boolean deleteById(Integer roleId);
 
     /**
+     * @param :
+     * @return long
      * @create by: IvanZ
      * @description : 得到行数
      * @create time: 2020/12/19 18:12
-     * @param :
-     * @return long
      */
     long getCount();
 
     /**
+     * @param :
+     * @return int
      * @create by: IvanZ
      * @description : 从user_role中删除数据
      * @create time: 2020/12/19 19:15
-     * @param :
-     * @return int
      */
     int deleteByRoleId(Integer roleId);
 
     /**
+     * @param :
+     * @return java.util.List<com.cloudwise.trademark.entity.Menu>
      * @create by: IvanZ
      * @description : 查询所有菜单
      * @create time: 2020/12/19 22:13
-     * @param :
-     * @return java.util.List<com.cloudwise.trademark.entity.Menu>
      */
     List<Menu> findAllMenu();
 
     /**
+     * @param roleId
+     * @return int
      * @create by: IvanZ
      * @description : 往role_munu表中添加数据
      * @create time: 2020/12/20 16:41
-     * @param roleId
-     * @return int
      */
-    void insertRoleMenu(int roleId,String[] menusId);
+    void insertRoleMenu(int roleId, String[] menusId);
 
 
     /**
+     * @param roleId
+     * @return int
      * @create by: IvanZ
      * @description : 往role_munu表修改数据
      * @create time: 2020/12/20 16:41
-     * @param roleId
-     * @return int
      */
     void updateRoleMenu(Integer roleId, String[] menusId);
 
     /**
+     * @param roleId:
+     * @return int[]
      * @create by: IvanZ
      * @description : 查询需要选中的菜单
      * @create time: 2020/12/20 17:44
-     * @param roleId:
-     * @return int[]
      */
     List<Integer> findSelectMenu(int roleId);
 }

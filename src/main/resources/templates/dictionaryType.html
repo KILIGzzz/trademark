@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>字典类型</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <script src="/layui/layui.js"></script>
+</head>
+<body class="layui-layout-body">
+<!--添加功能的form-->
+<form class="layui-form" action="" id="insertDicTypeFrom"
+      style="display: none;margin-right: 40px;margin-top: 20px">
+    <input hidden name="createBy" th:value="${session.user.userName}">
+    <div class="layui-form-item">
+        <label class="layui-form-label">类型名称</label>
+        <div class="layui-input-block">
+            <input type="text" name="typeName" autocomplete="off" placeholder="类型名称"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">备注</label>
+        <div class="layui-input-block">
+            <input type="text" name="remark" autocomplete="off" placeholder="备注"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="insertDicType">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+<script>
+    layui.use('form', function () {
+        var form = layui.form;
+        //监听提交
+        form.on('submit(insertDicType)', function (data) {
+            layer.msg(JSON.stringify(data.field));
+            return false;
+        });
+    });
+</script>
+
+<!--编辑功能的form-->
+<form class="layui-form" action="" id="updateDicTypeFrom" lay-filter="updateDicTypeFrom"
+      style="display: none;margin-right: 40px;margin-top: 20px">
+    <input hidden name="updateBy" th:value="${session.user.userName}"/>
+    <div class="layui-form-item">
+        <label class="layui-form-label">类型ID</label>
+        <div class="layui-input-block">
+            <input type="text" name="typeId" autocomplete="off" placeholder="类型名称"
+                   readonly="readonly" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">类型名称</label>
+        <div class="layui-input-block">
+            <input type="text" name="typeName" autocomplete="off" placeholder="类型名称"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">备注</label>
+        <div class="layui-input-block">
+            <input type="text" name="remark" autocomplete="off" placeholder="备注"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="updateDicTypeFilter">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+<script>
+    layui.use('form', function () {
+        let form = layui.form;
+        //监听提交
+        form.on('submit(updateDicTypeFilter)', function (data) {
+            layer.msg(JSON.stringify(data.field));
+            return false;
+        });
+    });
+</script>
+<!--顶部搜索框-->
+<form class="layui-form" action="" style="margin-top: 10px">
+    <div class="layui-inline">
+        <label class="layui-form-label">类型ID</label>
+        <div class="layui-input-inline">
+            <input type="text" name="typeId" autocomplete="off" placeholder="类型ID" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-inline">
+        <label class="layui-form-label">类型名称</label>
+        <div class="layui-input-inline">
+            <input type="text" name="typeName" autocomplete="off" placeholder="类型名称" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-inline">
+        <label class="layui-form-label">创建人</label>
+        <div class="layui-input-inline">
+            <input type="text" name="createBy" autocomplete="off" placeholder="创建人" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-inline">
+        <div class="layui-input-inline">
+            <button class="layui-btn" lay-submit lay-filter="searchFilter">搜索</button>
+            <button type="reset" class="layui-btn layui-btn-primary" id="myButton">重置</button>
+        </div>
+    </div>
+</form>
+<table id="showDicType" lay-filter="dicTypeFilter"></table>
+</body>
+<!--顶部工具栏-->
+<script type="text/html" id="dicToolbar">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-xs" lay-event="addDicType"><i class="layui-icon layui-icon-add-1"></i>
+        </button>
+    </div>
+</script>
+<!--实现操作功能按钮-->
+<script type="text/html" id="dicTypeBar">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+</script>
+<script>
+    layui.use(['table', 'layer', 'jquery', 'form'], function () {
+        let table = layui.table;
+        let layer = layui.layer;
+        let $ = layui.jquery;
+        let form = layui.form;
+
+        let dicTypeTable = table.render({
+            elem: '#showDicType'
+            , url: '/dictionaryType/selectAll' //数据接口
+            , toolbar: '#dicToolbar' //开启头部工具栏，并为其绑定左侧模板
+            , defaultToolbar: ['filter', 'exports', 'print']
+            , title: 'dicTypeTable'
+            , page: true
+            , limit: 10
+            , cols: [
+                [ //表头
+                    {type: 'checkbox', fixed: 'left'}
+                    , {field: 'typeId', title: '类型ID', width: 100}
+                    , {field: 'typeName', title: '类型名称', width: 300}
+                    , {field: 'createBy', title: '创建人', width: 80}
+                    , {field: 'createTime', title: '创建时间', width: 200}
+                    , {field: 'updateBy', title: '修改人', width: 100}
+                    , {field: 'updateTime', title: '修改时间', width: 200}
+                    , {field: 'remark', title: '备注', width: 200}
+                    , {fixed: 'right', align: 'center', title: '操作', toolbar: '#dicTypeBar', width: 120}
+                ]
+            ]
+        });
+        //监听行工具事件
+        table.on('tool(dicTypeFilter)', function (obj) {
+            let data = obj.data //获得当前行数据
+                , layEvent = obj.event; //获得 lay-event 对应的值
+            if (layEvent === 'edit') {
+                form.val('updateDicTypeFrom', {
+                    'typeId': data.typeId,
+                    'typeName': data.typeName,
+                    'remark': data.remark
+                });
+                layer.open({
+                    title: '编辑字典类型',
+                    type: 1,
+                    area: ['500px', '500px'],
+                    content: $("#updateDicTypeFrom")
+                });
+            }
+        });
+        //form表单实现更新功能
+        form.on('submit(updateDicTypeFilter)', function (data) {
+            //提交表单数据
+            $.ajax({
+                url: "/dictionaryType/update",
+                type: "PUT",
+                dataType: "JSON",
+                data: data.field,
+                success: function (ret) {
+                    if (ret.code == 0) {
+                        //关闭对话框
+                        layer.closeAll();
+                        //刷新表格数据
+                        dicTypeTable.reload({
+                            page: {
+                                curr: 1 //重新从第 1 页开始
+                            }
+                        });
+                        layer.msg(ret.msg, {icon: 6});
+                    } else {
+                        layer.msg(ret.msg, {icon: 5});
+                    }
+
+                }
+            })
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+
+        //监听头工具栏事件
+        table.on('toolbar(dicTypeFilter)', function (obj) {
+            switch (obj.event) {
+                case 'addDicType':
+                    document.getElementById("insertDicTypeFrom").reset();
+                    layer.open({
+                        title: '添加字典类型',
+                        type: 1,
+                        area: ['500px', '450px'],
+                        content: $("#insertDicTypeFrom")
+                    });
+                    break;
+            }
+        });
+
+        //form表单实现添加功能
+        form.on('submit(insertDicType)', function (data) {
+            //提交表单数据
+            $.ajax({
+                url: "/dictionaryType/insert",
+                type: "POST",
+                dataType: "JSON",
+                data: data.field,
+                success: function (ret) {
+                    if (ret.code == 0) {
+                        //关闭对话框
+                        layer.closeAll();
+                        //刷新表格数据
+                        dicTypeTable.reload({
+                            page: {
+                                curr: 1 //重新从第 1 页开始
+                            }
+                        });
+                        layer.msg(ret.msg, {icon: 6});
+                    } else {
+                        layer.msg(ret.msg, {icon: 5});
+                    }
+
+                }
+            });
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+
+        //实现顶部搜索框
+        form.on('submit(searchFilter)', function (data) {
+            //执行重载
+            dicTypeTable.reload({
+                where: {
+                    typeId: data.field.typeId,
+                    typeName: data.field.typeName,
+                    createBy: data.field.createBy
+                }
+                , page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+            });
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+        //重置条件查询表单，刷新table数据
+        $("#myButton").click(function () {
+            dicTypeTable.reload({
+                where: { //设定异步数据接口的额外参数，任意设
+                    typeId: ""
+                    , typeName: ""
+                    , createBy: ""
+                }
+                , page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+            });
+        });
+    });
+</script>
+</html>

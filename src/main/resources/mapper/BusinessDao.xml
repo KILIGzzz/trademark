@@ -107,6 +107,9 @@
             <if test="updateBy != null and updateBy != ''">
                 and update_by like "%"#{updateBy}"%"
             </if>
+            <if test="customId != null and customId != 0">
+                and custom_id = #{customId}
+            </if>
         </where>
     </select>
     <select id="queryAllByConditionAndLimit" resultMap="BaseResultMap">

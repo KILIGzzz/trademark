@@ -124,7 +124,7 @@
 </form>
 <table id="showDept" lay-filter="deptFilter"></table>
 </body>
-<!--dept顶部工具栏-->
+<!--顶部工具栏-->
 <script type="text/html" id="deptToolbar">
     <div class="layui-btn-container">
         <button class="layui-btn layui-btn-xs" lay-event="addDept"><i class="layui-icon layui-icon-add-1"></i>
@@ -209,7 +209,6 @@
                     'deptName': data.deptName,
                     'orderNum': data.orderNum,
                 });
-                form.render();
                 layer.open({
                     title: '编辑部门',
                     type: 1,
@@ -366,7 +365,7 @@
                     curr: 1 //重新从第 1 页开始
                 }
             });
-        })
+        });
     });
 </script>
 </html>

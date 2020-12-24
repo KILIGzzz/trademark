@@ -36,16 +36,16 @@
     <!--查询单个-->
     <select id="queryById" resultMap="TblRoleMap">
         select role_id,
-               role_name,
-               role_key,
-               role_sort,
-               status,
-               del_flag,
-               create_by,
-               create_time,
-               update_by,
-               update_time,
-               remark
+        role_name,
+        role_key,
+        role_sort,
+        status,
+        del_flag,
+        create_by,
+        create_time,
+        update_by,
+        update_time,
+        remark
         from trademark.tbl_role
         where role_id = #{roleId}
     </select>
@@ -53,16 +53,16 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="TblRoleMap">
         select role_id,
-               role_name,
-               role_key,
-               role_sort,
-               status,
-               del_flag,
-               create_by,
-               create_time,
-               update_by,
-               update_time,
-               remark
+        role_name,
+        role_key,
+        role_sort,
+        status,
+        del_flag,
+        create_by,
+        create_time,
+        update_by,
+        update_time,
+        remark
         from trademark.tbl_role
         where del_flag = 0
         limit #{offset}, #{limit}
@@ -118,37 +118,37 @@
     </select>
     <select id="findAllMenu" resultMap="TblMenuMap">
         select menu_id,
-               menu_name,
-               parent_id,
-               order_num,
-               url,
-               menu_type,
-               visible,
-               perms,
-               icon,
-               create_by,
-               create_time,
-               update_by,
-               update_time,
-               remark
+        menu_name,
+        parent_id,
+        order_num,
+        url,
+        menu_type,
+        visible,
+        perms,
+        icon,
+        create_by,
+        create_time,
+        update_by,
+        update_time,
+        remark
         from tbl_menu
     </select>
     <select id="findSelectMenu" resultType="int">
         select menu_id
         from tbl_role_menu
         where role_id = #{roleId}
-          and menu_id not in (select distinct tm.parent_id
-                              from tbl_role_menu trm
-                                       inner join tbl_menu tm on trm.menu_id = tm.menu_id
-                              where role_id = #{roleId})
+        and menu_id not in (select distinct tm.parent_id
+        from tbl_role_menu trm
+        inner join tbl_menu tm on trm.menu_id = tm.menu_id
+        where role_id = #{roleId})
     </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="roleId" useGeneratedKeys="true">
         insert into trademark.tbl_role(role_name, role_key, role_sort, status, del_flag, create_by, create_time,
-                                       update_by, update_time, remark)
+        update_by, update_time, remark)
         values (#{roleName}, #{roleKey}, #{roleSort}, #{status}, 0, #{createBy}, now(), #{updateBy}, #{updateTime},
-                #{remark})
+        #{remark})
     </insert>
     <insert id="insertRoleMenu">
         insert into tbl_role_menu
@@ -183,7 +183,7 @@
             <if test="updateBy != null and updateBy != ''">
                 update_by = #{updateBy},
             </if>
-                update_time = now(),
+            update_time = now(),
             <if test="remark != null and remark != ''">
                 remark = #{remark},
             </if>

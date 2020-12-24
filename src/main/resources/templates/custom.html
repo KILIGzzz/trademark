@@ -118,7 +118,8 @@
 </form>
 <!--行工具栏-->
 <script type="text/html" id="barDemo" lay-event="tool">
-    <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="register">业务登记</a>
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="register">业务登记</a>
+    <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="visit">回访登记</a>
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
 </script>
 <!--查询表单-->
@@ -180,7 +181,7 @@
                     , {field: 'updateTime', title: '修改时间', align: 'center', width: 160}
                     , {field: 'proxyId', title: '代理人ID', align: 'center', width: 120}
                     , {field: 'remark', title: '备注', align: 'center', width: 120}
-                    , {fixed: 'right', align: 'center', title: '操作', toolbar: '#barDemo', width: 140}
+                    , {fixed: 'right', align: 'center', title: '操作', toolbar: '#barDemo', width: 220}
                 ]
             ]
         });
@@ -224,7 +225,10 @@
                 });
             } else if (layEvent === 'register') {
                 //携带数据跳转到业务登记页面
-                location.href="/business/showCustomAndBusiness?customId="+data.customId
+                location.href = "/business/showCustomAndBusiness?customId=" + data.customId
+            } else if (layEvent === 'visit') {
+                //携带数据跳转到回访登记页面
+                layer.msg("携带数据跳转到回访登记页面")
             }
         });
 

@@ -2,6 +2,7 @@ package com.cloudwise.trademark.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -21,24 +22,14 @@ public class GotoController {
      * @create time: 2020/12/24 9:55
      */
 
-    @GetMapping("toHome")
-    public String toShow() {
-        return "home";
-    }
-
     @GetMapping("toLogin")
     public String toLogin() {
         return "login";
     }
 
-    @GetMapping("toUser")
-    public String toUser() {
-        return "user";
-    }
-
-    @GetMapping("toRole")
-    public String toRole() {
-        return "role";
+    @GetMapping("toHome")
+    public String toShow() {
+        return "home";
     }
 
     @GetMapping("toDept")
@@ -49,6 +40,16 @@ public class GotoController {
     @GetMapping("toMenu")
     public String toMenu() {
         return "menu";
+    }
+
+    @GetMapping("toUser")
+    public String toUser() {
+        return "user";
+    }
+
+    @GetMapping("toRole")
+    public String toRole() {
+        return "role";
     }
 
     @GetMapping("toProgress")
@@ -74,5 +75,20 @@ public class GotoController {
     @GetMapping("toUserinfo")
     public String toUserinfo() {
         return "userinfo";
+    }
+
+    @GetMapping("toDictionary")
+    public String toDictionary() {
+        return "dictionary";
+    }
+
+    @GetMapping("toDictionaryType")
+    public String toDictionaryType() {
+        return "dictionaryType";
+    }
+
+    @GetMapping("toVisit")
+    public String toVisit() {
+        return "visit";
     }
 }

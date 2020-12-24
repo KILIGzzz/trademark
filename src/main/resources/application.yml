@@ -1,19 +1,17 @@
 spring:
   datasource:
     username: root
-    password: 123456
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/trademark?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/trademark?useUnicode=true&characterEncoding=utf-8&useSSL=false
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: Asia/Shanghai
-  thymeleaf:
-    check-template-location: true #是否检查模板路径是否存在，默认true
-    check-template: true #是否检查模板是否存在，默认true
-    enabled: true #是否允许MVC使用Thymeleaf，默认为: true
-    prefix: classpath:/templates/ #指定模板的前缀，默认为:classpath:/templates/
-    suffix: .html #指定模板的后缀，默认为:.html
-    cache: false #是否开启模板缓存，默认true
 mybatis:
   mapper-locations: mapper/*.xml
-
+aliyun:
+  accessKeyId: LTAI4GHyM4omK59SbtSiX8em
+  accessKeySecret: Y98IOWRB2MTaUpm5XvaTpW4OM82CC1
+  bucketName: enzo-trademark-bucket
+  endpoint: oss-cn-beijing.aliyuncs.com
+  urlPrefix: enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/

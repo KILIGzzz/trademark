@@ -80,4 +80,9 @@ public class GotoController {
     public String toDictionaryType() {
         return "dictionaryType";
     }
+
+    @GetMapping("toVisit")
+    public String toVisit() {
+        return "visit";
+    }
 }

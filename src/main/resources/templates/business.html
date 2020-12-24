@@ -27,10 +27,10 @@
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">申请时间</label>
+        <label class="layui-form-label">客户编号</label>
         <div class="layui-input-inline">
-            <input type="text" name="applicantTime" id="date" lay-verify="datetime" placeholder="yyyy-MM-dd HH:mm:ss"
-                   autocomplete="off" class="layui-input">
+            <input type="number" name="customId" id="addCustomTableSelect" readonly th:value="${customId}" required lay-verify="required" placeholder="请输入客户编号" autocomplete="off"
+                   class="layui-input">
         </div>
         <label class="layui-form-label">业务类型</label>
         <div class="layui-input-inline">
@@ -76,10 +76,10 @@
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">客户编号</label>
+        <label class="layui-form-label">申请时间</label>
         <div class="layui-input-inline">
-            <input type="number" name="customId" id="addCustomTableSelect" readonly th:value="${customId}" required lay-verify="required" placeholder="请输入客户编号" autocomplete="off"
-                   class="layui-input">
+            <input type="text" name="applicantTime" id="date" lay-verify="datetime" placeholder="yyyy-MM-dd HH:mm:ss"
+                   autocomplete="off" class="layui-input">
         </div>
         <label class="layui-form-label">备注</label>
         <div class="layui-input-inline">
@@ -111,10 +111,10 @@
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">申请时间</label>
+        <label class="layui-form-label">客户编号</label>
         <div class="layui-input-inline">
-            <input type="text" name="applicantTime" id="date1" lay-verify="datetime" placeholder="yyyy-MM-dd HH:mm:ss"
-                   autocomplete="off" class="layui-input">
+            <input type="number" name="customId" readonly id="updateCustomTableSelect" required lay-verify="required" placeholder="请输入客户编号" autocomplete="off"
+                   class="layui-input">
         </div>
         <label class="layui-form-label">业务类型</label>
         <div class="layui-input-inline">
@@ -160,10 +160,10 @@
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">客户编号</label>
+        <label class="layui-form-label">申请时间</label>
         <div class="layui-input-inline">
-            <input type="number" name="customId" readonly id="updateCustomTableSelect" required lay-verify="required" placeholder="请输入客户编号" autocomplete="off"
-                   class="layui-input">
+            <input type="text" name="applicantTime" id="date1" lay-verify="datetime" placeholder="yyyy-MM-dd HH:mm:ss"
+                   autocomplete="off" class="layui-input">
         </div>
         <label class="layui-form-label">备注</label>
         <div class="layui-input-inline">

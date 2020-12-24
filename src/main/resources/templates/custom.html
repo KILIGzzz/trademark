@@ -17,9 +17,10 @@
     <!--创建人-->
     <input hidden th:value="${session.username}" name="createBy">
     <div class="layui-form-item">
-        <label class="layui-form-label">联系人</label>
+        <label class="layui-form-label">代理人ID</label>
         <div class="layui-input-inline">
-            <input type="text" name="contact" lay-verify="required" placeholder="请输入中文" autocomplete="off"
+            <input type="number" name="proxyId" readonly id="addUserTableSelect" lay-verify="required" placeholder=""
+                   autocomplete="off"
                    class="layui-input">
         </div>
         <label class="layui-form-label">申请人</label>
@@ -33,12 +34,10 @@
         <div class="layui-input-inline">
             <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
         </div>
-        <div class="layui-inline">
-            <label class="layui-form-label">代理人ID</label>
-            <div class="layui-input-inline">
-                <input type="number" name="proxyId" readonly id="addUserTableSelect" lay-verify="required" placeholder="" autocomplete="off"
-                       class="layui-input">
-            </div>
+        <label class="layui-form-label">联系人</label>
+        <div class="layui-input-inline">
+            <input type="text" name="contact" lay-verify="required" placeholder="请输入中文" autocomplete="off"
+                   class="layui-input">
         </div>
     </div>
     <div class="layui-form-item layui-form-text">
@@ -73,9 +72,10 @@
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">联系人</label>
+        <label class="layui-form-label">代理人ID</label>
         <div class="layui-input-inline">
-            <input type="text" name="contact" lay-verify="required" placeholder="" autocomplete="off"
+            <input type="number" name="proxyId" readonly id="updateUserTableSelect" lay-verify="required" placeholder=""
+                   autocomplete="off"
                    class="layui-input">
         </div>
         <label class="layui-form-label">申请人</label>
@@ -89,12 +89,10 @@
         <div class="layui-input-inline">
             <input type="tel" name="phone" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
         </div>
-        <div class="layui-inline">
-            <label class="layui-form-label">代理人ID</label>
-            <div class="layui-input-inline">
-                <input type="number" name="proxyId" readonly id="updateUserTableSelect" lay-verify="required" placeholder="" autocomplete="off"
-                       class="layui-input">
-            </div>
+        <label class="layui-form-label">联系人</label>
+        <div class="layui-input-inline">
+            <input type="text" name="contact" lay-verify="required" placeholder="" autocomplete="off"
+                   class="layui-input">
         </div>
     </div>
     <div class="layui-form-item layui-form-text">
@@ -162,7 +160,7 @@
         //设定组件别名
         tableSelect: 'tableSelect',
     });
-    layui.use(['table', 'layer', 'jquery', 'laydate', 'form','tableSelect'], function () {
+    layui.use(['table', 'layer', 'jquery', 'laydate', 'form', 'tableSelect'], function () {
         var table = layui.table;
         var $ = layui.jquery;
         var layer = layui.layer;
@@ -177,7 +175,7 @@
             searchKey: 'userName',	//搜索输入框的name值 默认keyword
             searchPlaceholder: '真实姓名搜索',	//搜索输入框的提示文字 默认关键词搜索
             table: {	//定义表格参数，与LAYUI的TABLE模块一致，只是无需再定义表格elem
-                url:'/user/findAll',
+                url: '/user/findAll',
                 cols: [
                     [
                         {type: 'radio'}
@@ -201,7 +199,7 @@
             searchKey: 'userName',	//搜索输入框的name值 默认keyword
             searchPlaceholder: '真实姓名搜索',	//搜索输入框的提示文字 默认关键词搜索
             table: {	//定义表格参数，与LAYUI的TABLE模块一致，只是无需再定义表格elem
-                url:'/user/findAll',
+                url: '/user/findAll',
                 cols: [
                     [
                         {type: 'radio'}

@@ -28,7 +28,7 @@
 <!--    </div>-->
     <div class="layui-inline">
         <div class="layui-input-inline">
-            <button class="layui-btn" lay-submit lay-filter="selectFormfilter">查询</button>
+            <button class="layui-btn" lay-submit lay-filter="selectFormFilter">查询</button>
             <button type="reset" class="layui-btn layui-btn-primary" id="myButton">重置</button>
         </div>
     </div>
@@ -79,24 +79,22 @@
             <input type="number" name="uploadId" lay-verify="required" placeholder="" autocomplete="off"
                    class="layui-input">
         </div>-->
-        <label class="layui-form-label">上传文件</label>
-        <div class="layui-upload-drag" id="test10">
-            <i class="layui-icon"></i>
-            <p>点击上传，或将文件拖拽到此处</p>
-            <div class="layui-hide" id="uploadDemoView">
-                <img src="" alt="上传成功后渲染" style="max-width: 196px">
-            </div>
+        <label class="layui-form-label">
+            <button type="button" class="layui-btn layui-btn-xs" id="test1"><i class="layui-icon"></i>上传文件</button>
+        </label>
+        <div class="layui-input-block">
+            <input type="text" name="" id="111"
+                   lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
-        <label class="layui-form-label">通知文件</label>
-        <div class="layui-upload-drag" id="test11">
-            <i class="layui-icon"></i>
-            <p>点击上传，或将文件拖拽到此处</p>
-            <div class="layui-hide" id="uploadDemoView1">
-                <img src="" alt="上传成功后渲染" style="max-width: 196px">
-            </div>
+        <label class="layui-form-label">
+            <button type="button" class="layui-btn layui-btn-xs" id="test2"><i class="layui-icon"></i>上传文件</button>
+        </label>
+        <div class="layui-input-block">
+            <input type="text" name="" id="222"
+                   lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item layui-form-text">
@@ -144,23 +142,21 @@
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">上传文件</label>
-        <div class="layui-upload-drag" id="test12">
-            <i class="layui-icon"></i>
-            <p>点击上传，或将文件拖拽到此处</p>
-            <div class="layui-hide" id="uploadDemoView2">
-                <img src="" alt="上传成功后渲染" style="max-width: 196px">
-            </div>
+        <label class="layui-form-label">
+            <button type="button" class="layui-btn layui-btn-xs" id="test3"><i class="layui-icon"></i>上传文件</button>
+        </label>
+        <div class="layui-input-block">
+            <input type="text" name="" id="333"
+                   lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">通知文件</label>
-        <div class="layui-upload-drag" id="test13">
-            <i class="layui-icon"></i>
-            <p>点击上传，或将文件拖拽到此处</p>
-            <div class="layui-hide" id="uploadDemoView3">
-                <img src="" alt="上传成功后渲染" style="max-width: 196px">
-            </div>
+        <label class="layui-form-label">
+            <button type="button" class="layui-btn layui-btn-xs" id="test4"><i class="layui-icon"></i>通知文件</button>
+        </label>
+        <div class="layui-input-block">
+            <input type="text" name="" id="444"
+                   lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item layui-form-text">
@@ -460,44 +456,44 @@
             return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
         });
 
-        //文件上传
+        //增加的文件上传
         upload.render({
-            elem: '#test10'
+            elem: '#test1'
             , url: 'https://httpbin.org/post' //改成您自己的上传接口
+            , accept: 'file' //普通文件
             , done: function (res) {
                 layer.msg('上传成功');
-                layui.$('#uploadDemoView').removeClass('layui-hide').find('img').attr('src', res.files.file);
-                console.log(res)
+                console.log(res);
             }
         });
-        //通知文件
+        //增加的通知文件
         upload.render({
-            elem: '#test11'
+            elem: '#test2'
             , url: 'https://httpbin.org/post' //改成您自己的上传接口
+            , accept: 'file' //普通文件
             , done: function (res) {
                 layer.msg('上传成功');
-                layui.$('#uploadDemoView1').removeClass('layui-hide').find('img').attr('src', res.files.file);
-                console.log(res)
+                console.log(res);
             }
         });
-        //文件上传
+        //编辑的文件上传
         upload.render({
-            elem: '#test12'
+            elem: '#test3'
             , url: 'https://httpbin.org/post' //改成您自己的上传接口
+            , accept: 'file' //普通文件
             , done: function (res) {
                 layer.msg('上传成功');
-                layui.$('#uploadDemoView').removeClass('layui-hide').find('img').attr('src', res.files.file);
-                console.log(res)
+                console.log(res);
             }
         });
-        //通知文件
+        //编辑的通知文件
         upload.render({
-            elem: '#test13'
+            elem: '#test4'
             , url: 'https://httpbin.org/post' //改成您自己的上传接口
+            , accept: 'file' //普通文件
             , done: function (res) {
                 layer.msg('上传成功');
-                layui.$('#uploadDemoView1').removeClass('layui-hide').find('img').attr('src', res.files.file);
-                console.log(res)
+                console.log(res);
             }
         });
         //文件上传
@@ -531,7 +527,7 @@
         // });
 
         //查询提交按钮
-        form.on('submit(selectFormfilter)', function (data) {
+        form.on('submit(selectFormFilter)', function (data) {
             console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
             progressTable.reload({
                 where: { //设定异步数据接口的额外参数，任意设

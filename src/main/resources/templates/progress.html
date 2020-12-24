@@ -7,6 +7,34 @@
     <script src="/layui/layui.js"></script>
 </head>
 
+<form class="layui-form" action="" style="margin-top: 10px">
+    <div class="layui-inline">
+        <label class="layui-form-label">进度ID</label>
+        <div class="layui-input-inline">
+            <input type="number" name="progressId" placeholder="请输入进度ID" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-inline">
+        <label class="layui-form-label">进度类型</label>
+        <div class="layui-input-inline">
+            <input type="text" name="progressType" placeholder="请输入进度类型" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-inline">
+        <label class="layui-form-label">业务ID</label>
+        <div class="layui-input-inline">
+            <input type="number" name="businessId" placeholder="请输入业务ID" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-inline">
+        <div class="layui-input-inline">
+            <button class="layui-btn" lay-submit lay-filter="selectFormfilter">查询</button>
+            <button type="reset" class="layui-btn layui-btn-primary" id="myButton">重置</button>
+        </div>
+    </div>
+</form>
+
+
 <body>
 <table id="customTable" lay-filter="customFilter"></table>
 <table id="businessTable" lay-filter="businessFilter"></table>
@@ -466,6 +494,40 @@
         //         });
         //     }
         // });
+
+        //查询提交按钮
+        form.on('submit(selectFormfilter)', function (data) {
+            console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+            progressTable.reload({
+                where: { //设定异步数据接口的额外参数，任意设
+                    progressId: data.field.progressId
+                    , progressType: data.field.progressType
+                    , businessId: data.field.businessId
+                    //…
+                }
+                , page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+            });
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+
+        //重置条件查询表单，刷新table数据
+        $("#myButton").click(function () {
+            progressTable.reload({
+                where: { //设定异步数据接口的额外参数，任意设
+                    progressId: ""
+                    , progressType: ""
+                    , businessId: ""
+                    //…
+                }
+                , page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+            });
+        })
+
+
     });
 </script>
 </html>

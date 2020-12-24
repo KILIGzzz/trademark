@@ -11,93 +11,117 @@
 <table id="customTable" lay-filter="customFilter"></table>
 <table id="businessTable" lay-filter="businessFilter"></table>
 <table id="showProgress"></table>
-
 </body>
 
 <!--顶部工具栏-->
 <script type="text/html" id="progressToolbar">
     <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm" lay-event="addProgress">添加进度</button>
+        <button class="layui-btn layui-btn-xs" lay-event="addProgress">添加进度</button>
     </div>
 </script>
-<!--添加进度表单-->
-<form class="layui-form" action="" id="addProgressForm" style="display: none;margin-right: 40px;margin-top: 20px">
-    <!--创建人-->
+
+<!--添加功能的form-->
+<form class="layui-form" action="" id="addProgressForm"
+      style="display: none;margin-right: 40px;margin-top: 20px">
+
+    <!--隐藏input框，获取相应值-->
     <input hidden th:value="${session.username}" name="createBy">
+    <input type="hidden" name="sourceName" id="sourceName">
+    <input type="hidden" name="destinationName" id="destinationName">
+
     <div class="layui-form-item">
-        <label class="layui-form-label">进度类型：</label>
-        <div class="layui-input-inline">
+        <label class="layui-form-label">进度类型</label>
+        <div class="layui-input-block">
             <select name="progressType">
             </select>
         </div>
-        <label class="layui-form-label">上传文件ID：</label>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">业务编号</label>
+        <div class="layui-input-block">
+            <input type="number" name="businessId" readonly id="addBusinessTableSelect" th:value="${businessId}" lay-verify="required" placeholder=""
+                   autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <!--<label class="layui-form-label">上传文件</label>
         <div class="layui-input-inline">
             <input type="number" name="uploadId" lay-verify="required" placeholder="" autocomplete="off"
                    class="layui-input">
+        </div>-->
+        <label class="layui-form-label">上传文件</label>
+        <div class="layui-upload-drag" id="test10">
+            <i class="layui-icon"></i>
+            <p>点击上传，或将文件拖拽到此处</p>
+            <div class="layui-hide" id="uploadDemoView">
+                <img src="" alt="上传成功后渲染" style="max-width: 196px">
+            </div>
         </div>
     </div>
+
     <div class="layui-form-item">
-        <label class="layui-form-label">通知文件ID：</label>
-        <div class="layui-input-inline">
-            <input type="number" name="notice" lay-verify="required" placeholder="" autocomplete="off"
-                   class="layui-input">
-        </div>
-        <label class="layui-form-label">业务ID：</label>
-        <div class="layui-input-inline">
-            <input type="number" name="businessId"  readonly id="addBusinessTableSelect" th:value="${businessId}" lay-verify="required" placeholder="" autocomplete="off"
-                   class="layui-input">
+        <label class="layui-form-label">通知文件</label>
+        <div class="layui-upload-drag" id="test11">
+            <i class="layui-icon"></i>
+            <p>点击上传，或将文件拖拽到此处</p>
+            <div class="layui-hide" id="uploadDemoView1">
+                <img src="" alt="上传成功后渲染" style="max-width: 196px">
+            </div>
         </div>
     </div>
     <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">备注：</label>
+        <label class="layui-form-label">备注</label>
         <div class="layui-input-block">
-            <textarea type="text" name="remark" placeholder="" class="layui-textarea"></textarea>
+            <input type="text" name="remark" lay-verify="required" placeholder=""
+                   autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <div class="layui-input-block" align="center">
+        <div class="layui-input-block">
             <button type="submit" class="layui-btn" lay-submit="" lay-filter="addProgressFilter">立即提交</button>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
     </div>
 </form>
 <!--修改进度表单-->
-<form class="layui-form" action="" id="updateProgressForm" lay-filter="updateProgressFormFilter" style="display: none;margin-right: 40px;margin-top: 20px">
+<form class="layui-form" action="" id="updateProgressForm" lay-filter="updateProgressFormFilter"
+      style="display: none;margin-right: 40px;margin-top: 20px">
     <!--修改人-->
     <input hidden th:value="${session.username}" name="updateBy">
     <div class="layui-form-item">
-        <label class="layui-form-label">进度ID：</label>
+        <label class="layui-form-label">进度编号</label>
         <div class="layui-input-inline">
             <input type="text" name="progressId" lay-verify="required" placeholder="" autocomplete="off"
                    class="layui-input" readonly>
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">进度类型：</label>
+        <label class="layui-form-label">进度类型</label>
         <div class="layui-input-inline">
             <select name="progressType">
             </select>
         </div>
-        <label class="layui-form-label">上传文件ID：</label>
+        <label class="layui-form-label">上传文件</label>
         <div class="layui-input-inline">
             <input type="number" name="uploadId" lay-verify="required" placeholder="" autocomplete="off"
                    class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">通知文件ID：</label>
+        <label class="layui-form-label">通知文件</label>
         <div class="layui-input-inline">
             <input type="number" name="notice" lay-verify="required" placeholder="" autocomplete="off"
                    class="layui-input">
         </div>
-        <label class="layui-form-label">业务ID：</label>
+        <label class="layui-form-label">业务编号</label>
         <div class="layui-input-inline">
             <input type="number" name="businessId" readonly id="updateBusinessTableSelect" lay-verify="required" placeholder="" autocomplete="off"
                    class="layui-input">
         </div>
     </div>
     <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">备注：</label>
+        <label class="layui-form-label">备注</label>
         <div class="layui-input-block">
             <textarea type="text" name="remark" placeholder="" class="layui-textarea"></textarea>
         </div>
@@ -125,11 +149,12 @@
         //设定组件别名
         tableSelect: 'tableSelect',
     });
-    layui.use(['table', 'layer', 'jquery', 'form' ,'tableSelect'], function () {
+    layui.use(['table', 'layer', 'jquery', 'form' ,'tableSelect', 'upload'], function () {
         let layer = layui.layer;
         let $ = layui.jquery;
         let form = layui.form;
         let table = layui.table;
+        let upload = layui.upload;
         let tableSelect = layui.tableSelect;
 
         //添加业务编号选择表格
@@ -189,13 +214,13 @@
 
         //获取传过来的customId
         var customeId = "";
-        customeId = [[${customId}]]+"";
+        customeId = [[${customId}]] + "";
 
-        if (customeId == 0){
+        if (customeId == 0) {
             document.getElementById("customTable").hidden = true
-        }else {
+        } else {
             document.getElementById("customTable").hidden = false
-            let customUrl = '/custom/selectOne?customId='+customeId
+            let customUrl = '/custom/selectOne?customId=' + customeId
             var customTable = table.render({
                 elem: '#customTable'
                 , url: customUrl //数据接口
@@ -220,13 +245,13 @@
 
         //获取传过来的businessId
         var businesseId = "";
-        businesseId = [[${businessId}]]+"";
+        businesseId = [[${businessId}]] + "";
 
-        if (businesseId == 0){
+        if (businesseId == 0) {
             document.getElementById("businessTable").hidden = true
-        }else {
+        } else {
             document.getElementById("businessTable").hidden = false
-            let businessUrl = '/business/selectOne?businessId='+businesseId
+            let businessUrl = '/business/selectOne?businessId=' + businesseId
             var businessTable = table.render({
                 elem: '#businessTable'
                 , url: businessUrl //数据接口
@@ -257,7 +282,7 @@
 
 
         //生成menuTable表格
-        let progressUrl = '/progress/queryAll?businessId='+businesseId
+        let progressUrl = '/progress/queryAll?businessId=' + businesseId
         let progressTable = table.render({
             elem: '#showProgress'
             , url: progressUrl
@@ -290,7 +315,7 @@
             success: function (allProgress) {
                 //将数据放到select中
                 for (let i = 0; i < allProgress.length; i++) {
-                    options += '<option value="' + allProgress[i].dictionary_name + '">' + allProgress[i].dictionary_name+ '</option>';
+                    options += '<option value="' + allProgress[i].dictionary_name + '">' + allProgress[i].dictionary_name + '</option>';
                 }
                 $progressTypeSelect.html(options)
             }
@@ -305,12 +330,11 @@
                     layer.open({
                         title: '添加进度',
                         type: 1,
-                        area: ['800px', '550px'],
+                        area: ['500px', '550px'],
                         content: $('#addProgressForm')//这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
                     });
                     break;
             }
-            ;
         });
 
         //监听行工具栏事件
@@ -361,7 +385,7 @@
                     }
 
                 }
-            })
+            });
             return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
         });
 
@@ -393,6 +417,55 @@
             return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
         });
 
+        //文件上传
+        upload.render({
+            elem: '#test10'
+            ,url: 'https://httpbin.org/post' //改成您自己的上传接口
+            ,done: function(res){
+                layer.msg('上传成功');
+                layui.$('#uploadDemoView').removeClass('layui-hide').find('img').attr('src', res.files.file);
+                console.log(res)
+            }
+        });
+        //通知文件
+        upload.render({
+            elem: '#test11'
+            ,url: 'https://httpbin.org/post' //改成您自己的上传接口
+            ,done: function(res){
+                layer.msg('上传成功');
+                layui.$('#uploadDemoView1').removeClass('layui-hide').find('img').attr('src', res.files.file);
+                console.log(res)
+            }
+        });
+        //文件上传
+        // let uploadInst = upload.render({
+        //     elem: '#fileUpload'
+        //     , url: '/file/upload' //上传接口
+        //     , accept: 'file'
+        //     , auto: false
+        //     , done: function (res) {
+        //         //如果上传成功
+        //         if (res.response === 'success') {
+        //             let src = "https://" + res.name;
+        //             //给隐藏input赋值，传入后台数据库
+        //             $("#destinationName").val(src);
+        //             //回显最新的图片
+        //             $("#sourceName").val(res.fileName)
+        //             $('#image').attr('src', src);
+        //         } else {
+        //             return layer.msg('上传失败');
+        //         }
+        //         //上传成功
+        //     }
+        //     , error: function () {
+        //         //演示失败状态，并实现重传
+        //         let updateText = $('#updateText');
+        //         updateText.html('<span style="color: #ff5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+        //         updateText.find('.demo-reload').on('click', function () {
+        //             uploadInst.upload();
+        //         });
+        //     }
+        // });
     });
 </script>
 </html>

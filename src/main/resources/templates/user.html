@@ -195,24 +195,24 @@
 <!--头部工具栏按钮-->
 <script type="text/html" id="userToolbar">
     <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
-        <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="delSelected">删除</button>
+        <button class="layui-btn layui-btn-xs" lay-event="add">添加</button>
+        <button class="layui-btn layui-btn-xs layui-btn-danger" lay-event="delSelected">删除</button>
     </div>
 </script>
 <!--操作按钮-->
 <script type="text/html" id="userOperation">
-    <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="resetPassword">重置密码</button>
-    <button class="layui-btn layui-btn-sm" lay-event="edit">编辑</button>
-    <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="del">删除</button>
+    <button class="layui-btn layui-btn-xs layui-btn-normal" lay-event="resetPassword">重置密码</button>
+    <button class="layui-btn layui-btn-xs" lay-event="edit">编辑</button>
+    <button class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</button>
 </script>
 
 
 <!--状态按钮-->
 <script type="text/html" id="userState">
     {{# if (d.status === '0'){}}
-    <button class="layui-btn layui-btn-sm" lay-event="state">正常</button>
+    <button class="layui-btn layui-btn-xs" lay-event="state">正常</button>
     {{# }else {}}
-    <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="state">失效</button>
+    <button class="layui-btn layui-btn-xs layui-btn-danger" lay-event="state">失效</button>
     {{# }}}
 </script>
 <script>

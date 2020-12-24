@@ -9,7 +9,7 @@
 <!--头部工具栏-->
 <script type="text/html" id="toolbarDemo" lay-event="toolbar">
     <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm" lay-event="addCustom">添加客户</button>
+        <button class="layui-btn layui-btn-xs" lay-event="addCustom">添加客户</button>
     </div>
 </script>
 <!--添加表单-->
@@ -17,24 +17,24 @@
     <!--创建人-->
     <input hidden th:value="${session.username}" name="createBy">
     <div class="layui-form-item">
-        <label class="layui-form-label">联系人：</label>
+        <label class="layui-form-label">联系人</label>
         <div class="layui-input-inline">
             <input type="text" name="contact" lay-verify="required" placeholder="请输入中文" autocomplete="off"
                    class="layui-input">
         </div>
-        <label class="layui-form-label">申请人：</label>
+        <label class="layui-form-label">申请人</label>
         <div class="layui-input-inline">
             <input type="text" name="applicant" lay-verify="required" placeholder="请输入中文" autocomplete="off"
                    class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">手机号：</label>
+        <label class="layui-form-label">手机号</label>
         <div class="layui-input-inline">
             <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
         </div>
         <div class="layui-inline">
-            <label class="layui-form-label">代理人ID：</label>
+            <label class="layui-form-label">代理人ID</label>
             <div class="layui-input-inline">
                 <input type="number" name="proxyId" readonly id="addUserTableSelect" lay-verify="required" placeholder="" autocomplete="off"
                        class="layui-input">
@@ -42,13 +42,13 @@
         </div>
     </div>
     <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">邮寄地址：</label>
+        <label class="layui-form-label">邮寄地址</label>
         <div class="layui-input-block">
             <textarea name="customAddress" placeholder="请输入邮寄地址" class="layui-textarea"></textarea>
         </div>
     </div>
     <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">备注：</label>
+        <label class="layui-form-label">备注</label>
         <div class="layui-input-block">
             <textarea type="text" name="remark" placeholder="" class="layui-textarea"></textarea>
         </div>
@@ -66,31 +66,31 @@
     <!--修改人-->
     <input hidden th:value="${session.username}" name="updateBy">
     <div class="layui-form-item">
-        <label class="layui-form-label">客户ID：</label>
+        <label class="layui-form-label">客户ID</label>
         <div class="layui-input-inline">
             <input type="text" name="customId" lay-verify="required" placeholder="" autocomplete="off"
                    class="layui-input" readonly>
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">联系人：</label>
+        <label class="layui-form-label">联系人</label>
         <div class="layui-input-inline">
             <input type="text" name="contact" lay-verify="required" placeholder="" autocomplete="off"
                    class="layui-input">
         </div>
-        <label class="layui-form-label">申请人：</label>
+        <label class="layui-form-label">申请人</label>
         <div class="layui-input-inline">
             <input type="text" name="applicant" lay-verify="required" placeholder="" autocomplete="off"
                    class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">手机号：</label>
+        <label class="layui-form-label">手机号</label>
         <div class="layui-input-inline">
             <input type="tel" name="phone" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
         </div>
         <div class="layui-inline">
-            <label class="layui-form-label">代理人ID：</label>
+            <label class="layui-form-label">代理人ID</label>
             <div class="layui-input-inline">
                 <input type="number" name="proxyId" readonly id="updateUserTableSelect" lay-verify="required" placeholder="" autocomplete="off"
                        class="layui-input">
@@ -98,13 +98,13 @@
         </div>
     </div>
     <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">邮寄地址：</label>
+        <label class="layui-form-label">邮寄地址</label>
         <div class="layui-input-block">
             <textarea name="customAddress" placeholder="" class="layui-textarea"></textarea>
         </div>
     </div>
     <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">备注：</label>
+        <label class="layui-form-label">备注</label>
         <div class="layui-input-block">
             <textarea type="text" name="remark" placeholder="" class="layui-textarea"></textarea>
         </div>
@@ -253,7 +253,7 @@
                         title: '添加',
                         type: 1,
                         // data: data,
-                        area: ['800px', '550px'],
+                        area: ['670px', '550px'],
                         content: $('#addCustomForm')//这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
                     });
                     break;
@@ -279,7 +279,7 @@
                 layer.open({
                     title: '修改',
                     type: 1,
-                    area: ['800px', '550px'],
+                    area: ['670px', '550px'],
                     content: $("#updateCustomForm")//这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
                 });
             } else if (layEvent === 'register') {

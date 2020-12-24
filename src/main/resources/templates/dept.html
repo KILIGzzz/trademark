@@ -74,7 +74,7 @@
         <label class="layui-form-label">状态</label>
         <div class="layui-input-block">
             <input type="checkbox" id="status" name="status" lay-skin="switch" lay-filter="switchStatus"
-                   lay-text="可用|不可用">
+                   lay-text="可用|失效">
         </div>
     </div>
     <div class="layui-form-item">
@@ -138,6 +138,14 @@
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
+<!--状态按钮-->
+<script type="text/html" id="deptStatus">
+    {{# if (d.status === '0'){}}
+    <button class="layui-btn layui-btn-xs" lay-event="state">正常</button>
+    {{# }else {}}
+    <button class="layui-btn layui-btn-xs layui-btn-danger" lay-event="state">失效</button>
+    {{# }}}
+</script>
 <script>
     layui.use(['table', 'layer', 'jquery', 'form'], function () {
         let table = layui.table;
@@ -159,7 +167,7 @@
                     , {field: 'deptId', title: '编号', width: 80, sort: true, fixed: true}
                     , {field: 'deptName', title: '部门名称', width: 100}
                     , {field: 'orderNum', title: '排序', width: 80, sort: true}
-                    , {field: 'status', title: '状态', width: 80}
+                    , {field: 'status', title: '状态', width: 80, toolbar: "#deptStatus"}
                     , {field: 'createBy', title: '创建人', width: 80, sort: true}
                     , {field: 'createTime', title: '创建时间', width: 200, sort: true}
                     , {field: 'updateBy', title: '修改人', width: 100}

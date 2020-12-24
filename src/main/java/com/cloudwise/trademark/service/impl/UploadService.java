@@ -75,6 +75,7 @@ public class UploadService {
             fileUploadResult.setStatus("error");
             return fileUploadResult;
         }
+        fileUploadResult.setFileName(fileName);
         fileUploadResult.setStatus("done");
         fileUploadResult.setResponse("success");
         fileUploadResult.setName(this.aliyunOssConfig.getUrlPrefix() + filePath);

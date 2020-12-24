@@ -8,11 +8,11 @@
 <body>
 <script type="text/html" id="toolbarDemo">
     <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm" lay-event="add">添加业务</button>
+        <button class="layui-btn layui-btn-xs" lay-event="add">添加业务</button>
     </div>
 </script>
 <script type="text/html" id="ListDemo">
-    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="updateProgress">更新进度</a>
+    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="updateProgress">更新进度</a>
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
 </script>
 
@@ -211,7 +211,7 @@
     </div>
 </form>
 <table id="customTable" lay-filter="customFilter"></table>
-<table id="demo" lay-filter="test"></table>
+<table id="businessTable" lay-filter="test"></table>
 </body>
 <!--商标类别弹窗-->
 <form class="layui-form" action="" id="trademarkTypeSelect"
@@ -349,7 +349,7 @@
 
         let businessUrl = '/business/queryByCondition?customId='+customeId
         var myTable = table.render({
-            elem: '#demo'
+            elem: '#businessTable'
             , height: 400
             , url: businessUrl //数据接口
             , page: true //开启分页
@@ -358,7 +358,7 @@
             , toolbar: '#toolbarDemo'
             , cols: [
                 [ //表头
-                    {field: 'businessId', title: '业务编号', width: 100, sort: true}
+                    {field: 'businessId', title: '业务ID', width: 100, sort: true}
                     , {field: 'applicantCode', title: '申请号', width: 160}
                     , {field: 'applicantTime', title: '申请时间', width: 160}
                     , {field: 'businessName', title: '业务名', width: 160}
@@ -379,13 +379,13 @@
                 ]]
         });
 
-        var $topType = $("#topType");
-        var $updateTopType = $("#updateTopType");
-        var $trademarkRadios = $('#trademarkRadios')
-        var $businessSecondTypeRadios = $('#businessSecondTypeRadios')
-        var options = '';
-        var trademarkRadios = '';
-        var businessSecondTypeRadios = '';
+        let $topType = $("#topType");
+        let $updateTopType = $("#updateTopType");
+        let $trademarkRadios = $('#trademarkRadios')
+        let $businessSecondTypeRadios = $('#businessSecondTypeRadios')
+        let options = '';
+        let trademarkRadios = '';
+        let businessSecondTypeRadios = '';
         //填充下拉框
         $.ajax({
             url: "/business/findAllDictionary",
@@ -420,7 +420,7 @@
         })
         //监听头工具栏事件
         table.on('toolbar(test)', function (obj) {
-            var checkStatus = table.checkStatus(obj.config.id)
+            let checkStatus = table.checkStatus(obj.config.id)
                 , data = checkStatus.data; //获取选中的数据
             switch (obj.event) {
                 case 'add':

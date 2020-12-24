@@ -14,13 +14,13 @@
 <!--头部工具栏按钮-->
 <script type="text/html" id="roleToolbar">
     <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm" lay-event="add">添加角色</button>
+        <button class="layui-btn layui-btn-xs" lay-event="add">添加角色</button>
     </div>
 </script>
 <!--操作按钮-->
 <script type="text/html" id="roleOperation">
-    <button class="layui-btn layui-btn-sm" lay-event="edit">编辑</button>
-    <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="del">删除</button>
+    <button class="layui-btn layui-btn-xs" lay-event="edit">编辑</button>
+    <button class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</button>
 </script>
 
 <!--添加弹窗表格-->
@@ -131,11 +131,11 @@
     </div>
 </form>
 <!--状态按钮-->
-<script type="text/html" id="roleState">
+<script type="text/html" id="roleStatus">
     {{# if (d.status === '0'){}}
-    <button class="layui-btn layui-btn-sm" lay-event="state">正常</button>
+    <button class="layui-btn layui-btn-xs" lay-event="state">正常</button>
     {{# }else {}}
-    <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="state">失效</button>
+    <button class="layui-btn layui-btn-xs layui-btn-danger" lay-event="state">失效</button>
     {{# }}}
 </script>
 <script>
@@ -161,7 +161,7 @@
                     , {field: 'roleName', title: '名称', width: 100}
                     , {field: 'roleKey', title: '角色关键字', width: 120}
                     , {field: 'roleSort', title: '显示顺序', width: 160, sort: true}
-                    , {field: 'status', title: '状态', width: 160, toolbar: "#roleState"}
+                    , {field: 'status', title: '状态', width: 160, toolbar: "#roleStatus"}
                     , {field: 'createBy', title: '创建人', width: 100}
                     , {field: 'createTime', title: '创建时间', width: 160}
                     , {field: 'updateBy', title: '修改人', width: 100}

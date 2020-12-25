@@ -77,6 +77,12 @@ public class VisitServiceImpl implements VisitService {
         return this.visitDao.deleteById(visitId) > 0;
     }
 
+    /**
+     * @create by: ydq
+     * @description: 方法作用：获取数据总条数
+     * @create time: 2020/12/24 9:27
+     * @return getCount
+     */
     @Override
     public long getCount(Visit visit) {
         return visitDao.getCount(visit);

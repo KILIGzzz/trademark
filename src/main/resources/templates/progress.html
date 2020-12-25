@@ -7,6 +7,7 @@
     <script src="/layui/layui.js"></script>
 </head>
 
+<!--查询进度表单-->
 <form class="layui-form" action="" style="margin-top: 10px">
     <div class="layui-inline">
         <label class="layui-form-label">进度ID</label>
@@ -20,12 +21,12 @@
             <input type="text" name="progressType" placeholder="请输入进度类型" autocomplete="off" class="layui-input">
         </div>
     </div>
-<!--    <div class="layui-inline">-->
-<!--        <label class="layui-form-label">业务ID</label>-->
-<!--        <div class="layui-input-inline">-->
-<!--            <input type="number" name="businessId" placeholder="请输入业务ID" autocomplete="off" class="layui-input">-->
-<!--        </div>-->
-<!--    </div>-->
+<!--    <div class="layui-inline">
+        <label class="layui-form-label">业务ID</label>
+        <div class="layui-input-inline">
+            <input type="number" name="businessId" placeholder="请输入业务ID" autocomplete="off" class="layui-input">
+        </div>
+    </div>-->
     <div class="layui-inline">
         <div class="layui-input-inline">
             <button class="layui-btn" lay-submit lay-filter="selectFormFilter">查询</button>
@@ -67,7 +68,8 @@
     <div class="layui-form-item">
         <label class="layui-form-label">业务编号</label>
         <div class="layui-input-block">
-            <input type="number" name="businessId" readonly id="addBusinessTableSelect" th:value="${businessId}"
+            <input hidden name = "businessId" id="addBusinessTableSelectId">
+            <input type="text" readonly id="addBusinessTableSelect" th:value="${businessId}"
                    lay-verify="required" placeholder=""
                    autocomplete="off"
                    class="layui-input">
@@ -100,7 +102,7 @@
     <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">备注</label>
         <div class="layui-input-block">
-            <input type="text" name="remark" lay-verify="required" placeholder=""
+            <input type="text" name="remark" lay-verify="" placeholder=""
                    autocomplete="off" class="layui-input">
         </div>
     </div>
@@ -119,10 +121,9 @@
     <input type="hidden" name="sourceName" id="updateSourceName">
     <input type="hidden" name="destinationName" id="updateDestinationName">
     <div class="layui-form-item">
-        <label class="layui-form-label">进度编号</label>
         <div class="layui-input-inline">
             <input type="text" name="progressId" lay-verify="required" placeholder="" autocomplete="off"
-                   class="layui-input" readonly>
+                   class="layui-input" hidden>
         </div>
     </div>
     <div class="layui-form-item">
@@ -135,7 +136,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">业务编号</label>
         <div class="layui-input-block">
-            <input type="number" name="businessId" readonly id="updateBusinessTableSelect" th:value="${businessId}"
+            <input type="text" name="businessId" readonly id="updateBusinessTableSelect" th:value="${businessId}"
                    lay-verify="required" placeholder=""
                    autocomplete="off"
                    class="layui-input">
@@ -162,7 +163,7 @@
     <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">备注</label>
         <div class="layui-input-block">
-            <input type="text" name="remark" lay-verify="required" placeholder=""
+            <input type="text" name="remark" lay-verify="" placeholder=""
                    autocomplete="off" class="layui-input">
         </div>
     </div>
@@ -219,7 +220,8 @@
             done: function (elem, data) {
                 //选择完后的回调，包含2个返回值 elem:返回之前input对象；data:表格返回的选中的数据 []
                 //拿到data[]后 就按照业务需求做想做的事情啦~比如加个隐藏域放ID...
-                elem.val(data.data[0].businessId)
+                elem.val(data.data[0].businessName)
+                $("#addBusinessTableSelectId").val(data.data[0].businessId)
             }
         })
 
@@ -291,7 +293,7 @@
         } else {
             document.getElementById("businessTable").hidden = false
             let businessUrl = '/business/selectOne?businessId=' + businesseId
-            var businessTable = table.render({
+            let businessTable = table.render({
                 elem: '#businessTable'
                 , url: businessUrl //数据接口
                 , page: false //开启分页

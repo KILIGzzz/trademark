@@ -103,7 +103,7 @@
             <if test="progress.progressId != null and progress.progressId != ''">
                 and progress_id = #{progress.progressId}
             </if>
-            <if test="progress.businessId != null and progress.businessId != 0">
+            <if test="progress.businessId != null and progress.businessId != ''">
                 and business_id = #{progress.businessId}
             </if>
             <if test="progress.progressType != null and progress.progressType != ''">
@@ -120,7 +120,7 @@
             <if test="progressId != null and progressId != ''">
                 and progress_id = #{progressId}
             </if>
-            <if test="businessId != null and businessId != 0">
+            <if test="businessId != null and businessId != ''">
                 and business_id = #{businessId}
             </if>
             <if test="progressType != null and progressType != ''">
@@ -192,7 +192,7 @@
             <if test="updateTime != null">
                 update_time = #{updateTime},
             </if>
-            <if test="remark != null and remark != ''">
+            <if test="remark != null ">
                 remark = #{remark},
             </if>
         </set>

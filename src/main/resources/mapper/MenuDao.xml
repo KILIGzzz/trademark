@@ -232,7 +232,7 @@
             <if test="updateBy != null and updateBy != ''">
                 update_by = #{updateBy},
             </if>
-            <if test="remark != null and remark != ''">
+            <if test="remark != null ">
                 remark = #{remark},
             </if>
             update_time = now(),

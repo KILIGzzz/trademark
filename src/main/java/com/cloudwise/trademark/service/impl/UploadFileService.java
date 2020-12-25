@@ -25,12 +25,11 @@ import java.util.List;
  * @modifiedBy
  */
 @Service
-public class UploadService {
+public class UploadFileService {
     /**
      * 允许上传的格式
      */
-    private static final String[] FILE_TYPE = new String[]{".bmp", ".jpg", ".jpeg", ".gif", ".png", ".zip", ".tar"};
-
+    private static final String[] FILE_TYPE = new String[]{".bmp", ".jpg", ".jpeg", ".gif", ".png", ".zip", ".tar", ".txt"};
     @Autowired
     private OSS ossClient;
     @Autowired
@@ -38,11 +37,12 @@ public class UploadService {
 
 
     /**
-     * @param uploadFile
-     * @return
-     * @create by: Back
-     * @description: 上传文件并返回文件地址
-     * @create time: 2020/12/24 10:12
+     * 上传文件并返回文件地址
+     *
+     * @param uploadFile 传入的文件
+     * @return UploadResult 实体类
+     * @createBy Enzo
+     * @createTime 2020/12/25 11:02
      */
     public UploadResult upload(MultipartFile uploadFile) {
         // 校验文件格式

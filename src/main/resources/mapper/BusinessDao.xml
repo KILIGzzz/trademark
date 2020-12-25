@@ -193,7 +193,7 @@
             <if test="customId != null">
                 custom_id = #{customId},
             </if>
-            <if test="remark != null and remark != ''">
+            <if test="remark != null">
                 remark = #{remark},
             </if>
         </set>

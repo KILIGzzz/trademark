@@ -176,7 +176,7 @@
             <if test="proxyId != null">
                 proxy_id = #{proxyId},
             </if>
-            <if test="remark != null and remark != ''">
+            <if test="remark != null ">
                 remark = #{remark},
             </if>
         </set>

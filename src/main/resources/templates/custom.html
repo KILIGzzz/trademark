@@ -17,9 +17,10 @@
     <!--创建人-->
     <input hidden th:value="${session.username}" name="createBy">
     <div class="layui-form-item">
-        <label class="layui-form-label">代理人ID</label>
+        <label class="layui-form-label">代理人</label>
         <div class="layui-input-inline">
-            <input type="number" name="proxyId" readonly id="addUserTableSelect" lay-verify="required" placeholder=""
+            <input hidden name="proxyId" id="addUserTableSelectHidden">
+            <input type="text"  readonly id="addUserTableSelect" lay-verify="required" placeholder=""
                    autocomplete="off"
                    class="layui-input">
         </div>
@@ -64,20 +65,15 @@
       style="display: none;margin-right: 40px;margin-top: 20px">
     <!--修改人-->
     <input hidden th:value="${session.username}" name="updateBy">
-    <div class="layui-form-item">
-        <label class="layui-form-label">客户ID</label>
-        <div class="layui-input-inline">
-            <input type="text" name="customId" lay-verify="required" placeholder="" autocomplete="off"
-                   class="layui-input" readonly>
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">代理人ID</label>
-        <div class="layui-input-inline">
-            <input type="number" name="proxyId" readonly id="updateUserTableSelect" lay-verify="required" placeholder=""
-                   autocomplete="off"
-                   class="layui-input">
-        </div>
+    <input hidden  name="customId">
+        <div class="layui-form-item">
+            <label class="layui-form-label">代理人</label>
+            <div class="layui-input-inline">
+                <input hidden name="proxyId" id="updateUserTableSelectHidden">
+                <input type="text"  readonly id="updateUserTableSelect" lay-verify="required" placeholder=""
+                       autocomplete="off"
+                       class="layui-input">
+            </div>
         <label class="layui-form-label">申请人</label>
         <div class="layui-input-inline">
             <input type="text" name="applicant" lay-verify="required" placeholder="" autocomplete="off"
@@ -188,7 +184,10 @@
             done: function (elem, data) {
                 //选择完后的回调，包含2个返回值 elem:返回之前input对象；data:表格返回的选中的数据 []
                 //拿到data[]后 就按照业务需求做想做的事情啦~比如加个隐藏域放ID...
-                elem.val(data.data[0].userId)
+
+                console.log(data.data)
+                elem.val(data.data[0].userName)
+                $("#addUserTableSelectHidden").val(data.data[0].userId)
             }
         })
 
@@ -212,7 +211,8 @@
             done: function (elem, data) {
                 //选择完后的回调，包含2个返回值 elem:返回之前input对象；data:表格返回的选中的数据 []
                 //拿到data[]后 就按照业务需求做想做的事情啦~比如加个隐藏域放ID...
-                elem.val(data.data[0].userId)
+                elem.val(data.data[0].userName)
+                $("#updateUserTableSelectHidden").val(data.data[0].userId)
             }
         })
 
@@ -247,6 +247,7 @@
         table.on('toolbar(test)', function (obj) {
             switch (obj.event) {
                 case 'addCustom':
+                    document.getElementById("addCustomForm").reset();
                     layer.open({
                         title: '添加',
                         type: 1,
@@ -255,11 +256,7 @@
                         content: $('#addCustomForm')//这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
                     });
                     break;
-                case 'insertCustom':
-                    layer.msg('导入');
-                    break;
-            }
-            ;
+            };
         });
 
         //监听行工具栏事件
@@ -315,6 +312,7 @@
                     } else {
                         layer.msg(ret.msg, {icon: 5});
                     }
+
                 }
             })
             return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。

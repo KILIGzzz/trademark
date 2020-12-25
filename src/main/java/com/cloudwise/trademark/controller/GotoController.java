@@ -91,4 +91,9 @@ public class GotoController {
     public String toVisit() {
         return "visit";
     }
+
+    @GetMapping("toIndex")
+    public String toIndex() {
+        return "homeIndex";
+    }
 }

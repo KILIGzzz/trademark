@@ -205,4 +205,15 @@ public class UserController extends BaseController {
         }
 
     }
+
+    @GetMapping("/checkLoginName")
+    public String checkLoginName(String loginName){
+        //根据登录名查询用户(用户名不能重复)
+        User userTemp = userService.queryByLoginName(loginName);
+        //如果用户不为空，返回错误
+        if (userTemp != null) {
+            return "false";
+        }
+        return "true";
+    }
 }

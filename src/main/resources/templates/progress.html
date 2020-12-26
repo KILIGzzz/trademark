@@ -105,13 +105,8 @@
     <!--隐藏input框，获取相应值-->
     <input hidden th:value="${session.username}" name="updateBy">
     <input type="hidden" name="destinationName" id="updateDestinationName">
-    <div class="layui-form-item">
-        <label class="layui-form-label">进度编号</label>
-        <div class="layui-input-inline">
-            <input type="text" name="progressId" lay-verify="required" placeholder="" autocomplete="off"
-                   class="layui-input" readonly>
-        </div>
-    </div>
+    <input type="hidden" name="progressId">
+    <input type="hidden" name="uploadId">
     <div class="layui-form-item">
         <label class="layui-form-label">进度类型</label>
         <div class="layui-input-block">
@@ -322,13 +317,13 @@
                     {
                         field: 'sourceName', title: '上传文件名', width: 120,
                         templet: function (progress) {
-                            return '<a href="'+progress.upload.destinationName+'">'+progress.upload.sourceName+'</a>';
+                            return '<a href="' + progress.upload.destinationName + '">' + progress.upload.sourceName + '</a>';
                         }
                     },
                     {
                         field: 'noticeName', title: '通知文件名', width: 120,
                         templet: function (progress) {
-                            return '<a href="'+progress.upload.destinationName+'">'+progress.upload.noticeName+'</a>';
+                            return '<a href="' + progress.upload.destinationName + '">' + progress.upload.noticeName + '</a>';
                         }
                     },
                     {field: 'businessId', title: '业务ID', width: 80},
@@ -489,7 +484,7 @@
                     //给隐藏的input框赋值，传入后台
                     $("#destinationName").val(src);
                     //回显原文件名
-                    $("#insertAddSourceName").val(res.fileName);
+                    $("#insertInformSourceName").val(res.fileName);
                     layer.msg('上传成功');
                 } else {
                     return layer.msg('上传失败')
@@ -513,7 +508,7 @@
                 if (res.response === 'success') {
                     let src = "https://" + res.name;
                     //给隐藏的input框赋值，传入后台
-                    $("#destinationName").val(src);
+                    $("#updateDestinationName").val(src);
                     //回显原文件名
                     $("#updateAddSourceName").val(res.fileName);
                     layer.msg('上传成功');
@@ -539,7 +534,7 @@
                 if (res.response === 'success') {
                     let src = "https://" + res.name;
                     //给隐藏的input框赋值，传入后台
-                    $("#destinationName").val(src);
+                    $("#updateDestinationName").val(src);
                     //回显原文件名
                     $("#updateInformSourceName").val(res.fileName);
                     layer.msg('上传成功');
@@ -564,7 +559,6 @@
                 where: { //设定异步数据接口的额外参数，任意设
                     progressId: data.field.progressId
                     , progressType: data.field.progressType
-                    , businessId: data.field.businessId
                 }
                 , page: {
                     curr: 1 //重新从第 1 页开始
@@ -579,7 +573,6 @@
                 where: { //设定异步数据接口的额外参数，任意设
                     progressId: ""
                     , progressType: ""
-                    , businessId: ""
                 }
                 , page: {
                     curr: 1 //重新从第 1 页开始

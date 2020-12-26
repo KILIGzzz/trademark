@@ -101,8 +101,8 @@ public class ProgressController extends BaseController {
     @PostMapping("update")
     public ReturnBean update(Progress progress, Upload upload) {
         try {
-            progressService.update(progress);
             uploadService.update(upload);
+            progressService.update(progress);
             return returnSuccess(progress);
         } catch (Exception e) {
             return returnFail(null);

@@ -2,7 +2,7 @@ package com.cloudwise.trademark.controller;
 
 import com.aliyun.oss.model.OSSObjectSummary;
 import com.cloudwise.trademark.entity.UploadResult;
-import com.cloudwise.trademark.service.impl.UploadService;
+import com.cloudwise.trademark.service.impl.UploadFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +26,7 @@ import java.util.List;
 public class UploadController {
 
     @Autowired
-    private UploadService uploadService;
+    private UploadFileService uploadFileService;
 
     /**
      * 文件上传到oss
@@ -38,9 +38,8 @@ public class UploadController {
      */
     @RequestMapping("/upload")
     @ResponseBody
-    public UploadResult upload(@RequestParam("file") MultipartFile uploadFile)
-            throws Exception {
-        return this.uploadService.upload(uploadFile);
+    public UploadResult upload(@RequestParam("file") MultipartFile uploadFile) throws Exception {
+        return this.uploadFileService.upload(uploadFile);
     }
 
     /**
@@ -55,7 +54,7 @@ public class UploadController {
     @ResponseBody
     public UploadResult delete(@RequestParam("fileName") String objectName)
             throws Exception {
-        return this.uploadService.delete(objectName);
+        return this.uploadFileService.delete(objectName);
     }
 
     /**
@@ -69,7 +68,7 @@ public class UploadController {
     @ResponseBody
     public List<OSSObjectSummary> list()
             throws Exception {
-        return this.uploadService.list();
+        return this.uploadFileService.list();
     }
 
     /**
@@ -85,7 +84,6 @@ public class UploadController {
         //通知浏览器以附件形式下载
         response.setHeader("Content-Disposition",
                 "attachment;filename=" + new String(objectName.getBytes(), "ISO-8859-1"));
-        this.uploadService.exportOssFile(response.getOutputStream(), objectName);
+        this.uploadFileService.exportOssFile(response.getOutputStream(), objectName);
     }
-
 }

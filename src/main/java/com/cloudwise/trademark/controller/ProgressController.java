@@ -3,12 +3,14 @@ package com.cloudwise.trademark.controller;
 import com.cloudwise.trademark.entity.PageBean;
 import com.cloudwise.trademark.entity.Progress;
 import com.cloudwise.trademark.entity.ReturnBean;
+import com.cloudwise.trademark.entity.Upload;
 import com.cloudwise.trademark.service.ProgressService;
+import com.cloudwise.trademark.service.UploadService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +28,9 @@ public class ProgressController extends BaseController {
      */
     @Resource
     private ProgressService progressService;
+
+    @Autowired
+    private UploadService uploadService;
 
     /**
      * 通过主键查询单条数据
@@ -47,6 +52,7 @@ public class ProgressController extends BaseController {
      */
     @GetMapping("queryAll")
     public ReturnBean queryAll(PageBean pageBean, Progress progress) {
+
         int offset = getOffset(pageBean);
         List<Progress> progresses = progressService.queryAllByConditionAndLimit(progress, offset, pageBean.getLimit());
         ReturnBean returnBean = returnSuccess(progresses, progressService.getRowCount(progress));
@@ -66,16 +72,18 @@ public class ProgressController extends BaseController {
     }
 
     /**
+     * @param progress
      * @return
      * @create by: ydq
      * @description: 方法作用：添加进度
      * @create time: 2020/12/23 17:48
-     * @param:
+     * @modifiedBy Enzo
      */
     @PostMapping("add")
-    public ReturnBean add(Progress progress) {
+    public ReturnBean add(Progress progress, Upload upload) {
         try {
-            progress.setCreateTime(new Date());
+            uploadService.insert(upload);
+            progress.setUploadId(upload.getUploadId());
             progressService.insert(progress);
             return returnSuccess(progress);
         } catch (Exception e) {
@@ -91,9 +99,9 @@ public class ProgressController extends BaseController {
      * @param:
      */
     @PostMapping("update")
-    public ReturnBean update(Progress progress) {
+    public ReturnBean update(Progress progress, Upload upload) {
         try {
-            progress.setUpdateTime(new Date());
+            uploadService.update(upload);
             progressService.update(progress);
             return returnSuccess(progress);
         } catch (Exception e) {
@@ -110,9 +118,9 @@ public class ProgressController extends BaseController {
      * @create time: 2020/12/23 15:56
      */
     @GetMapping("showBusinessAndProgress")
-    public ModelAndView showBusinessAndProgress(int customId, int businessId, ModelAndView mv){
-        mv.addObject("customId",customId);
-        mv.addObject("businessId",businessId);
+    public ModelAndView showBusinessAndProgress(int customId, int businessId, ModelAndView mv) {
+        mv.addObject("customId", customId);
+        mv.addObject("businessId", businessId);
         mv.setViewName("progress");
         return mv;
     }

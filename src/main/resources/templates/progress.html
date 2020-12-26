@@ -7,7 +7,6 @@
     <script src="/layui/layui.js"></script>
 </head>
 
-<!--查询进度表单-->
 <form class="layui-form" action="" style="margin-top: 10px">
     <div class="layui-inline">
         <label class="layui-form-label">进度ID</label>
@@ -21,12 +20,6 @@
             <input type="text" name="progressType" placeholder="请输入进度类型" autocomplete="off" class="layui-input">
         </div>
     </div>
-<!--    <div class="layui-inline">
-        <label class="layui-form-label">业务ID</label>
-        <div class="layui-input-inline">
-            <input type="number" name="businessId" placeholder="请输入业务ID" autocomplete="off" class="layui-input">
-        </div>
-    </div>-->
     <div class="layui-inline">
         <div class="layui-input-inline">
             <button class="layui-btn" lay-submit lay-filter="selectFormFilter">查询</button>
@@ -37,21 +30,9 @@
 
 
 <body>
-    <table id="customTable" lay-filter="customFilter"></table>
-    <div class="layui-col-md12">
-        <div class="layui-card">
-            <div class="layui-card-body">
-                <table id="businessTable" lay-filter="businessFilter"></table>
-                <div class="layui-col-md12">
-                    <div class="layui-card">
-                        <div class="layui-card-body">
-                            <table id="showProgress"></table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<table id="customTable" lay-filter="customFilter"></table>
+<table id="businessTable" lay-filter="businessFilter"></table>
+<table id="showProgress"></table>
 </body>
 
 <!--顶部工具栏-->
@@ -60,14 +41,12 @@
         <button class="layui-btn layui-btn-xs" lay-event="addProgress">添加进度</button>
     </div>
 </script>
-
 <!--添加功能的form-->
 <form class="layui-form" action="" id="addProgressForm"
       style="display: none;margin-right: 40px;margin-top: 20px">
 
     <!--隐藏input框，获取相应值-->
     <input hidden th:value="${session.username}" name="createBy">
-    <input type="hidden" name="sourceName" id="sourceName">
     <input type="hidden" name="destinationName" id="destinationName">
 
     <div class="layui-form-item">
@@ -80,41 +59,36 @@
     <div class="layui-form-item">
         <label class="layui-form-label">业务编号</label>
         <div class="layui-input-block">
-            <input hidden name = "businessId" id="addBusinessTableSelectId">
-            <input type="text" readonly id="addBusinessTableSelect" th:value="${businessId}"
+            <input type="number" name="businessId" readonly id="addBusinessTableSelect" th:value="${businessId}"
                    lay-verify="required" placeholder=""
                    autocomplete="off"
                    class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <!--<label class="layui-form-label">上传文件</label>
-        <div class="layui-input-inline">
-            <input type="number" name="uploadId" lay-verify="required" placeholder="" autocomplete="off"
-                   class="layui-input">
-        </div>-->
         <label class="layui-form-label">
-            <button type="button" class="layui-btn layui-btn-xs" id="test1"><i class="layui-icon"></i>上传文件</button>
+            <button type="button" class="layui-btn layui-btn-xs" id="insertAddUpload">上传文件</button>
         </label>
         <div class="layui-input-block">
-            <input type="text" name="" id="111"
-                   lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+            <input type="text" name="sourceName" id="insertAddSourceName"
+                   placeholder="" autocomplete="off" class="layui-input">
         </div>
     </div>
-
+    <p id="insertAddText"></p>
     <div class="layui-form-item">
         <label class="layui-form-label">
-            <button type="button" class="layui-btn layui-btn-xs" id="test2"><i class="layui-icon"></i>上传文件</button>
+            <button type="button" class="layui-btn layui-btn-xs" id="insertInformUpload">通知文件</button>
         </label>
         <div class="layui-input-block">
-            <input type="text" name="" id="222"
-                   lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+            <input type="text" name="noticeName" id="insertInformSourceName"
+                   placeholder="" autocomplete="off" class="layui-input">
         </div>
     </div>
+    <p id="insertInformText"></p>
     <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">备注</label>
         <div class="layui-input-block">
-            <input type="text" name="remark" lay-verify="" placeholder=""
+            <input type="text" name="remark" lay-verify="required" placeholder=""
                    autocomplete="off" class="layui-input">
         </div>
     </div>
@@ -130,14 +104,9 @@
       style="display: none;margin-right: 40px;margin-top: 20px">
     <!--隐藏input框，获取相应值-->
     <input hidden th:value="${session.username}" name="updateBy">
-    <input type="hidden" name="sourceName" id="updateSourceName">
     <input type="hidden" name="destinationName" id="updateDestinationName">
-    <div class="layui-form-item">
-        <div class="layui-input-inline">
-            <input type="text" name="progressId" lay-verify="required" placeholder="" autocomplete="off"
-                   class="layui-input" hidden>
-        </div>
-    </div>
+    <input type="hidden" name="progressId">
+    <input type="hidden" name="uploadId">
     <div class="layui-form-item">
         <label class="layui-form-label">进度类型</label>
         <div class="layui-input-block">
@@ -148,7 +117,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">业务编号</label>
         <div class="layui-input-block">
-            <input type="text" name="businessId" readonly id="updateBusinessTableSelect" th:value="${businessId}"
+            <input type="number" name="businessId" readonly id="updateBusinessTableSelect" th:value="${businessId}"
                    lay-verify="required" placeholder=""
                    autocomplete="off"
                    class="layui-input">
@@ -156,26 +125,28 @@
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">
-            <button type="button" class="layui-btn layui-btn-xs" id="test3"><i class="layui-icon"></i>上传文件</button>
+            <button type="button" class="layui-btn layui-btn-xs" id="updateAddUpload">上传文件</button>
         </label>
         <div class="layui-input-block">
-            <input type="text" name="" id="333"
-                   lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+            <input type="text" name="sourceName" id="updateAddSourceName"
+                   placeholder="" autocomplete="off" class="layui-input">
         </div>
     </div>
+    <p id="updateAddText"></p>
     <div class="layui-form-item">
         <label class="layui-form-label">
-            <button type="button" class="layui-btn layui-btn-xs" id="test4"><i class="layui-icon"></i>通知文件</button>
+            <button type="button" class="layui-btn layui-btn-xs" id="updateInformUpload">通知文件</button>
         </label>
         <div class="layui-input-block">
-            <input type="text" name="" id="444"
-                   lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+            <input type="text" name="noticeName" id="updateInformSourceName"
+                   placeholder="" autocomplete="off" class="layui-input">
         </div>
     </div>
+    <p id="updateInformText"></p>
     <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">备注</label>
         <div class="layui-input-block">
-            <input type="text" name="remark" lay-verify="" placeholder=""
+            <input type="text" name="remark" lay-verify="required" placeholder=""
                    autocomplete="off" class="layui-input">
         </div>
     </div>
@@ -186,12 +157,10 @@
         </div>
     </div>
 </form>
-
 <!--实现菜单管理操作功能按钮-->
 <script type="text/html" id="progressBar">
     <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="edit">修改进度</a>
 </script>
-
 
 <script>
     //自定义layui组件的目录
@@ -232,8 +201,7 @@
             done: function (elem, data) {
                 //选择完后的回调，包含2个返回值 elem:返回之前input对象；data:表格返回的选中的数据 []
                 //拿到data[]后 就按照业务需求做想做的事情啦~比如加个隐藏域放ID...
-                elem.val(data.data[0].businessName)
-                $("#addBusinessTableSelectId").val(data.data[0].businessId)
+                elem.val(data.data[0].businessId)
             }
         })
 
@@ -305,7 +273,7 @@
         } else {
             document.getElementById("businessTable").hidden = false
             let businessUrl = '/business/selectOne?businessId=' + businesseId
-            let businessTable = table.render({
+            var businessTable = table.render({
                 elem: '#businessTable'
                 , url: businessUrl //数据接口
                 , page: false //开启分页
@@ -333,8 +301,7 @@
         }
 
 
-
-        //生成menuTable表格
+        //生成表格
         let progressUrl = '/progress/queryAll?businessId=' + businesseId
         let progressTable = table.render({
             elem: '#showProgress'
@@ -346,9 +313,19 @@
             , cols: [
                 [
                     {field: 'progressId', title: '进度ID', width: 80, fixed: 'left'},
-                    {field: 'progressType', title: '进度类型', width: 100},
-                    {field: 'uploadId', title: '上传文件ID', width: 120},
-                    {field: 'notice', title: '通知文件ID', width: 120},
+                    {field: 'progressType', title: '进度类型', width: 120},
+                    {
+                        field: 'sourceName', title: '上传文件名', width: 120,
+                        templet: function (progress) {
+                            return '<a href="' + progress.upload.destinationName + '">' + progress.upload.sourceName + '</a>';
+                        }
+                    },
+                    {
+                        field: 'noticeName', title: '通知文件名', width: 120,
+                        templet: function (progress) {
+                            return '<a href="' + progress.upload.destinationName + '">' + progress.upload.noticeName + '</a>';
+                        }
+                    },
                     {field: 'businessId', title: '业务ID', width: 80},
                     {field: 'createBy', title: '创建人', width: 80},
                     {field: 'createTime', title: '创建时间', width: 100},
@@ -471,74 +448,109 @@
         });
 
         //增加的文件上传
-        upload.render({
-            elem: '#test1'
-            , url: 'https://httpbin.org/post' //改成您自己的上传接口
+        let insertAddUpload = upload.render({
+            elem: '#insertAddUpload'
+            , url: '/file/upload' //上传接口
             , accept: 'file' //普通文件
             , done: function (res) {
-                layer.msg('上传成功');
-                console.log(res);
+                if (res.response === 'success') {
+                    let src = "https://" + res.name;
+                    //给隐藏的input框赋值，传入后台
+                    $("#destinationName").val(src);
+                    //回显原文件名
+                    $("#insertAddSourceName").val(res.fileName);
+                    layer.msg('上传成功');
+                } else {
+                    return layer.msg('上传失败')
+                }
+            }
+            , error: function () {
+                //演示失败状态，并实现重传
+                let insertAddText = $('#insertAddText');
+                insertAddText.html('<span style="color: #ff5722;">上传失败</span> <a class="layui-btn layui-btn-xs uploadReload">重试</a>');
+                insertAddText.find('.uploadReload').on('click', function () {
+                    insertAddUpload.upload();
+                });
             }
         });
         //增加的通知文件
-        upload.render({
-            elem: '#test2'
-            , url: 'https://httpbin.org/post' //改成您自己的上传接口
+        let insertInformUpload = upload.render({
+            elem: '#insertInformUpload'
+            , url: '/file/upload' //上传接口
             , accept: 'file' //普通文件
             , done: function (res) {
-                layer.msg('上传成功');
-                console.log(res);
+                if (res.response === 'success') {
+                    let src = "https://" + res.name;
+                    //给隐藏的input框赋值，传入后台
+                    $("#destinationName").val(src);
+                    //回显原文件名
+                    $("#insertInformSourceName").val(res.fileName);
+                    layer.msg('上传成功');
+                } else {
+                    return layer.msg('上传失败')
+                }
+            }
+            , error: function () {
+                //演示失败状态，并实现重传
+                let insertInformText = $('#insertInformText');
+                insertInformText.html('<span style="color: #ff5722;">上传失败</span> <a class="layui-btn layui-btn-xs uploadReload">重试</a>');
+                insertInformText.find('.uploadReload').on('click', function () {
+                    insertInformUpload.upload();
+                });
             }
         });
         //编辑的文件上传
-        upload.render({
-            elem: '#test3'
-            , url: 'https://httpbin.org/post' //改成您自己的上传接口
+        let updateAddUpload = upload.render({
+            elem: '#updateAddUpload'
+            , url: '/file/upload' //上传接口
             , accept: 'file' //普通文件
             , done: function (res) {
-                layer.msg('上传成功');
-                console.log(res);
+                if (res.response === 'success') {
+                    let src = "https://" + res.name;
+                    //给隐藏的input框赋值，传入后台
+                    $("#updateDestinationName").val(src);
+                    //回显原文件名
+                    $("#updateAddSourceName").val(res.fileName);
+                    layer.msg('上传成功');
+                } else {
+                    return layer.msg('上传失败')
+                }
+            }
+            , error: function () {
+                //演示失败状态，并实现重传
+                let updateAddText = $('#updateAddText');
+                updateAddText.html('<span style="color: #ff5722;">上传失败</span> <a class="layui-btn layui-btn-xs uploadReload">重试</a>');
+                updateAddText.find('.uploadReload').on('click', function () {
+                    updateAddUpload.upload();
+                });
             }
         });
         //编辑的通知文件
-        upload.render({
-            elem: '#test4'
-            , url: 'https://httpbin.org/post' //改成您自己的上传接口
+        let updateInformUpload = upload.render({
+            elem: '#updateInformUpload'
+            , url: '/file/upload' //上传接口
             , accept: 'file' //普通文件
             , done: function (res) {
-                layer.msg('上传成功');
-                console.log(res);
+                if (res.response === 'success') {
+                    let src = "https://" + res.name;
+                    //给隐藏的input框赋值，传入后台
+                    $("#updateDestinationName").val(src);
+                    //回显原文件名
+                    $("#updateInformSourceName").val(res.fileName);
+                    layer.msg('上传成功');
+                } else {
+                    return layer.msg('上传失败')
+                }
+            }
+            , error: function () {
+                //演示失败状态，并实现重传
+                let updateInformText = $('#updateInformText');
+                updateInformText.html('<span style="color: #ff5722;">上传失败</span> <a class="layui-btn layui-btn-xs uploadReload">重试</a>');
+                updateInformText.find('.uploadReload').on('click', function () {
+                    updateInformUpload.upload();
+                });
             }
         });
-        //文件上传
-        // let uploadInst = upload.render({
-        //     elem: '#fileUpload'
-        //     , url: '/file/upload' //上传接口
-        //     , accept: 'file'
-        //     , auto: false
-        //     , done: function (res) {
-        //         //如果上传成功
-        //         if (res.response === 'success') {
-        //             let src = "https://" + res.name;
-        //             //给隐藏input赋值，传入后台数据库
-        //             $("#destinationName").val(src);
-        //             //回显最新的图片
-        //             $("#sourceName").val(res.fileName)
-        //             $('#image').attr('src', src);
-        //         } else {
-        //             return layer.msg('上传失败');
-        //         }
-        //         //上传成功
-        //     }
-        //     , error: function () {
-        //         //演示失败状态，并实现重传
-        //         let updateText = $('#updateText');
-        //         updateText.html('<span style="color: #ff5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-        //         updateText.find('.demo-reload').on('click', function () {
-        //             uploadInst.upload();
-        //         });
-        //     }
-        // });
 
         //查询提交按钮
         form.on('submit(selectFormFilter)', function (data) {
@@ -547,8 +559,6 @@
                 where: { //设定异步数据接口的额外参数，任意设
                     progressId: data.field.progressId
                     , progressType: data.field.progressType
-                    , businessId: data.field.businessId
-                    //…
                 }
                 , page: {
                     curr: 1 //重新从第 1 页开始
@@ -563,16 +573,12 @@
                 where: { //设定异步数据接口的额外参数，任意设
                     progressId: ""
                     , progressType: ""
-                    , businessId: ""
-                    //…
                 }
                 , page: {
                     curr: 1 //重新从第 1 页开始
                 }
             });
-        })
-
-
+        });
     });
 </script>
 </html>

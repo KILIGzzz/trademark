@@ -14,22 +14,25 @@
         <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
         <result property="proxyId" column="proxy_id" jdbcType="INTEGER"/>
         <result property="remark" column="remark" jdbcType="VARCHAR"/>
+        <result property="userName" column="user_name" jdbcType="VARCHAR"/>
     </resultMap>
 
     <!--查询单个-->
     <select id="queryById" resultMap="CustomMap">
-        select custom_id,
-               contact,
-               phone,
-               applicant,
-               custom_address,
-               create_by,
-               create_time,
-               update_by,
-               update_time,
-               proxy_id,
-               remark
-        from trademark.tbl_custom
+        select
+            custom_id,
+            contact,
+            phone,
+            applicant,
+            custom_address,
+            tbl_custom.create_by,
+            tbl_custom.create_time,
+            tbl_custom.update_by,
+            tbl_custom.update_time,
+            proxy_id,
+            tbl_custom.remark,
+            user_name
+        from trademark.tbl_custom left join trademark.tbl_user on proxy_id = tbl_user.user_id
         where custom_id = #{customId}
     </select>
 
@@ -96,9 +99,9 @@
     <!--条件查询加分页-->
     <select id="queryAllByConditionAndLimit" resultMap="CustomMap">
         select
-        custom_id, contact, phone, applicant, custom_address, create_by, create_time, update_by, update_time, proxy_id,
-        remark
-        from trademark.tbl_custom
+        custom_id, contact, phone, applicant, custom_address, tbl_custom.create_by, tbl_custom.create_time, tbl_custom.update_by, tbl_custom.update_time, proxy_id,
+        tbl_custom.remark,user_name
+        from trademark.tbl_custom left join trademark.tbl_user on proxy_id = tbl_user.user_id
         <where>
             <if test="custom.customId != null">
                 and custom_id = #{custom.customId}

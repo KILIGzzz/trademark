@@ -29,7 +29,7 @@ public class UploadFileService {
     /**
      * 允许上传的格式
      */
-    private static final String[] FILE_TYPE = new String[]{".bmp", ".jpg", ".jpeg", ".gif", ".png", ".zip", ".tar", ".txt"};
+    private static final String[] FILE_TYPE = new String[]{".bmp", ".jpg", ".jpeg", ".gif", ".png", ".zip", ".tar", ".rar"};
     @Autowired
     private OSS ossClient;
     @Autowired

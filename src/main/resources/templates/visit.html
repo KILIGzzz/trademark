@@ -22,20 +22,20 @@
     <!--创建人-->
     <input hidden th:value="${session.username}" name="createBy">
     <div class="layui-form-item">
-        <label class="layui-form-label">客户ID：</label>
+        <label class="layui-form-label">客户ID</label>
         <div class="layui-input-inline">
             <input type="number" name="customId" id="addCustomTableSelect" readonly th:value="${customId}" lay-verify="required" placeholder="" autocomplete="off"
                    class="layui-input">
         </div>
     </div>
     <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">回访内容：</label>
+        <label class="layui-form-label">回访内容</label>
         <div class="layui-input-block">
             <textarea type="text" name="visitContent" placeholder="" class="layui-textarea"></textarea>
         </div>
     </div>
     <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">备注：</label>
+        <label class="layui-form-label">备注</label>
         <div class="layui-input-block">
             <textarea type="text" name="remark" placeholder="" class="layui-textarea"></textarea>
         </div>
@@ -54,20 +54,20 @@
     <input hidden th:value="${session.username}" name="updateBy">
     <input hidden name="visitId">
     <div class="layui-form-item">
-        <label class="layui-form-label">客户ID：</label>
+        <label class="layui-form-label">客户ID</label>
         <div class="layui-input-inline">
             <input type="number" name="customId" readonly id="updateCustomTableSelect" lay-verify="required" placeholder="" autocomplete="off"
                    class="layui-input">
         </div>
     </div>
     <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">回访内容：</label>
+        <label class="layui-form-label">回访内容</label>
         <div class="layui-input-block">
             <textarea type="text" name="visitContent" placeholder="" class="layui-textarea"></textarea>
         </div>
     </div>
     <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">备注：</label>
+        <label class="layui-form-label">备注</label>
         <div class="layui-input-block">
             <textarea type="text" name="remark" placeholder="" class="layui-textarea"></textarea>
         </div>
@@ -199,13 +199,13 @@
             , cols: [
                 [ //表头
                     {field: 'visitId', title: '回访ID', align: 'center', sort: true, width: 90}
-                    , {field: 'visitContent', title: '回访内容', align: 'center', width: 120}
+                    , {field: 'visitContent', title: '回访内容', align: 'center', width: 160}
                     , {field: 'customId', title: '客户ID', align: 'center', width: 140}
                     , {field: 'createBy', title: '创建人', align: 'center', width: 120}
-                    , {field: 'createTime', title: '创建时间', align: 'center', width: 120}
+                    , {field: 'createTime', title: '创建时间', align: 'center', width: 160}
                     , {field: 'updateBy', title: '修改人', align: 'center', width: 120}
                     , {field: 'updateTime', title: '修改时间', align: 'center', width: 160}
-                    , {field: 'remark', title: '备注', align: 'center', width: 120}
+                    , {field: 'remark', title: '备注', align: 'center', width: 160}
                     , {fixed: 'right', align: 'center', title: '操作', toolbar: '#barDemo', width: 140}
                 ]
             ]

@@ -289,7 +289,6 @@
                         , {field: 'trademarkType', title: '商标类型', width: 200}
                         , {field: 'price', title: '成交价格', width: 100}
                         , {field: 'proxyMoney', title: '代理费', width: 100}
-                        , {field: 'uploadId', title: '文件', width: 80}
                         , {field: 'createBy', title: '创建人', width: 80}
                         , {field: 'createTime', title: '创建时间', width: 160}
                         , {field: 'updateBy', title: '修改人', width: 80}
@@ -316,13 +315,13 @@
                     {field: 'progressId', title: '进度ID', width: 80, fixed: 'left'},
                     {field: 'progressType', title: '进度类型', width: 120},
                     {
-                        field: 'sourceName', title: '上传文件名', width: 120,
+                        field: 'sourceName', title: '上传文件名', width: 170,
                         templet: function (progress) {
                             return '<a href="' + progress.upload.destinationName + '">' + progress.upload.sourceName + '</a>';
                         }
                     },
                     {
-                        field: 'noticeName', title: '通知文件名', width: 120,
+                        field: 'noticeName', title: '通知文件名', width: 170,
                         templet: function (progress) {
                             return '<a href="' + progress.upload.destinationName + '">' + progress.upload.noticeName + '</a>';
                         }
@@ -332,7 +331,7 @@
                     {field: 'createTime', title: '创建时间', width: 100},
                     {field: 'updateBy', title: '更新人', width: 80},
                     {field: 'updateTime', title: '更新时间', width: 100},
-                    {field: 'remark', title: '备注', width: 100},
+                    {field: 'remark', title: '备注', width: 160},
                     {fixed: 'right', align: 'center', toolbar: '#progressBar', title: '操作', width: 100}
                 ]
             ]

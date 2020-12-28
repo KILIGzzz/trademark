@@ -99,4 +99,12 @@ public interface BusinessService {
      */
     Map<String,Object> showPerformanceRanking();
 
+    /**
+     * @create by: IvanZ
+     * @description : 获取首页数据
+     * @create time: 2020/12/28 20:21
+     * @param :
+     * @return java.util.List<java.lang.Integer>
+     */
+    List<Integer> getIndexData();
 }

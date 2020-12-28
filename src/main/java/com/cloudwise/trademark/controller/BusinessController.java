@@ -125,4 +125,30 @@ public class BusinessController extends BaseController {
         return mv;
     }
 
+    /**
+     * @create by: IvanZ
+     * @description : 业务量走势图
+     * @create time: 2020/12/25 20:36
+     * @param : 
+     * @return com.cloudwise.trademark.entity.ReturnBean
+     */
+    @GetMapping("showBusinessChart")
+    public ReturnBean showBusinessChart(){
+        Map<String, Object> map = BusinessService.showBusinessChart();
+        return returnSuccess(map);
+    }
+
+    /**
+     * @create by: IvanZ
+     * @description : 业绩排行榜
+     * @create time: 2020/12/25 20:36
+     * @param :
+     * @return com.cloudwise.trademark.entity.ReturnBean
+     */
+    @GetMapping("showPerformanceRanking")
+    public ReturnBean showPerformanceRanking(){
+        Map<String, Object> map = BusinessService.showPerformanceRanking();
+        return returnSuccess(map);
+    }
+
 }

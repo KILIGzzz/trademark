@@ -96,6 +96,24 @@ public interface BusinessDao {
      * @param businessId
      * @return
      */
-
     String findTypeById(Integer businessId);
+
+
+    /**
+     * @create by: IvanZ
+     * @description : 业务量走势图
+     * @create time: 2020/12/25 20:36
+     * @param :
+     * @return java.util.Map<java.lang.String,java.lang.Object>
+     */
+    List<Map<String,Object>> showBusinessChart();
+
+    /**
+     * @create by: IvanZ
+     * @description : 业绩排行榜
+     * @create time: 2020/12/25 21:31
+     * @param :
+     * @return java.util.List<java.util.Map<java.lang.String,java.lang.Object>>
+     */
+    List<Map<String,Object>> showPerformanceRanking();
 }

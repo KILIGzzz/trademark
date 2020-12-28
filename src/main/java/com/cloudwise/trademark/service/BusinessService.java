@@ -81,4 +81,22 @@ public interface BusinessService {
      */
     List<Map<String, Object>> findAllDictionary();
 
+    /**
+     * @create by: IvanZ
+     * @description : 业务量走势图
+     * @create time: 2020/12/25 20:41
+     * @param : 
+     * @return java.util.Map<java.lang.String,java.lang.Object>
+     */
+    Map<String,Object> showBusinessChart();
+    
+    /**
+     * @create by: IvanZ
+     * @description : 业绩排行榜
+     * @create time: 2020/12/25 21:32
+     * @param : 
+     * @return java.util.Map<java.lang.String,java.lang.Object>
+     */
+    Map<String,Object> showPerformanceRanking();
+
 }

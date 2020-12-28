@@ -6,6 +6,7 @@ import com.cloudwise.trademark.service.BusinessService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -117,5 +118,52 @@ public class BusinessServiceImpl implements BusinessService {
     @Override
     public List<Map<String, Object>> findAllDictionary() {
         return this.businessDao.findAllDictionary();
+    }
+
+    /**
+     * @create by: IvanZ
+     * @description : 业务量走势图
+     * @create time: 2020/12/25 21:00
+     * @param : 
+     * @return java.util.Map<java.lang.String,java.lang.Object>
+     */
+    @Override
+    public Map<String, Object> showBusinessChart() {
+        List<Map<String, Object>> maps = businessDao.showBusinessChart();
+        //定义返回的map
+        Map<String,Object> map = new HashMap<>();
+        //定义x轴
+        String[] monthX = new String[maps.size()];
+        //定义y轴
+        Integer[] businessCountY = new Integer[maps.size()];
+        for (int i = 0; i < maps.size(); i++) {
+            monthX[i] = maps.get(i).get("month").toString();
+            businessCountY[i] = Integer.parseInt(maps.get(i).get("businessCount").toString());
+        }
+        map.put("monthX",monthX);
+        map.put("businessCountY",businessCountY);
+        return map;
+    }
+
+    @Override
+    public Map<String, Object> showPerformanceRanking() {
+        List<Map<String, Object>> maps = businessDao.showPerformanceRanking();
+        //定义返回的map
+        Map<String,Object> map = new HashMap<>();
+        //定义x轴
+        String[] moneyX = new String[maps.size()];
+        //定义y轴
+        String[] loginNameY = new String[maps.size()];
+        for (int i = 0; i < maps.size(); i++) {
+            moneyX[i] = maps.get(i).get("login_name").toString();
+            Object temp = maps.get(i).get("performance");
+            if (temp == null){
+                temp = 0;
+            }
+            loginNameY[i] =temp.toString();
+        }
+        map.put("moneyX",moneyX);
+        map.put("loginNameY",loginNameY);
+        return map;
     }
 }

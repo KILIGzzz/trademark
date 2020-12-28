@@ -140,6 +140,14 @@
         where business_id = #{businessId}
         order by progress_id desc limit 1
     </select>
+    <!--业务量走势图-->
+    <select id="showBusinessChart" resultType="java.util.Map">
+        select MID(applicant_time,6,2) month,count(*) businessCount from tbl_business group by MID(applicant_time,6,2);
+    </select>
+    <!--业绩排行榜-->
+    <select id="showPerformanceRanking" resultType="java.util.Map">
+        select tuc.login_name,sum(tb.proxy_money) performance from (select tu.login_name,tc.custom_id from tbl_user tu left join tbl_custom tc on tu.user_id = tc.proxy_id where tu.del_flag = 0) tuc left join tbl_business tb on tuc.custom_id = tb.custom_id group by login_name;
+    </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="businessId" useGeneratedKeys="true">

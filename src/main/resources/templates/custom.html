@@ -70,7 +70,7 @@
             <label class="layui-form-label">代理人</label>
             <div class="layui-input-inline">
                 <input hidden name="proxyId" id="updateUserTableSelectHidden">
-                <input type="text"  readonly id="updateUserTableSelect" lay-verify="required" placeholder=""
+                <input type="text"  readonly id="updateUserTableSelect" name="userName" lay-verify="required" placeholder=""
                        autocomplete="off"
                        class="layui-input">
             </div>
@@ -274,6 +274,7 @@
                     , "proxyId": data.proxyId
                     , "customAddress": data.customAddress
                     , "remark": data.remark
+                    , "userName":data.userName
                 });
                 layer.open({
                     title: '修改',

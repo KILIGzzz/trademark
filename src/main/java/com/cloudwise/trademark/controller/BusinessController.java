@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 /**
@@ -149,6 +151,19 @@ public class BusinessController extends BaseController {
     public ReturnBean showPerformanceRanking(){
         Map<String, Object> map = BusinessService.showPerformanceRanking();
         return returnSuccess(map);
+    }
+
+    /**
+     * @create by: IvanZ
+     * @description : 得到首页数据
+     * @create time: 2020/12/28 20:06
+     * @param :
+     * @return com.cloudwise.trademark.entity.ReturnBean
+     */
+    @GetMapping("getIndexData")
+    public ReturnBean getIndexData(){
+        List<Integer> indexData = BusinessService.getIndexData();
+        return returnSuccess(indexData);
     }
 
 }

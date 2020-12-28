@@ -6,6 +6,9 @@ import com.cloudwise.trademark.service.BusinessService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -165,5 +168,24 @@ public class BusinessServiceImpl implements BusinessService {
         map.put("moneyX",moneyX);
         map.put("loginNameY",loginNameY);
         return map;
+    }
+
+    @Override
+    public List<Integer> getIndexData() {
+        //获取当前时间字符串
+        LocalDateTime now = LocalDateTime.now();
+        String nowStr = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        //分割获取当天
+        String[] s = nowStr.split(" ");
+        String today = s[0];
+        int businessCount = businessDao.getBusinessCount(today);
+        int visitCount = businessDao.getVisitCount(today);
+        int money = businessDao.getMoney(today);
+        //创建一个list
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(businessCount);
+        list.add(visitCount);
+        list.add(money);
+        return list;
     }
 }

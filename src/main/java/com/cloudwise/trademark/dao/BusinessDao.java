@@ -116,4 +116,31 @@ public interface BusinessDao {
      * @return java.util.List<java.util.Map<java.lang.String,java.lang.Object>>
      */
     List<Map<String,Object>> showPerformanceRanking();
+
+    /**
+     * @create by: IvanZ
+     * @description : 获取当天业务数量
+     * @create time: 2020/12/28 20:23
+     * @param : today
+     * @return int
+     */
+    int getBusinessCount(String today);
+
+    /**
+     * @create by: IvanZ
+     * @description : 获取当天回访数量
+     * @create time: 2020/12/28 20:23
+     * @param : today
+     * @return int
+     */
+    int getVisitCount(String today);
+
+    /**
+     * @create by: IvanZ
+     * @description : 获取当天收入
+     * @create time: 2020/12/28 20:23
+     * @param : today
+     * @return int
+     */
+    int getMoney(String today);
 }

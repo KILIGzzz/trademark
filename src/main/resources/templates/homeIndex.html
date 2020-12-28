@@ -9,14 +9,51 @@
     <script src="/echarts/chalk.js"></script>
 </head>
 <body style="background-color: rgb(57,61,73)">
-<div style="margin: 5%">
-    <div id="businessCount" style="width: 40%;height:700px; float: left"></div>
-    <div id="performanceRanking" style="width: 60%;height:700px; float: right"></div>
+<div style="margin-top: 1%">
+    <span id="businessCountToday" style="font-size: 18px;font-weight: bold;color: white;margin-left: 15%"></span>
+    <span id="visitCount" style="font-size: 18px;font-weight: bold;color: white;margin-left: 20%"></span>
+    <span id="money" style="font-size: 18px;font-weight: bold;color: white;margin-left: 20%"></span>
+</div>
+<div class="layui-carousel" id="shuffling" style="background-color: rgb(57,61,73);position:absolute;top:50%;left:50%;transform: translate(-50%,-50%);">
+    <div carousel-item="">
+        <div>
+            <div id="businessCount" style="height:700px"></div>
+        </div>
+        <div>
+            <div id="performanceRanking" style="height:700px;width: 1500px"></div>
+        </div>
+    </div>
 </div>
 </body>
 <script>
-    layui.use(['jquery'], function () {
+    layui.use(['jquery','carousel'], function () {
         var $=layui.jquery;
+        var carousel = layui.carousel;
+
+        $.ajax({
+            url: "/business/getIndexData",
+            type: "GET",
+            dataType: "JSON",
+            success: function (data){
+                //当天办理业务数量
+                $("#businessCountToday").html("当天办理业务数量："+data.data[0]);
+                //当天回访数量
+                $("#visitCount").html("当天回访数量："+data.data[1]);
+                //当天收入
+                $("#money").html("当天收入："+data.data[2]);
+            }
+        })
+
+
+
+        //常规轮播
+        carousel.render({
+            elem: '#shuffling'
+            ,arrow: 'always'
+            ,width: '1500px'
+            ,height: '700px'
+            ,interval: 5000
+        });
         //业务量走势图
         $.ajax({
             url: "/business/showBusinessChart",
@@ -164,38 +201,5 @@
         });
     });
 
-    // 时间显示
-    function run(){
-        var time = new Date();//获取系统当前时间
-        var year = time.getFullYear();
-        var month = time.getMonth()+1;
-        var date= time.getDate();//系统时间月份中的日
-        var day = time.getDay();//系统时间中的星期值
-        var weeks = ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
-        var week = weeks[day];//显示为星期几
-        var hour = time.getHours();
-        var minutes = time.getMinutes();
-        var seconds = time.getSeconds();
-        console.log(seconds);
-        if(month<10){
-            month = "0"+month;
-        }
-        if(date<10){
-            date = "0"+date;
-        }
-        if(hour<10){
-            hour = "0"+hour;
-        }
-        if(minutes<10){
-            minutes = "0"+minutes;
-        }
-        if(seconds<10){
-            seconds = "0"+seconds;
-        }
-        //var newDate = year+"年"+month+"月"+date+"日"+week+hour+":"+minutes+":"+seconds;
-        document.getElementById("show").innerHTML = year+"年"+month+"月"+date+"日"+week+hour+":"+minutes+":"+seconds;
-        setTimeout('run()',1000);
-    }
-    run();
 </script>
 </html>

@@ -1,6 +1,7 @@
 package com.cloudwise.trademark.service;
 
 import com.cloudwise.trademark.entity.Custom;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -54,23 +55,34 @@ public interface CustomService {
     boolean deleteById(Integer customId);
 
     /**
+     * @return getCount 查询条数
      * @create by: ydq
      * @description: 方法作用：查询数据总条数
      * @create time: 2020/12/22 15:18
-     * @param:  custom条件查询传入的属性
-     * @return getCount 查询条数
+     * @param: custom条件查询传入的属性
      */
-    long getCount (Custom custom);
+    long getCount(Custom custom);
 
     /**
+     * @return List<Custom>条件查询结果集
      * @create by: ydq
      * @description: 方法作用：查询加分页
      * @create time: 2020/12/22 15:26
      * @param: custom条件查询传入的属性
      * @param: offset起始条数
      * @param: limit每页显示条数
-     * @return List<Custom>条件查询结果集
      */
-    List<Custom> queryAllByConditionAndLimit (Custom custom,int offset, int limit);
+    List<Custom> queryAllByConditionAndLimit(Custom custom, int offset, int limit);
+
+
+    /**
+     * 批量新增数据（MyBatis原生foreach方法）
+     *
+     * @param customs List<Custom> 实例对象列表
+     * @return 影响行数
+     * @createBy Enzo
+     * @createTime 2020/12/28 21:14
+     */
+    int insertBatch(List<Custom> customs);
 
 }

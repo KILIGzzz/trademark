@@ -1,12 +1,17 @@
 package com.cloudwise.trademark.controller;
 
+import com.alibaba.excel.EasyExcel;
 import com.cloudwise.trademark.entity.Custom;
 import com.cloudwise.trademark.entity.PageBean;
 import com.cloudwise.trademark.entity.ReturnBean;
+import com.cloudwise.trademark.listener.DataListener;
 import com.cloudwise.trademark.service.CustomService;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -38,34 +43,34 @@ public class CustomController extends BaseController {
         list.add(custom);
         return returnSuccess(list);
     }
-    
+
     /**
+     * @return ReturnBean结果集
      * @create by: ydq
      * @description: 方法作用：查询所有并分页
      * @create time: 2020/12/22 15:07
      * @param: pageBean分页参数
      * @param: custom条件查询的属性
-     * @return ReturnBean结果集
      */
     @GetMapping("selectAll")
-    public ReturnBean selectAll (PageBean pageBean, Custom custom){
+    public ReturnBean selectAll(PageBean pageBean, Custom custom) {
         //计算分页参数
         int offset = getOffset(pageBean);
-        List<Custom> customList = customService.queryAllByConditionAndLimit(custom,offset, pageBean.getLimit());
+        List<Custom> customList = customService.queryAllByConditionAndLimit(custom, offset, pageBean.getLimit());
         //返回json结果
-        ReturnBean returnBean = returnSuccess(customList,customService.getCount(custom));
+        ReturnBean returnBean = returnSuccess(customList, customService.getCount(custom));
         return returnBean;
     }
 
     /**
+     * @return
      * @create by: ydq
      * @description: 方法作用：添加客户
      * @create time: 2020/12/23 10:58
      * @param:
-     * @return
      */
     @PostMapping("add")
-    public  ReturnBean add(Custom custom) {
+    public ReturnBean add(Custom custom) {
         try {
             custom.setCreateTime(new Date());
             Custom insert = customService.insert(custom);
@@ -76,11 +81,11 @@ public class CustomController extends BaseController {
     }
 
     /**
+     * @return
      * @create by: ydq
      * @description: 方法作用：修改
      * @create time: 2020/12/23 12:13
      * @param:
-     * @return
      */
     @PutMapping("update")
     public ReturnBean update(Custom custom) {
@@ -93,4 +98,14 @@ public class CustomController extends BaseController {
         }
     }
 
+    @PostMapping("excelInsert")
+    public ReturnBean excelInsert(MultipartFile file) {
+        try {
+            InputStream inputStream = file.getInputStream();
+            EasyExcel.read(inputStream, Custom.class, new DataListener(customService)).sheet().doRead();
+            return returnSuccess(null);
+        } catch (IOException e) {
+            return returnFail(null);
+        }
+    }
 }

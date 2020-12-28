@@ -78,11 +78,11 @@ public class CustomServiceImpl implements CustomService {
     }
 
     /**
+     * @return
      * @create by: ydq
      * @description: 方法作用：查询数据总条数
      * @create time: 2020/12/22 15:20
      * @param: custom
-     * @return
      */
     @Override
     public long getCount(Custom custom) {
@@ -92,18 +92,31 @@ public class CustomServiceImpl implements CustomService {
     }
 
     /**
+     * @return List<Custom>条件查询结果集
      * @create by: ydq
      * @description: 方法作用：查询加分页
      * @create time: 2020/12/22 15:26
      * @param: custom条件查询传入的属性
      * @param: offset起始条数
      * @param: limit每页显示条数
-     * @return List<Custom>条件查询结果集
      */
     @Override
     public List<Custom> queryAllByConditionAndLimit(Custom custom, int offset, int limit) {
         List<Custom> customs = customDao.queryAllByConditionAndLimit(custom, offset, limit);
         return customs;
+    }
+
+    /**
+     * 批量新增数据（MyBatis原生foreach方法）
+     *
+     * @param customs List<Custom> 实例对象列表
+     * @return 影响行数
+     * @createBy Enzo
+     * @createTime 2020/12/28 21:14
+     */
+    @Override
+    public int insertBatch(List<Custom> customs) {
+        return customDao.insertBatch(customs);
     }
 
 }

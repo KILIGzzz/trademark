@@ -10,6 +10,18 @@
 <script type="text/html" id="toolbarDemo" lay-event="toolbar">
     <div class="layui-btn-container">
         <button class="layui-btn layui-btn-xs" lay-event="addCustom">添加客户</button>
+        <button class="layui-btn layui-btn-primary layui-btn-xs">
+            <a href="https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609169887680[I@72eba27.xlsx">
+                下载Excel模板
+            </a>
+        </button>
+        <button class="layui-btn layui-btn-normal layui-btn-xs" id="excelInsert">导入Excel</button>
+    </div>
+    <div class="layui-btn-container">
+
+    </div>
+    <div class="layui-btn-container">
+
     </div>
 </script>
 <!--添加表单-->
@@ -20,7 +32,7 @@
         <label class="layui-form-label">代理人</label>
         <div class="layui-input-inline">
             <input hidden name="proxyId" id="addUserTableSelectHidden">
-            <input type="text"  readonly id="addUserTableSelect" lay-verify="required" placeholder=""
+            <input type="text" readonly id="addUserTableSelect" lay-verify="required" placeholder=""
                    autocomplete="off"
                    class="layui-input">
         </div>
@@ -65,15 +77,15 @@
       style="display: none;margin-right: 40px;margin-top: 20px">
     <!--修改人-->
     <input hidden th:value="${session.username}" name="updateBy">
-    <input hidden  name="customId">
-        <div class="layui-form-item">
-            <label class="layui-form-label">代理人</label>
-            <div class="layui-input-inline">
-                <input hidden name="proxyId" id="updateUserTableSelectHidden">
-                <input type="text"  readonly id="updateUserTableSelect" name="userName" lay-verify="required" placeholder=""
-                       autocomplete="off"
-                       class="layui-input">
-            </div>
+    <input hidden name="customId">
+    <div class="layui-form-item">
+        <label class="layui-form-label">代理人</label>
+        <div class="layui-input-inline">
+            <input hidden name="proxyId" id="updateUserTableSelectHidden">
+            <input type="text" readonly id="updateUserTableSelect" name="userName" lay-verify="required" placeholder=""
+                   autocomplete="off"
+                   class="layui-input">
+        </div>
         <label class="layui-form-label">申请人</label>
         <div class="layui-input-inline">
             <input type="text" name="applicant" lay-verify="required" placeholder="" autocomplete="off"
@@ -156,13 +168,13 @@
         //设定组件别名
         tableSelect: 'tableSelect',
     });
-    layui.use(['table', 'layer', 'jquery', 'laydate', 'form', 'tableSelect'], function () {
-        var table = layui.table;
-        var $ = layui.jquery;
-        var layer = layui.layer;
-        var form = layui.form;
-        var tableSelect = layui.tableSelect;
-
+    layui.use(['table', 'layer', 'jquery', 'laydate', 'form', 'tableSelect', 'upload'], function () {
+        let table = layui.table;
+        let $ = layui.jquery;
+        let layer = layui.layer;
+        let form = layui.form;
+        let tableSelect = layui.tableSelect;
+        let upload = layui.upload;
 
         //添加代理人选择表格
         tableSelect.render({
@@ -236,7 +248,7 @@
                     , {field: 'createTime', title: '创建时间', align: 'center', width: 160}
                     , {field: 'updateBy', title: '修改人', align: 'center', width: 120}
                     , {field: 'updateTime', title: '修改时间', align: 'center', width: 160}
-                    , {field: 'proxyId', title: '代理人ID', align: 'center', width: 120,hide:true}
+                    , {field: 'proxyId', title: '代理人ID', align: 'center', width: 120, hide: true}
                     , {field: 'userName', title: '代理人', align: 'center', width: 120}
                     , {field: 'remark', title: '备注', align: 'center', width: 120}
                     , {fixed: 'right', align: 'center', title: '操作', toolbar: '#barDemo', width: 220}
@@ -257,7 +269,8 @@
                         content: $('#addCustomForm')//这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
                     });
                     break;
-            };
+            }
+            ;
         });
 
         //监听行工具栏事件
@@ -274,7 +287,7 @@
                     , "proxyId": data.proxyId
                     , "customAddress": data.customAddress
                     , "remark": data.remark
-                    , "userName":data.userName
+                    , "userName": data.userName
                 });
                 layer.open({
                     title: '修改',
@@ -380,7 +393,19 @@
             });
         })
 
-
+        //选择文件
+        upload.render({
+            elem: '#excelInsert'
+            , url: '/custom/excelInsert' //上传接口
+            , accept: 'file' //普通文件
+            , done: function (res) {
+                if (res.code() == 0) {
+                    layer.msg('导入成功');
+                } else {
+                    layer.msg('导入失败');
+                }
+            }
+        });
     });
 </script>
 </html>

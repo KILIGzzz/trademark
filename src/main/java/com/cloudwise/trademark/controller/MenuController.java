@@ -88,7 +88,10 @@ public class MenuController extends BaseController {
 
     @PostMapping("insertMenu")
     public ReturnBean insertMenu(Menu menu) {
-        final Menu insert = menuService.insert(menu);
+        if (menu.getParentId() == null) {
+            menu.setParentId(0);
+        }
+        Menu insert = menuService.insert(menu);
         if (insert != null) {
             return returnSuccess(null);
         }

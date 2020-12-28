@@ -30,9 +30,27 @@
 
 
 <body>
-<table id="customTable" lay-filter="customFilter"></table>
-<table id="businessTable" lay-filter="businessFilter"></table>
-<table id="showProgress"></table>
+<div class="layui-col-md12">
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <table id="customTable" lay-filter="customFilter"></table>
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-body">
+                        <table id="businessTable" lay-filter="businessFilter"></table>
+                        <div class="layui-col-md12">
+                            <div class="layui-card">
+                                <div class="layui-card-body">
+                                    <table id="showProgress"></table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 
 <!--顶部工具栏-->

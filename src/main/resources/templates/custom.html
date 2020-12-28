@@ -385,7 +385,6 @@
                     customId: ""
                     , contact: ""
                     , phone: ""
-                    //…
                 }
                 , page: {
                     curr: 1 //重新从第 1 页开始
@@ -393,14 +392,19 @@
             });
         })
 
-        //选择文件
+        //选择excel文件
         upload.render({
             elem: '#excelInsert'
-            , url: '/custom/excelInsert' //上传接口
             , accept: 'file' //普通文件
+            , url: '/custom/excelInsert' //上传接口
             , done: function (res) {
-                if (res.code() == 0) {
+                if (res.code === 0) {
                     layer.msg('导入成功');
+                    myTable.reload({
+                        page: {
+                            curr: 1
+                        }
+                    });
                 } else {
                     layer.msg('导入失败');
                 }

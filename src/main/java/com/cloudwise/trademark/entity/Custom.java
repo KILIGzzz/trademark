@@ -53,8 +53,12 @@ public class Custom implements Serializable {
      */
     private Integer proxyId;
 
-    private String remark;
 
+    private String remark;
+    /**
+     * 代理人姓名
+     */
+    private String userName;
 
 
 }

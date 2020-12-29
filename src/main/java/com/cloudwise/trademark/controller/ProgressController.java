@@ -90,7 +90,7 @@ public class ProgressController extends BaseController {
     public ReturnBean add(Progress progress, Upload upload) {
         try {
             uploadService.insert(upload);
-            progress.setUploadId(upload.getUploadId());
+
             progressService.insert(progress);
             return returnSuccess(progress);
         } catch (Exception e) {

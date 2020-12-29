@@ -23,7 +23,7 @@ public class Progress implements Serializable {
     /**
      * 上传文件，关联文件上传表
      */
-    private Integer uploadId;
+    private Integer upload;
     /**
      * 通知文件，关联文件上传表
      */
@@ -43,6 +43,6 @@ public class Progress implements Serializable {
 
     private String remark;
 
-    private Upload upload;
+    private Upload uploadClass;
 
 }

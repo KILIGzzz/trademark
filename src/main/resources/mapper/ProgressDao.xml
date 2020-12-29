@@ -5,7 +5,7 @@
     <resultMap type="com.cloudwise.trademark.entity.Progress" id="ProgressMap">
         <result property="progressId" column="progress_id" jdbcType="INTEGER"/>
         <result property="progressType" column="progress_type" jdbcType="VARCHAR"/>
-        <result property="uploadId" column="upload_id" jdbcType="INTEGER"/>
+        <result property="upload" column="upload" jdbcType="INTEGER"/>
         <result property="notice" column="notice" jdbcType="INTEGER"/>
         <result property="businessId" column="business_id" jdbcType="INTEGER"/>
         <result property="createBy" column="create_by" jdbcType="VARCHAR"/>
@@ -13,15 +13,16 @@
         <result property="updateBy" column="update_by" jdbcType="VARCHAR"/>
         <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
         <result property="remark" column="remark" jdbcType="VARCHAR"/>
-        <result property="upload.sourceName" column="source_name" jdbcType="VARCHAR"/>
-        <result property="upload.destinationName" column="destination_name" jdbcType="VARCHAR"/>
+        <result property="uploadClass.uploadId" column="upload_id" jdbcType="INTEGER"/>
+        <result property="uploadClass.sourceName" column="source_name" jdbcType="VARCHAR"/>
+        <result property="uploadClass.destinationName" column="destination_name" jdbcType="VARCHAR"/>
     </resultMap>
 
     <!--查询单个-->
     <select id="queryById" resultMap="ProgressMap">
         select progress_id,
                progress_type,
-               upload_id,
+               upload,
                notice,
                business_id,
                create_by,
@@ -37,7 +38,7 @@
     <select id="queryAllByLimit" resultMap="ProgressMap">
         select progress_id,
                progress_type,
-               upload_id,
+               upload,
                notice,
                business_id,
                create_by,
@@ -52,7 +53,7 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="ProgressMap">
         select
-        progress_id, progress_type, upload_id,notice, business_id, create_by, create_time, update_by, update_time,
+        progress_id, progress_type, upload,notice, business_id, create_by, create_time, update_by, update_time,
         remark
         from trademark.tbl_progress
         <where>
@@ -62,8 +63,8 @@
             <if test="progressType != null and progressType != ''">
                 and progress_type = #{progressType}
             </if>
-            <if test="uploadId != null">
-                and upload_id = #{uploadId}
+            <if test="upload != null">
+                and upload = #{upload}
             </if>
             <if test="notice != null">
                 and notice = #{notice}
@@ -92,7 +93,7 @@
     <select id="queryAllByConditionAndLimit" resultMap="ProgressMap">
         select progress_id,
         progress_type,
-        tp.upload_id,
+        tp.upload,
         notice,
         business_id,
         create_by,
@@ -102,7 +103,7 @@
         remark,
         source_name,
         destination_name
-        from tbl_progress tp inner join tbl_upload tu on tp.upload_id = tu.upload_id
+        from tbl_progress tp inner join tbl_upload tu on (tp.upload = tu.upload_id or tp.notice = tu.upload_id)
         <where>
             <if test="progress.progressId != null and progress.progressId != ''">
                 and progress_id = #{progress.progressId}
@@ -119,7 +120,7 @@
 
     <select id="getRowCount" resultType="java.lang.Long" parameterType="com.cloudwise.trademark.entity.Progress">
         select count(*) count
-        from tbl_progress tp inner join tbl_upload tu on tp.upload_id = tu.upload_id
+        from tbl_progress tp inner join tbl_upload tu on (tp.upload = tu.upload_id or tp.notice = tu.upload_id)
         <where>
             <if test="progressId != null and progressId != ''">
                 and progress_id = #{progressId}
@@ -140,32 +141,32 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="progressId" useGeneratedKeys="true">
-        insert into trademark.tbl_progress(progress_type, upload_id, notice, business_id, create_by, create_time,
+        insert into trademark.tbl_progress(progress_type, upload, notice, business_id, create_by, create_time,
                                            update_by, update_time, remark)
-        values (#{progressType}, #{uploadId}, #{notice}, #{businessId}, #{createBy}, now(), #{updateBy},
+        values (#{progressType}, #{upload}, #{notice}, #{businessId}, #{createBy}, now(), #{updateBy},
                 #{updateTime}, #{remark})
     </insert>
 
     <insert id="insertBatch" keyProperty="progressId" useGeneratedKeys="true">
-        insert into trademark.tbl_progress(progress_type, upload_id,notice, business_id, create_by, create_time,
+        insert into trademark.tbl_progress(progress_type, upload,notice, business_id, create_by, create_time,
         update_by, update_time, remark)
         values
         <foreach collection="entities" item="entity" separator=",">
-            (#{entity.progressType}, #{entity.uploadId}, #{entity.notice}, #{entity.businessId}, #{entity.createBy},
+            (#{entity.progressType}, #{entity.upload}, #{entity.notice}, #{entity.businessId}, #{entity.createBy},
             #{entity.createTime}, #{entity.updateBy}, #{entity.updateTime}, #{entity.remark})
         </foreach>
     </insert>
 
     <insert id="insertOrUpdateBatch" keyProperty="progressId" useGeneratedKeys="true">
-        insert into trademark.tbl_progress(progress_type, upload_id,notice, business_id, create_by, create_time,
+        insert into trademark.tbl_progress(progress_type, upload,notice, business_id, create_by, create_time,
         update_by, update_time, remark)
         values
         <foreach collection="entities" item="entity" separator=",">
-            (#{entity.progressType}, #{entity.uploadId},#{entity.notice}, #{entity.businessId}, #{entity.createBy},
+            (#{entity.progressType}, #{entity.upload},#{entity.notice}, #{entity.businessId}, #{entity.createBy},
             #{entity.createTime}, #{entity.updateBy}, #{entity.updateTime}, #{entity.remark})
         </foreach>
         on duplicate key update
-        progress_type = values(progress_type) , upload_id = values(upload_id) ,notice = values(notice) , business_id =
+        progress_type = values(progress_type) , upload = values(upload) ,notice = values(notice) , business_id =
         values(business_id) , create_by = values(create_by) , create_time = values(create_time) , update_by =
         values(update_by) , update_time = values(update_time) , remark = values(remark)
     </insert>
@@ -177,8 +178,8 @@
             <if test="progressType != null and progressType != ''">
                 progress_type = #{progressType},
             </if>
-            <if test="uploadId != null">
-                upload_id = #{uploadId},
+            <if test="upload != null">
+                upload = #{upload},
             </if>
             <if test="notice != null">
                 notice = #{notice},

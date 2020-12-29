@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>考勤分析</title>
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+    <script src="/layui/layui.js"></script>
+    <script src="/echarts/echarts.js"></script>
+    <script src="/echarts/chalk.js"></script>
+</head>
+<body>
+考勤分析
+</body>
+<script>
+    layui.use(['jquery'], function () {
+        var $=layui.jquery;
+        $.ajax({
+            url: "/business/attendance",
+            type: "GET",
+            dataType: "JSON",
+            success: function (data) {
+
+            }
+        })
+    })
+</script>
+</html>

@@ -96,4 +96,24 @@ public class GotoController {
     public String toIndex() {
         return "homeIndex";
     }
+
+    @GetMapping("toBusinessEchart")
+    public String toBusinessEchart() {
+        return "businessEchart";
+    }
+
+    @GetMapping("toProgressEchart")
+    public String toProgressEchart() {
+        return "progressEchart";
+    }
+
+    @GetMapping("toVisitEchart")
+    public String toVisitEchart() {
+        return "visitEchart";
+    }
+
+    @GetMapping("toAttendance")
+    public String toAttendance() {
+        return "attendance";
+    }
 }

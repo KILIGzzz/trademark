@@ -166,4 +166,54 @@ public class BusinessController extends BaseController {
         return returnSuccess(indexData);
     }
 
+    /**
+     * @create by: IvanZ
+     * @description : 业务分析
+     * @create time: 2020/12/29 11:57
+     * @param :
+     * @return com.cloudwise.trademark.entity.ReturnBean
+     */
+    @GetMapping("businessEchart")
+    public ReturnBean businessEchart(){
+        return null;
+    }
+
+    /**
+     * @create by: IvanZ
+     * @description : 进度分析
+     * @create time: 2020/12/29 11:57
+     * @param :
+     * @return com.cloudwise.trademark.entity.ReturnBean
+     */
+    @GetMapping("progressEchart")
+    public ReturnBean progressEchart(){
+        return null;
+    }
+
+    /**
+     * @create by: IvanZ
+     * @description : 回访分析
+     * @create time: 2020/12/29 11:57
+     * @param :
+     * @return com.cloudwise.trademark.entity.ReturnBean
+     */
+    @GetMapping("visitEchart")
+    public ReturnBean visitEchart(){
+        return null;
+    }
+
+    /**
+     * @create by: IvanZ
+     * @description : 回访分析
+     * @create time: 2020/12/29 11:57
+     * @param :
+     * @return com.cloudwise.trademark.entity.ReturnBean
+     */
+    @GetMapping("attendance")
+    public ReturnBean attendance(){
+        return null;
+    }
+
+
+
 }

@@ -67,7 +67,8 @@
             </if>
         </where>
     </select>
-    <select id="queryAllByConditionAndLimit" resultMap="DictionaryTypeMap" parameterType="com.cloudwise.trademark.entity.DictionaryType">
+    <select id="queryAllByConditionAndLimit" resultMap="DictionaryTypeMap"
+            parameterType="com.cloudwise.trademark.entity.DictionaryType">
         select
         type_id, type_name, create_by, create_time, update_by, update_time, remark
         from trademark.tbl_dictionary_type
@@ -99,7 +100,12 @@
             </if>
         </where>
     </select>
-
+    <!-- 查询所有字典类型和字典id -->
+    <select id="queryAllType" resultMap="DictionaryTypeMap">
+        select type_id,
+               type_name
+        from trademark.tbl_dictionary_type
+    </select>
     <!--新增所有列-->
     <insert id="insert" keyProperty="typeId" useGeneratedKeys="true">
         insert into trademark.tbl_dictionary_type(type_name, create_by, create_time, update_by, update_time, remark)

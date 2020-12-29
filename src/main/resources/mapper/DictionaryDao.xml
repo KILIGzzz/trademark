@@ -75,8 +75,8 @@
     </select>
     <select id="queryAllByConditionAndLimit" resultMap="DictionaryMap" parameterType="com.cloudwise.trademark.entity.Dictionary">
         select
-        dictionary_id, type_id, dictionary_name, create_by, create_time, update_by, update_time, remark
-        from trademark.tbl_dictionary
+        dictionary_id, td.type_id, dictionary_name, td.create_by, td.create_time, td.update_by, td.update_time, td.remark,tdt.type_name
+        from tbl_dictionary td inner join tbl_dictionary_type tdt on td.type_id = tdt.type_id
         <where>
             <if test="dictionary.dictionaryId != null and dictionary.dictionaryId != ''">
                 and dictionary_id = #{dictionary.dictionaryId}
@@ -92,7 +92,7 @@
     </select>
     <select id="getRowCount" resultType="java.lang.Long">
         select count(*) count
-        from trademark.tbl_dictionary
+        from tbl_dictionary td inner join tbl_dictionary_type tdt on td.type_id = tdt.type_id
         <where>
             <if test="dictionaryId != null and dictionaryId != ''">
                 and dictionary_id = #{dictionaryId}

@@ -97,4 +97,13 @@ public interface DictionaryTypeDao {
      * @createTime 2020/12/17 10:45
      */
     long getRowCount(DictionaryType dictionaryType);
+
+    /**
+     * 获取所有字典类型
+     *
+     * @return  List<DictionaryType>
+     * @createBy Enzo
+     * @createTime 2020/12/29 11:50
+     */
+    List<DictionaryType> queryAllType();
 }

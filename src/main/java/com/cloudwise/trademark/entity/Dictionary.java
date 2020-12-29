@@ -45,5 +45,4 @@ public class Dictionary implements Serializable {
      */
     private String remark;
 
-
 }

@@ -114,7 +114,7 @@
 
     <select id="getRowCount" resultType="java.lang.Long" parameterType="com.cloudwise.trademark.entity.Progress">
         select count(*) count
-        from trademark.tbl_progress
+        from tbl_progress tp inner join tbl_upload tu on tp.upload_id = tu.upload_id
         <where>
             <if test="progressId != null and progressId != ''">
                 and progress_id = #{progressId}

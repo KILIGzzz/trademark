@@ -14,10 +14,11 @@
     <span id="visitCount" style="font-size: 18px;font-weight: bold;color: white;margin-left: 20%"></span>
     <span id="money" style="font-size: 18px;font-weight: bold;color: white;margin-left: 20%"></span>
 </div>
-<div class="layui-carousel" id="shuffling" style="background-color: rgb(57,61,73);position:absolute;top:50%;left:50%;transform: translate(-50%,-50%);">
+<div class="layui-carousel" id="shuffling"
+     style="background-color: rgb(57,61,73);position:absolute;top:50%;left:50%;transform: translate(-50%,-50%);">
     <div carousel-item="">
         <div>
-            <div id="businessCount" style="height:540px"></div>
+            <div id="businessCount" style="height:540px;width: 1000px"></div>
         </div>
         <div>
             <div id="performanceRanking" style="height:540px;width: 1000px"></div>
@@ -26,33 +27,32 @@
 </div>
 </body>
 <script>
-    layui.use(['jquery','carousel'], function () {
-        var $=layui.jquery;
+    layui.use(['jquery', 'carousel'], function () {
+        var $ = layui.jquery;
         var carousel = layui.carousel;
 
         $.ajax({
             url: "/business/getIndexData",
             type: "GET",
             dataType: "JSON",
-            success: function (data){
+            success: function (data) {
                 //当天办理业务数量
-                $("#businessCountToday").html("当天办理业务数量："+data.data[0]);
+                $("#businessCountToday").html("当天办理业务数量：" + data.data[0]);
                 //当天回访数量
-                $("#visitCount").html("当天回访数量："+data.data[1]);
+                $("#visitCount").html("当天回访数量：" + data.data[1]);
                 //当天收入
-                $("#money").html("当天收入："+data.data[2]);
+                $("#money").html("当天收入：" + data.data[2]);
             }
         })
-
 
 
         //常规轮播
         carousel.render({
             elem: '#shuffling'
-            ,arrow: 'always'
-            ,width: '1000px'
-            ,height: '540px'
-            ,interval: 5000
+            , arrow: 'always'
+            , width: '1000px'
+            , height: '540px'
+            , interval: 5000
         });
         //业务量走势图
         $.ajax({
@@ -64,11 +64,11 @@
                     //获取横坐标
                     var monthX = data.data.monthX;
                     // 获取y坐标1
-                    var businessCountY= data.data.businessCountY;
+                    var businessCountY = data.data.businessCountY;
                     // 获取y坐标2
                     // var moneys=data.data.moneys;
                     // 基于准备好的dom，初始化echarts实例
-                    var myChart = echarts.init(document.getElementById('businessCount'),'chalk');
+                    var myChart = echarts.init(document.getElementById('businessCount'), 'chalk');
                     // 指定图表的配置项和数据
                     var option = {
                         title: {
@@ -137,11 +137,11 @@
                     //获取横坐标
                     var moneyX = data.data.moneyX;
                     // 获取y坐标1
-                    var loginNameY= data.data.loginNameY;
+                    var loginNameY = data.data.loginNameY;
                     // 获取y坐标2
                     // var moneys=data.data.moneys;
                     // 基于准备好的dom，初始化echarts实例
-                    var myChart1 = echarts.init(document.getElementById('performanceRanking'),'chalk');
+                    var myChart1 = echarts.init(document.getElementById('performanceRanking'), 'chalk');
                     // 指定图表的配置项和数据
                     var option1 = {
                         title: {

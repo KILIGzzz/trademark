@@ -1,10 +1,8 @@
 package com.cloudwise.trademark.controller;
 
-import com.cloudwise.trademark.entity.Dept;
-import com.cloudwise.trademark.entity.Dictionary;
-import com.cloudwise.trademark.entity.PageBean;
-import com.cloudwise.trademark.entity.ReturnBean;
+import com.cloudwise.trademark.entity.*;
 import com.cloudwise.trademark.service.DictionaryService;
+import com.cloudwise.trademark.service.DictionaryTypeService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -24,6 +22,8 @@ public class DictionaryController extends BaseController {
      */
     @Resource
     private DictionaryService dictionaryService;
+    @Resource
+    private DictionaryTypeService dictionaryTypeService;
 
     /**
      * 通过主键查询单条数据
@@ -34,6 +34,12 @@ public class DictionaryController extends BaseController {
     @GetMapping("selectOne")
     public Dictionary selectOne(Integer id) {
         return this.dictionaryService.queryById(id);
+    }
+
+    @GetMapping("selectAllType")
+    public ReturnBean selectAllType(){
+        List<DictionaryType> dictionaryTypes = dictionaryTypeService.queryAllType();
+        return returnSuccess(dictionaryTypes);
     }
 
     @GetMapping("selectAll")
@@ -63,4 +69,5 @@ public class DictionaryController extends BaseController {
             return returnFail(null);
         }
     }
+
 }

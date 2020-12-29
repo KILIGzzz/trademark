@@ -86,4 +86,9 @@ public class DictionaryTypeServiceImpl implements DictionaryTypeService {
     public long getRowCount(DictionaryType dictionaryType) {
         return dictionaryTypeDao.getRowCount(dictionaryType);
     }
+
+    @Override
+    public List<DictionaryType> queryAllType() {
+        return dictionaryTypeDao.queryAllType();
+    }
 }

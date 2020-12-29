@@ -1,45 +1,61 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : 1
+ Source Server         : localhost_3306
  Source Server Type    : MySQL
- Source Server Version : 50717
+ Source Server Version : 80022
  Source Host           : localhost:3306
  Source Schema         : trademark
 
  Target Server Type    : MySQL
- Target Server Version : 50717
+ Target Server Version : 80022
  File Encoding         : 65001
 
- Date: 28/12/2020 15:42:12
+ Date: 29/12/2020 14:34:23
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
+-- Table structure for tbl_attendance
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_attendance`;
+CREATE TABLE `tbl_attendance`  (
+  `attendance_id` int NOT NULL AUTO_INCREMENT COMMENT '签到编号',
+  `user_id` int NOT NULL COMMENT '员工编号',
+  `check_in` datetime NULL DEFAULT NULL COMMENT '签到时间',
+  `check_out` datetime NULL DEFAULT NULL COMMENT '签退时间',
+  PRIMARY KEY (`attendance_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of tbl_attendance
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for tbl_business
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_business`;
 CREATE TABLE `tbl_business`  (
-  `business_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `applicant_code` int(11) NULL DEFAULT NULL COMMENT '申请号（专利局反馈）',
-  `applicant_time` datetime(0) NULL DEFAULT NULL COMMENT '页面显示系统时间\r\n',
+  `business_id` int NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `applicant_code` int NULL DEFAULT NULL COMMENT '申请号（专利局反馈）',
+  `applicant_time` datetime NULL DEFAULT NULL COMMENT '页面显示系统时间\r\n',
   `business_top_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '字典下拉\r\n',
   `business_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '业务名称，手输',
   `trademark_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '字典下拉\r\n',
   `business_second_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '字典下拉\r\n',
   `price` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '成交价格',
   `proxy_money` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '代理费',
-  `upload_id` int(11) NULL DEFAULT NULL COMMENT '关联文件上传表，即文件ID',
+  `upload_id` int NULL DEFAULT NULL COMMENT '关联文件上传表，即文件ID',
   `create_by` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `create_time` datetime(0) NULL DEFAULT NULL,
+  `create_time` datetime NULL DEFAULT NULL,
   `update_by` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `update_time` datetime(0) NULL DEFAULT NULL,
-  `custom_id` int(11) NULL DEFAULT NULL,
+  `update_time` datetime NULL DEFAULT NULL,
+  `custom_id` int NULL DEFAULT NULL,
   `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`business_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tbl_business
@@ -59,19 +75,19 @@ INSERT INTO `tbl_business` VALUES (22, 610819201, '2020-09-28 15:37:09', '商标
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_custom`;
 CREATE TABLE `tbl_custom`  (
-  `custom_id` int(11) NOT NULL AUTO_INCREMENT,
+  `custom_id` int NOT NULL AUTO_INCREMENT,
   `contact` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '联系人姓名',
   `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '手机号',
   `applicant` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '申请人',
   `custom_address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '邮寄地址',
   `create_by` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '当前登录人的loginName，创建人',
-  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `update_time` datetime(0) NULL DEFAULT NULL,
-  `proxy_id` int(11) NOT NULL COMMENT '代理人ID',
+  `update_time` datetime NULL DEFAULT NULL,
+  `proxy_id` int NOT NULL COMMENT '代理人ID',
   `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`custom_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 90 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 90 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tbl_custom
@@ -91,17 +107,17 @@ INSERT INTO `tbl_custom` VALUES (89, '李杰', '15225328578', '李杰', '庆阳�
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_dept`;
 CREATE TABLE `tbl_dept`  (
-  `dept_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '部门id',
+  `dept_id` int NOT NULL AUTO_INCREMENT COMMENT '部门id',
   `dept_name` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '部门名称',
-  `order_num` int(11) NULL DEFAULT 0 COMMENT '显示顺序',
+  `order_num` int NULL DEFAULT 0 COMMENT '显示顺序',
   `status` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '部门状态（0正常 1停用）',
   `del_flag` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
   `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '创建者',
-  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '更新者',
-  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`dept_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 107 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '部门表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 106 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '部门表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tbl_dept
@@ -117,8 +133,8 @@ INSERT INTO `tbl_dept` VALUES (105, '运维部门', 5, '0', '0', 'Enzo', '2018-0
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_dictionary`;
 CREATE TABLE `tbl_dictionary`  (
-  `dictionary_id` int(11) NOT NULL AUTO_INCREMENT,
-  `type_id` int(11) NOT NULL COMMENT '字典类型,关联字典类型表',
+  `dictionary_id` int NOT NULL AUTO_INCREMENT,
+  `type_id` int NOT NULL COMMENT '字典类型,关联字典类型表',
   `dictionary_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '字典名,展示时使用，保存的时候使用主键值',
   `create_by` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '创建人',
   `create_time` date NULL DEFAULT NULL COMMENT '创建时间',
@@ -126,7 +142,7 @@ CREATE TABLE `tbl_dictionary`  (
   `update_time` date NULL DEFAULT NULL COMMENT '修改时间',
   `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`dictionary_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 119 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 119 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tbl_dictionary
@@ -255,15 +271,15 @@ INSERT INTO `tbl_dictionary` VALUES (118, 4, '不予核准通知', NULL, NULL, N
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_dictionary_type`;
 CREATE TABLE `tbl_dictionary_type`  (
-  `type_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '类型ID，自增',
+  `type_id` int NOT NULL AUTO_INCREMENT COMMENT '类型ID，自增',
   `type_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '类型名称，非空，唯一',
   `create_by` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '创建人',
-  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '修改人',
-  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '修改时间',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '修改时间',
   `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`type_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tbl_dictionary_type
@@ -278,39 +294,40 @@ INSERT INTO `tbl_dictionary_type` VALUES (4, '进度类型', 'Enzo', '2020-12-23
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_menu`;
 CREATE TABLE `tbl_menu`  (
-  `menu_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '菜单ID',
+  `menu_id` int NOT NULL AUTO_INCREMENT COMMENT '菜单ID',
   `menu_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '菜单名称',
-  `parent_id` int(11) NULL DEFAULT 0 COMMENT '父菜单ID',
-  `order_num` int(11) NULL DEFAULT 0 COMMENT '显示顺序',
+  `parent_id` int NULL DEFAULT 0 COMMENT '父菜单ID',
+  `order_num` int NULL DEFAULT 0 COMMENT '显示顺序',
   `url` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '#' COMMENT '请求地址',
   `menu_type` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '菜单类型（M目录 C菜单 F按钮）',
   `visible` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '菜单状态（0显示 1隐藏）',
   `perms` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '权限标识',
   `icon` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '#' COMMENT '菜单图标',
   `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '创建者',
-  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '更新者',
-  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '备注',
   PRIMARY KEY (`menu_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1020 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '菜单权限表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1024 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '菜单权限表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tbl_menu
 -- ----------------------------
-INSERT INTO `tbl_menu` VALUES (1, '系统管理', 0, 1, '#', 'M', '0', '', 'layui-icon-set', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '系统管理目录');
-INSERT INTO `tbl_menu` VALUES (2, '客户管理', 0, 2, '#', 'M', '0', '', 'layui-icon-camera-fill', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '系统监控目录');
-INSERT INTO `tbl_menu` VALUES (3, '字典管理', 0, 4, '#', 'M', '0', '', '#', 'Enzo', '2020-12-23 18:56:38', 'Enzo', NULL, '字典管理');
-INSERT INTO `tbl_menu` VALUES (100, '用户管理', 1, 1, '/goto/toUser', 'C', '0', 'system:user:view', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '用户管理菜单');
-INSERT INTO `tbl_menu` VALUES (101, '角色管理', 1, 2, '/goto/toRole', 'C', '0', 'system:role:view', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '角色管理菜单');
-INSERT INTO `tbl_menu` VALUES (102, '菜单管理', 1, 3, '/goto/toMenu', 'C', '0', 'system:menu:view', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '菜单管理菜单');
-INSERT INTO `tbl_menu` VALUES (103, '部门管理', 1, 4, '/goto/toDept', 'C', '0', 'system:dept:view', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '部门管理菜单');
-INSERT INTO `tbl_menu` VALUES (109, '客户列表', 2, 1, '/goto/toCustom', 'C', '0', 'monitor:online:view', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '在线用户菜单');
-INSERT INTO `tbl_menu` VALUES (111, '业务列表', 2, 2, '/goto/toBusiness', 'C', '0', 'monitor:data:view', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '数据监控菜单');
-INSERT INTO `tbl_menu` VALUES (112, '进度列表', 2, 3, '/goto/toProgress', 'C', '0', 'monitor:server:view', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '服务监控菜单');
-INSERT INTO `tbl_menu` VALUES (113, '回访信息', 2, 4, '/goto/toVisit', 'C', '0', '', NULL, 'Enzo', '2020-12-24 09:31:13', 'Enzo', NULL, '回访信息');
-INSERT INTO `tbl_menu` VALUES (114, '字典类型', 3, 1, '/goto/toDictionary', 'C', '0', '', '#', 'Enzo', '2020-12-23 18:59:34', 'Enzo', NULL, '字典类型');
-INSERT INTO `tbl_menu` VALUES (115, '字典种类', 3, 2, '/goto/toDictionaryType', 'C', '0', '', '#', 'Enzo', '2020-12-23 19:00:43', 'Enzo', NULL, '字典种类');
+INSERT INTO `tbl_menu` VALUES (1, '客户管理', 0, 2, '#', 'M', '0', '', 'layui-icon-camera-fill', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '系统监控目录');
+INSERT INTO `tbl_menu` VALUES (2, '统计分析', 0, 5, '#', 'M', '0', '', NULL, 'Enzo', '2020-12-29 11:38:57', NULL, NULL, '统计分析');
+INSERT INTO `tbl_menu` VALUES (3, '系统管理', 0, 1, '#', 'M', '0', '', 'layui-icon-set', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '系统管理目录');
+INSERT INTO `tbl_menu` VALUES (4, '业务管理', 0, 4, '#', 'M', '0', '', '#', 'Enzo', '2020-12-23 18:56:38', 'Enzo', NULL, '字典管理');
+INSERT INTO `tbl_menu` VALUES (100, '用户管理', 3, 1, '/goto/toUser', 'C', '0', 'system:user:view', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '用户管理菜单');
+INSERT INTO `tbl_menu` VALUES (101, '角色管理', 3, 2, '/goto/toRole', 'C', '0', 'system:role:view', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '角色管理菜单');
+INSERT INTO `tbl_menu` VALUES (102, '菜单管理', 3, 3, '/goto/toMenu', 'C', '0', 'system:menu:view', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '菜单管理菜单');
+INSERT INTO `tbl_menu` VALUES (103, '部门管理', 3, 4, '/goto/toDept', 'C', '0', 'system:dept:view', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '部门管理菜单');
+INSERT INTO `tbl_menu` VALUES (109, '客户列表', 1, 1, '/goto/toCustom', 'C', '0', 'monitor:online:view', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '在线用户菜单');
+INSERT INTO `tbl_menu` VALUES (111, '业务列表', 1, 2, '/goto/toBusiness', 'C', '0', 'monitor:data:view', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '数据监控菜单');
+INSERT INTO `tbl_menu` VALUES (112, '进度列表', 1, 3, '/goto/toProgress', 'C', '0', 'monitor:server:view', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '服务监控菜单');
+INSERT INTO `tbl_menu` VALUES (113, '回访信息', 1, 4, '/goto/toVisit', 'C', '0', '', NULL, 'Enzo', '2020-12-24 09:31:13', 'Enzo', NULL, '回访信息');
+INSERT INTO `tbl_menu` VALUES (114, '业务类型', 4, 1, '/goto/toDictionaryType', 'C', '0', '', '#', 'Enzo', '2020-12-23 18:59:34', 'Enzo', NULL, '字典类型');
+INSERT INTO `tbl_menu` VALUES (115, '业务种类', 4, 2, '/goto/toDictionary', 'C', '0', '', '#', 'Enzo', '2020-12-23 19:00:43', 'Enzo', NULL, '字典种类');
 INSERT INTO `tbl_menu` VALUES (1000, '用户查询', 100, 1, '#', 'F', '0', 'system:user:list', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '');
 INSERT INTO `tbl_menu` VALUES (1001, '用户新增', 100, 2, '#', 'F', '0', 'system:user:add', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '');
 INSERT INTO `tbl_menu` VALUES (1002, '用户修改', 100, 3, '#', 'F', '0', 'system:user:edit', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '');
@@ -330,23 +347,27 @@ INSERT INTO `tbl_menu` VALUES (1015, '部门查询', 103, 1, '#', 'F', '0', 'sys
 INSERT INTO `tbl_menu` VALUES (1016, '部门新增', 103, 2, '#', 'F', '0', 'system:dept:add', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '');
 INSERT INTO `tbl_menu` VALUES (1017, '部门修改', 103, 3, '#', 'F', '0', 'system:dept:edit', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '');
 INSERT INTO `tbl_menu` VALUES (1018, '部门删除', 103, 4, '#', 'F', '0', 'system:dept:remove', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '');
+INSERT INTO `tbl_menu` VALUES (1020, '业务分析', 2, 1, '/goto/toBusinessEchart', 'C', '0', '', NULL, 'Enzo', '2020-12-29 11:40:28', NULL, NULL, '业务分析');
+INSERT INTO `tbl_menu` VALUES (1021, '进度分析', 2, 2, '/goto/toProgressEchart', 'C', '0', '', NULL, 'Enzo', '2020-12-29 11:41:22', NULL, NULL, '进度分析');
+INSERT INTO `tbl_menu` VALUES (1022, '回访分析', 2, 3, '/goto/toVisitEchart', 'C', '0', '', NULL, 'Enzo', '2020-12-29 11:42:04', NULL, NULL, '回访分析');
+INSERT INTO `tbl_menu` VALUES (1023, '考勤分析', 2, 4, '/goto/toAttendance', 'C', '0', '', NULL, 'Enzo', '2020-12-29 13:14:11', NULL, NULL, '考勤分析');
 
 -- ----------------------------
 -- Table structure for tbl_progress
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_progress`;
 CREATE TABLE `tbl_progress`  (
-  `progress_id` int(11) NOT NULL AUTO_INCREMENT,
+  `progress_id` int NOT NULL AUTO_INCREMENT,
   `progress_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '进度类型下拉字典',
-  `upload_id` int(11) NOT NULL COMMENT '上传文件，关联文件上传表',
-  `business_id` int(11) NOT NULL COMMENT '业务id，关联业务表',
+  `upload_id` int NOT NULL COMMENT '上传文件，关联文件上传表',
+  `business_id` int NOT NULL COMMENT '业务id，关联业务表',
   `create_by` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `create_time` datetime(0) NULL DEFAULT NULL,
+  `create_time` datetime NULL DEFAULT NULL,
   `update_by` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `update_time` datetime(0) NULL DEFAULT NULL,
+  `update_time` datetime NULL DEFAULT NULL,
   `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`progress_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 48 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 48 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tbl_progress
@@ -374,19 +395,19 @@ INSERT INTO `tbl_progress` VALUES (47, '领证书', 22, 22, 'Epic', '2020-12-28 
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_role`;
 CREATE TABLE `tbl_role`  (
-  `role_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '角色ID',
+  `role_id` int NOT NULL AUTO_INCREMENT COMMENT '角色ID',
   `role_name` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '角色名称',
   `role_key` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '角色权限字符串',
-  `role_sort` int(11) NOT NULL COMMENT '显示顺序',
+  `role_sort` int NOT NULL COMMENT '显示顺序',
   `status` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '角色状态（0正常 1停用）',
   `del_flag` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
   `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '创建者',
-  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '更新者',
-  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '备注',
   PRIMARY KEY (`role_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '角色信息表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '角色信息表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tbl_role
@@ -399,10 +420,10 @@ INSERT INTO `tbl_role` VALUES (2, '普通角色', 'common', 2, '0', '0', 'Enzo',
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_role_menu`;
 CREATE TABLE `tbl_role_menu`  (
-  `role_id` int(11) NOT NULL COMMENT '角色ID',
-  `menu_id` int(11) NOT NULL COMMENT '菜单ID',
+  `role_id` int NOT NULL COMMENT '角色ID',
+  `menu_id` int NOT NULL COMMENT '菜单ID',
   PRIMARY KEY (`role_id`, `menu_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '角色和菜单关联表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '角色和菜单关联表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tbl_role_menu
@@ -410,6 +431,7 @@ CREATE TABLE `tbl_role_menu`  (
 INSERT INTO `tbl_role_menu` VALUES (1, 1);
 INSERT INTO `tbl_role_menu` VALUES (1, 2);
 INSERT INTO `tbl_role_menu` VALUES (1, 3);
+INSERT INTO `tbl_role_menu` VALUES (1, 4);
 INSERT INTO `tbl_role_menu` VALUES (1, 100);
 INSERT INTO `tbl_role_menu` VALUES (1, 101);
 INSERT INTO `tbl_role_menu` VALUES (1, 102);
@@ -439,23 +461,32 @@ INSERT INTO `tbl_role_menu` VALUES (1, 1015);
 INSERT INTO `tbl_role_menu` VALUES (1, 1016);
 INSERT INTO `tbl_role_menu` VALUES (1, 1017);
 INSERT INTO `tbl_role_menu` VALUES (1, 1018);
+INSERT INTO `tbl_role_menu` VALUES (1, 1020);
+INSERT INTO `tbl_role_menu` VALUES (1, 1021);
+INSERT INTO `tbl_role_menu` VALUES (1, 1022);
+INSERT INTO `tbl_role_menu` VALUES (1, 1023);
+INSERT INTO `tbl_role_menu` VALUES (2, 1);
 INSERT INTO `tbl_role_menu` VALUES (2, 2);
 INSERT INTO `tbl_role_menu` VALUES (2, 109);
 INSERT INTO `tbl_role_menu` VALUES (2, 111);
 INSERT INTO `tbl_role_menu` VALUES (2, 112);
 INSERT INTO `tbl_role_menu` VALUES (2, 113);
+INSERT INTO `tbl_role_menu` VALUES (2, 1020);
+INSERT INTO `tbl_role_menu` VALUES (2, 1021);
+INSERT INTO `tbl_role_menu` VALUES (2, 1022);
+INSERT INTO `tbl_role_menu` VALUES (2, 1023);
 
 -- ----------------------------
 -- Table structure for tbl_upload
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_upload`;
 CREATE TABLE `tbl_upload`  (
-  `upload_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '即文件ID，为方便识别命名为表名_id',
+  `upload_id` int NOT NULL AUTO_INCREMENT COMMENT '即文件ID，为方便识别命名为表名_id',
   `source_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '原文件名',
   `notice_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '原通知文件名',
   `destination_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '服务器文件名',
   PRIMARY KEY (`upload_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tbl_upload
@@ -483,8 +514,8 @@ INSERT INTO `tbl_upload` VALUES (22, '', '长欣道路运输通知.zip', 'https:
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_user`;
 CREATE TABLE `tbl_user`  (
-  `user_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '用户ID',
-  `dept_id` int(11) NULL DEFAULT NULL COMMENT '部门ID',
+  `user_id` int NOT NULL AUTO_INCREMENT COMMENT '用户ID',
+  `dept_id` int NULL DEFAULT NULL COMMENT '部门ID',
   `login_name` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '登录账号',
   `user_name` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户昵称',
   `email` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '用户邮箱',
@@ -496,12 +527,12 @@ CREATE TABLE `tbl_user`  (
   `status` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '帐号状态（0正常 1停用）',
   `del_flag` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
   `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '创建者',
-  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '更新者',
-  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '备注',
   PRIMARY KEY (`user_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户信息表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户信息表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tbl_user
@@ -521,10 +552,10 @@ INSERT INTO `tbl_user` VALUES (17, 101, 'borna', 'Borna', 'bornashare@163.com', 
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_user_role`;
 CREATE TABLE `tbl_user_role`  (
-  `user_id` int(11) NOT NULL COMMENT '用户ID',
-  `role_id` int(11) NOT NULL COMMENT '角色ID',
+  `user_id` int NOT NULL COMMENT '用户ID',
+  `role_id` int NOT NULL COMMENT '角色ID',
   PRIMARY KEY (`user_id`, `role_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户和角色关联表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户和角色关联表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tbl_user_role
@@ -544,16 +575,16 @@ INSERT INTO `tbl_user_role` VALUES (17, 2);
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_visit`;
 CREATE TABLE `tbl_visit`  (
-  `visit_id` int(11) NOT NULL AUTO_INCREMENT,
+  `visit_id` int NOT NULL AUTO_INCREMENT,
   `visit_content` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '回访内容',
-  `custom_id` int(11) NOT NULL COMMENT '关联客户表',
+  `custom_id` int NOT NULL COMMENT '关联客户表',
   `create_by` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `create_time` datetime(0) NULL DEFAULT NULL,
+  `create_time` datetime NULL DEFAULT NULL,
   `update_by` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `update_time` datetime(0) NULL DEFAULT NULL,
+  `update_time` datetime NULL DEFAULT NULL,
   `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`visit_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tbl_visit

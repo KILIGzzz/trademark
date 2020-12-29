@@ -12,16 +12,16 @@
       style="display: none;margin-right: 40px;margin-top: 20px">
     <input hidden name="createBy" th:value="${session.user.userName}">
     <div class="layui-form-item">
-        <label class="layui-form-label">字典类型</label>
+        <label class="layui-form-label">业务类型</label>
         <div class="layui-input-block">
             <select name="typeId">
             </select>
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">字典名称</label>
+        <label class="layui-form-label">业务名称</label>
         <div class="layui-input-block">
-            <input type="text" name="dictionaryName" autocomplete="off" placeholder="字典名称"
+            <input type="text" name="dictionaryName" autocomplete="off" placeholder="业务名称"
                    class="layui-input">
         </div>
     </div>
@@ -57,16 +57,16 @@
     <input type="hidden" name="updateBy" th:value="${session.user.userName}">
     <input type="hidden" name="dictionaryId">
     <div class="layui-form-item">
-        <label class="layui-form-label">字典类型</label>
+        <label class="layui-form-label">业务类型</label>
         <div class="layui-input-block">
             <select name="typeId">
             </select>
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">字典名称</label>
+        <label class="layui-form-label">业务名称</label>
         <div class="layui-input-block">
-            <input type="text" name="dictionaryName" autocomplete="off" placeholder="字典名称"
+            <input type="text" name="dictionaryName" autocomplete="off" placeholder="业务名称"
                    class="layui-input">
         </div>
     </div>
@@ -98,15 +98,15 @@
 <!--顶部搜索框-->
 <form class="layui-form" action="" style="margin-top: 10px">
     <div class="layui-inline">
-        <label class="layui-form-label">字典ID</label>
+        <label class="layui-form-label">业务ID</label>
         <div class="layui-input-inline">
-            <input type="text" name="dictionaryId" autocomplete="off" placeholder="字典ID" class="layui-input">
+            <input type="text" name="dictionaryId" autocomplete="off" placeholder="业务ID" class="layui-input">
         </div>
     </div>
     <div class="layui-inline">
-        <label class="layui-form-label">字典名称</label>
+        <label class="layui-form-label">业务名称</label>
         <div class="layui-input-inline">
-            <input type="text" name="dictionaryName" autocomplete="off" placeholder="字典名称" class="layui-input">
+            <input type="text" name="dictionaryName" autocomplete="off" placeholder="业务名称" class="layui-input">
         </div>
     </div>
     <div class="layui-inline">
@@ -153,10 +153,11 @@
             , cols: [
                 [ //表头
                     {type: 'checkbox', fixed: 'left'}
-                    , {field: 'dictionaryId', title: '字典ID', width: 100, sort: true, fixed: true}
-                    , {field: 'typeId', title: '类型ID', width: 100}
-                    , {field: 'dictionaryName', title: '字典名称', width: 300}
-                    , {field: 'createBy', title: '创建人', width: 80}
+                    , {field: 'dictionaryId', title: '业务ID', width: 100, sort: true}
+                    , {field: 'typeId', title: '类型ID', width: 100, hide: true}
+                    , {field: 'typeName', title: '类型名称', width: 120}
+                    , {field: 'dictionaryName', title: '业务名称', width: 300}
+                    , {field: 'createBy', title: '创建人', width: 100}
                     , {field: 'createTime', title: '创建时间', width: 200}
                     , {field: 'updateBy', title: '修改人', width: 100}
                     , {field: 'updateTime', title: '修改时间', width: 200}

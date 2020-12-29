@@ -44,5 +44,9 @@ public class Dictionary implements Serializable {
      * 备注
      */
     private String remark;
+    /**
+     * 类型名称
+     */
+    private String typeName;
 
 }

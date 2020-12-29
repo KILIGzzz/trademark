@@ -11,7 +11,7 @@
  Target Server Version : 80022
  File Encoding         : 65001
 
- Date: 29/12/2020 22:35:54
+ Date: 30/12/2020 00:16:57
 */
 
 SET NAMES utf8mb4;
@@ -783,6 +783,8 @@ INSERT INTO `tbl_business` VALUES (21, 332140971, '2020-12-28 15:30:21', '商标
 INSERT INTO `tbl_business` VALUES (22, 610819201, '2020-09-28 15:37:09', '商标', '长欣道路运输', '运输仓储、能源分配、旅行服务', '变更商标代理人/文件接收人申请', '5000', '1000', NULL, 'Epic', '2020-12-28 15:38:18', NULL, NULL, 89, '长欣道路运输');
 INSERT INTO `tbl_business` VALUES (23, 836264026, '2020-06-29 16:04:08', '商标', '嫩牛五方', '餐饮住宿、养老托儿、动物食宿', '商标注册申请', '7000', '3000', NULL, 'Enzo', '2020-12-29 08:05:54', NULL, NULL, 89, '嫩牛五方商标注册');
 INSERT INTO `tbl_business` VALUES (24, 234759325, '2020-12-29 16:05:58', '版权', '嫩牛五方', '餐饮住宿、养老托儿、动物食宿', '商标专用权质权登记事项变更申请', '3000', '1000', NULL, 'Enzo', '2020-12-29 08:07:30', NULL, NULL, 89, '版权变更');
+INSERT INTO `tbl_business` VALUES (25, 854795159, '2020-04-29 23:46:41', '商标', '全球通用毛线', '纱、线、丝', '商标注册申请', '10000', '8000', NULL, 'Square', '2020-12-29 15:48:48', 'Square', '2020-12-29 15:51:16', 90, '');
+INSERT INTO `tbl_business` VALUES (26, 852951753, '2020-04-29 23:54:58', '专利', '通用毛线专利', '纱、线、丝', '商标专用权质权登记申请', '18888', '9000', NULL, 'Square', '2020-12-29 15:57:55', 'Square', '2020-12-29 16:01:10', 90, '通用毛线专利申请');
 
 -- ----------------------------
 -- Table structure for tbl_custom
@@ -815,6 +817,7 @@ INSERT INTO `tbl_custom` VALUES (86, '邹  雪', '18305606824', '邹  雪', '安
 INSERT INTO `tbl_custom` VALUES (87, '张玉生', '15225328578', '张玉生', '河南亚圣生物科技有限公司', 'Ivan', '2020-12-28 15:25:57', NULL, NULL, 12, '河南亚圣生物科技有限公司');
 INSERT INTO `tbl_custom` VALUES (88, '郭善云', '13939431515', '郭善云', '河南酷玩童年教育咨询有限公司', 'Ivan', '2020-12-28 15:30:16', NULL, NULL, 13, '河南酷玩童年教育咨询有限公司');
 INSERT INTO `tbl_custom` VALUES (89, '李杰', '15225328578', '李杰', '庆阳市长欣道路运输有限公司', 'Epic', '2020-12-28 15:37:05', NULL, NULL, 11, '庆阳市长欣道路运输有限公司');
+INSERT INTO `tbl_custom` VALUES (90, '皮皮侯', '13258869966', '皮皮侯', '郑州大学', 'Enzo', '2020-12-29 15:43:44', NULL, NULL, 18, '');
 
 -- ----------------------------
 -- Table structure for tbl_dept
@@ -1097,6 +1100,8 @@ INSERT INTO `tbl_progress` VALUES (53, '商标申请受通', 28, NULL, 15, 'Enzo
 INSERT INTO `tbl_progress` VALUES (54, '商标申请受通', NULL, 29, 15, 'Enzo', '2020-12-29 20:36:24', NULL, NULL, '版权申请通知');
 INSERT INTO `tbl_progress` VALUES (55, '下证', 30, NULL, 16, 'Enzo', '2020-12-29 22:05:25', NULL, NULL, '商标异议申请成功,下证');
 INSERT INTO `tbl_progress` VALUES (56, '领证书', NULL, 31, 14, 'Enzo', '2020-12-29 22:10:32', NULL, NULL, '叫了只鸡领证书');
+INSERT INTO `tbl_progress` VALUES (57, '商标申请受通', 32, NULL, 25, 'Square', '2020-12-29 23:49:35', NULL, NULL, '跨国毛线专用商标注册');
+INSERT INTO `tbl_progress` VALUES (58, '公告', NULL, 33, 25, 'Square', '2020-12-29 23:50:16', NULL, NULL, '');
 
 -- ----------------------------
 -- Table structure for tbl_role
@@ -1209,6 +1214,8 @@ INSERT INTO `tbl_upload` VALUES (28, '版权申请.rar', 'https://enzo-trademark
 INSERT INTO `tbl_upload` VALUES (29, '版权申请通知.rar', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/29/1609245378610[I@64b31c29.rar');
 INSERT INTO `tbl_upload` VALUES (30, '商标异议申请成功.rar', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/29/1609250713949[I@63c0674c.rar');
 INSERT INTO `tbl_upload` VALUES (31, '叫了只鸡领证书.rar', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/29/1609251022756[I@46dc024b.rar');
+INSERT INTO `tbl_upload` VALUES (32, '跨国毛线专用商标.rar', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/29/1609256965433[I@261f6139.rar');
+INSERT INTO `tbl_upload` VALUES (33, '跨国毛线公告通知.rar', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/29/1609257013317[I@384ac032.rar');
 
 -- ----------------------------
 -- Table structure for tbl_user
@@ -1247,6 +1254,7 @@ INSERT INTO `tbl_user` VALUES (14, 101, 'hodor', 'Hodor', 'hodorshare@163.com', 
 INSERT INTO `tbl_user` VALUES (15, 101, 'myth', 'Myth', 'mythshare@163.com', '13253599630', '0', NULL, '2299392cb89b2084bb24d367b25c4e3d', 'b67fa48d-2e80-4344-99e1-b3fecbe2f880', '0', '0', 'Enzo', '2020-12-28 13:58:46', NULL, NULL, NULL);
 INSERT INTO `tbl_user` VALUES (16, 101, 'river', 'River', 'rivershare@163.com', '13253599510', '0', NULL, '0a3195e988709c892401a79cd9f98440', '10088728-b6a2-4861-adf7-e63e401954dc', '0', '0', 'Enzo', '2020-12-28 13:59:28', NULL, NULL, NULL);
 INSERT INTO `tbl_user` VALUES (17, 101, 'borna', 'Borna', 'bornashare@163.com', '13253597952', '0', NULL, 'b35baef1655d81d98bae3f8127d1c21c', '06f4dcd6-8b7e-4530-85aa-f496211c8277', '0', '0', 'Enzo', '2020-12-28 14:00:42', NULL, NULL, NULL);
+INSERT INTO `tbl_user` VALUES (18, 101, 'square', 'Square', 'squareshare@163.com', '13258618899', '0', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/29/1609256753494[I@3a2ca901.jpg', '45a3afb75e5763ed74d7268c0e0c0cb9', 'f3f7be61-0fd9-44a3-9b3d-473a44513c72', '0', '0', 'Enzo', '2020-12-29 23:42:02', 'Enzo', '2020-12-29 23:45:56', NULL);
 
 -- ----------------------------
 -- Table structure for tbl_user_role
@@ -1270,6 +1278,7 @@ INSERT INTO `tbl_user_role` VALUES (14, 2);
 INSERT INTO `tbl_user_role` VALUES (15, 2);
 INSERT INTO `tbl_user_role` VALUES (16, 2);
 INSERT INTO `tbl_user_role` VALUES (17, 2);
+INSERT INTO `tbl_user_role` VALUES (18, 1);
 
 -- ----------------------------
 -- Table structure for tbl_visit

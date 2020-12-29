@@ -149,12 +149,9 @@
         //第一个实例
         var roleTable = table.render({
             elem: '#role'
-            , height: 400
             , url: '/role/findAll' //数据接口
             , toolbar: '#roleToolbar' //开启头部工具栏，并为其绑定左侧模板
             , page: true //开启分页
-            , limit: 5
-            , limits: [5, 10, 15, 20, 25, 30]
             , cols: [
                 [ //表头
                     {field: 'roleId', title: '编号', width: 80, sort: true}

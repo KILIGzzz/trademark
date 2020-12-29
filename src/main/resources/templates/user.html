@@ -224,12 +224,9 @@
         //第一个实例
         var userTable = table.render({
             elem: '#user'
-            , height: 400
             , url: '/user/findAll' //数据接口
             , toolbar: '#userToolbar' //开启头部工具栏，并为其绑定左侧模板
             , page: true //开启分页
-            , limit: 5
-            , limits: [5, 10, 15, 20, 25, 30]
             , cols: [
                 [ //表头
                     {type: 'checkbox', fixed: 'left'}

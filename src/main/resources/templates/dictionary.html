@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/layui/css/layui.css">
     <script src="/layui/layui.js"></script>
 </head>
-<body class="layui-layout-body">
+<body>
 <!--添加功能的form-->
 <form class="layui-form" action="" id="insertDicFrom"
       style="display: none;margin-right: 40px;margin-top: 20px">
@@ -39,17 +39,6 @@
         </div>
     </div>
 </form>
-
-<script>
-    layui.use('form', function () {
-        var form = layui.form;
-        //监听提交
-        form.on('submit(insertDic)', function (data) {
-            layer.msg(JSON.stringify(data.field));
-            return false;
-        });
-    });
-</script>
 
 <!--编辑功能的form-->
 <form class="layui-form" action="" id="updateDicFrom" lay-filter="updateDicFrom"
@@ -85,16 +74,6 @@
     </div>
 </form>
 
-<script>
-    layui.use('form', function () {
-        let form = layui.form;
-        //监听提交
-        form.on('submit(updateDicFilter)', function (data) {
-            layer.msg(JSON.stringify(data.field));
-            return false;
-        });
-    });
-</script>
 <!--顶部搜索框-->
 <form class="layui-form" action="" style="margin-top: 10px">
     <div class="layui-inline">
@@ -149,7 +128,6 @@
             , defaultToolbar: ['filter', 'exports', 'print']
             , title: 'dicTable'
             , page: true
-            , limit: 10
             , cols: [
                 [ //表头
                     {type: 'checkbox', fixed: 'left'}
@@ -193,6 +171,7 @@
                     'dictionaryName': data.dictionaryName,
                     'remark': data.remark
                 });
+                form.render();
                 layer.open({
                     title: '编辑字典',
                     type: 1,

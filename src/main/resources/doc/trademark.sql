@@ -11,7 +11,7 @@
  Target Server Version : 80022
  File Encoding         : 65001
 
- Date: 29/12/2020 16:51:59
+ Date: 29/12/2020 20:37:20
 */
 
 SET NAMES utf8mb4;
@@ -55,7 +55,7 @@ CREATE TABLE `tbl_business`  (
   `custom_id` int NULL DEFAULT NULL,
   `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`business_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tbl_business
@@ -375,23 +375,13 @@ CREATE TABLE `tbl_progress`  (
 -- ----------------------------
 -- Records of tbl_progress
 -- ----------------------------
-INSERT INTO `tbl_progress` VALUES (31, '商标申请受通', 6, NULL, 14, 'Enzo', '2020-12-28 13:30:31', 'Enzo', '2020-12-28 13:40:11', '商标注册文件上传');
-INSERT INTO `tbl_progress` VALUES (32, '下证', 7, NULL, 14, 'Enzo', '2020-12-28 13:41:47', 'Enzo', '2020-12-28 13:43:48', '叫了只鸡下证失败');
-INSERT INTO `tbl_progress` VALUES (33, '下证', 8, NULL, 14, 'Enzo', '2020-12-28 13:46:12', NULL, NULL, '重新上传下证文件');
-INSERT INTO `tbl_progress` VALUES (34, '商标申请受通', 9, NULL, 15, 'Enzo', '2020-12-28 14:08:09', NULL, NULL, '老狼大盘鸡商标注册');
-INSERT INTO `tbl_progress` VALUES (35, '异议申请', 10, NULL, 16, 'Back', '2020-12-28 14:58:11', 'Back', '2020-12-28 14:58:48', '通知');
-INSERT INTO `tbl_progress` VALUES (36, '异议答辩', 11, NULL, 16, 'Back', '2020-12-28 14:59:34', NULL, NULL, '异议申请');
-INSERT INTO `tbl_progress` VALUES (37, '异议裁定', 12, NULL, 16, 'Back', '2020-12-28 15:00:44', NULL, NULL, '异议裁定');
-INSERT INTO `tbl_progress` VALUES (38, '商标申请受通', 13, NULL, 17, 'Back', '2020-12-28 15:06:05', NULL, NULL, '申请材料');
-INSERT INTO `tbl_progress` VALUES (39, '缴费通知', 14, NULL, 17, 'Back', '2020-12-28 15:07:07', NULL, NULL, '缴费通知');
-INSERT INTO `tbl_progress` VALUES (40, '商标申请受通', 15, NULL, 18, 'Back', '2020-12-28 15:12:58', 'Back', '2020-12-28 15:13:31', '商标申请');
-INSERT INTO `tbl_progress` VALUES (41, '驳回通知书', 16, NULL, 18, 'Back', '2020-12-28 15:14:12', 'Back', '2020-12-28 15:14:30', '申请驳回');
-INSERT INTO `tbl_progress` VALUES (42, '商标申请受通', 17, NULL, 19, 'Ivan', '2020-12-28 15:23:17', NULL, NULL, '申请文件');
-INSERT INTO `tbl_progress` VALUES (43, '驳回通知书', 18, NULL, 19, 'Ivan', '2020-12-28 15:24:08', NULL, NULL, '驳回通知');
-INSERT INTO `tbl_progress` VALUES (44, '商标申请受通', 19, NULL, 20, 'Ivan', '2020-12-28 15:27:59', NULL, NULL, '商标申请受通');
-INSERT INTO `tbl_progress` VALUES (45, '领证书', 20, NULL, 20, 'Ivan', '2020-12-28 15:29:28', NULL, NULL, '商标申请受通');
-INSERT INTO `tbl_progress` VALUES (46, '领证书', 21, NULL, 21, 'Ivan', '2020-12-28 15:32:48', NULL, NULL, '证书');
-INSERT INTO `tbl_progress` VALUES (47, '领证书', 22, NULL, 22, 'Epic', '2020-12-28 15:38:55', NULL, NULL, '长欣道路运输');
+INSERT INTO `tbl_progress` VALUES (48, '商标申请受通', 23, NULL, 14, 'Enzo', '2020-12-29 20:16:23', NULL, NULL, '叫了只鸡商标申请');
+INSERT INTO `tbl_progress` VALUES (49, '商标申请受通', NULL, 24, 14, 'Enzo', '2020-12-29 20:17:05', NULL, NULL, '商标申请成功通知');
+INSERT INTO `tbl_progress` VALUES (50, '商标申请受通', NULL, 25, 14, 'Enzo', '2020-12-29 20:22:04', NULL, NULL, '叫了只鸡通知问件');
+INSERT INTO `tbl_progress` VALUES (51, '商标申请受通', NULL, 26, 17, 'Enzo', '2020-12-29 20:23:44', NULL, NULL, '酒业公司');
+INSERT INTO `tbl_progress` VALUES (52, '商标申请受通', 27, NULL, 17, 'Enzo', '2020-12-29 20:26:57', NULL, NULL, '酒业公司申请受通');
+INSERT INTO `tbl_progress` VALUES (53, '商标申请受通', 28, NULL, 15, 'Enzo', '2020-12-29 20:35:27', NULL, NULL, '版权申请');
+INSERT INTO `tbl_progress` VALUES (54, '商标申请受通', NULL, 29, 15, 'Enzo', '2020-12-29 20:36:24', NULL, NULL, '版权申请通知');
 
 -- ----------------------------
 -- Table structure for tbl_role
@@ -510,6 +500,13 @@ INSERT INTO `tbl_upload` VALUES (19, '亚圣科技.zip', 'https://enzo-trademark
 INSERT INTO `tbl_upload` VALUES (20, '', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609140567205[I@60a58dc7.zip');
 INSERT INTO `tbl_upload` VALUES (21, '', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609140752850[I@c3082e8.zip');
 INSERT INTO `tbl_upload` VALUES (22, '', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609141131143[I@73ef2c35.zip');
+INSERT INTO `tbl_upload` VALUES (23, '叫了只鸡商标申请.rar', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/29/1609244171388[I@43ac5634.rar');
+INSERT INTO `tbl_upload` VALUES (24, '商标申请通知.rar', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/29/1609244212590[I@21fc55b0.rar');
+INSERT INTO `tbl_upload` VALUES (25, '叫了只鸡通知问件.rar', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/29/1609244507855[I@4a21ba0f.rar');
+INSERT INTO `tbl_upload` VALUES (26, '酒业公司.rar', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/29/1609244619741[I@59b418c6.rar');
+INSERT INTO `tbl_upload` VALUES (27, '酒业公司申请受通.rar', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/29/1609244812618[I@7e930063.rar');
+INSERT INTO `tbl_upload` VALUES (28, '版权申请.rar', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/29/1609245323646[I@53d4b821.rar');
+INSERT INTO `tbl_upload` VALUES (29, '版权申请通知.rar', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/29/1609245378610[I@64b31c29.rar');
 
 -- ----------------------------
 -- Table structure for tbl_user

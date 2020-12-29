@@ -91,10 +91,11 @@ public class ProgressController extends BaseController {
         try {
             uploadService.insert(upload);
             Integer uploadId = upload.getUploadId();
-            if ("on".equals(insertUpload)) {
+            String sourceName = upload.getSourceName();
+            if (sourceName.equals(insertUpload)) {
                 progress.setUpload(uploadId);
             }
-            if ("on".equals(insertNotice)) {
+            if (sourceName.equals(insertNotice)) {
                 progress.setNotice(uploadId);
             }
             progressService.insert(progress);

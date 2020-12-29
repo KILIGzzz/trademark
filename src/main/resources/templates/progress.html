@@ -490,8 +490,8 @@
                     let src = "https://" + res.name;
                     //给隐藏的input框赋值，传入后台
                     $("#insertDestinationName").val(src);
-                    $("#insertUpload").val("on");
                     let fileName = res.fileName;
+                    $("#insertUpload").val(fileName);
                     $("#insertSourceName").val(fileName);
                     //回显原文件名
                     $("#insertAddSourceName").val(fileName);
@@ -519,8 +519,8 @@
                     let src = "https://" + res.name;
                     //给隐藏的input框赋值，传入后台
                     $("#insertDestinationName").val(src);
-                    $("#insertNotice").val("on");
                     let fileName = res.fileName;
+                    $("#insertNotice").val(fileName);
                     $("#insertSourceName").val(fileName);
                     //回显原文件名
                     $("#insertInformSourceName").val(fileName);

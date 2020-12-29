@@ -27,7 +27,7 @@ public class Progress implements Serializable {
     /**
      * 通知文件，关联文件上传表
      */
-    private String notice;
+    private Integer notice;
     /**
      * 业务id，关联业务表
      */

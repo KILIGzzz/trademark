@@ -6,15 +6,13 @@
         <result property="uploadId" column="upload_id" jdbcType="INTEGER"/>
         <result property="sourceName" column="source_name" jdbcType="VARCHAR"/>
         <result property="destinationName" column="destination_name" jdbcType="VARCHAR"/>
-        <result property="noticeName" column="notice_name" jdbcType="VARCHAR"/>
     </resultMap>
 
     <!--查询单个-->
     <select id="queryById" resultMap="UploadMap">
         select upload_id,
                source_name,
-               destination_name,
-               notice_name
+               destination_name
         from trademark.tbl_upload
         where upload_id = #{uploadId}
     </select>
@@ -23,8 +21,7 @@
     <select id="queryAllByLimit" resultMap="UploadMap">
         select upload_id,
                source_name,
-               destination_name,
-               notice_name
+               destination_name
         from trademark.tbl_upload
         limit #{offset}, #{limit}
     </select>
@@ -32,7 +29,7 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="UploadMap">
         select
-        upload_id, source_name, destination_name, notice_name
+        upload_id, source_name, destination_name
         from trademark.tbl_upload
         <where>
             <if test="uploadId != null">
@@ -44,35 +41,31 @@
             <if test="destinationName != null and destinationName != ''">
                 and destination_name = #{destinationName}
             </if>
-            <if test="noticeName != null and noticeName != ''">
-                and notice_name = #{noticeName}
-            </if>
         </where>
     </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="uploadId" useGeneratedKeys="true">
-        insert into trademark.tbl_upload(source_name, destination_name, notice_name)
-        values (#{sourceName}, #{destinationName}, #{noticeName})
+        insert into trademark.tbl_upload(source_name, destination_name)
+        values (#{sourceName}, #{destinationName})
     </insert>
 
     <insert id="insertBatch" keyProperty="uploadId" useGeneratedKeys="true">
-        insert into trademark.tbl_upload(source_name, destination_name, notice_name)
+        insert into trademark.tbl_upload(source_name, destination_name)
         values
         <foreach collection="entities" item="entity" separator=",">
-            (#{entity.sourceName}, #{entity.destinationName}, #{entity.noticeName})
+            (#{entity.sourceName}, #{entity.destinationName})
         </foreach>
     </insert>
 
     <insert id="insertOrUpdateBatch" keyProperty="uploadId" useGeneratedKeys="true">
-        insert into trademark.tbl_upload(source_name, destination_name, notice_name)
+        insert into trademark.tbl_upload(source_name, destination_name)
         values
         <foreach collection="entities" item="entity" separator=",">
-            (#{entity.sourceName}, #{entity.destinationName}, #{entity.noticeName})
+            (#{entity.sourceName}, #{entity.destinationName})
         </foreach>
         on duplicate key update
-        source_name = values(source_name) , destination_name = values(destination_name) , notice_name =
-        values(notice_name)
+        source_name = values(source_name) , destination_name = values(destination_name)
     </insert>
 
     <!--通过主键修改数据-->
@@ -84,9 +77,6 @@
             </if>
             <if test="destinationName != null and destinationName != ''">
                 destination_name = #{destinationName},
-            </if>
-            <if test="noticeName != null and noticeName != ''">
-                notice_name = #{noticeName},
             </if>
         </set>
         where upload_id = #{uploadId}

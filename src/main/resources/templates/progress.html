@@ -65,7 +65,10 @@
 
     <!--隐藏input框，获取相应值-->
     <input hidden th:value="${session.username}" name="createBy">
-    <input type="hidden" name="destinationName" id="destinationName">
+    <input type="hidden" name="destinationName" id="insertDestinationName">
+    <input type="hidden" name="insertUpload" id="insertUpload">
+    <input type="hidden" name="insertNotice" id="insertNotice">
+    <input type="hidden" name="sourceName" id="insertSourceName">
 
     <div class="layui-form-item">
         <label class="layui-form-label">进度类型</label>
@@ -88,7 +91,7 @@
             <button type="button" class="layui-btn layui-btn-xs" id="insertAddUpload">上传文件</button>
         </label>
         <div class="layui-input-block">
-            <input type="text" name="sourceName" id="insertAddSourceName"
+            <input type="text" id="insertAddSourceName"
                    placeholder="" autocomplete="off" class="layui-input">
         </div>
     </div>
@@ -98,7 +101,7 @@
             <button type="button" class="layui-btn layui-btn-xs" id="insertInformUpload">通知文件</button>
         </label>
         <div class="layui-input-block">
-            <input type="text" name="notice" id="insertInformSourceName"
+            <input type="text" id="insertInformSourceName"
                    placeholder="" autocomplete="off" class="layui-input">
         </div>
     </div>
@@ -124,8 +127,9 @@
     <input hidden th:value="${session.username}" name="updateBy">
     <input type="hidden" name="destinationName" id="updateDestinationName">
     <input type="hidden" name="progressId">
-    <input type="hidden" name="uploadId">
-    <input type="hidden" name="sourceName">
+    <input type="hidden" name="upload">
+    <input type="hidden" name="notice">
+    <input type="hidden" name="sourceName" id="updateSourceName">
     <div class="layui-form-item">
         <label class="layui-form-label">进度类型</label>
         <div class="layui-input-block">
@@ -147,7 +151,7 @@
             <button type="button" class="layui-btn layui-btn-xs" id="updateAddUpload">上传文件</button>
         </label>
         <div class="layui-input-block">
-            <input type="text" name="upload" id="updateAddSourceName"
+            <input type="text" id="updateAddSourceName"
                    placeholder="" autocomplete="off" class="layui-input">
         </div>
     </div>
@@ -157,7 +161,7 @@
             <button type="button" class="layui-btn layui-btn-xs" id="updateInformUpload">通知文件</button>
         </label>
         <div class="layui-input-block">
-            <input type="text" name="notice" id="updateInformSourceName"
+            <input type="text" id="updateInformSourceName"
                    placeholder="" autocomplete="off" class="layui-input">
         </div>
     </div>
@@ -276,7 +280,7 @@
                         , {field: 'createTime', title: '创建时间', align: 'center', width: 160}
                         , {field: 'updateBy', title: '修改人', align: 'center', width: 120}
                         , {field: 'updateTime', title: '修改时间', align: 'center', width: 160}
-                        , {field: 'proxyId', title: '代理人ID', align: 'center', width: 120,hide:true}
+                        , {field: 'proxyId', title: '代理人ID', align: 'center', width: 120, hide: true}
                         , {field: 'userName', title: '代理人', align: 'center', width: 120}
                         , {field: 'remark', title: '备注', align: 'center', width: 120}
                     ]
@@ -334,15 +338,23 @@
                     {field: 'progressId', title: '进度ID', width: 80, fixed: 'left'},
                     {field: 'progressType', title: '进度类型', width: 120},
                     {
-                        field: 'sourceName', title: '上传文件名', width: 170,
+                        field: 'upload', title: '上传文件名', width: 170,
                         templet: function (progress) {
-                            return '<a href="' + progress.upload.destinationName + '">' + progress.upload.sourceName + '</a>';
+                            if (progress.upload != null) {
+                                return '<a href="' + progress.uploadClass.destinationName + '">' + progress.uploadClass.sourceName + '</a>';
+                            } else {
+                                return "";
+                            }
                         }
                     },
                     {
                         field: 'notice', title: '通知文件名', width: 170,
                         templet: function (progress) {
-                            return '<a href="' + progress.upload.destinationName + '">' + progress.upload.sourceName + '</a>';
+                            if (progress.notice != null) {
+                                return '<a href="' + progress.uploadClass.destinationName + '">' + progress.uploadClass.sourceName + '</a>';
+                            } else {
+                                return "";
+                            }
                         }
                     },
                     {field: 'businessId', title: '业务ID', width: 80},
@@ -374,6 +386,7 @@
         table.on('toolbar', function (obj) {
             switch (obj.event) {
                 case 'addProgress':
+                    document.getElementById("addProgressForm").reset();
                     //重新渲染表单
                     form.render()
                     layer.open({
@@ -391,10 +404,11 @@
             var data = obj.data //获得当前行数据
                 , layEvent = obj.event; //获得 lay-event 对应的值
             if (layEvent === 'edit') {
+                document.getElementById("updateProgressForm").reset();
                 //弹出对话框之前，需要填充表单数据
                 form.val('updateProgressFormFilter', {
                     "progressType": data.progressType // "name": "value"
-                    , "uploadId": data.uploadId
+                    , "upload": data.upload
                     , "progressId": data.progressId
                     , "notice": data.notice
                     , "businessId": data.businessId
@@ -475,9 +489,12 @@
                 if (res.response === 'success') {
                     let src = "https://" + res.name;
                     //给隐藏的input框赋值，传入后台
-                    $("#destinationName").val(src);
+                    $("#insertDestinationName").val(src);
+                    $("#insertUpload").val("on");
+                    let fileName = res.fileName;
+                    $("#insertSourceName").val(fileName);
                     //回显原文件名
-                    $("#insertAddSourceName").val(res.fileName);
+                    $("#insertAddSourceName").val(fileName);
                     layer.msg('上传成功');
                 } else {
                     return layer.msg('上传失败')
@@ -501,9 +518,12 @@
                 if (res.response === 'success') {
                     let src = "https://" + res.name;
                     //给隐藏的input框赋值，传入后台
-                    $("#destinationName").val(src);
+                    $("#insertDestinationName").val(src);
+                    $("#insertNotice").val("on");
+                    let fileName = res.fileName;
+                    $("#insertSourceName").val(fileName);
                     //回显原文件名
-                    $("#insertInformSourceName").val(res.fileName);
+                    $("#insertInformSourceName").val(fileName);
                     layer.msg('上传成功');
                 } else {
                     return layer.msg('上传失败')
@@ -528,8 +548,10 @@
                     let src = "https://" + res.name;
                     //给隐藏的input框赋值，传入后台
                     $("#updateDestinationName").val(src);
+                    let fileName = res.fileName;
+                    $("#updateSourceName").val(fileName)
                     //回显原文件名
-                    $("#updateAddSourceName").val(res.fileName);
+                    $("#updateAddSourceName").val(fileName);
                     layer.msg('上传成功');
                 } else {
                     return layer.msg('上传失败')
@@ -554,8 +576,10 @@
                     let src = "https://" + res.name;
                     //给隐藏的input框赋值，传入后台
                     $("#updateDestinationName").val(src);
+                    let fileName = res.fileName;
+                    $("#updateSourceName").val(fileName)
                     //回显原文件名
-                    $("#updateInformSourceName").val(res.fileName);
+                    $("#updateInformSourceName").val(fileName);
                     layer.msg('上传成功');
                 } else {
                     return layer.msg('上传失败')

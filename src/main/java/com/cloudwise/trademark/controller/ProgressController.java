@@ -87,10 +87,16 @@ public class ProgressController extends BaseController {
      * @modifiedBy Enzo
      */
     @PostMapping("add")
-    public ReturnBean add(Progress progress, Upload upload) {
+    public ReturnBean add(Progress progress, Upload upload, String insertUpload, String insertNotice) {
         try {
             uploadService.insert(upload);
-
+            Integer uploadId = upload.getUploadId();
+            if ("on".equals(insertUpload)) {
+                progress.setUpload(uploadId);
+            }
+            if ("on".equals(insertNotice)) {
+                progress.setNotice(uploadId);
+            }
             progressService.insert(progress);
             return returnSuccess(progress);
         } catch (Exception e) {
@@ -108,8 +114,14 @@ public class ProgressController extends BaseController {
     @PostMapping("update")
     public ReturnBean update(Progress progress, Upload upload) {
         try {
-            uploadService.update(upload);
             progressService.update(progress);
+            if (progress.getUpload() != null) {
+                upload.setUploadId(progress.getUpload());
+            }
+            if (progress.getNotice() != null) {
+                upload.setUploadId(progress.getNotice());
+            }
+            uploadService.update(upload);
             return returnSuccess(progress);
         } catch (Exception e) {
             return returnFail(null);

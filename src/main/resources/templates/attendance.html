@@ -8,20 +8,152 @@
     <script src="/echarts/echarts.js"></script>
     <script src="/echarts/chalk.js"></script>
 </head>
-<body>
-考勤分析
+<body style="background-color: rgb(57,61,73)">
+<!--条件查询-->
+<form class="layui-form" style="margin-top: 10px;margin-left: 10px;position:absolute;left:50%;transform: translate(-50%);">
+    <span style="font-size: 18px;font-weight: bold;color: white;">日期：</span>
+    <div class="layui-inline">
+        <div class="layui-input-inline">
+            <input type="text" name="attendanceTime" id="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <button class="layui-btn" lay-submit lay-filter="selectConditionFilter" data-type="reload">搜索</button>
+</form>
+<div class="layui-carousel" id="shuffling"
+     style="background-color: rgb(57,61,73);position:absolute;top:50%;left:50%;transform: translate(-50%,-50%);">
+    <div carousel-item="">
+        <div>
+            <div id="attendanceEchart" style="height:540px"></div>
+        </div>
+    </div>
+</div>
 </body>
 <script>
-    layui.use(['jquery'], function () {
+    layui.use(['jquery','table','carousel','laydate','form'], function () {
         var $=layui.jquery;
-        $.ajax({
-            url: "/business/attendance",
-            type: "GET",
-            dataType: "JSON",
-            success: function (data) {
+        var table = layui.table;
+        var carousel = layui.carousel;
+        var laydate = layui.laydate;
+        var form = layui.form;
 
-            }
-        })
+        //表单提交
+        form.on('submit(selectConditionFilter)', function (data) {
+            console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+            let str = "?attendanceTime="+data.field.attendanceTime
+            //调用考勤图方法
+            showChart(str)
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+
+
+        //常规轮播
+        carousel.render({
+            elem: '#shuffling'
+            , arrow: 'always'
+            , width: '1000px'
+            , height: '540px'
+            , interval: 5000
+        });
+
+        //调用考勤图方法
+        showChart("");
+
+
+        //考勤图
+        function showChart(str){
+            $.ajax({
+                url: "/attendance/showAttendanceEchart"+str,
+                type: "GET",
+                dataType: "JSON",
+                success: function (data) {
+                    if (data.code == 0) {
+                        //获取横坐标
+                        var userIdX = data.data.userIdX;
+                        // 获取y坐标1
+                        var checkInY = data.data.checkInY;
+                        // 获取y坐标2
+                        var checkOutY = data.data.checkOutY;
+                        // 基于准备好的dom，初始化echarts实例
+                        var myChart = echarts.init(document.getElementById('attendanceEchart'), 'chalk');
+                        // 指定图表的配置项和数据
+                        var option = {
+                            title: {
+                                text: '考勤时间',
+                                subtext: '时间'
+                            },
+                            tooltip: {
+                                trigger: 'axis'
+                            },
+                            legend: {
+                                data: ['签到时间','签退时间']
+                            },
+                            toolbox: {
+                                show: true,
+                                feature: {
+                                    dataView: {show: true, readOnly: false},
+                                    magicType: {show: true, type: ['line', 'bar']},
+                                    restore: {show: true},
+                                    saveAsImage: {show: true}
+                                }
+                            },
+                            calculable: true,
+                            xAxis: [
+                                {
+                                    type: 'category',
+                                    data: userIdX
+                                }
+                            ],
+                            yAxis: [
+                                {
+                                    type: 'time',
+                                }
+                            ],
+                            series: [
+                                {
+                                    name: '签到时间',
+                                    type: 'line',
+                                    data: checkInY,
+                                    markPoint: {
+                                        data: [
+                                            {type: 'max', name: '最大值'},
+                                            {type: 'min', name: '最小值'}
+                                        ]
+                                    },
+                                    markLine: {
+                                        data: [
+                                            {type: 'average', name: '平均值'}
+                                        ]
+                                    }
+                                },
+                                {
+                                    name: '签退时间',
+                                    type: 'line',
+                                    data: checkOutY,
+                                    markPoint: {
+                                        data: [
+                                            {type: 'max', name: '最大值'},
+                                            {type: 'min', name: '最小值'}
+                                        ]
+                                    },
+                                    markLine: {
+                                        data: [
+                                            {type: 'average', name: '平均值'}
+                                        ]
+                                    }
+                                }
+                            ]
+                        };
+                        // 使用刚指定的配置项和数据显示图表。
+                        myChart.setOption(option);
+                    }
+                }
+            });
+        }
     })
 </script>
 </html>

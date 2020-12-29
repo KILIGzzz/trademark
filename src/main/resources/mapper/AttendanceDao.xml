@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloudwise.trademark.dao.AttendanceDao">
+
+    <resultMap type="com.cloudwise.trademark.entity.Attendance" id="AttendanceMap">
+        <result property="attendanceId" column="attendance_id" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="attendanceTime" column="attendance_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="AttendanceMap">
+        select attendance_id,
+               user_id,
+               attendance_time
+        from trademark.tbl_attendance
+        where attendance_id = #{attendanceId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="AttendanceMap">
+        select ta.attendance_id,ta.user_id,ta.attendance_time checkIn,tco.checkOut from tbl_attendance ta right join (select user_id,max(attendance_time) checkOut from tbl_attendance where attendance_time like #{attendance.attendanceTime}"%" group by user_id) tco on ta.user_id = tco.user_id where attendance_time like #{attendance.attendanceTime}"%" group by user_id
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="AttendanceMap">
+        select
+        attendance_id, user_id, attendance_time
+        from trademark.tbl_attendance
+        <where>
+            <if test="attendanceId != null">
+                and attendance_id = #{attendanceId}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="attendanceTime != null">
+                and attendance_time = #{attendanceTime}
+            </if>
+        </where>
+    </select>
+    <select id="getCount" resultType="java.lang.Long">
+        select count(*)/2 from tbl_attendance ta right join
+        (select user_id,max(attendance_time) checkOut from tbl_attendance where attendance_time like #{attendanceTime}"%" group
+        by user_id) tco on ta.user_id = tco.user_id where attendance_time like #{attendanceTime}"%"
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="attendanceId" useGeneratedKeys="true">
+        insert into trademark.tbl_attendance(user_id, attendance_time)
+        values (#{userId}, #{attendanceTime})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="attendanceId" useGeneratedKeys="true">
+        insert into trademark.tbl_attendance(user_id, attendance_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.userId}, #{entity.attendanceTime})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="attendanceId" useGeneratedKeys="true">
+        insert into trademark.tbl_attendance(user_id, attendance_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.userId}, #{entity.attendanceTime})
+        </foreach>
+        on duplicate key update
+        user_id = values(user_id) , attendance_time = values(attendance_time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update trademark.tbl_attendance
+        <set>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="attendanceTime != null">
+                attendance_time = #{attendanceTime},
+            </if>
+        </set>
+        where attendance_id = #{attendanceId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from trademark.tbl_attendance
+        where attendance_id = #{attendanceId}
+    </delete>
+
+</mapper>

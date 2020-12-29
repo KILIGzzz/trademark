@@ -5,6 +5,7 @@ import com.cloudwise.trademark.entity.PageBean;
 import com.cloudwise.trademark.entity.ReturnBean;
 import com.cloudwise.trademark.service.DeptService;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -23,6 +24,13 @@ public class DeptController extends BaseController {
      */
     @Resource
     private DeptService deptService;
+
+    @GetMapping("toDept")
+    public ModelAndView toDept() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("dept");
+        return modelAndView;
+    }
 
     /**
      * 通过主键查询单条数据

@@ -8,6 +8,7 @@ import com.cloudwise.trademark.listener.DataListener;
 import com.cloudwise.trademark.service.CustomService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import java.io.IOException;
@@ -30,6 +31,13 @@ public class CustomController extends BaseController {
      */
     @Resource
     private CustomService customService;
+
+    @GetMapping("toCustom")
+    public ModelAndView toCustom() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("custom");
+        return modelAndView;
+    }
 
     /**
      * 通过主键查询单条数据

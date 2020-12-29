@@ -98,7 +98,7 @@
             <button type="button" class="layui-btn layui-btn-xs" id="insertInformUpload">通知文件</button>
         </label>
         <div class="layui-input-block">
-            <input type="text" name="noticeName" id="insertInformSourceName"
+            <input type="text" name="notice" id="insertInformSourceName"
                    placeholder="" autocomplete="off" class="layui-input">
         </div>
     </div>
@@ -339,9 +339,9 @@
                         }
                     },
                     {
-                        field: 'noticeName', title: '通知文件名', width: 170,
+                        field: 'notice', title: '通知文件名', width: 170,
                         templet: function (progress) {
-                            return '<a href="' + progress.upload.destinationName + '">' + progress.upload.noticeName + '</a>';
+                            return '<a href="' + progress.upload.destinationName + '">' + progress.upload.sourceName + '</a>';
                         }
                     },
                     {field: 'businessId', title: '业务ID', width: 80},

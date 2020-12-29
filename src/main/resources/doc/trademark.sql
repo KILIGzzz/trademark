@@ -11,7 +11,7 @@
  Target Server Version : 80022
  File Encoding         : 65001
 
- Date: 29/12/2020 14:34:23
+ Date: 29/12/2020 16:51:59
 */
 
 SET NAMES utf8mb4;
@@ -64,11 +64,13 @@ INSERT INTO `tbl_business` VALUES (14, 116976458, '2020-12-28 13:26:24', '商标
 INSERT INTO `tbl_business` VALUES (15, 548431341, '2020-11-28 14:01:42', '版权', '版权申请', '餐饮住宿、养老托儿、动物食宿', '商标专用权质权登记申请', '4000', '800', NULL, 'Enzo', '2020-12-28 06:03:07', 'Enzo', '2020-12-28 15:35:55', 81, '');
 INSERT INTO `tbl_business` VALUES (16, 512201228, '2020-12-28 14:54:01', '商标', '商标异议申请', '机械设备、马达、传动', '商标异议申请', '1500', '500', NULL, 'Back', '2020-12-28 14:56:19', 'Back', '2020-12-28 14:56:33', 83, '无');
 INSERT INTO `tbl_business` VALUES (17, 522101228, '2020-08-28 15:03:22', '商标', '宋河酒业', '酒、含酒精饮料', '更正商标申请/注册事项申请', '2000', '500', NULL, 'Back', '2020-12-28 15:05:04', 'Back', '2020-12-28 15:17:39', 84, '宋河酒业');
-INSERT INTO `tbl_business` VALUES (18, 632102849, '2020-08-28 15:08:52', '商标', '乔氏广告', '广告、商业管理、市场营销', '商标注册申请', '2300', '600', NULL, 'Back', '2020-12-28 15:11:49', 'Back', '2020-12-28 15:17:57', 85, '乔氏广告');
+INSERT INTO `tbl_business` VALUES (18, 632102849, '2020-06-28 15:08:52', '商标', '乔氏广告', '广告、商业管理、市场营销', '商标注册申请', '2300', '600', NULL, 'Back', '2020-12-28 15:11:49', 'Enzo', '2020-12-29 08:08:31', 85, '乔氏广告');
 INSERT INTO `tbl_business` VALUES (19, 435231223, '2020-10-01 15:21:10', '商标', '安徽瑞蒙科技', '研发质控、IT服务、建筑咨询', '更正商标申请/注册事项申请', '3000', '800', NULL, 'Ivan', '2020-12-28 15:22:31', NULL, NULL, 86, '安徽瑞蒙科技');
 INSERT INTO `tbl_business` VALUES (20, 344786552, '2020-07-01 15:26:02', '商标', '亚圣科技', '生鲜、动植物、饲料种子', '商标异议申请', '2500', '550', NULL, 'Ivan', '2020-12-28 15:27:10', NULL, NULL, 87, '亚圣科技');
 INSERT INTO `tbl_business` VALUES (21, 332140971, '2020-12-28 15:30:21', '商标', '酷玩童年教育咨询', '玩具、体育健身器材、钓具', '商标使用许可备案', '4000', '1000', NULL, 'Ivan', '2020-12-28 15:31:50', NULL, NULL, 88, '商标使用许可');
 INSERT INTO `tbl_business` VALUES (22, 610819201, '2020-09-28 15:37:09', '商标', '长欣道路运输', '运输仓储、能源分配、旅行服务', '变更商标代理人/文件接收人申请', '5000', '1000', NULL, 'Epic', '2020-12-28 15:38:18', NULL, NULL, 89, '长欣道路运输');
+INSERT INTO `tbl_business` VALUES (23, 836264026, '2020-06-29 16:04:08', '商标', '嫩牛五方', '餐饮住宿、养老托儿、动物食宿', '商标注册申请', '7000', '3000', NULL, 'Enzo', '2020-12-29 08:05:54', NULL, NULL, 89, '嫩牛五方商标注册');
+INSERT INTO `tbl_business` VALUES (24, 234759325, '2020-12-29 16:05:58', '版权', '嫩牛五方', '餐饮住宿、养老托儿、动物食宿', '商标专用权质权登记事项变更申请', '3000', '1000', NULL, 'Enzo', '2020-12-29 08:07:30', NULL, NULL, 89, '版权变更');
 
 -- ----------------------------
 -- Table structure for tbl_custom
@@ -317,17 +319,17 @@ CREATE TABLE `tbl_menu`  (
 INSERT INTO `tbl_menu` VALUES (1, '客户管理', 0, 2, '#', 'M', '0', '', 'layui-icon-camera-fill', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '系统监控目录');
 INSERT INTO `tbl_menu` VALUES (2, '统计分析', 0, 5, '#', 'M', '0', '', NULL, 'Enzo', '2020-12-29 11:38:57', NULL, NULL, '统计分析');
 INSERT INTO `tbl_menu` VALUES (3, '系统管理', 0, 1, '#', 'M', '0', '', 'layui-icon-set', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '系统管理目录');
-INSERT INTO `tbl_menu` VALUES (4, '业务管理', 0, 4, '#', 'M', '0', '', '#', 'Enzo', '2020-12-23 18:56:38', 'Enzo', NULL, '字典管理');
-INSERT INTO `tbl_menu` VALUES (100, '用户管理', 3, 1, '/goto/toUser', 'C', '0', 'system:user:view', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '用户管理菜单');
-INSERT INTO `tbl_menu` VALUES (101, '角色管理', 3, 2, '/goto/toRole', 'C', '0', 'system:role:view', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '角色管理菜单');
-INSERT INTO `tbl_menu` VALUES (102, '菜单管理', 3, 3, '/goto/toMenu', 'C', '0', 'system:menu:view', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '菜单管理菜单');
-INSERT INTO `tbl_menu` VALUES (103, '部门管理', 3, 4, '/goto/toDept', 'C', '0', 'system:dept:view', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '部门管理菜单');
-INSERT INTO `tbl_menu` VALUES (109, '客户列表', 1, 1, '/goto/toCustom', 'C', '0', 'monitor:online:view', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '在线用户菜单');
-INSERT INTO `tbl_menu` VALUES (111, '业务列表', 1, 2, '/goto/toBusiness', 'C', '0', 'monitor:data:view', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '数据监控菜单');
-INSERT INTO `tbl_menu` VALUES (112, '进度列表', 1, 3, '/goto/toProgress', 'C', '0', 'monitor:server:view', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '服务监控菜单');
-INSERT INTO `tbl_menu` VALUES (113, '回访信息', 1, 4, '/goto/toVisit', 'C', '0', '', NULL, 'Enzo', '2020-12-24 09:31:13', 'Enzo', NULL, '回访信息');
-INSERT INTO `tbl_menu` VALUES (114, '业务类型', 4, 1, '/goto/toDictionaryType', 'C', '0', '', '#', 'Enzo', '2020-12-23 18:59:34', 'Enzo', NULL, '字典类型');
-INSERT INTO `tbl_menu` VALUES (115, '业务种类', 4, 2, '/goto/toDictionary', 'C', '0', '', '#', 'Enzo', '2020-12-23 19:00:43', 'Enzo', NULL, '字典种类');
+INSERT INTO `tbl_menu` VALUES (4, '业务字典', 0, 4, '#', 'M', '0', '', '#', 'Enzo', '2020-12-23 18:56:38', 'Enzo', NULL, '字典管理');
+INSERT INTO `tbl_menu` VALUES (100, '用户管理', 3, 1, '/user/toUser', 'C', '0', 'system:user:view', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '用户管理菜单');
+INSERT INTO `tbl_menu` VALUES (101, '角色管理', 3, 2, '/role/toRole', 'C', '0', 'system:role:view', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '角色管理菜单');
+INSERT INTO `tbl_menu` VALUES (102, '菜单管理', 3, 3, '/menu/toMenu', 'C', '0', 'system:menu:view', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '菜单管理菜单');
+INSERT INTO `tbl_menu` VALUES (103, '部门管理', 3, 4, '/dept/toDept', 'C', '0', 'system:dept:view', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '部门管理菜单');
+INSERT INTO `tbl_menu` VALUES (109, '客户列表', 1, 1, '/custom/toCustom', 'C', '0', 'monitor:online:view', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '在线用户菜单');
+INSERT INTO `tbl_menu` VALUES (111, '业务列表', 1, 2, '/business/toBusiness', 'C', '0', 'monitor:data:view', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '数据监控菜单');
+INSERT INTO `tbl_menu` VALUES (112, '进度列表', 1, 3, '/progress/toProgress', 'C', '0', 'monitor:server:view', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '服务监控菜单');
+INSERT INTO `tbl_menu` VALUES (113, '回访信息', 1, 4, '/visit/toVisit', 'C', '0', '', NULL, 'Enzo', '2020-12-24 09:31:13', 'Enzo', NULL, '回访信息');
+INSERT INTO `tbl_menu` VALUES (114, '字典类型', 4, 1, '/dictionaryType/toDictionaryType', 'C', '0', '', '#', 'Enzo', '2020-12-23 18:59:34', 'Enzo', NULL, '字典类型');
+INSERT INTO `tbl_menu` VALUES (115, '字典种类', 4, 2, '/dictionary/toDictionary', 'C', '0', '', '#', 'Enzo', '2020-12-23 19:00:43', 'Enzo', NULL, '字典种类');
 INSERT INTO `tbl_menu` VALUES (1000, '用户查询', 100, 1, '#', 'F', '0', 'system:user:list', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '');
 INSERT INTO `tbl_menu` VALUES (1001, '用户新增', 100, 2, '#', 'F', '0', 'system:user:add', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '');
 INSERT INTO `tbl_menu` VALUES (1002, '用户修改', 100, 3, '#', 'F', '0', 'system:user:edit', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '');
@@ -347,10 +349,10 @@ INSERT INTO `tbl_menu` VALUES (1015, '部门查询', 103, 1, '#', 'F', '0', 'sys
 INSERT INTO `tbl_menu` VALUES (1016, '部门新增', 103, 2, '#', 'F', '0', 'system:dept:add', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '');
 INSERT INTO `tbl_menu` VALUES (1017, '部门修改', 103, 3, '#', 'F', '0', 'system:dept:edit', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '');
 INSERT INTO `tbl_menu` VALUES (1018, '部门删除', 103, 4, '#', 'F', '0', 'system:dept:remove', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '');
-INSERT INTO `tbl_menu` VALUES (1020, '业务分析', 2, 1, '/goto/toBusinessEchart', 'C', '0', '', NULL, 'Enzo', '2020-12-29 11:40:28', NULL, NULL, '业务分析');
-INSERT INTO `tbl_menu` VALUES (1021, '进度分析', 2, 2, '/goto/toProgressEchart', 'C', '0', '', NULL, 'Enzo', '2020-12-29 11:41:22', NULL, NULL, '进度分析');
-INSERT INTO `tbl_menu` VALUES (1022, '回访分析', 2, 3, '/goto/toVisitEchart', 'C', '0', '', NULL, 'Enzo', '2020-12-29 11:42:04', NULL, NULL, '回访分析');
-INSERT INTO `tbl_menu` VALUES (1023, '考勤分析', 2, 4, '/goto/toAttendance', 'C', '0', '', NULL, 'Enzo', '2020-12-29 13:14:11', NULL, NULL, '考勤分析');
+INSERT INTO `tbl_menu` VALUES (1020, '业务分析', 2, 1, '/statistical/toBusinessEchart', 'C', '0', '', NULL, 'Enzo', '2020-12-29 11:40:28', NULL, NULL, '业务分析');
+INSERT INTO `tbl_menu` VALUES (1021, '进度分析', 2, 2, '/statistical/toProgressEchart', 'C', '0', '', NULL, 'Enzo', '2020-12-29 11:41:22', NULL, NULL, '进度分析');
+INSERT INTO `tbl_menu` VALUES (1022, '回访分析', 2, 3, '/statistical/toVisitEchart', 'C', '0', '', NULL, 'Enzo', '2020-12-29 11:42:04', NULL, NULL, '回访分析');
+INSERT INTO `tbl_menu` VALUES (1023, '考勤分析', 2, 4, '/statistical/toAttendance', 'C', '0', '', NULL, 'Enzo', '2020-12-29 13:14:11', NULL, NULL, '考勤分析');
 
 -- ----------------------------
 -- Table structure for tbl_progress
@@ -359,7 +361,8 @@ DROP TABLE IF EXISTS `tbl_progress`;
 CREATE TABLE `tbl_progress`  (
   `progress_id` int NOT NULL AUTO_INCREMENT,
   `progress_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '进度类型下拉字典',
-  `upload_id` int NOT NULL COMMENT '上传文件，关联文件上传表',
+  `upload` int NULL DEFAULT NULL COMMENT '上传文件，关联文件上传表',
+  `notice` int NULL DEFAULT NULL COMMENT '通知文件，关联文件上传表',
   `business_id` int NOT NULL COMMENT '业务id，关联业务表',
   `create_by` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT NULL,
@@ -372,23 +375,23 @@ CREATE TABLE `tbl_progress`  (
 -- ----------------------------
 -- Records of tbl_progress
 -- ----------------------------
-INSERT INTO `tbl_progress` VALUES (31, '商标申请受通', 6, 14, 'Enzo', '2020-12-28 13:30:31', 'Enzo', '2020-12-28 13:40:11', '商标注册文件上传');
-INSERT INTO `tbl_progress` VALUES (32, '下证', 7, 14, 'Enzo', '2020-12-28 13:41:47', 'Enzo', '2020-12-28 13:43:48', '叫了只鸡下证失败');
-INSERT INTO `tbl_progress` VALUES (33, '下证', 8, 14, 'Enzo', '2020-12-28 13:46:12', NULL, NULL, '重新上传下证文件');
-INSERT INTO `tbl_progress` VALUES (34, '商标申请受通', 9, 15, 'Enzo', '2020-12-28 14:08:09', NULL, NULL, '老狼大盘鸡商标注册');
-INSERT INTO `tbl_progress` VALUES (35, '异议申请', 10, 16, 'Back', '2020-12-28 14:58:11', 'Back', '2020-12-28 14:58:48', '通知');
-INSERT INTO `tbl_progress` VALUES (36, '异议答辩', 11, 16, 'Back', '2020-12-28 14:59:34', NULL, NULL, '异议申请');
-INSERT INTO `tbl_progress` VALUES (37, '异议裁定', 12, 16, 'Back', '2020-12-28 15:00:44', NULL, NULL, '异议裁定');
-INSERT INTO `tbl_progress` VALUES (38, '商标申请受通', 13, 17, 'Back', '2020-12-28 15:06:05', NULL, NULL, '申请材料');
-INSERT INTO `tbl_progress` VALUES (39, '缴费通知', 14, 17, 'Back', '2020-12-28 15:07:07', NULL, NULL, '缴费通知');
-INSERT INTO `tbl_progress` VALUES (40, '商标申请受通', 15, 18, 'Back', '2020-12-28 15:12:58', 'Back', '2020-12-28 15:13:31', '商标申请');
-INSERT INTO `tbl_progress` VALUES (41, '驳回通知书', 16, 18, 'Back', '2020-12-28 15:14:12', 'Back', '2020-12-28 15:14:30', '申请驳回');
-INSERT INTO `tbl_progress` VALUES (42, '商标申请受通', 17, 19, 'Ivan', '2020-12-28 15:23:17', NULL, NULL, '申请文件');
-INSERT INTO `tbl_progress` VALUES (43, '驳回通知书', 18, 19, 'Ivan', '2020-12-28 15:24:08', NULL, NULL, '驳回通知');
-INSERT INTO `tbl_progress` VALUES (44, '商标申请受通', 19, 20, 'Ivan', '2020-12-28 15:27:59', NULL, NULL, '商标申请受通');
-INSERT INTO `tbl_progress` VALUES (45, '领证书', 20, 20, 'Ivan', '2020-12-28 15:29:28', NULL, NULL, '商标申请受通');
-INSERT INTO `tbl_progress` VALUES (46, '领证书', 21, 21, 'Ivan', '2020-12-28 15:32:48', NULL, NULL, '证书');
-INSERT INTO `tbl_progress` VALUES (47, '领证书', 22, 22, 'Epic', '2020-12-28 15:38:55', NULL, NULL, '长欣道路运输');
+INSERT INTO `tbl_progress` VALUES (31, '商标申请受通', 6, NULL, 14, 'Enzo', '2020-12-28 13:30:31', 'Enzo', '2020-12-28 13:40:11', '商标注册文件上传');
+INSERT INTO `tbl_progress` VALUES (32, '下证', 7, NULL, 14, 'Enzo', '2020-12-28 13:41:47', 'Enzo', '2020-12-28 13:43:48', '叫了只鸡下证失败');
+INSERT INTO `tbl_progress` VALUES (33, '下证', 8, NULL, 14, 'Enzo', '2020-12-28 13:46:12', NULL, NULL, '重新上传下证文件');
+INSERT INTO `tbl_progress` VALUES (34, '商标申请受通', 9, NULL, 15, 'Enzo', '2020-12-28 14:08:09', NULL, NULL, '老狼大盘鸡商标注册');
+INSERT INTO `tbl_progress` VALUES (35, '异议申请', 10, NULL, 16, 'Back', '2020-12-28 14:58:11', 'Back', '2020-12-28 14:58:48', '通知');
+INSERT INTO `tbl_progress` VALUES (36, '异议答辩', 11, NULL, 16, 'Back', '2020-12-28 14:59:34', NULL, NULL, '异议申请');
+INSERT INTO `tbl_progress` VALUES (37, '异议裁定', 12, NULL, 16, 'Back', '2020-12-28 15:00:44', NULL, NULL, '异议裁定');
+INSERT INTO `tbl_progress` VALUES (38, '商标申请受通', 13, NULL, 17, 'Back', '2020-12-28 15:06:05', NULL, NULL, '申请材料');
+INSERT INTO `tbl_progress` VALUES (39, '缴费通知', 14, NULL, 17, 'Back', '2020-12-28 15:07:07', NULL, NULL, '缴费通知');
+INSERT INTO `tbl_progress` VALUES (40, '商标申请受通', 15, NULL, 18, 'Back', '2020-12-28 15:12:58', 'Back', '2020-12-28 15:13:31', '商标申请');
+INSERT INTO `tbl_progress` VALUES (41, '驳回通知书', 16, NULL, 18, 'Back', '2020-12-28 15:14:12', 'Back', '2020-12-28 15:14:30', '申请驳回');
+INSERT INTO `tbl_progress` VALUES (42, '商标申请受通', 17, NULL, 19, 'Ivan', '2020-12-28 15:23:17', NULL, NULL, '申请文件');
+INSERT INTO `tbl_progress` VALUES (43, '驳回通知书', 18, NULL, 19, 'Ivan', '2020-12-28 15:24:08', NULL, NULL, '驳回通知');
+INSERT INTO `tbl_progress` VALUES (44, '商标申请受通', 19, NULL, 20, 'Ivan', '2020-12-28 15:27:59', NULL, NULL, '商标申请受通');
+INSERT INTO `tbl_progress` VALUES (45, '领证书', 20, NULL, 20, 'Ivan', '2020-12-28 15:29:28', NULL, NULL, '商标申请受通');
+INSERT INTO `tbl_progress` VALUES (46, '领证书', 21, NULL, 21, 'Ivan', '2020-12-28 15:32:48', NULL, NULL, '证书');
+INSERT INTO `tbl_progress` VALUES (47, '领证书', 22, NULL, 22, 'Epic', '2020-12-28 15:38:55', NULL, NULL, '长欣道路运输');
 
 -- ----------------------------
 -- Table structure for tbl_role
@@ -483,7 +486,6 @@ DROP TABLE IF EXISTS `tbl_upload`;
 CREATE TABLE `tbl_upload`  (
   `upload_id` int NOT NULL AUTO_INCREMENT COMMENT '即文件ID，为方便识别命名为表名_id',
   `source_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '原文件名',
-  `notice_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '原通知文件名',
   `destination_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '服务器文件名',
   PRIMARY KEY (`upload_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
@@ -491,23 +493,23 @@ CREATE TABLE `tbl_upload`  (
 -- ----------------------------
 -- Records of tbl_upload
 -- ----------------------------
-INSERT INTO `tbl_upload` VALUES (6, '叫了只鸡.rar', '叫了只鸡通知.rar', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609134007427[I@5e586477.rar');
-INSERT INTO `tbl_upload` VALUES (7, '叫了只鸡下证上传.rar', '叫了只鸡下证失败.rar', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609134220667[I@4940250a.rar');
-INSERT INTO `tbl_upload` VALUES (8, '叫了只鸡下证上传.rar', '', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609134358822[I@69a7299a.rar');
-INSERT INTO `tbl_upload` VALUES (9, '老狼大盘鸡.rar', '', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609135678425[I@d67a441.rar');
-INSERT INTO `tbl_upload` VALUES (10, '禹州市瑶飞机械有限公司.zip', '禹州市瑶飞机械有限公司通知.zip', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609138719936[I@2c1e2fcd.zip');
-INSERT INTO `tbl_upload` VALUES (11, '瑶飞机械.zip', '', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609138773007[I@9e1e9ee.zip');
-INSERT INTO `tbl_upload` VALUES (12, '', '裁定通知.zip', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609138836407[I@4100e260.zip');
-INSERT INTO `tbl_upload` VALUES (13, '宋河酒业.zip', '', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609139146955[I@34a351f4.zip');
-INSERT INTO `tbl_upload` VALUES (14, '', '宋河酒业缴费通知.zip', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609139227282[I@3f986a13.zip');
-INSERT INTO `tbl_upload` VALUES (15, '乔氏广告商标申请.zip', '乔氏广告商标申请通知.zip', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609139610742[I@3d1e2d8c.zip');
-INSERT INTO `tbl_upload` VALUES (16, '', '乔氏广告商标申请通知.zip', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609139610742[I@3d1e2d8c.zip');
-INSERT INTO `tbl_upload` VALUES (17, '安徽瑞蒙科技有限公司.zip', '', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609140182848[I@45707b6.zip');
-INSERT INTO `tbl_upload` VALUES (18, '', '安徽瑞蒙科技通知.zip', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609140234908[I@7ac19b8d.zip');
-INSERT INTO `tbl_upload` VALUES (19, '亚圣科技.zip', '', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609140453081[I@2f1047ac.zip');
-INSERT INTO `tbl_upload` VALUES (20, '', '亚圣科技通知.zip', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609140567205[I@60a58dc7.zip');
-INSERT INTO `tbl_upload` VALUES (21, '', '酷玩童年商标使用许可.zip', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609140752850[I@c3082e8.zip');
-INSERT INTO `tbl_upload` VALUES (22, '', '长欣道路运输通知.zip', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609141131143[I@73ef2c35.zip');
+INSERT INTO `tbl_upload` VALUES (6, '叫了只鸡.rar', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609134007427[I@5e586477.rar');
+INSERT INTO `tbl_upload` VALUES (7, '叫了只鸡下证上传.rar', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609134220667[I@4940250a.rar');
+INSERT INTO `tbl_upload` VALUES (8, '叫了只鸡下证上传.rar', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609134358822[I@69a7299a.rar');
+INSERT INTO `tbl_upload` VALUES (9, '老狼大盘鸡.rar', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609135678425[I@d67a441.rar');
+INSERT INTO `tbl_upload` VALUES (10, '禹州市瑶飞机械有限公司.zip', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609138719936[I@2c1e2fcd.zip');
+INSERT INTO `tbl_upload` VALUES (11, '瑶飞机械.zip', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609138773007[I@9e1e9ee.zip');
+INSERT INTO `tbl_upload` VALUES (12, '', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609138836407[I@4100e260.zip');
+INSERT INTO `tbl_upload` VALUES (13, '宋河酒业.zip', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609139146955[I@34a351f4.zip');
+INSERT INTO `tbl_upload` VALUES (14, '', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609139227282[I@3f986a13.zip');
+INSERT INTO `tbl_upload` VALUES (15, '乔氏广告商标申请.zip', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609139610742[I@3d1e2d8c.zip');
+INSERT INTO `tbl_upload` VALUES (16, '', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609139610742[I@3d1e2d8c.zip');
+INSERT INTO `tbl_upload` VALUES (17, '安徽瑞蒙科技有限公司.zip', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609140182848[I@45707b6.zip');
+INSERT INTO `tbl_upload` VALUES (18, '', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609140234908[I@7ac19b8d.zip');
+INSERT INTO `tbl_upload` VALUES (19, '亚圣科技.zip', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609140453081[I@2f1047ac.zip');
+INSERT INTO `tbl_upload` VALUES (20, '', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609140567205[I@60a58dc7.zip');
+INSERT INTO `tbl_upload` VALUES (21, '', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609140752850[I@c3082e8.zip');
+INSERT INTO `tbl_upload` VALUES (22, '', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609141131143[I@73ef2c35.zip');
 
 -- ----------------------------
 -- Table structure for tbl_user

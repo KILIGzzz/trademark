@@ -4,6 +4,7 @@ import com.cloudwise.trademark.entity.*;
 import com.cloudwise.trademark.service.DictionaryService;
 import com.cloudwise.trademark.service.DictionaryTypeService;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -25,6 +26,13 @@ public class DictionaryController extends BaseController {
     @Resource
     private DictionaryTypeService dictionaryTypeService;
 
+    @GetMapping("toDictionary")
+    public ModelAndView toDictionary() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("dictionary");
+        return modelAndView;
+    }
+
     /**
      * 通过主键查询单条数据
      *
@@ -37,7 +45,7 @@ public class DictionaryController extends BaseController {
     }
 
     @GetMapping("selectAllType")
-    public ReturnBean selectAllType(){
+    public ReturnBean selectAllType() {
         List<DictionaryType> dictionaryTypes = dictionaryTypeService.queryAllType();
         return returnSuccess(dictionaryTypes);
     }

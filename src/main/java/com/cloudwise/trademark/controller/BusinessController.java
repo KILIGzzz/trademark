@@ -28,6 +28,13 @@ public class BusinessController extends BaseController {
     @Resource
     private BusinessService BusinessService;
 
+    @GetMapping("toBusiness")
+    public ModelAndView toBusiness() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("business");
+        return modelAndView;
+    }
+
     /**
      * 通过主键查询单条数据
      *
@@ -128,92 +135,91 @@ public class BusinessController extends BaseController {
     }
 
     /**
+     * @param :
+     * @return com.cloudwise.trademark.entity.ReturnBean
      * @create by: IvanZ
      * @description : 业务量走势图
      * @create time: 2020/12/25 20:36
-     * @param : 
-     * @return com.cloudwise.trademark.entity.ReturnBean
      */
     @GetMapping("showBusinessChart")
-    public ReturnBean showBusinessChart(){
+    public ReturnBean showBusinessChart() {
         Map<String, Object> map = BusinessService.showBusinessChart();
         return returnSuccess(map);
     }
 
     /**
+     * @param :
+     * @return com.cloudwise.trademark.entity.ReturnBean
      * @create by: IvanZ
      * @description : 业绩排行榜
      * @create time: 2020/12/25 20:36
-     * @param :
-     * @return com.cloudwise.trademark.entity.ReturnBean
      */
     @GetMapping("showPerformanceRanking")
-    public ReturnBean showPerformanceRanking(){
+    public ReturnBean showPerformanceRanking() {
         Map<String, Object> map = BusinessService.showPerformanceRanking();
         return returnSuccess(map);
     }
 
     /**
+     * @param :
+     * @return com.cloudwise.trademark.entity.ReturnBean
      * @create by: IvanZ
      * @description : 得到首页数据
      * @create time: 2020/12/28 20:06
-     * @param :
-     * @return com.cloudwise.trademark.entity.ReturnBean
      */
     @GetMapping("getIndexData")
-    public ReturnBean getIndexData(){
+    public ReturnBean getIndexData() {
         List<Integer> indexData = BusinessService.getIndexData();
         return returnSuccess(indexData);
     }
 
     /**
+     * @param :
+     * @return com.cloudwise.trademark.entity.ReturnBean
      * @create by: IvanZ
      * @description : 业务分析
      * @create time: 2020/12/29 11:57
-     * @param :
-     * @return com.cloudwise.trademark.entity.ReturnBean
      */
     @GetMapping("businessEchart")
-    public ReturnBean businessEchart(){
+    public ReturnBean businessEchart() {
         return null;
     }
 
     /**
+     * @param :
+     * @return com.cloudwise.trademark.entity.ReturnBean
      * @create by: IvanZ
      * @description : 进度分析
      * @create time: 2020/12/29 11:57
-     * @param :
-     * @return com.cloudwise.trademark.entity.ReturnBean
      */
     @GetMapping("progressEchart")
-    public ReturnBean progressEchart(){
+    public ReturnBean progressEchart() {
         return null;
     }
 
     /**
+     * @param :
+     * @return com.cloudwise.trademark.entity.ReturnBean
      * @create by: IvanZ
      * @description : 回访分析
      * @create time: 2020/12/29 11:57
-     * @param :
-     * @return com.cloudwise.trademark.entity.ReturnBean
      */
     @GetMapping("visitEchart")
-    public ReturnBean visitEchart(){
+    public ReturnBean visitEchart() {
         return null;
     }
 
     /**
+     * @param :
+     * @return com.cloudwise.trademark.entity.ReturnBean
      * @create by: IvanZ
      * @description : 回访分析
      * @create time: 2020/12/29 11:57
-     * @param :
-     * @return com.cloudwise.trademark.entity.ReturnBean
      */
     @GetMapping("attendance")
-    public ReturnBean attendance(){
+    public ReturnBean attendance() {
         return null;
     }
-
 
 
 }

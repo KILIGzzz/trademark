@@ -3,6 +3,7 @@ package com.cloudwise.trademark.controller;
 import com.cloudwise.trademark.entity.*;
 import com.cloudwise.trademark.service.RoleService;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -23,6 +24,13 @@ public class RoleController extends BaseController {
     @Resource
     private RoleService roleService;
 
+    @GetMapping("toRole")
+    public ModelAndView toRole() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("role");
+        return modelAndView;
+    }
+
     /**
      * 通过主键查询单条数据
      *
@@ -35,29 +43,29 @@ public class RoleController extends BaseController {
     }
 
     /**
+     * @param pageBean:
+     * @param user:
+     * @return com.cloudwise.trademark.entity.ReturnBean
      * @create by: IvanZ
      * @description : 查询所有并分页
      * @create time: 2020/12/19 18:11
-     * @param pageBean:
- * @param user:
-     * @return com.cloudwise.trademark.entity.ReturnBean
      */
     @GetMapping("findAll")
-    public ReturnBean findAll(PageBean pageBean, User user){
+    public ReturnBean findAll(PageBean pageBean, User user) {
         List<Role> roles = roleService.queryAllByLimit(getOffset(pageBean), pageBean.getLimit());
         long count = roleService.getCount();
-        return returnSuccess(roles,count);
+        return returnSuccess(roles, count);
     }
 
     /**
+     * @param roleId:
+     * @return com.cloudwise.trademark.entity.ReturnBean
      * @create by: IvanZ
      * @description : 通过id删除数据
      * @create time: 2020/12/19 19:10
-     * @param roleId:
-     * @return com.cloudwise.trademark.entity.ReturnBean
      */
     @PutMapping("deleteById")
-    public ReturnBean deleteById(Integer roleId){
+    public ReturnBean deleteById(Integer roleId) {
         boolean b = roleService.deleteById(roleId);
         if (b) {
             roleService.deleteByRoleId(roleId);
@@ -73,30 +81,30 @@ public class RoleController extends BaseController {
      * @create time: 2020/12/20 17:11
      */
     @PostMapping("insertRole")
-    public ReturnBean insertRole(Role role,String menus){
+    public ReturnBean insertRole(Role role, String menus) {
         Role insert = roleService.insert(role);
-        if (insert != null){
+        if (insert != null) {
             String[] menusId = menus.split(",");
-            roleService.insertRoleMenu(insert.getRoleId(),menusId);
+            roleService.insertRoleMenu(insert.getRoleId(), menusId);
             return returnSuccess(null);
         }
         return returnFail(null);
     }
 
     /**
-     * @create by: IvanZ
-     * @description : 往role和role_menu表中修改数据
-     * @create time: 2020/12/20 17:11
      * @param role:
      * @param menus:
      * @return com.cloudwise.trademark.entity.ReturnBean
+     * @create by: IvanZ
+     * @description : 往role和role_menu表中修改数据
+     * @create time: 2020/12/20 17:11
      */
     @PutMapping("updateRole")
-    public ReturnBean updateRole(Role role,String menus){
+    public ReturnBean updateRole(Role role, String menus) {
         Role update = roleService.update(role);
-        if (update != null){
+        if (update != null) {
             String[] menusId = menus.split(",");
-            roleService.updateRoleMenu(update.getRoleId(),menusId);
+            roleService.updateRoleMenu(update.getRoleId(), menusId);
             return returnSuccess(null);
         }
         return returnFail(null);
@@ -104,19 +112,19 @@ public class RoleController extends BaseController {
 
 
     /**
+     * @param :
+     * @return java.lang.Object
      * @create by: IvanZ
      * @description : 获取树形菜单数据
      * @create time: 2020/12/20 1:12
-     * @param :
-     * @return java.lang.Object
      */
     @GetMapping("findAllMenu")
-    public List<LayUiTree> findAllMenu(){
+    public List<LayUiTree> findAllMenu() {
         List<Menu> menus = roleService.findAllMenu();
 
         List<LayUiTree> list = new ArrayList<>();
         for (Menu menu : menus) {
-            if(menu.getParentId()==0){
+            if (menu.getParentId() == 0) {
                 LayUiTree tree = new LayUiTree();
                 tree.setId(menu.getMenuId());
                 tree.setTitle(menu.getMenuName());
@@ -131,7 +139,7 @@ public class RoleController extends BaseController {
     }
 
     @GetMapping("findSelectMenu")
-    public List<Integer> findSelectMenu(int roleId){
+    public List<Integer> findSelectMenu(int roleId) {
         return roleService.findSelectMenu(roleId);
     }
 
@@ -144,16 +152,16 @@ public class RoleController extends BaseController {
      * @description : 递归得到孩子节点
      * @create time: 2020/12/20 1:12
      */
-    public List<LayUiTree> getChildren(Integer parentId,List<Menu> menus){
+    public List<LayUiTree> getChildren(Integer parentId, List<Menu> menus) {
         List<LayUiTree> list = new ArrayList<>();
         for (Menu menu : menus) {
-            if(menu.getParentId().equals(parentId)){
+            if (menu.getParentId().equals(parentId)) {
                 LayUiTree tree = new LayUiTree();
                 tree.setId(menu.getMenuId());
                 tree.setTitle(menu.getMenuName());
                 //组件展开
 //                tree.setSpread(true);
-                tree.setChildren(getChildren(menu.getMenuId(),menus));
+                tree.setChildren(getChildren(menu.getMenuId(), menus));
                 list.add(tree);
             }
         }

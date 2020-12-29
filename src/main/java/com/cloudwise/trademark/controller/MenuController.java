@@ -5,6 +5,7 @@ import com.cloudwise.trademark.entity.ReturnBean;
 import com.cloudwise.trademark.service.MenuService;
 import com.cloudwise.trademark.util.TreeUtil;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -23,6 +24,14 @@ public class MenuController extends BaseController {
      */
     @Resource
     private MenuService menuService;
+
+
+    @GetMapping("toMenu")
+    public ModelAndView toMenu() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("menu");
+        return modelAndView;
+    }
 
     /**
      * 通过主键查询单条数据

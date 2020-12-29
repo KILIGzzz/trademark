@@ -67,15 +67,16 @@ public class ShiroConfig {
         //anon:无需认证 authc:必须认证才能到达
         Map<String, String> map = new LinkedHashMap<>();
         //放行login
-        map.put("/goto/login", "anon");
+        map.put("/toLogin", "anon");
+        map.put("/login", "anon");
         map.put("/model/**", "anon");
         map.put("/layui/**", "anon");
         //过滤所有的请求
-        map.put("/goto/**", "authc");
-        //所有的未认证的请求都去登录页面
-        shiroFilterFactoryBean.setLoginUrl("/goto/toLogin");
+        map.put("/**", "authc");
         //登录成功去哪
-        shiroFilterFactoryBean.setSuccessUrl("/goto/toHome");
+        shiroFilterFactoryBean.setSuccessUrl("/toHome");
+        //所有的未认证的请求都去登录页面
+        shiroFilterFactoryBean.setLoginUrl("/toLogin");
         //授权页面
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
         return shiroFilterFactoryBean;

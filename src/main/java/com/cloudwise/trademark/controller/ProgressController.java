@@ -32,6 +32,13 @@ public class ProgressController extends BaseController {
     @Autowired
     private UploadService uploadService;
 
+    @GetMapping("toProgress")
+    public ModelAndView toProgress() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("progress");
+        return modelAndView;
+    }
+
     /**
      * 通过主键查询单条数据
      *

@@ -28,6 +28,13 @@ public class VisitController extends BaseController {
     @Resource
     private VisitService visitService;
 
+    @GetMapping("toVisit")
+    public ModelAndView toVisit() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("visit");
+        return modelAndView;
+    }
+
     /**
      * 通过主键查询单条数据
      *
@@ -40,69 +47,69 @@ public class VisitController extends BaseController {
     }
 
     /**
+     * @return
      * @create by: ydq
      * @description: 方法作用：查询所有
      * @create time: 2020/12/23 20:16
      * @param:
-     * @return
      */
     @GetMapping("selectAll")
-    public ReturnBean selectAll (Visit visit,PageBean pageBean){
+    public ReturnBean selectAll(Visit visit, PageBean pageBean) {
         try {
             int offset = getOffset(pageBean);
-            List<Visit> visits = visitService.queryAllByLimit(visit,offset, pageBean.getLimit());
-            return returnSuccess(visits,visitService.getCount(visit));
-        }catch (Exception e) {
+            List<Visit> visits = visitService.queryAllByLimit(visit, offset, pageBean.getLimit());
+            return returnSuccess(visits, visitService.getCount(visit));
+        } catch (Exception e) {
             return returnFail(null);
         }
     }
 
     /**
+     * @return
      * @create by: ydq
      * @description: 方法作用：修改
      * @create time: 2020/12/24 0:16
      * @param:
-     * @return
      */
     @GetMapping("update")
-    public ReturnBean update (Visit visit){
+    public ReturnBean update(Visit visit) {
         try {
             visit.setUpdateTime(new Date());
             Visit update = visitService.update(visit);
             return returnSuccess(update);
-        }catch (Exception e) {
+        } catch (Exception e) {
             return returnFail(null);
         }
     }
 
     /**
+     * @return
      * @create by: ydq
      * @description: 方法作用：添加
      * @create time: 2020/12/24 0:21
      * @param:
-     * @return
      */
     @GetMapping("add")
-    public ReturnBean add (Visit visit){
+    public ReturnBean add(Visit visit) {
         try {
             visit.setCreateTime(new Date());
             Visit insert = visitService.insert(visit);
             return returnSuccess(insert);
-        }catch (Exception e) {
+        } catch (Exception e) {
             return returnFail(null);
         }
     }
 
     /**
+     * @param mv:
+     * @return org.springframework.web.servlet.ModelAndView
      * @create by: IvanZ
      * @description : 显示客户信息和回访信息
      * @create time: 2020/12/23 15:56
-     * @param mv:
-     * @return org.springframework.web.servlet.ModelAndView
      */
     @GetMapping("showCustomAndVisit")
-    public ModelAndView showCustomAndBusiness(int customId, ModelAndView mv){
-        mv.addObject("customId",customId);
+    public ModelAndView showCustomAndBusiness(int customId, ModelAndView mv) {
+        mv.addObject("customId", customId);
         mv.setViewName("visit");
         return mv;
     }

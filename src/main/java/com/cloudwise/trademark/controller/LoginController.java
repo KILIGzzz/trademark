@@ -11,6 +11,7 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -30,12 +31,31 @@ public class LoginController {
     @Autowired
     private MenuService menuService;
 
+
     /**
-     * @param username
-     * @return
-     * @create by: Back
-     * @description: 登录，用户名及密码验证
-     * @create time: 2020/12/24 9:56
+     * 跳转到login
+     *
+     * @createBy Enzo
+     * @createTime 2020/12/29 15:01
+     */
+    @GetMapping("toLogin")
+    public String toLogin() {
+        return "login";
+    }
+
+    @GetMapping("toHome")
+    public String toHome() {
+        return "home";
+    }
+
+    /**
+     * 登录，用户名及密码验证
+     *
+     * @param username 账号
+     * @param password 密码
+     * @return ModelAndView
+     * @createBy Enzo
+     * @createTime 2020/12/29 15:01
      */
 
     @PostMapping("login")
@@ -68,10 +88,10 @@ public class LoginController {
     }
 
     /**
-     * @return
-     * @create by: Back
-     * @description: 注销
-     * @create time: 2020/12/24 9:56
+     * 注销
+     *
+     * @createBy Enzo
+     * @createTime 2020/12/29 15:02
      */
 
     @RequestMapping("logout")

@@ -6,6 +6,7 @@ import com.cloudwise.trademark.entity.User;
 import com.cloudwise.trademark.service.UserService;
 import com.cloudwise.trademark.shiro.ShiroUtil;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -26,6 +27,13 @@ public class UserController extends BaseController {
      */
     @Resource
     private UserService userService;
+
+    @GetMapping("toUser")
+    public ModelAndView toUser() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("user");
+        return modelAndView;
+    }
 
     /**
      * @param pageBean:
@@ -207,7 +215,7 @@ public class UserController extends BaseController {
     }
 
     @GetMapping("/checkLoginName")
-    public String checkLoginName(String loginName){
+    public String checkLoginName(String loginName) {
         //根据登录名查询用户(用户名不能重复)
         User userTemp = userService.queryByLoginName(loginName);
         //如果用户不为空，返回错误

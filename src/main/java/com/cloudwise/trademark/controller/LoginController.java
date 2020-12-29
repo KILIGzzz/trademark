@@ -51,8 +51,8 @@ public class LoginController {
     /**
      * 登录，用户名及密码验证
      *
-     * @param username 账号
-     * @param password 密码
+     * @param username 网页接收的账号
+     * @param password 网页接收的密码
      * @return ModelAndView
      * @createBy Enzo
      * @createTime 2020/12/29 15:01
@@ -88,7 +88,7 @@ public class LoginController {
     }
 
     /**
-     * 注销
+     * 注销，跳转到登录页面
      *
      * @createBy Enzo
      * @createTime 2020/12/29 15:02

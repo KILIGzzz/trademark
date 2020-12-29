@@ -31,7 +31,7 @@ public class UploadController {
     /**
      * 文件上传到oss
      *
-     * @param uploadFile
+     * @param uploadFile 传入的文件
      * @return UploadResult
      * @createBy Enzo
      * @createTime 2020/12/23 17:31
@@ -45,7 +45,7 @@ public class UploadController {
     /**
      * 根据文件名删除oss上的文件
      *
-     * @param objectName
+     * @param objectName 文件名
      * @return UploadResult
      * @createBy Enzo
      * @createTime 2020/12/23 17:35
@@ -74,7 +74,7 @@ public class UploadController {
     /**
      * 根据文件名下载oss上的文件
      *
-     * @param objectName
+     * @param objectName 文件名
      * @createBy Enzo
      * @createTime 2020/12/23 17:37
      */

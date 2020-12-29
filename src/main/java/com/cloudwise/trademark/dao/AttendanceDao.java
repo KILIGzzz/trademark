@@ -80,15 +80,4 @@ public interface AttendanceDao {
      */
     int deleteById(Integer attendanceId);
 
-//    /**
-//     * @create by: IvanZ
-//     * @description : 获取用户id
-//     * @create time: 2020/12/29 16:38
-//     * @param :
-//     * @return java.util.List<java.util.Map<java.lang.String,java.lang.Object>>
-//     */
-//    List<Map<String,Object>> getUserId();
-//
-//
-//    List<Map<String,Object>> getUserId();
 }

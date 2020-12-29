@@ -45,6 +45,15 @@ public class DictionaryTypeController extends BaseController {
         return this.dictionaryTypeService.queryById(id);
     }
 
+    /**
+     * 按条件查询并分页
+     *
+     * @param pageBean       分页参数
+     * @param dictionaryType 实体类
+     * @return ReturnBean
+     * @createBy Enzo
+     * @createTime 2020/12/29 22:50
+     */
     @GetMapping("selectAll")
     public ReturnBean selectAll(PageBean pageBean, DictionaryType dictionaryType) {
         int offset = getOffset(pageBean);
@@ -53,8 +62,16 @@ public class DictionaryTypeController extends BaseController {
         return returnSuccess(dictionaryTypes, rowCount);
     }
 
+    /**
+     * 更新操作
+     *
+     * @param dictionaryType 实体类
+     * @return ReturnBean
+     * @createBy Enzo
+     * @createTime 2020/12/29 22:51
+     */
     @PutMapping("update")
-    public ReturnBean update(DictionaryType dictionaryType, HttpServletRequest request) {
+    public ReturnBean update(DictionaryType dictionaryType) {
         try {
             dictionaryTypeService.update(dictionaryType);
             return returnSuccess(null);
@@ -63,6 +80,14 @@ public class DictionaryTypeController extends BaseController {
         }
     }
 
+    /**
+     * 增加操作
+     *
+     * @param dictionaryType 实体类
+     * @return ReturnBean
+     * @createBy Enzo
+     * @createTime 2020/12/29 22:52
+     */
     @PostMapping("insert")
     public ReturnBean insert(DictionaryType dictionaryType) {
         try {

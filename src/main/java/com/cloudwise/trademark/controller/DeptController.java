@@ -44,11 +44,13 @@ public class DeptController extends BaseController {
     }
 
     /**
-     * @param pageBean dept
-     * @return
-     * @create by: Back
-     * @description: 查询全部
-     * @create time: 2020/12/24 9:53
+     * 按条件查询dept表并分页
+     *
+     * @param pageBean 分页参数
+     * @param dept     实体类
+     * @return ReturnBean
+     * @createBy Enzo
+     * @createTime 2020/12/29 22:40
      */
 
     @GetMapping("selectAll")
@@ -60,11 +62,12 @@ public class DeptController extends BaseController {
     }
 
     /**
-     * @param deptId
-     * @return
-     * @create by: Back
-     * @description: 根据ID删除
-     * @create time: 2020/12/24 9:53
+     * 删除操作
+     *
+     * @param deptId 主键
+     * @return ReturnBean
+     * @createBy Enzo
+     * @createTime 2020/12/29 22:41
      */
 
     @PutMapping("deleteById")
@@ -77,11 +80,12 @@ public class DeptController extends BaseController {
     }
 
     /**
-     * @param ids
-     * @return
-     * @create by: Back
-     * @description: 批量删除
-     * @create time: 2020/12/24 9:53
+     * 多选删除
+     *
+     * @param ids 需要删除的主键
+     * @return ReturnBean
+     * @createBy Enzo
+     * @createTime 2020/12/29 22:42
      */
 
     @PutMapping("deleteByIds")
@@ -94,11 +98,12 @@ public class DeptController extends BaseController {
     }
 
     /**
-     * @param dept
-     * @return
-     * @create by: Back
-     * @description: 修改
-     * @create time: 2020/12/24 9:54
+     * 更新操作
+     *
+     * @param dept 实体类
+     * @return ReturnBean
+     * @createBy Enzo
+     * @createTime 2020/12/29 22:43
      */
 
     @PutMapping("updateDept")
@@ -113,11 +118,12 @@ public class DeptController extends BaseController {
     }
 
     /**
-     * @param dept
-     * @return
-     * @create by: Back
-     * @description: 添加
-     * @create time: 2020/12/24 9:54
+     * 增加操作
+     *
+     * @param dept 实体类
+     * @return ReturnBean
+     * @createBy Enzo
+     * @createTime 2020/12/29 22:45
      */
 
     @PostMapping("insertDept")

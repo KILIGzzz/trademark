@@ -31,9 +31,10 @@ public interface DeptDao {
     List<Dept> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
 
     /**
+     * 按条件查询并分页
+     *
      * @return List<Dept>
      * @createBy Enzo
-     * @description 按条件查询并分页
      * @createTime 2020/12/17 10:31
      */
     List<Dept> queryAllByConditionAndLimit(Dept dept, @Param("offset") int offset, @Param("limit") int limit);
@@ -90,7 +91,7 @@ public interface DeptDao {
     /**
      * 获取数据行数
      *
-     * @param dept
+     * @param dept 实体类
      * @return long getRowCount
      * @createBy Enzo
      * @createTime 2020/12/17 10:45
@@ -100,7 +101,7 @@ public interface DeptDao {
     /**
      * 根据list中的id删除dept(改变状态)
      *
-     * @param deptList
+     * @param deptList list
      * @return int deleteByIds
      * @createBy Enzo
      * @createTime 2020/12/17 17:32

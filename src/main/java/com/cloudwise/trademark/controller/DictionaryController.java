@@ -44,12 +44,28 @@ public class DictionaryController extends BaseController {
         return this.dictionaryService.queryById(id);
     }
 
+    /**
+     * 查询全部字典类型
+     *
+     * @return ReturnBean
+     * @createBy Enzo
+     * @createTime 2020/12/29 22:47
+     */
     @GetMapping("selectAllType")
     public ReturnBean selectAllType() {
         List<DictionaryType> dictionaryTypes = dictionaryTypeService.queryAllType();
         return returnSuccess(dictionaryTypes);
     }
 
+    /**
+     * 按条件查询并分页
+     *
+     * @param pageBean   分页参数
+     * @param dictionary 实体类
+     * @return ReturnBean
+     * @createBy Enzo
+     * @createTime 2020/12/29 22:47
+     */
     @GetMapping("selectAll")
     public ReturnBean selectAll(PageBean pageBean, Dictionary dictionary) {
         int offset = getOffset(pageBean);
@@ -58,6 +74,14 @@ public class DictionaryController extends BaseController {
         return returnSuccess(dictionaries, rowCount);
     }
 
+    /**
+     * 更新操作
+     *
+     * @param dictionary 实体类
+     * @return ReturnBean
+     * @createBy Enzo
+     * @createTime 2020/12/29 22:48
+     */
     @PutMapping("update")
     public ReturnBean update(Dictionary dictionary) {
         try {
@@ -68,6 +92,14 @@ public class DictionaryController extends BaseController {
         }
     }
 
+    /**
+     * 增加操作
+     *
+     * @param dictionary 实体类
+     * @return ReturnBean
+     * @createBy Enzo
+     * @createTime 2020/12/29 22:50
+     */
     @PostMapping("insert")
     public ReturnBean insert(Dictionary dictionary) {
         try {

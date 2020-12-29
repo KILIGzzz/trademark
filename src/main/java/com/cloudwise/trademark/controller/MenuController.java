@@ -26,6 +26,13 @@ public class MenuController extends BaseController {
     private MenuService menuService;
 
 
+    /**
+     * 页面跳转
+     *
+     * @return ModelAndView
+     * @createBy Enzo
+     * @createTime 2020/12/29 22:53
+     */
     @GetMapping("toMenu")
     public ModelAndView toMenu() {
         ModelAndView modelAndView = new ModelAndView();
@@ -45,10 +52,11 @@ public class MenuController extends BaseController {
     }
 
     /**
-     * @return
-     * @create by: Back
-     * @description: 查询全部菜单
-     * @create time: 2020/12/24 9:58
+     * 查询全部菜单，用于菜单页的展示
+     *
+     * @return ReturnBean
+     * @createBy Enzo
+     * @createTime 2020/12/29 22:54
      */
 
     @GetMapping("queryAllMenu")
@@ -58,10 +66,11 @@ public class MenuController extends BaseController {
     }
 
     /**
-     * @return
-     * @create by: Back
-     * @description: 查询全部，并转换为layuiTree
-     * @create time: 2020/12/24 9:58
+     * 查询所有菜单，用于添加和编辑菜单时的生成树
+     *
+     * @return List
+     * @createBy Enzo
+     * @createTime 2020/12/29 22:54
      */
     @GetMapping("queryAllMenus")
     public List queryAllMenus() {
@@ -70,11 +79,12 @@ public class MenuController extends BaseController {
     }
 
     /**
-     * @param menuId
-     * @return
-     * @create by: Back
-     * @description: 根据ID删除
-     * @create time: 2020/12/24 10:01
+     * 假删除
+     *
+     * @param menuId 主键
+     * @return ReturnBean
+     * @createBy Enzo
+     * @createTime 2020/12/29 22:57
      */
 
     @PutMapping("deleteMenuById")
@@ -88,11 +98,12 @@ public class MenuController extends BaseController {
     }
 
     /**
-     * @param menu
-     * @return
-     * @create by: Back
-     * @description: 添加菜单
-     * @create time: 2020/12/24 10:01
+     * 添加菜单
+     *
+     * @param menu 实体类
+     * @return ReturnBean
+     * @createBy Enzo
+     * @createTime 2020/12/29 22:58
      */
 
     @PostMapping("insertMenu")
@@ -108,11 +119,12 @@ public class MenuController extends BaseController {
     }
 
     /**
-     * @param menu
-     * @return
-     * @create by: Back
-     * @description: 编辑菜单
-     * @create time: 2020/12/24 10:01
+     * 更新菜单
+     *
+     * @param menu 实体类
+     * @return ReturnBean
+     * @createBy Enzo
+     * @createTime 2020/12/29 22:58
      */
 
     @PutMapping("updateMenu")
@@ -126,11 +138,12 @@ public class MenuController extends BaseController {
     }
 
     /**
-     * @param menuId
-     * @return
-     * @create by: Back
-     * @description: 查找父节点ID
-     * @create time: 2020/12/24 10:01
+     * 根据id查找父节点
+     *
+     * @param menuId 主键
+     * @return ReturnBean
+     * @createBy Enzo
+     * @createTime 2020/12/29 22:59
      */
 
     @GetMapping("findParentNameId")

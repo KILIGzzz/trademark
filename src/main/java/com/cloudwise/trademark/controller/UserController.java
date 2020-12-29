@@ -28,6 +28,13 @@ public class UserController extends BaseController {
     @Resource
     private UserService userService;
 
+    /**
+     * 页面跳转
+     *
+     * @return ModelAndView
+     * @createBy Enzo
+     * @createTime 2020/12/29 23:15
+     */
     @GetMapping("toUser")
     public ModelAndView toUser() {
         ModelAndView modelAndView = new ModelAndView();
@@ -190,6 +197,14 @@ public class UserController extends BaseController {
         return returnFail(null);
     }
 
+    /**
+     * 查询用户对应的角色信息
+     *
+     * @param userId 主键
+     * @return List<Integer>
+     * @createBy Enzo
+     * @createTime 2020/12/29 23:12
+     */
     @GetMapping("findSelectRole")
     public List<Integer> findSelectRole(int userId) {
         return userService.findSelectRole(userId);
@@ -198,7 +213,7 @@ public class UserController extends BaseController {
     /**
      * 更新用户基本信息
      *
-     * @param user
+     * @param user 实体类
      * @return ReturnBean
      * @createBy Enzo
      * @createTime 2020/12/23 17:44
@@ -214,6 +229,13 @@ public class UserController extends BaseController {
 
     }
 
+    /**
+     * 用户名查重
+     *
+     * @param loginName 用户名
+     * @return boolean
+     * @createTime 2020/12/29 23:11
+     */
     @GetMapping("/checkLoginName")
     public String checkLoginName(String loginName) {
         //根据登录名查询用户(用户名不能重复)

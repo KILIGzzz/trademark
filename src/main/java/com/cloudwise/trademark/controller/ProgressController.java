@@ -32,6 +32,13 @@ public class ProgressController extends BaseController {
     @Autowired
     private UploadService uploadService;
 
+    /**
+     * 页面跳转
+     *
+     * @return ModelAndView
+     * @createBy Enzo
+     * @createTime 2020/12/29 23:00
+     */
     @GetMapping("toProgress")
     public ModelAndView toProgress() {
         ModelAndView modelAndView = new ModelAndView();

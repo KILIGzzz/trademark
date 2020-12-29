@@ -28,6 +28,13 @@ public class VisitController extends BaseController {
     @Resource
     private VisitService visitService;
 
+    /**
+     * 页面跳转
+     *
+     * @return ModelAndView
+     * @createBy Enzo
+     * @createTime 2020/12/29 23:10
+     */
     @GetMapping("toVisit")
     public ModelAndView toVisit() {
         ModelAndView modelAndView = new ModelAndView();

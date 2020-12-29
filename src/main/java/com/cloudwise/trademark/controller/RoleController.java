@@ -24,6 +24,13 @@ public class RoleController extends BaseController {
     @Resource
     private RoleService roleService;
 
+    /**
+     * 页面跳转
+     *
+     * @return ModelAndView
+     * @createBy Enzo
+     * @createTime 2020/12/29 23:01
+     */
     @GetMapping("toRole")
     public ModelAndView toRole() {
         ModelAndView modelAndView = new ModelAndView();

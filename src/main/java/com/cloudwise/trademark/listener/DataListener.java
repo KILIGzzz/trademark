@@ -25,7 +25,7 @@ public class DataListener extends AnalysisEventListener<Custom> {
      */
     private static final int BATCH_COUNT = 5;
 
-    private CustomService customService;
+    private final CustomService customService;
 
     List<Custom> customList = new ArrayList<Custom>();
 

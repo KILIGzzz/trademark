@@ -39,6 +39,13 @@ public class ShiroConfig {
         return hashedCredentialsMatcher;
     }
 
+    /**
+     * 使用重写的myRealm验证密码
+     *
+     * @return MyRealm
+     * @createBy Enzo
+     * @createTime 2020/12/29 23:28
+     */
     @Bean
     public MyRealm myRealm() {
         MyRealm myRealm = new MyRealm();

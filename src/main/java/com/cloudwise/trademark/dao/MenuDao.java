@@ -57,10 +57,34 @@ public interface MenuDao {
      */
     int insert(Menu menu);
 
+    /**
+     * 查询所有角色
+     *
+     * @return List<Integer>
+     * @createBy Enzo
+     * @createTime 2020/12/29 23:19
+     */
     List<Integer> selectAllRole();
 
+    /**
+     * 插入中间表
+     *
+     * @param roleId 主键
+     * @param menuId 主键
+     * @return 影响行数
+     * @createBy Enzo
+     * @createTime 2020/12/29 23:23
+     */
     int insertRoleMenu(@Param("roleId") int roleId, @Param("menuId") int menuId);
 
+    /**
+     * 删除中间表数据
+     *
+     * @param menuId 主键
+     * @return 影响行数
+     * @createBy Enzo
+     * @createTime 2020/12/29 23:24
+     */
     int deleteRoleMenu(int menuId);
 
     /**

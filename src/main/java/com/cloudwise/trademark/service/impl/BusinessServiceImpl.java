@@ -178,9 +178,10 @@ public class BusinessServiceImpl implements BusinessService {
         //分割获取当天
         String[] s = nowStr.split(" ");
         String today = s[0];
-        int businessCount = businessDao.getBusinessCount(today);
-        int visitCount = businessDao.getVisitCount(today);
-        int money = businessDao.getMoney(today);
+        //不能为空
+        Integer businessCount = (businessDao.getBusinessCount(today) != null) ? businessDao.getBusinessCount(today) : 0;
+        Integer visitCount = (businessDao.getVisitCount(today) != null) ? businessDao.getVisitCount(today):0;
+        Integer money = (businessDao.getMoney(today) != null) ? businessDao.getMoney(today):0;
         //创建一个list
         ArrayList<Integer> list = new ArrayList<>();
         list.add(businessCount);

@@ -124,7 +124,7 @@ public interface BusinessDao {
      * @param : today
      * @return int
      */
-    int getBusinessCount(String today);
+    Integer getBusinessCount(String today);
 
     /**
      * @create by: IvanZ
@@ -133,7 +133,7 @@ public interface BusinessDao {
      * @param : today
      * @return int
      */
-    int getVisitCount(String today);
+    Integer getVisitCount(String today);
 
     /**
      * @create by: IvanZ
@@ -142,5 +142,5 @@ public interface BusinessDao {
      * @param : today
      * @return int
      */
-    int getMoney(String today);
+    Integer getMoney(String today);
 }

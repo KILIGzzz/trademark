@@ -160,6 +160,15 @@
     <select id="getMoney" resultType="java.lang.Integer">
         select sum(proxy_money) from tbl_business where left(applicant_time,10) = #{today};
     </select>
+    <!--获取回访图数据根据代理人-->
+    <select id="showVisitEchartName" resultType="java.util.Map">
+        select login_name,count(visit_id) visit_count from tbl_user tu right join (select visit_id,proxy_id from tbl_visit left join tbl_custom tc on tbl_visit.custom_id = tc.custom_id
+        ) tvc on tu.user_id = tvc.proxy_id group by login_name
+    </select>
+    <!--获取回访图数据根据时间-->
+    <select id="showVisitEchartTime" resultType="java.util.Map">
+        select month(create_time) month,count(*) visit_count from tbl_visit tv left join (select custom_id,login_name from tbl_custom tc inner join tbl_user tu on tc.proxy_id = tu.user_id) tcu on tv.custom_id=tcu.custom_id where login_name = 'back' group by month(create_time)
+    </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="businessId" useGeneratedKeys="true">

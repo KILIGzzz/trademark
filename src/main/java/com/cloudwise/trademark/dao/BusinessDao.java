@@ -143,4 +143,22 @@ public interface BusinessDao {
      * @return int
      */
     Integer getMoney(String today);
+
+    /**
+     * @create by: IvanZ
+     * @description : 获取回访图数据根据代理人
+     * @create time: 2020/12/30 9:31
+     * @param :
+     * @return java.util.Map<java.lang.String,java.lang.Object>
+     */
+    List<Map<String,Object>> showVisitEchartName(@Param("startTime") String startTime,@Param("endTime") String endTime);
+
+    /**
+     * @create by: IvanZ
+     * @description : 获取回访图数据根据时间
+     * @create time: 2020/12/30 10:09
+     * @param :
+     * @return java.util.List<java.util.Map<java.lang.String,java.lang.Object>>
+     */
+    List<Map<String,Object>> showVisitEchartTime(String loginName);
 }

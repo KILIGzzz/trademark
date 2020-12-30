@@ -18,7 +18,6 @@ public class StatisticalController extends BaseController {
     public String toBusinessEchart() {
         return "businessEchart";
     }
-
     @GetMapping("toProgressEchart")
     public String toProgressEchart() {
         return "progressEchart";
@@ -32,5 +31,10 @@ public class StatisticalController extends BaseController {
     @GetMapping("toAttendance")
     public String toAttendance() {
         return "attendance";
+    }
+
+    @GetMapping("toAttendanceTable")
+    public String toAttendanceTable() {
+        return "attendanceTable";
     }
 }

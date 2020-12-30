@@ -107,4 +107,22 @@ public interface BusinessService {
      * @return java.util.List<java.lang.Integer>
      */
     List<Integer> getIndexData();
+
+    /**
+     * @create by: IvanZ
+     * @description : 获取回访图数据根据代理人
+     * @create time: 2020/12/30 9:32
+     * @param :
+     * @return java.util.Map<java.lang.String,java.lang.Object>
+     */
+    Map<String,Object> showVisitEchartName(String startTime,String endTime);
+    
+    /**
+     * @create by: IvanZ
+     * @description : 获取回访图数据根据时间
+     * @create time: 2020/12/30 10:09
+     * @param : 
+     * @return java.util.Map<java.lang.String,java.lang.Object>
+     */
+    Map<String,Object> showVisitEchartTime(String loginName);
 }

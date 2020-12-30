@@ -32,18 +32,6 @@ public class AttendanceController extends BaseController{
     @Resource
     private AttendanceService attendanceService;
 
-    /**
-     * @create by: IvanZ
-     * @description : 到考勤表页面
-     * @create time: 2020/12/29 18:19
-     * @param :
-     * @return org.springframework.web.servlet.ModelAndView
-     */
-    @GetMapping("toAttendanceTable")
-    public ModelAndView toAttendanceTable(ModelAndView mv){
-        mv.setViewName("attendanceTable");
-        return mv;
-    }
 
     /**
      * 通过主键查询单条数据

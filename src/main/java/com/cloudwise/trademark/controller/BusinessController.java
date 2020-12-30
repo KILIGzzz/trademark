@@ -201,25 +201,26 @@ public class BusinessController extends BaseController {
      * @param :
      * @return com.cloudwise.trademark.entity.ReturnBean
      * @create by: IvanZ
-     * @description : 回访分析
+     * @description : 回访分析根据代理人
      * @create time: 2020/12/29 11:57
      */
-    @GetMapping("visitEchart")
-    public ReturnBean visitEchart() {
-        return null;
+    @GetMapping("visitEchartName")
+    public ReturnBean visitEchartName(String startTime,String endTime) {
+        Map<String, Object> map = BusinessService.showVisitEchartName(startTime,endTime);
+        return returnSuccess(map);
     }
 
     /**
+     * @create by: IvanZ
+     * @description : 回访分析根据时间
+     * @create time: 2020/12/30 10:04
      * @param :
      * @return com.cloudwise.trademark.entity.ReturnBean
-     * @create by: IvanZ
-     * @description : 回访分析
-     * @create time: 2020/12/29 11:57
      */
-    @GetMapping("attendance")
-    public ReturnBean attendance() {
-        return null;
+    @GetMapping("visitEchartTime")
+    public ReturnBean visitEchartTime(String loginName) {
+        Map<String, Object> map = BusinessService.showVisitEchartTime(loginName);
+        return returnSuccess(map);
     }
-
 
 }

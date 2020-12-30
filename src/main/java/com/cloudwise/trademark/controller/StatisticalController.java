@@ -33,4 +33,9 @@ public class StatisticalController extends BaseController {
     public String toAttendance() {
         return "attendance";
     }
+
+    @GetMapping("toAttendanceTable")
+    public String toAttendanceTable() {
+        return "attendanceTable";
+    }
 }

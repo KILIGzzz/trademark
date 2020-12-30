@@ -41,9 +41,14 @@
         </where>
     </select>
     <select id="getCount" resultType="java.lang.Long">
-        select count(*)/2 from tbl_attendance ta right join
-        (select user_id,max(attendance_time) checkOut from tbl_attendance where attendance_time like #{attendanceTime}"%" group
-        by user_id) tco on ta.user_id = tco.user_id where attendance_time like #{attendanceTime}"%"
+        select count(*) / 2
+        from tbl_attendance ta
+                 right join
+             (select user_id, max(attendance_time) checkOut
+              from tbl_attendance
+              where attendance_time like #{attendanceTime}"%"
+              group by user_id) tco on ta.user_id = tco.user_id
+        where attendance_time like #{attendanceTime}"%"
     </select>
 
     <!--新增所有列-->

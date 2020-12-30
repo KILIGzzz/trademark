@@ -22,5 +22,6 @@ public class LayUiTree implements Serializable {
     private boolean checked;
     private boolean spread;
     private String url;
+    private String icon;
     private List<LayUiTree> children;
 }

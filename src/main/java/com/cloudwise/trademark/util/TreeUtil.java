@@ -76,6 +76,7 @@ public class TreeUtil {
     public static LayUiTree fromMenuToTree(Menu menu) {
         LayUiTree layUiTree = new LayUiTree();
         layUiTree.setId(menu.getMenuId());
+        layUiTree.setIcon(menu.getIcon());
         layUiTree.setTitle(menu.getMenuName());
         layUiTree.setUrl(menu.getUrl());
         return layUiTree;

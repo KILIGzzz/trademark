@@ -29,7 +29,8 @@ public interface AttendanceDao {
      * @param limit  查询条数
      * @return 对象列表
      */
-    List<Attendance> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit,@Param("attendance") Attendance attendance);
+    List<Attendance> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit, @Param("attendance") Attendance attendance);
+
     long getCount(Attendance attendance);
 
     /**

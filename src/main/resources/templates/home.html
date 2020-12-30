@@ -30,10 +30,15 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree" lay-filter="test">
                 <li th:each="layUiTree:${layUiTreeList}" class="layui-nav-item layui-nav-itemed">
-                    <a class="" th:text="${layUiTree.title}" th:href="${layUiTree.url}"></a>
+                    <a class="" th:href="${layUiTree.url}">
+                        <i th:class="${layUiTree.icon}"></i>
+                        <span th:text="${layUiTree.title}"></span>
+                    </a>
                     <dl class="layui-nav-child" th:each="children:${layUiTree.children}">
                         <dd>
-                            <a th:href="${children.url}" th:text="${children.title}"></a>
+                            <a th:href="${children.url}">
+                                <span style="margin-left: 12px" th:text="${children.title}"></span>
+                            </a>
                         </dd>
                     </dl>
                 </li>

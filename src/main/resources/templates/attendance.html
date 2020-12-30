@@ -73,7 +73,7 @@
                 success: function (data) {
                     if (data.code == 0) {
                         //获取横坐标
-                        var userIdX = data.data.userIdX;
+                        var loginNameX = data.data.loginNameX;
                         // 获取y坐标1
                         var checkInY = data.data.checkInY;
                         // 获取y坐标2
@@ -105,7 +105,7 @@
                             xAxis: [
                                 {
                                     type: 'category',
-                                    data: userIdX
+                                    data: loginNameX
                                 }
                             ],
                             yAxis: [

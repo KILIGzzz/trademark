@@ -19,14 +19,16 @@
 
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="AttendanceMap">
-        select ta.attendance_id, ta.user_id, ta.attendance_time checkIn, tco.checkOut
-        from tbl_attendance ta
-                 right join (select user_id, max(attendance_time) checkOut
-                             from tbl_attendance
-                             where attendance_time like #{attendance.attendanceTime}"%"
-                             group by user_id) tco on ta.user_id = tco.user_id
-        where attendance_time like #{attendance.attendanceTime}"%"
-        group by user_id
+        select apd.*, ts.login_name loginName
+        from (select ta.attendance_id, ta.user_id, ta.attendance_time checkIn, tco.checkOut
+              from tbl_attendance ta
+                       right join (select user_id, max(attendance_time) checkOut
+                                   from tbl_attendance
+                                   where attendance_time like #{attendance.attendanceTime}"%"
+                                   group by user_id) tco on ta.user_id = tco.user_id
+              where attendance_time like #{attendance.attendanceTime}"%"
+              group by user_id) apd
+                 inner join tbl_user ts on apd.user_id = ts.user_id
         limit #{offset}, #{limit}
     </select>
 

@@ -89,7 +89,7 @@ public class AttendanceController extends BaseController {
         Integer count = Integer.parseInt(String.valueOf(attendanceService.getCount(attendance)));
         List<Attendance> attendances = attendanceService.queryAllByLimit(0, count, attendance);
 
-        String[] userIdX = new String[attendances.size()];
+        String[] loginNameX = new String[attendances.size()];
 
         String[] checkInY = new String[attendances.size()];
 
@@ -98,11 +98,11 @@ public class AttendanceController extends BaseController {
         Map<String, Object> resMap = new HashMap<>();
 
         for (int i = 0; i < attendances.size(); i++) {
-            userIdX[i] = attendances.get(i).getUserId().toString();
+            loginNameX[i] = attendances.get(i).getLoginName();
             checkInY[i] = attendances.get(i).getCheckIn();
             checkOutY[i] = attendances.get(i).getCheckOut();
         }
-        resMap.put("userIdX", userIdX);
+        resMap.put("loginNameX", loginNameX);
         resMap.put("checkInY", checkInY);
         resMap.put("checkOutY", checkOutY);
         return returnSuccess(resMap);

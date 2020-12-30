@@ -16,7 +16,7 @@
     <div carousel-item="">
         <div style="background-color: rgb(57,61,73)">
             <!--条件显示图表-->
-            <form class="layui-form" style="position:absolute;left:44%;transform: translate(-50%);">
+            <form class="layui-form" style="position:absolute;left:15%;">
                 <span style="font-size: 18px;font-weight: bold;color: white;">日期区间：</span>
                 <div class="layui-inline">
                     <div class="layui-input-inline">
@@ -28,6 +28,7 @@
                     </div>
                 </div>
                 <button class="layui-btn" lay-submit lay-filter="timeFilter" data-type="reload">搜索</button>
+                <button class="layui-btn layui-btn-primary" type="reset" id="resetButton">重置</button>
             </form>
             <!--图表显示-->
             <div id="visitEchartName" style="height:540px;width: 1000px;top:40px"></div>
@@ -42,6 +43,7 @@
                     </div>
                 </div>
                 <button class="layui-btn" lay-submit lay-filter="loginNameFilter" data-type="reload">搜索</button>
+                <button class="layui-btn layui-btn-primary" type="reset" id="resetButton1">重置</button>
             </form>
             <!--图表显示-->
             <div id="visitEchartTime" style="height:540px;width: 1000px;top:40px"></div>
@@ -85,6 +87,14 @@
                 //拿到data[]后 就按照业务需求做想做的事情啦~比如加个隐藏域放ID...
                 elem.val(data.data[0].loginName)
             }
+        })
+
+        //重置按钮点击事件
+        $("#resetButton").click(function () {
+            showChartName("");
+        })
+        $("#resetButton1").click(function () {
+            showChartTime("");
         })
 
         //日期

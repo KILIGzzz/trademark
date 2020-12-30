@@ -244,17 +244,17 @@
         ) td on tg.business_id=td.business_id
         <where>
             <if test="loginName != null and loginName !=''">
-             and   td.login_name like "%"#{loginName}"%"
+             and   td.login_name =#{loginName}
             </if>
             <if test="progressType != null and progressType !=''">
-            and  tg.progress_type like "%"#{progressType}"%"
+            and  tg.progress_type=#{progressType}
             </if>
         </where>
         group by month
     </select>
     <!--进度图表，横坐标为代理人-->
     <select id="progressEchartName" resultType="java.util.Map">
-        select month(tg.create_time) month ,count(tg.create_time) progressCount,td.business_id,tg.create_time,tg.progress_type,td.proxy_id,td.login_name
+        select month(tg.create_time) month ,count(tg.create_time) progressCount,td.business_id,tg.create_time,tg.progress_type,td.proxy_id,td.login_name proxy
         from tbl_progress tg
             inner join
         (select business_id, tb.custom_id, proxy_id,tc.login_name
@@ -269,14 +269,14 @@
         ) td
             on tg.business_id=td.business_id
         <where>
-            <if test="loginName != null and loginName !=''">
-                and   td.login_name like "%"#{loginName}"%"
-            </if>
             <if test="progressType != null and progressType !=''">
                 and  tg.progress_type=#{progressType}
             </if>
+            <if test="startTime!=''">
+                and tg.create_time between #{startTime} and #{endTime}
+            </if>
         </where>
-        group by month
+        group by proxy
     </select>
 
     <!--新增所有列-->

@@ -133,7 +133,7 @@ public interface BusinessService {
      * @create time: 2020/12/30 9:49
      * @return
      */
-    Map<String,Object> progressEchartName(String progressType,String datePeriod);
+    Map<String,Object> progressEchartName(String startTime,String endTime,String progressType);
 
 
     /**

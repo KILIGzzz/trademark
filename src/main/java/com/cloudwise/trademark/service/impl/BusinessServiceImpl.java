@@ -235,8 +235,8 @@ public class BusinessServiceImpl implements BusinessService {
     }
 
     @Override
-    public Map<String, Object> progressEchartName(String progressType, String datePeriod) {
-        List<Map<String, Object>> maps = businessDao.progressEchartTime(progressType,datePeriod);
+    public Map<String, Object> progressEchartName(String startTime,String endTime,String progressType) {
+        List<Map<String, Object>> maps = businessDao.progressEchartName(startTime,endTime,progressType);
         Map<String,Object> map = new HashMap<>();
         //定义x轴
         String[] proxyX = new String[maps.size()];

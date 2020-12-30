@@ -150,7 +150,7 @@ public interface BusinessDao {
      * @create time: 2020/12/30 9:49
      * @return
      */
-    List<Map<String,Object>> progressEchartName(@Param("progressType") String progressType,@Param("dataPeriod") String datePeriod);
+    List<Map<String,Object>> progressEchartName(@Param("startTime") String startTime,@Param("endTime") String endTime,@Param("progressType") String progressType);
     /**
      * @create by: Back
      * @description:进度图表

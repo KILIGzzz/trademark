@@ -195,9 +195,24 @@ public class BusinessController extends BaseController {
      * @create time: 2020/12/29 11:57
      */
     @GetMapping("progressEchartName")
-    public ReturnBean progressEchartName(String progressType,String datePeriod) {
-        Map<String, Object> map = BusinessService.progressEchartName(progressType,datePeriod);
-        return returnSuccess(map);
+    public ReturnBean progressEchartName(String progressId,String startTime,String endTime) {
+
+        if (startTime == null || "".equals(startTime)){
+            startTime = "2000-01-01";
+        }
+        if (endTime == null || "".equals(endTime)){
+            endTime = "2100-01-01";
+        }
+        if (progressId != null && !"".equals(progressId)) {
+            int i = Integer.parseInt(progressId);
+            Dictionary dictionary = dictionaryService.queryById(i);
+
+            Map<String, Object> map = BusinessService.progressEchartName(startTime,endTime,dictionary.getDictionaryName());
+            return returnSuccess(map);
+        }else{
+            Map<String, Object> map = BusinessService.progressEchartName(startTime,endTime,null);
+            return returnSuccess(map);
+        }
     }
 
 

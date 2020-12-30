@@ -1,6 +1,7 @@
 package com.cloudwise.trademark.service;
 
 import com.cloudwise.trademark.entity.Business;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -143,4 +144,32 @@ public interface BusinessService {
      * @return
      */
     Map<String,Object> progressEchartTime(String loginName,String progressType);
+
+    /**
+     * @create by: ydq
+     * @description: 方法作用：获取业务类型总数量
+     * @create time: 2020/12/30 19:47
+     * @param:
+     * @return
+     */
+    List<Long> businessEchart();
+
+    /**
+     * @create by: ydq
+     * @description: 方法作用：业务分析按代理人
+     * @create time: 2020/12/30 20:12
+     * @param:
+     * @return
+     */
+    Map<String,Object> showAgentChart(String startTime,String endTime);
+
+    /**
+     * @create by: ydq
+     * @description: 方法作用：业务分析按时间
+     * @create time: 2020/12/30 20:51
+     * @param:
+     * @return
+     */
+    Map<String,Object> showBusinessChartByAgent(String loginName);
+
 }

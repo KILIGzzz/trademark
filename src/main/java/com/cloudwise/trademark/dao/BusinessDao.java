@@ -176,4 +176,31 @@ public interface BusinessDao {
      * @return java.util.List<java.util.Map<java.lang.String,java.lang.Object>>
      */
     List<Map<String,Object>> showVisitEchartTime(String loginName);
+
+    /**
+     * @create by: ydq
+     * @description: 方法作用：获取业务类型总数量
+     * @create time: 2020/12/30 19:44
+     * @param:
+     * @return
+     */
+    List<Map<String,Object>> businessEchart();
+    
+    /**
+     * @create by: ydq
+     * @description: 方法作用：业务分析按代理人
+     * @create time: 2020/12/30 20:02
+     * @param: 
+     * @return 
+     */
+    List<Map<String,Object>> showAgentChart(@Param("startTime") String startTime,@Param("endTime") String endTime);
+
+    /**
+     * @create by: ydq
+     * @description: 方法作用：业务分析按时间
+     * @create time: 2020/12/30 20:44
+     * @param:
+     * @return
+     */
+    List<Map<String,Object>> showBusinessChartByAgent(String loginName);
 }

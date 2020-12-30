@@ -178,13 +178,40 @@ public class BusinessController extends BaseController {
     /**
      * @param :
      * @return com.cloudwise.trademark.entity.ReturnBean
-     * @create by: IvanZ
+     * @create by: ydq
      * @description : 业务分析
      * @create time: 2020/12/29 11:57
      */
     @GetMapping("businessEchart")
     public ReturnBean businessEchart() {
-        return null;
+        List<Long> longs = BusinessService.businessEchart();
+        return returnSuccess(longs);
+    }
+
+    /**
+     * @create by: ydq
+     * @description: 方法作用：业务分析按代理人
+     * @create time: 2020/12/30 20:03
+     * @param:
+     * @return
+     */
+    @GetMapping("showAgentChart")
+    public ReturnBean showAgentChart (String startTime,String endTime){
+        Map<String, Object> map = BusinessService.showAgentChart(startTime, endTime);
+        return returnSuccess(map);
+    }
+
+    /**
+     * @create by: ydq
+     * @description: 方法作用：业务分析按时间
+     * @create time: 2020/12/30 20:33
+     * @param:
+     * @return
+     */
+    @GetMapping("showBusinessChartByAgent")
+    public ReturnBean showBusinessChartByAgent(String loginName) {
+        Map<String, Object> map = BusinessService.showBusinessChartByAgent(loginName);
+        return returnSuccess(map);
     }
 
     /**
@@ -285,5 +312,7 @@ public class BusinessController extends BaseController {
         Map<String, Object> map = BusinessService.showVisitEchartTime(loginName);
         return returnSuccess(map);
     }
+    
+
 
 }

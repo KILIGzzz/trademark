@@ -278,6 +278,31 @@
         </where>
         group by proxy
     </select>
+    <!--获取业务类型总数量-->
+    <select id="businessEchart" resultType="java.util.Map">
+        select count(*),business_top_type from tbl_business group by business_top_type
+    </select>
+    <!--业务分析按代理人-->
+    <select id="showAgentChart" resultType="java.util.Map">
+        select count(*),login_name from tbl_business
+                                            inner join tbl_custom on tbl_custom.custom_id = tbl_business.custom_id
+                                            inner join tbl_user on proxy_id = user_id
+        where applicant_time between #{startTime} and #{endTime}
+        group by login_name
+    </select>
+    <!--业务分析按时间-->
+    <select id="showBusinessChartByAgent" resultType="java.util.Map">
+        select month(applicant_time) month,count(*) count
+        from tbl_business
+                 inner join tbl_custom on tbl_custom.custom_id = tbl_business.custom_id
+                 inner join tbl_user on proxy_id = user_id
+        <where>
+            <if test="loginName!=null and loginName!=''">
+                login_name = #{loginName}
+            </if>
+        </where>
+        group by month
+    </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="businessId" useGeneratedKeys="true">

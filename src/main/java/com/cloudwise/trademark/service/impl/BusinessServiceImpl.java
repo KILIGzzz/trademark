@@ -268,5 +268,95 @@ public class BusinessServiceImpl implements BusinessService {
         return map;
     }
 
+    /**
+     * @create by: ydq
+     * @description: 方法作用：获取业务类型总数量
+     * @create time: 2020/12/30 19:49
+     * @param:
+     * @return
+     */
+    @Override
+    public List<Long> businessEchart() {
+        List<Map<String, Object>> list = businessDao.businessEchart();
+        List<Long> list1 = new ArrayList<>();
+        long patent = 0,trademark=0,copyright=0,property=0;
+        for (Map<String, Object> map : list) {
+            String a = map.get("business_top_type").toString();
+            switch (a){
+                case "专利":
+                    patent = (Long) map.get("count(*)");
+                    break;
+                case "商标":
+                    trademark = (Long) map.get("count(*)");
+                    break;
+                case "版权":
+                    copyright = (Long) map.get("count(*)");
+                    break;
+                case "知识产权":
+                    property = (Long) map.get("count(*)");
+                    break;
+            }
+        }
+        list1.add(patent);
+        list1.add(trademark);
+        list1.add(copyright);
+        list1.add(property);
+        return list1;
+    }
+
+    /**
+     * @create by: ydq
+     * @description: 方法作用：业务分析按代理人
+     * @create time: 2020/12/30 20:12
+     * @param:
+     * @return
+     */
+    @Override
+    public Map<String, Object>showAgentChart(String startTime, String endTime) {
+        if (startTime == null || "".equals(startTime)) {
+            startTime="2000-01-01";
+        }
+        if (endTime == null|| "".equals(endTime)){
+            endTime="2100-01-01";
+        }
+        List<Map<String, Object>> list = businessDao.showAgentChart(startTime, endTime);
+        Map<String,Object> map = new HashMap<>();
+        //X轴
+        String[] X = new String[list.size()];
+        //y轴
+        Long[] Y = new Long[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            X[i] =  list.get(i).get("login_name").toString();
+            Y[i] = (Long) list.get(i).get("count(*)");
+        }
+        map.put("X",X);
+        map.put("Y",Y);
+        return map;
+    }
+
+    /**
+     * @create by: ydq
+     * @description: 方法作用：业务分析按时间
+     * @create time: 2020/12/30 20:52
+     * @param:
+     * @return
+     */
+    @Override
+    public Map<String, Object> showBusinessChartByAgent(String loginName) {
+        List<Map<String, Object>> list = businessDao.showBusinessChartByAgent(loginName);
+        Map<String,Object> map = new HashMap<>();
+        //X轴
+        String[] X = new String[list.size()];
+        //y轴
+        Long[] Y = new Long[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            X[i] =  list.get(i).get("month").toString();
+            Y[i] = (Long) list.get(i).get("count");
+        }
+        map.put("X",X);
+        map.put("Y",Y);
+        return map;
+    }
+
 
 }

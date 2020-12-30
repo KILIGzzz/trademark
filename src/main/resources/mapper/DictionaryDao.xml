@@ -88,6 +88,9 @@
             <if test="dictionary.createBy != null and dictionary.createBy != ''">
                 and create_by like "%"#{dictionary.createBy}"%"
             </if>
+            <if test="dictionary.typeId != null and dictionary.typeId != ''">
+                and  td.type_id = #{dictionary.typeId}
+            </if>
         </where>
         limit #{offset}, #{limit}
     </select>

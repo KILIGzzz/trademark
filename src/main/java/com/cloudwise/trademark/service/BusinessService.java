@@ -116,13 +116,31 @@ public interface BusinessService {
      * @return java.util.Map<java.lang.String,java.lang.Object>
      */
     Map<String,Object> showVisitEchartName(String startTime,String endTime);
-    
+
     /**
      * @create by: IvanZ
      * @description : 获取回访图数据根据时间
      * @create time: 2020/12/30 10:09
-     * @param : 
+     * @param :
      * @return java.util.Map<java.lang.String,java.lang.Object>
      */
     Map<String,Object> showVisitEchartTime(String loginName);
+
+
+    /**
+     * @create by: Back
+     * @description:进度图表
+     * @create time: 2020/12/30 9:49
+     * @return
+     */
+    Map<String,Object> progressEchartName(String startTime,String endTime,String progressType);
+
+
+    /**
+     * @create by: Back
+     * @description:进度图表
+     * @create time: 2020/12/30 9:49
+     * @return
+     */
+    Map<String,Object> progressEchartTime(String loginName,String progressType);
 }

@@ -24,7 +24,8 @@
     <div class="layui-form-item">
         <label class="layui-form-label">客户ID</label>
         <div class="layui-input-inline">
-            <input type="number" name="customId" id="addCustomTableSelect" readonly th:value="${customId}" lay-verify="required" placeholder="" autocomplete="off"
+            <input type="number" name="customId" id="addCustomTableSelect" readonly th:value="${customId}"
+                   lay-verify="required" placeholder="" autocomplete="off"
                    class="layui-input">
         </div>
     </div>
@@ -56,7 +57,8 @@
     <div class="layui-form-item">
         <label class="layui-form-label">客户ID</label>
         <div class="layui-input-inline">
-            <input type="number" name="customId" readonly id="updateCustomTableSelect" lay-verify="required" placeholder="" autocomplete="off"
+            <input type="number" name="customId" readonly id="updateCustomTableSelect" lay-verify="required"
+                   placeholder="" autocomplete="off"
                    class="layui-input">
         </div>
     </div>
@@ -99,12 +101,12 @@
         //设定组件别名
         tableSelect: 'tableSelect',
     });
-    layui.use(['table', 'layer', 'jquery', 'laydate', 'form','tableSelect'], function () {
-        var table = layui.table;
-        var $ = layui.jquery;
-        var layer = layui.layer;
-        var form = layui.form;
-        var tableSelect = layui.tableSelect;
+    layui.use(['table', 'layer', 'jquery', 'laydate', 'form', 'tableSelect'], function () {
+        let table = layui.table;
+        let $ = layui.jquery;
+        let layer = layui.layer;
+        let form = layui.form;
+        let tableSelect = layui.tableSelect;
 
         //添加客户编号选择表格
         tableSelect.render({
@@ -113,11 +115,11 @@
             searchKey: 'contact',	//搜索输入框的name值 默认keyword
             searchPlaceholder: '联系人姓名搜索',	//搜索输入框的提示文字 默认关键词搜索
             table: {	//定义表格参数，与LAYUI的TABLE模块一致，只是无需再定义表格elem
-                url:'/custom/selectAll',
+                url: '/custom/selectAll',
                 cols: [
                     [
                         {type: 'radio'}
-                        ,{field: 'customId', title: '客户ID', align: 'center', sort: true, width: 90}
+                        , {field: 'customId', title: '客户ID', align: 'center', sort: true, width: 90}
                         , {field: 'contact', title: '联系人姓名', align: 'center', width: 120}
                         , {field: 'phone', title: '手机号', align: 'center', width: 140}
                     ]
@@ -137,11 +139,11 @@
             searchKey: 'contact',	//搜索输入框的name值 默认keyword
             searchPlaceholder: '联系人姓名搜索',	//搜索输入框的提示文字 默认关键词搜索
             table: {	//定义表格参数，与LAYUI的TABLE模块一致，只是无需再定义表格elem
-                url:'/custom/selectAll',
+                url: '/custom/selectAll',
                 cols: [
                     [
                         {type: 'radio'}
-                        ,{field: 'customId', title: '客户ID', align: 'center', sort: true, width: 90}
+                        , {field: 'customId', title: '客户ID', align: 'center', sort: true, width: 90}
                         , {field: 'contact', title: '联系人姓名', align: 'center', width: 120}
                         , {field: 'phone', title: '手机号', align: 'center', width: 140}
                     ]
@@ -155,15 +157,15 @@
         })
 
         //获取传过来的customId
-        var customId = "";
-        customId = [[${customId}]]+"";
+        let customId = "";
+        customId = [[${customId}]] + "";
 
-        if (customId == 0){
+        if (customId == 0) {
             document.getElementById("customTable").hidden = true
-        }else {
+        } else {
             document.getElementById("customTable").hidden = false
-            let customUrl = '/custom/selectOne?customId='+customId
-            var customTable = table.render({
+            let customUrl = '/custom/selectOne?customId=' + customId
+            let customTable = table.render({
                 elem: '#customTable'
                 , url: customUrl //数据接口
                 , page: false //开启分页
@@ -178,7 +180,7 @@
                         , {field: 'createTime', title: '创建时间', align: 'center', width: 160}
                         , {field: 'updateBy', title: '修改人', align: 'center', width: 120}
                         , {field: 'updateTime', title: '修改时间', align: 'center', width: 160}
-                        , {field: 'proxyId', title: '代理人ID', align: 'center', width: 120,hide:true}
+                        , {field: 'proxyId', title: '代理人ID', align: 'center', width: 120, hide: true}
                         , {field: 'userName', title: '代理人', align: 'center', width: 120}
                         , {field: 'remark', title: '备注', align: 'center', width: 120}
                     ]
@@ -187,11 +189,11 @@
         }
 
 
-        var visitUrl='/visit/selectAll?customId='+customId
+        let visitUrl = '/visit/selectAll?customId=' + customId
         //第一个实例
-        var myTable = table.render({
+        let myTable = table.render({
             elem: '#demo'
-            , url:visitUrl //数据接口
+            , url: visitUrl //数据接口
             , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
             , page: true //开启分页
             , cols: [
@@ -222,12 +224,11 @@
                     });
                     break;
             }
-            ;
         });
 
         //监听行工具栏事件
         table.on('tool(test)', function (obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
-            var data = obj.data //获得当前行数据
+            let data = obj.data //获得当前行数据
                 , layEvent = obj.event; //获得 lay-event 对应的值
             if (layEvent === 'editVisit') {
                 //弹出对话框之前，需要填充表单数据
@@ -270,7 +271,7 @@
                         layer.msg(ret.msg, {icon: 5});
                     }
                 }
-            })
+            });
             return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
         });
 
@@ -298,10 +299,9 @@
                         layer.msg(ret.msg, {icon: 5});
                     }
                 }
-            })
+            });
             return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
         });
-
     });
 </script>
 

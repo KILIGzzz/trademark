@@ -140,14 +140,14 @@
 </script>
 <script>
     layui.use(['table', 'layer', 'jquery', 'form', 'tree', 'util'], function () {
-        var table = layui.table;
-        var layer = layui.layer;
-        var $ = layui.jquery;
-        var form = layui.form;
-        var tree = layui.tree
-        var util = layui.util
+        let table = layui.table;
+        let layer = layui.layer;
+        let $ = layui.jquery;
+        let form = layui.form;
+        let tree = layui.tree
+        let util = layui.util
         //第一个实例
-        var roleTable = table.render({
+        let roleTable = table.render({
             elem: '#role'
             , url: '/role/findAll' //数据接口
             , toolbar: '#roleToolbar' //开启头部工具栏，并为其绑定左侧模板
@@ -172,7 +172,7 @@
 
         //头工具栏事件
         table.on('toolbar(roleTableFilter)', function (obj) {
-            var checkStatus = table.checkStatus(obj.config.id)
+            let checkStatus = table.checkStatus(obj.config.id)
                 , data = checkStatus.data;
             switch (obj.event) {
                 //添加数据
@@ -192,7 +192,7 @@
 
         //行工具栏事件
         table.on('tool(roleTableFilter)', function (obj) {
-            var data = obj.data
+            let data = obj.data
             switch (obj.event) {
                 case 'edit':
                     console.log(data.status)
@@ -255,14 +255,14 @@
 
         //获取选中的菜单id
         function getChecked_list(data) {
-            var id = '';
+            let id = '';
             $.each(data, function (index, item) {
                 if (id !== "") {
                     id = id + "," + item.id;
                 } else {
                     id = item.id;
                 }
-                var i = getChecked_list(item.children);
+                let i = getChecked_list(item.children);
                 if (i !== "") {
                     id = id + "," + i;
                 }
@@ -273,8 +273,8 @@
         //addUserForm表单的提交
         form.on('submit(addRoleFilter)', function (data) {
             console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
-            var checkData = tree.getChecked('addFormMenu');
-            var list = getChecked_list(checkData)
+            let checkData = tree.getChecked('addFormMenu');
+            let list = getChecked_list(checkData)
             data.field.menus = list;
             //将状态属性的on转换为0，1
             if (data.field.status === "on") {
@@ -313,8 +313,8 @@
         //update表单的提交
         form.on('submit(updateRoleFilter)', function (data) {
                 console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
-                var checkData = tree.getChecked('updateFormMenu');
-                var list = getChecked_list(checkData)
+                let checkData = tree.getChecked('updateFormMenu');
+                let list = getChecked_list(checkData)
                 data.field.menus = list;
                 //将状态属性的on转换为0，1
                 if (data.field.status === "on") {

@@ -42,7 +42,7 @@
 
 <script>
     layui.use('form', function () {
-        var form = layui.form;
+        let form = layui.form;
         //监听提交
         form.on('submit(insertDeptFilter)', function (data) {
             layer.msg(JSON.stringify(data.field));
@@ -87,7 +87,7 @@
 
 <script>
     layui.use('form', function () {
-        var form = layui.form;
+        let form = layui.form;
         //监听提交
         form.on('submit(updateDeptFilter)', function (data) {
             layer.msg(JSON.stringify(data.field));

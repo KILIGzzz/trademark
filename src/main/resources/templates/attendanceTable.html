@@ -30,10 +30,10 @@
 </body>
 <script>
     layui.use(['jquery', 'table', 'form', 'laydate', 'upload'], function () {
-        var $ = layui.jquery;
-        var table = layui.table;
-        var laydate = layui.laydate;
-        var form = layui.form;
+        let $ = layui.jquery;
+        let table = layui.table;
+        let laydate = layui.laydate;
+        let form = layui.form;
         let upload = layui.upload;
 
         //日期
@@ -50,7 +50,7 @@
             }
         })
 
-        var attendanceTable = table.render({
+        let attendanceTable = table.render({
             elem: '#attendance'
             , height: 530
             , url: '/attendance/findAll' //数据接口

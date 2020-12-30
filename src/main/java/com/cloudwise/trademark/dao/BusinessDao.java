@@ -89,118 +89,120 @@ public interface BusinessDao {
      * @create time: 2020/12/24 9:35
      */
     List<Map<String, Object>> findAllDictionary();
+
     /**
+     * @param businessId
+     * @return
      * @create by: Back
      * @description: 根据ID查询进度类型
      * @create time: 2020/12/24 11:25
-     * @param businessId
-     * @return
      */
     String findTypeById(Integer businessId);
 
 
     /**
+     * @param :
+     * @return java.util.Map<java.lang.String, java.lang.Object>
      * @create by: IvanZ
      * @description : 业务量走势图
      * @create time: 2020/12/25 20:36
-     * @param :
-     * @return java.util.Map<java.lang.String,java.lang.Object>
      */
-    List<Map<String,Object>> showBusinessChart();
+    List<Map<String, Object>> showBusinessChart();
 
     /**
+     * @param :
+     * @return java.util.List<java.util.Map < java.lang.String, java.lang.Object>>
      * @create by: IvanZ
      * @description : 业绩排行榜
      * @create time: 2020/12/25 21:31
-     * @param :
-     * @return java.util.List<java.util.Map<java.lang.String,java.lang.Object>>
      */
-    List<Map<String,Object>> showPerformanceRanking();
+    List<Map<String, Object>> showPerformanceRanking();
 
     /**
+     * @param : today
+     * @return int
      * @create by: IvanZ
      * @description : 获取当天业务数量
      * @create time: 2020/12/28 20:23
-     * @param : today
-     * @return int
      */
     Integer getBusinessCount(String today);
 
     /**
+     * @param : today
+     * @return int
      * @create by: IvanZ
      * @description : 获取当天回访数量
      * @create time: 2020/12/28 20:23
-     * @param : today
-     * @return int
      */
     Integer getVisitCount(String today);
 
     /**
+     * @param : today
+     * @return int
      * @create by: IvanZ
      * @description : 获取当天收入
      * @create time: 2020/12/28 20:23
-     * @param : today
-     * @return int
      */
     Integer getMoney(String today);
 
     /**
+     * @return
      * @create by: Back
      * @description:进度图表
      * @create time: 2020/12/30 9:49
-     * @return
      */
-    List<Map<String,Object>> progressEchartName(@Param("startTime") String startTime,@Param("endTime") String endTime,@Param("progressType") String progressType);
-    /**
-     * @create by: Back
-     * @description:进度图表
-     * @create time: 2020/12/30 9:49
-     * @return
-     */
-    List<Map<String,Object>> progressEchartTime(@Param("loginName") String loginName,@Param("progressType") String progressType);
+    List<Map<String, Object>> progressEchartName(@Param("startTime") String startTime, @Param("endTime") String endTime, @Param("progressType") String progressType);
 
     /**
+     * @return
+     * @create by: Back
+     * @description:进度图表
+     * @create time: 2020/12/30 9:49
+     */
+    List<Map<String, Object>> progressEchartTime(@Param("loginName") String loginName, @Param("progressType") String progressType);
+
+    /**
+     * @param :
+     * @return java.util.Map<java.lang.String, java.lang.Object>
      * @create by: IvanZ
      * @description : 获取回访图数据根据代理人
      * @create time: 2020/12/30 9:31
-     * @param :
-     * @return java.util.Map<java.lang.String,java.lang.Object>
      */
-    List<Map<String,Object>> showVisitEchartName(@Param("startTime") String startTime,@Param("endTime") String endTime);
+    List<Map<String, Object>> showVisitEchartName(@Param("startTime") String startTime, @Param("endTime") String endTime);
 
     /**
+     * @param :
+     * @return java.util.List<java.util.Map < java.lang.String, java.lang.Object>>
      * @create by: IvanZ
      * @description : 获取回访图数据根据时间
      * @create time: 2020/12/30 10:09
-     * @param :
-     * @return java.util.List<java.util.Map<java.lang.String,java.lang.Object>>
      */
-    List<Map<String,Object>> showVisitEchartTime(String loginName);
+    List<Map<String, Object>> showVisitEchartTime(String loginName);
 
     /**
+     * @return
      * @create by: ydq
      * @description: 方法作用：获取业务类型总数量
      * @create time: 2020/12/30 19:44
      * @param:
-     * @return
      */
-    List<Map<String,Object>> businessEchart();
-    
+    List<Map<String, Object>> businessEchart();
+
     /**
+     * @return
      * @create by: ydq
      * @description: 方法作用：业务分析按代理人
      * @create time: 2020/12/30 20:02
-     * @param: 
-     * @return 
+     * @param:
      */
-    List<Map<String,Object>> showAgentChart(@Param("startTime") String startTime,@Param("endTime") String endTime);
+    List<Map<String, Object>> showAgentChart(@Param("startTime") String startTime, @Param("endTime") String endTime);
 
     /**
+     * @return
      * @create by: ydq
      * @description: 方法作用：业务分析按时间
      * @create time: 2020/12/30 20:44
      * @param:
-     * @return
      */
-    List<Map<String,Object>> showBusinessChartByAgent(String loginName);
+    List<Map<String, Object>> showBusinessChartByAgent(String loginName);
 }

@@ -210,12 +210,12 @@
                 success: function (data) {
                     if (data.code == 0) {
                         //获取横坐标
-                        var monthX = data.data.monthX;
+                        let monthX = data.data.monthX;
                         // 获取y坐标1
-                        var progressCountY = data.data.progressCountY;
-                        var TimeChart = echarts.init(document.getElementById('progressCountTime'), 'chalk');
+                        let progressCountY = data.data.progressCountY;
+                        let TimeChart = echarts.init(document.getElementById('progressCountTime'), 'chalk');
                         // 指定图表的配置项和数据
-                        var option = {
+                        let option = {
                             title: {
                                 text: '进度量走势图',
                                 subtext: '进度量'
@@ -281,12 +281,12 @@
                 success: function (data) {
                     if (data.code == 0) {
                         //获取横坐标
-                        var proxyX = data.data.proxyX;
+                        let proxyX = data.data.proxyX;
                         // 获取y坐标1
-                        var progressCountY = data.data.progressCountY;
-                        var NameChart = echarts.init(document.getElementById('progressCountName'), 'chalk');
+                        let progressCountY = data.data.progressCountY;
+                        let NameChart = echarts.init(document.getElementById('progressCountName'), 'chalk');
                         // 指定图表的配置项和数据
-                        var Nameoption = {
+                        let Nameoption = {
                             title: {
                                 text: '进度量图',
                                 subtext: '进度量'

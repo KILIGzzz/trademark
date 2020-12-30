@@ -20,11 +20,13 @@
                 <span style="font-size: 18px;font-weight: bold;color: white;">日期区间：</span>
                 <div class="layui-inline">
                     <div class="layui-input-inline">
-                        <input type="text" name="startTime" id="startDate" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                        <input type="text" name="startTime" id="startDate" placeholder="yyyy-MM-dd" autocomplete="off"
+                               class="layui-input">
                     </div>
                     <span style="font-size: 18px;font-weight: bold;color: white;">—</span>
                     <div class="layui-input-inline">
-                        <input type="text" name="endTime" id="endDate" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                        <input type="text" name="endTime" id="endDate" placeholder="yyyy-MM-dd" autocomplete="off"
+                               class="layui-input">
                     </div>
                 </div>
                 <button class="layui-btn" lay-submit lay-filter="timeFilter" data-type="reload">搜索</button>
@@ -39,7 +41,8 @@
                 <span style="font-size: 18px;font-weight: bold;color: white;">代理人：</span>
                 <div class="layui-inline">
                     <div class="layui-input-inline">
-                        <input type="text" name="loginName" id="nameTableSelect" autocomplete="off" placeholder="请输入代理人登录名" class="layui-input">
+                        <input type="text" name="loginName" id="nameTableSelect" autocomplete="off"
+                               placeholder="请输入代理人登录名" class="layui-input">
                     </div>
                 </div>
                 <button class="layui-btn" lay-submit lay-filter="loginNameFilter" data-type="reload">搜索</button>
@@ -59,12 +62,12 @@
         //设定组件别名
         tableSelect: 'tableSelect',
     });
-    layui.use(['jquery','carousel','laydate','form','tableSelect'], function () {
-        var $=layui.jquery;
-        var carousel = layui.carousel;
-        var laydate = layui.laydate;
-        var form = layui.form;
-        var tableSelect = layui.tableSelect
+    layui.use(['jquery', 'carousel', 'laydate', 'form', 'tableSelect'], function () {
+        let $ = layui.jquery;
+        let carousel = layui.carousel;
+        let laydate = layui.laydate;
+        let form = layui.form;
+        let tableSelect = layui.tableSelect
 
         tableSelect.render({
             elem: '#nameTableSelect',	//定义输入框input对象 必填
@@ -121,7 +124,7 @@
         //表单提交
         form.on('submit(timeFilter)', function (data) {
             console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
-            let str = "?startTime="+data.field.startTime+"&endTime="+data.field.endTime
+            let str = "?startTime=" + data.field.startTime + "&endTime=" + data.field.endTime
             //调用考勤图方法
             showChartName(str)
             return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
@@ -130,30 +133,30 @@
         //表单提交
         form.on('submit(loginNameFilter)', function (data) {
             console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
-            let str = "?loginName="+data.field.loginName
+            let str = "?loginName=" + data.field.loginName
             //调用考勤图方法
-            showChartTime(str,data.field.loginName)
+            showChartTime(str, data.field.loginName)
             return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
         });
 
         //考勤图方法
-        function showChartName(str){
+        function showChartName(str) {
             $.ajax({
-                url: "/business/visitEchartName"+str,
+                url: "/business/visitEchartName" + str,
                 type: "GET",
                 dataType: "JSON",
                 success: function (data) {
                     if (data.code == 0) {
                         //获取横坐标
-                        var loginNameX = data.data.loginNameX;
+                        let loginNameX = data.data.loginNameX;
                         // 获取y坐标1
-                        var visitCountY = data.data.visitCountY;
+                        let visitCountY = data.data.visitCountY;
                         // 获取y坐标2
-                        // var checkOutY = data.data.checkOutY;
+                        // let checkOutY = data.data.checkOutY;
                         // 基于准备好的dom，初始化echarts实例
-                        var myChartName = echarts.init(document.getElementById('visitEchartName'), 'chalk');
+                        let myChartName = echarts.init(document.getElementById('visitEchartName'), 'chalk');
                         // 指定图表的配置项和数据
-                        var optionName = {
+                        let optionName = {
                             title: {
                                 text: '回访分析',
                                 subtext: '回访数量'
@@ -211,28 +214,28 @@
             })
         }
 
-        function showChartTime(str,loginName){
+        function showChartTime(str, loginName) {
             $.ajax({
-                url: "/business/visitEchartTime"+str,
+                url: "/business/visitEchartTime" + str,
                 type: "GET",
                 dataType: "JSON",
                 success: function (data) {
                     if (data.code == 0) {
                         //获取横坐标
-                        var monthX = data.data.monthX;
+                        let monthX = data.data.monthX;
                         // 获取y坐标1
-                        var visitCountY = data.data.visitCountY;
+                        let visitCountY = data.data.visitCountY;
                         // 获取y坐标2
-                        // var checkOutY = data.data.checkOutY;
+                        // let checkOutY = data.data.checkOutY;
                         // 基于准备好的dom，初始化echarts实例
-                        var myChartTime = echarts.init(document.getElementById('visitEchartTime'), 'chalk');
-                        if (loginName == null || loginName === ""){
+                        let myChartTime = echarts.init(document.getElementById('visitEchartTime'), 'chalk');
+                        if (loginName == null || loginName === "") {
                             loginName = 'enzo'
                         }
                         // 指定图表的配置项和数据
-                        var optionTime = {
+                        let optionTime = {
                             title: {
-                                text: loginName+'回访分析',
+                                text: loginName + '回访分析',
                                 subtext: '回访数量'
                             },
                             tooltip: {

@@ -33,7 +33,7 @@ public class LoginController {
 
 
     /**
-     * 跳转到login
+     * 页面跳转
      *
      * @createBy Enzo
      * @createTime 2020/12/29 15:01

@@ -83,93 +83,93 @@ public interface BusinessService {
     List<Map<String, Object>> findAllDictionary();
 
     /**
+     * @param :
+     * @return java.util.Map<java.lang.String, java.lang.Object>
      * @create by: IvanZ
      * @description : 业务量走势图
      * @create time: 2020/12/25 20:41
-     * @param : 
-     * @return java.util.Map<java.lang.String,java.lang.Object>
      */
-    Map<String,Object> showBusinessChart();
-    
+    Map<String, Object> showBusinessChart();
+
     /**
+     * @param :
+     * @return java.util.Map<java.lang.String, java.lang.Object>
      * @create by: IvanZ
      * @description : 业绩排行榜
      * @create time: 2020/12/25 21:32
-     * @param : 
-     * @return java.util.Map<java.lang.String,java.lang.Object>
      */
-    Map<String,Object> showPerformanceRanking();
+    Map<String, Object> showPerformanceRanking();
 
     /**
+     * @param :
+     * @return java.util.List<java.lang.Integer>
      * @create by: IvanZ
      * @description : 获取首页数据
      * @create time: 2020/12/28 20:21
-     * @param :
-     * @return java.util.List<java.lang.Integer>
      */
     List<Integer> getIndexData();
 
     /**
+     * @param :
+     * @return java.util.Map<java.lang.String, java.lang.Object>
      * @create by: IvanZ
      * @description : 获取回访图数据根据代理人
      * @create time: 2020/12/30 9:32
-     * @param :
-     * @return java.util.Map<java.lang.String,java.lang.Object>
      */
-    Map<String,Object> showVisitEchartName(String startTime,String endTime);
+    Map<String, Object> showVisitEchartName(String startTime, String endTime);
 
     /**
+     * @param :
+     * @return java.util.Map<java.lang.String, java.lang.Object>
      * @create by: IvanZ
      * @description : 获取回访图数据根据时间
      * @create time: 2020/12/30 10:09
-     * @param :
-     * @return java.util.Map<java.lang.String,java.lang.Object>
      */
-    Map<String,Object> showVisitEchartTime(String loginName);
+    Map<String, Object> showVisitEchartTime(String loginName);
 
 
     /**
+     * @return
      * @create by: Back
      * @description:进度图表
      * @create time: 2020/12/30 9:49
-     * @return
      */
-    Map<String,Object> progressEchartName(String startTime,String endTime,String progressType);
+    Map<String, Object> progressEchartName(String startTime, String endTime, String progressType);
 
 
     /**
+     * @return
      * @create by: Back
      * @description:进度图表
      * @create time: 2020/12/30 9:49
-     * @return
      */
-    Map<String,Object> progressEchartTime(String loginName,String progressType);
+    Map<String, Object> progressEchartTime(String loginName, String progressType);
 
     /**
+     * @return
      * @create by: ydq
      * @description: 方法作用：获取业务类型总数量
      * @create time: 2020/12/30 19:47
      * @param:
-     * @return
      */
     List<Long> businessEchart();
 
     /**
+     * @return
      * @create by: ydq
      * @description: 方法作用：业务分析按代理人
      * @create time: 2020/12/30 20:12
      * @param:
-     * @return
      */
-    Map<String,Object> showAgentChart(String startTime,String endTime);
+    Map<String, Object> showAgentChart(String startTime, String endTime);
 
     /**
+     * @return
      * @create by: ydq
      * @description: 方法作用：业务分析按时间
      * @create time: 2020/12/30 20:51
      * @param:
-     * @return
      */
-    Map<String,Object> showBusinessChartByAgent(String loginName);
+    Map<String, Object> showBusinessChartByAgent(String loginName);
 
 }

@@ -28,8 +28,8 @@
 </body>
 <script>
     layui.use(['jquery', 'carousel'], function () {
-        var $ = layui.jquery;
-        var carousel = layui.carousel;
+        let $ = layui.jquery;
+        let carousel = layui.carousel;
 
         $.ajax({
             url: "/business/getIndexData",
@@ -61,15 +61,15 @@
             success: function (data) {
                 if (data.code == 0) {
                     //获取横坐标
-                    var monthX = data.data.monthX;
+                    let monthX = data.data.monthX;
                     // 获取y坐标1
-                    var businessCountY = data.data.businessCountY;
+                    let businessCountY = data.data.businessCountY;
                     // 获取y坐标2
-                    // var moneys=data.data.moneys;
+                    // let moneys=data.data.moneys;
                     // 基于准备好的dom，初始化echarts实例
-                    var myChart = echarts.init(document.getElementById('businessCount'), 'chalk');
+                    let myChart = echarts.init(document.getElementById('businessCount'), 'chalk');
                     // 指定图表的配置项和数据
-                    var option = {
+                    let option = {
                         title: {
                             text: '业务量走势图',
                             subtext: '业务量'
@@ -134,15 +134,15 @@
             success: function (data) {
                 if (data.code == 0) {
                     //获取横坐标
-                    var moneyX = data.data.moneyX;
+                    let moneyX = data.data.moneyX;
                     // 获取y坐标1
-                    var loginNameY = data.data.loginNameY;
+                    let loginNameY = data.data.loginNameY;
                     // 获取y坐标2
-                    // var moneys=data.data.moneys;
+                    // let moneys=data.data.moneys;
                     // 基于准备好的dom，初始化echarts实例
-                    var myChart1 = echarts.init(document.getElementById('performanceRanking'), 'chalk');
+                    let myChart1 = echarts.init(document.getElementById('performanceRanking'), 'chalk');
                     // 指定图表的配置项和数据
-                    var option1 = {
+                    let option1 = {
                         title: {
                             text: '业绩排行榜',
                             subtext: '业绩',

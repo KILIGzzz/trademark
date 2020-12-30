@@ -30,6 +30,7 @@ public interface AttendanceService {
      * @return 对象列表
      */
     List<Attendance> queryAllByLimit(int offset, int limit, Attendance attendance);
+
     long getCount(Attendance attendance);
 
 
@@ -58,12 +59,12 @@ public interface AttendanceService {
     boolean deleteById(Integer attendanceId);
 
     /**
+     * @param null:
+     * @return
      * @create by: IvanZ
      * @description : 获取考勤表数据
      * @create time: 2020/12/29 16:36
-     * @param null:
-     * @return
      */
-    Map<String,Object> showAttendanceEchart();
+    Map<String, Object> showAttendanceEchart();
 
 }

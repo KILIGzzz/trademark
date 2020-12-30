@@ -32,13 +32,13 @@ public interface ProgressService {
     List<Progress> queryAllByLimit(int offset, int limit);
 
     /**
+     * @return List<Progress>
      * @create by: ydq
      * @description: 方法作用：条件查询加分页
      * @create time: 2020/12/23 15:15
      * @param: Progress progress,int offset,int limit
-     * @return List<Progress>
      */
-    List<Progress> queryAllByConditionAndLimit(Progress progress,int offset,int limit);
+    List<Progress> queryAllByConditionAndLimit(Progress progress, int offset, int limit);
 
 
     /**
@@ -64,23 +64,23 @@ public interface ProgressService {
      * @return 是否成功
      */
     boolean deleteById(Integer progressId);
-    
+
     /**
+     * @return getRowCount总条数
      * @create by: ydq
      * @description: 方法作用：获取数据总条数
      * @create time: 2020/12/23 15:15
      * @param: progress查询属性
-     * @return getRowCount总条数
      */
     long getRowCount(Progress progress);
 
     /**
+     * @return
      * @create by: ydq
      * @description: 方法作用：获取进度类型
      * @create time: 2020/12/23 16:44
      * @param:
-     * @return
      */
-    List<Map<String,Object>> findAllProgress();
+    List<Map<String, Object>> findAllProgress();
 
 }

@@ -80,12 +80,12 @@ public interface CustomDao {
     int deleteById(Integer customId);
 
     /**
+     * @return
      * @create by: ydq
      * @description: 方法作用：条件查询加分页
      * @create time: 2020/12/22 15:31
      * @param:
-     * @return
      */
-    List<Custom> queryAllByConditionAndLimit(@Param("custom") Custom custom,@Param("offset") int offset, @Param("limit") int limit);
+    List<Custom> queryAllByConditionAndLimit(@Param("custom") Custom custom, @Param("offset") int offset, @Param("limit") int limit);
 
 }

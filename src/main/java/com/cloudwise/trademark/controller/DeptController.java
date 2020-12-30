@@ -25,6 +25,13 @@ public class DeptController extends BaseController {
     @Resource
     private DeptService deptService;
 
+    /**
+     * 页面跳转
+     *
+     * @return ModelAndView
+     * @createBy Enzo
+     * @createTime 2020/12/30 22:36
+     */
     @GetMapping("toDept")
     public ModelAndView toDept() {
         ModelAndView modelAndView = new ModelAndView();

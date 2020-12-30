@@ -16,7 +16,14 @@ import java.util.List;
  */
 public class MyUtil {
 
-    //获取流文件
+    /**
+     * 获取流文件
+     *
+     * @param ins  字节文件
+     * @param file 字符文件
+     * @createBy Enzo
+     * @createTime 2020/12/30 22:43
+     */
     private static void inputStreamToFile(InputStream ins, File file) {
         try {
             OutputStream os = new FileOutputStream(file);

@@ -27,6 +27,13 @@ public class DictionaryTypeController extends BaseController {
     @Resource
     private DictionaryTypeService dictionaryTypeService;
 
+    /**
+     * 页面跳转
+     *
+     * @return ModelAndView
+     * @createBy Enzo
+     * @createTime 2020/12/30 22:37
+     */
     @GetMapping("toDictionaryType")
     public ModelAndView toDictionaryType() {
         ModelAndView modelAndView = new ModelAndView();

@@ -93,7 +93,7 @@ public class BusinessServiceImpl implements BusinessService {
     public List<Business> queryAllByConditionAndLimit(Business tb, int offset, int limit) {
         List<Business> businesses = this.businessDao.queryAllByConditionAndLimit(tb, offset, limit);
         for (Business business : businesses) {
-            String status =  businessDao.findTypeById(business.getBusinessId());
+            String status = businessDao.findTypeById(business.getBusinessId());
             business.setStatus(status);
         }
         return businesses;
@@ -124,17 +124,17 @@ public class BusinessServiceImpl implements BusinessService {
     }
 
     /**
+     * @param :
+     * @return java.util.Map<java.lang.String, java.lang.Object>
      * @create by: IvanZ
      * @description : 业务量走势图
      * @create time: 2020/12/25 21:00
-     * @param : 
-     * @return java.util.Map<java.lang.String,java.lang.Object>
      */
     @Override
     public Map<String, Object> showBusinessChart() {
         List<Map<String, Object>> maps = businessDao.showBusinessChart();
         //定义返回的map
-        Map<String,Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         //定义x轴
         String[] monthX = new String[maps.size()];
         //定义y轴
@@ -143,8 +143,8 @@ public class BusinessServiceImpl implements BusinessService {
             monthX[i] = maps.get(i).get("month").toString();
             businessCountY[i] = Integer.parseInt(maps.get(i).get("businessCount").toString());
         }
-        map.put("monthX",monthX);
-        map.put("businessCountY",businessCountY);
+        map.put("monthX", monthX);
+        map.put("businessCountY", businessCountY);
         return map;
     }
 
@@ -152,7 +152,7 @@ public class BusinessServiceImpl implements BusinessService {
     public Map<String, Object> showPerformanceRanking() {
         List<Map<String, Object>> maps = businessDao.showPerformanceRanking();
         //定义返回的map
-        Map<String,Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         //定义x轴
         String[] moneyX = new String[maps.size()];
         //定义y轴
@@ -160,13 +160,13 @@ public class BusinessServiceImpl implements BusinessService {
         for (int i = 0; i < maps.size(); i++) {
             moneyX[i] = maps.get(i).get("login_name").toString();
             Object temp = maps.get(i).get("performance");
-            if (temp == null){
+            if (temp == null) {
                 temp = 0;
             }
-            loginNameY[i] =temp.toString();
+            loginNameY[i] = temp.toString();
         }
-        map.put("moneyX",moneyX);
-        map.put("loginNameY",loginNameY);
+        map.put("moneyX", moneyX);
+        map.put("loginNameY", loginNameY);
         return map;
     }
 
@@ -180,8 +180,8 @@ public class BusinessServiceImpl implements BusinessService {
         String today = s[0];
         //不能为空
         Integer businessCount = (businessDao.getBusinessCount(today) != null) ? businessDao.getBusinessCount(today) : 0;
-        Integer visitCount = (businessDao.getVisitCount(today) != null) ? businessDao.getVisitCount(today):0;
-        Integer money = (businessDao.getMoney(today) != null) ? businessDao.getMoney(today):0;
+        Integer visitCount = (businessDao.getVisitCount(today) != null) ? businessDao.getVisitCount(today) : 0;
+        Integer money = (businessDao.getMoney(today) != null) ? businessDao.getMoney(today) : 0;
         //创建一个list
         ArrayList<Integer> list = new ArrayList<>();
         list.add(businessCount);
@@ -191,10 +191,10 @@ public class BusinessServiceImpl implements BusinessService {
     }
 
     @Override
-    public Map<String, Object> showVisitEchartName(String startTime,String endTime) {
-        List<Map<String, Object>> maps = businessDao.showVisitEchartName(startTime,endTime);
+    public Map<String, Object> showVisitEchartName(String startTime, String endTime) {
+        List<Map<String, Object>> maps = businessDao.showVisitEchartName(startTime, endTime);
         //定义返回的map
-        Map<String,Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         //定义x轴
         String[] loginNameX = new String[maps.size()];
         //定义y轴
@@ -202,13 +202,13 @@ public class BusinessServiceImpl implements BusinessService {
         for (int i = 0; i < maps.size(); i++) {
             loginNameX[i] = maps.get(i).get("login_name").toString();
             Object temp = maps.get(i).get("visit_count");
-            if (temp == null){
+            if (temp == null) {
                 temp = 0;
             }
-            visitCountY[i] =temp.toString();
+            visitCountY[i] = temp.toString();
         }
-        map.put("loginNameX",loginNameX);
-        map.put("visitCountY",visitCountY);
+        map.put("loginNameX", loginNameX);
+        map.put("visitCountY", visitCountY);
         return map;
     }
 
@@ -216,7 +216,7 @@ public class BusinessServiceImpl implements BusinessService {
     public Map<String, Object> showVisitEchartTime(String loginName) {
         List<Map<String, Object>> maps = businessDao.showVisitEchartTime(loginName);
         //定义返回的map
-        Map<String,Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         //定义x轴
         String[] monthX = new String[maps.size()];
         //定义y轴
@@ -224,20 +224,20 @@ public class BusinessServiceImpl implements BusinessService {
         for (int i = 0; i < maps.size(); i++) {
             monthX[i] = maps.get(i).get("month").toString();
             Object temp = maps.get(i).get("visit_count");
-            if (temp == null){
+            if (temp == null) {
                 temp = 0;
             }
-            visitCountY[i] =temp.toString();
+            visitCountY[i] = temp.toString();
         }
         map.put("monthX", monthX);
-        map.put("visitCountY",visitCountY);
+        map.put("visitCountY", visitCountY);
         return map;
     }
 
     @Override
-    public Map<String, Object> progressEchartName(String startTime,String endTime,String progressType) {
-        List<Map<String, Object>> maps = businessDao.progressEchartName(startTime,endTime,progressType);
-        Map<String,Object> map = new HashMap<>();
+    public Map<String, Object> progressEchartName(String startTime, String endTime, String progressType) {
+        List<Map<String, Object>> maps = businessDao.progressEchartName(startTime, endTime, progressType);
+        Map<String, Object> map = new HashMap<>();
         //定义x轴
         String[] proxyX = new String[maps.size()];
         //定义y轴
@@ -246,15 +246,15 @@ public class BusinessServiceImpl implements BusinessService {
             proxyX[i] = maps.get(i).get("proxy").toString();
             progressCountY[i] = Integer.parseInt(maps.get(i).get("progressCount").toString());
         }
-        map.put("proxyX",proxyX);
-        map.put("progressCountY",progressCountY);
+        map.put("proxyX", proxyX);
+        map.put("progressCountY", progressCountY);
         return map;
     }
 
     @Override
     public Map<String, Object> progressEchartTime(String loginName, String progressType) {
         List<Map<String, Object>> maps = businessDao.progressEchartTime(loginName, progressType);
-        Map<String,Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         //定义x轴
         String[] monthX = new String[maps.size()];
         //定义y轴
@@ -263,26 +263,26 @@ public class BusinessServiceImpl implements BusinessService {
             monthX[i] = maps.get(i).get("month").toString();
             progressCountY[i] = Integer.parseInt(maps.get(i).get("progressCount").toString());
         }
-        map.put("monthX",monthX);
-        map.put("progressCountY",progressCountY);
+        map.put("monthX", monthX);
+        map.put("progressCountY", progressCountY);
         return map;
     }
 
     /**
+     * @return
      * @create by: ydq
      * @description: 方法作用：获取业务类型总数量
      * @create time: 2020/12/30 19:49
      * @param:
-     * @return
      */
     @Override
     public List<Long> businessEchart() {
         List<Map<String, Object>> list = businessDao.businessEchart();
         List<Long> list1 = new ArrayList<>();
-        long patent = 0,trademark=0,copyright=0,property=0;
+        long patent = 0, trademark = 0, copyright = 0, property = 0;
         for (Map<String, Object> map : list) {
             String a = map.get("business_top_type").toString();
-            switch (a){
+            switch (a) {
                 case "专利":
                     patent = (Long) map.get("count(*)");
                     break;
@@ -305,56 +305,56 @@ public class BusinessServiceImpl implements BusinessService {
     }
 
     /**
+     * @return
      * @create by: ydq
      * @description: 方法作用：业务分析按代理人
      * @create time: 2020/12/30 20:12
      * @param:
-     * @return
      */
     @Override
-    public Map<String, Object>showAgentChart(String startTime, String endTime) {
+    public Map<String, Object> showAgentChart(String startTime, String endTime) {
         if (startTime == null || "".equals(startTime)) {
-            startTime="2000-01-01";
+            startTime = "2000-01-01";
         }
-        if (endTime == null|| "".equals(endTime)){
-            endTime="2100-01-01";
+        if (endTime == null || "".equals(endTime)) {
+            endTime = "2100-01-01";
         }
         List<Map<String, Object>> list = businessDao.showAgentChart(startTime, endTime);
-        Map<String,Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         //X轴
         String[] X = new String[list.size()];
         //y轴
         Long[] Y = new Long[list.size()];
         for (int i = 0; i < list.size(); i++) {
-            X[i] =  list.get(i).get("login_name").toString();
+            X[i] = list.get(i).get("login_name").toString();
             Y[i] = (Long) list.get(i).get("count(*)");
         }
-        map.put("X",X);
-        map.put("Y",Y);
+        map.put("X", X);
+        map.put("Y", Y);
         return map;
     }
 
     /**
+     * @return
      * @create by: ydq
      * @description: 方法作用：业务分析按时间
      * @create time: 2020/12/30 20:52
      * @param:
-     * @return
      */
     @Override
     public Map<String, Object> showBusinessChartByAgent(String loginName) {
         List<Map<String, Object>> list = businessDao.showBusinessChartByAgent(loginName);
-        Map<String,Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         //X轴
         String[] X = new String[list.size()];
         //y轴
         Long[] Y = new Long[list.size()];
         for (int i = 0; i < list.size(); i++) {
-            X[i] =  list.get(i).get("month").toString();
+            X[i] = list.get(i).get("month").toString();
             Y[i] = (Long) list.get(i).get("count");
         }
-        map.put("X",X);
-        map.put("Y",Y);
+        map.put("X", X);
+        map.put("Y", Y);
         return map;
     }
 

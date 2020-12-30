@@ -189,24 +189,24 @@ public class BusinessController extends BaseController {
     }
 
     /**
+     * @return
      * @create by: ydq
      * @description: 方法作用：业务分析按代理人
      * @create time: 2020/12/30 20:03
      * @param:
-     * @return
      */
     @GetMapping("showAgentChart")
-    public ReturnBean showAgentChart (String startTime,String endTime){
+    public ReturnBean showAgentChart(String startTime, String endTime) {
         Map<String, Object> map = BusinessService.showAgentChart(startTime, endTime);
         return returnSuccess(map);
     }
 
     /**
+     * @return
      * @create by: ydq
      * @description: 方法作用：业务分析按时间
      * @create time: 2020/12/30 20:33
      * @param:
-     * @return
      */
     @GetMapping("showBusinessChartByAgent")
     public ReturnBean showBusinessChartByAgent(String loginName) {
@@ -222,43 +222,43 @@ public class BusinessController extends BaseController {
      * @create time: 2020/12/29 11:57
      */
     @GetMapping("progressEchartName")
-    public ReturnBean progressEchartName(String progressId,String startTime,String endTime) {
+    public ReturnBean progressEchartName(String progressId, String startTime, String endTime) {
 
-        if (startTime == null || "".equals(startTime)){
+        if (startTime == null || "".equals(startTime)) {
             startTime = "2000-01-01";
         }
-        if (endTime == null || "".equals(endTime)){
+        if (endTime == null || "".equals(endTime)) {
             endTime = "2100-01-01";
         }
         if (progressId != null && !"".equals(progressId)) {
             int i = Integer.parseInt(progressId);
             Dictionary dictionary = dictionaryService.queryById(i);
 
-            Map<String, Object> map = BusinessService.progressEchartName(startTime,endTime,dictionary.getDictionaryName());
+            Map<String, Object> map = BusinessService.progressEchartName(startTime, endTime, dictionary.getDictionaryName());
             return returnSuccess(map);
-        }else{
-            Map<String, Object> map = BusinessService.progressEchartName(startTime,endTime,null);
+        } else {
+            Map<String, Object> map = BusinessService.progressEchartName(startTime, endTime, null);
             return returnSuccess(map);
         }
     }
 
 
     /**
+     * @return
      * @create by: Back
      * @description: 进度分析，以时间为横轴
      * @create time: 2020/12/30 10:12
-     * @return
      */
     @GetMapping("progressEchartTime")
-    public ReturnBean progressEchartTime(String loginName,String processId) {
+    public ReturnBean progressEchartTime(String loginName, String processId) {
 
-        if (processId != null && !"".equals(processId)){
-        int i = Integer.parseInt(processId);
-            Dictionary  dictionary = dictionaryService.queryById(i);
-            Map<String, Object> map = BusinessService.progressEchartTime(loginName,dictionary.getDictionaryName());
+        if (processId != null && !"".equals(processId)) {
+            int i = Integer.parseInt(processId);
+            Dictionary dictionary = dictionaryService.queryById(i);
+            Map<String, Object> map = BusinessService.progressEchartTime(loginName, dictionary.getDictionaryName());
             return returnSuccess(map);
-        }else{
-            Map<String, Object> map = BusinessService.progressEchartTime(loginName,null);
+        } else {
+            Map<String, Object> map = BusinessService.progressEchartTime(loginName, null);
             return returnSuccess(map);
         }
 
@@ -266,10 +266,10 @@ public class BusinessController extends BaseController {
     }
 
     /**
+     * @return
      * @create by: Back
      * @description: 查询所有进度类型
      * @create time: 2020/12/30 14:10
-     * @return
      */
     @GetMapping("selectProcessType")
     public ReturnBean selectProcessType(PageBean pageBean, com.cloudwise.trademark.entity.Dictionary dictionary) {
@@ -278,6 +278,7 @@ public class BusinessController extends BaseController {
         long rowCount = dictionaryService.getRowCount(dictionary);
         return returnSuccess(dictionaries, rowCount);
     }
+
     /**
      * @param :
      * @return com.cloudwise.trademark.entity.ReturnBean
@@ -286,33 +287,32 @@ public class BusinessController extends BaseController {
      * @create time: 2020/12/29 11:57
      */
     @GetMapping("visitEchartName")
-    public ReturnBean visitEchartName(String startTime,String endTime) {
-        if (startTime == null || "".equals(startTime)){
+    public ReturnBean visitEchartName(String startTime, String endTime) {
+        if (startTime == null || "".equals(startTime)) {
             startTime = "2000-01-01";
         }
-        if (endTime == null || "".equals(endTime)){
+        if (endTime == null || "".equals(endTime)) {
             endTime = "2100-01-01";
         }
-        Map<String, Object> map = BusinessService.showVisitEchartName(startTime,endTime);
+        Map<String, Object> map = BusinessService.showVisitEchartName(startTime, endTime);
         return returnSuccess(map);
     }
 
     /**
+     * @param :
+     * @return com.cloudwise.trademark.entity.ReturnBean
      * @create by: IvanZ
      * @description : 回访分析根据时间
      * @create time: 2020/12/30 10:04
-     * @param :
-     * @return com.cloudwise.trademark.entity.ReturnBean
      */
     @GetMapping("visitEchartTime")
     public ReturnBean visitEchartTime(String loginName) {
-        if (loginName == null || "".equals(loginName)){
+        if (loginName == null || "".equals(loginName)) {
             loginName = "enzo";
         }
         Map<String, Object> map = BusinessService.showVisitEchartTime(loginName);
         return returnSuccess(map);
     }
-    
 
 
 }

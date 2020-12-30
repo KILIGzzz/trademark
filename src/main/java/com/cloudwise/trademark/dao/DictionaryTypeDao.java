@@ -101,7 +101,7 @@ public interface DictionaryTypeDao {
     /**
      * 获取所有字典类型
      *
-     * @return  List<DictionaryType>
+     * @return List<DictionaryType>
      * @createBy Enzo
      * @createTime 2020/12/29 11:50
      */

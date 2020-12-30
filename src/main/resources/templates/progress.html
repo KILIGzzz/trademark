@@ -265,7 +265,7 @@
 
 
         //获取传过来的customId
-        var customeId = "";
+        let customeId = "";
         customeId = [[${customId}]] + "";
 
         if (customeId == 0) {
@@ -273,7 +273,7 @@
         } else {
             document.getElementById("customTable").hidden = false
             let customUrl = '/custom/selectOne?customId=' + customeId
-            var customTable = table.render({
+            let customTable = table.render({
                 elem: '#customTable'
                 , url: customUrl //数据接口
                 , page: false //开启分页
@@ -297,7 +297,7 @@
         }
 
         //获取传过来的businessId
-        var businesseId = "";
+        let businesseId = "";
         businesseId = [[${businessId}]] + "";
 
         if (businesseId == 0) {
@@ -305,7 +305,7 @@
         } else {
             document.getElementById("businessTable").hidden = false
             let businessUrl = '/business/selectOne?businessId=' + businesseId
-            var businessTable = table.render({
+            let businessTable = table.render({
                 elem: '#businessTable'
                 , url: businessUrl //数据接口
                 , page: false //开启分页
@@ -376,7 +376,7 @@
             ]
         });
         let options = '';
-        var $progressTypeSelect = $("select[name=progressType]");
+        let $progressTypeSelect = $("select[name=progressType]");
         $.ajax({
             url: "/progress/findAllProgress",
             type: "GET",
@@ -409,7 +409,7 @@
 
         //监听行工具栏事件
         table.on('tool', function (obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
-            var data = obj.data //获得当前行数据
+            let data = obj.data //获得当前行数据
                 , layEvent = obj.event; //获得 lay-event 对应的值
             if (layEvent === 'edit') {
                 document.getElementById("updateProgressForm").reset();

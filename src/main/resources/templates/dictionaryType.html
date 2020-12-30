@@ -33,17 +33,6 @@
     </div>
 </form>
 
-<script>
-    layui.use('form', function () {
-        let form = layui.form;
-        //监听提交
-        form.on('submit(insertDicType)', function (data) {
-            layer.msg(JSON.stringify(data.field));
-            return false;
-        });
-    });
-</script>
-
 <!--编辑功能的form-->
 <form class="layui-form" action="" id="updateDicTypeFrom" lay-filter="updateDicTypeFrom"
       style="display: none;margin-right: 40px;margin-top: 20px">
@@ -77,16 +66,6 @@
     </div>
 </form>
 
-<script>
-    layui.use('form', function () {
-        let form = layui.form;
-        //监听提交
-        form.on('submit(updateDicTypeFilter)', function (data) {
-            layer.msg(JSON.stringify(data.field));
-            return false;
-        });
-    });
-</script>
 <!--顶部搜索框-->
 <form class="layui-form" action="" style="margin-top: 10px">
     <div class="layui-inline">
@@ -119,7 +98,8 @@
 <!--顶部工具栏-->
 <script type="text/html" id="dicToolbar">
     <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-xs" lay-event="addDicType"><i class="layui-icon layui-icon-add-1"></i>
+        <button class="layui-btn layui-btn-xs" lay-event="addDicType">
+            <i class="layui-icon layui-icon-add-1"></i>添加
         </button>
     </div>
 </script>

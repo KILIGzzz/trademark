@@ -145,6 +145,21 @@ public interface BusinessDao {
     Integer getMoney(String today);
 
     /**
+     * @create by: Back
+     * @description:进度图表
+     * @create time: 2020/12/30 9:49
+     * @return
+     */
+    List<Map<String,Object>> progressEchartName(@Param("startTime") String startTime,@Param("endTime") String endTime,@Param("progressType") String progressType);
+    /**
+     * @create by: Back
+     * @description:进度图表
+     * @create time: 2020/12/30 9:49
+     * @return
+     */
+    List<Map<String,Object>> progressEchartTime(@Param("loginName") String loginName,@Param("progressType") String progressType);
+
+    /**
      * @create by: IvanZ
      * @description : 获取回访图数据根据代理人
      * @create time: 2020/12/30 9:31

@@ -68,6 +68,7 @@ public class Business implements Serializable {
     private Integer customId;
 
     private String remark;
+
     /**
      * 状态
      */

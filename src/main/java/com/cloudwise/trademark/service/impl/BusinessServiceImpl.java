@@ -233,4 +233,40 @@ public class BusinessServiceImpl implements BusinessService {
         map.put("visitCountY",visitCountY);
         return map;
     }
+
+    @Override
+    public Map<String, Object> progressEchartName(String startTime,String endTime,String progressType) {
+        List<Map<String, Object>> maps = businessDao.progressEchartName(startTime,endTime,progressType);
+        Map<String,Object> map = new HashMap<>();
+        //定义x轴
+        String[] proxyX = new String[maps.size()];
+        //定义y轴
+        Integer[] progressCountY = new Integer[maps.size()];
+        for (int i = 0; i < maps.size(); i++) {
+            proxyX[i] = maps.get(i).get("proxy").toString();
+            progressCountY[i] = Integer.parseInt(maps.get(i).get("progressCount").toString());
+        }
+        map.put("proxyX",proxyX);
+        map.put("progressCountY",progressCountY);
+        return map;
+    }
+
+    @Override
+    public Map<String, Object> progressEchartTime(String loginName, String progressType) {
+        List<Map<String, Object>> maps = businessDao.progressEchartTime(loginName, progressType);
+        Map<String,Object> map = new HashMap<>();
+        //定义x轴
+        String[] monthX = new String[maps.size()];
+        //定义y轴
+        Integer[] progressCountY = new Integer[maps.size()];
+        for (int i = 0; i < maps.size(); i++) {
+            monthX[i] = maps.get(i).get("month").toString();
+            progressCountY[i] = Integer.parseInt(maps.get(i).get("progressCount").toString());
+        }
+        map.put("monthX",monthX);
+        map.put("progressCountY",progressCountY);
+        return map;
+    }
+
+
 }

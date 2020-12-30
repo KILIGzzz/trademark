@@ -268,7 +268,6 @@
                     });
                     break;
             }
-            ;
         });
 
         //监听行工具栏事件
@@ -295,16 +294,15 @@
                 });
             } else if (layEvent === 'register') {
                 //携带数据跳转到业务登记页面
-                location.href = "/business/showCustomAndBusiness?customId=" + data.customId
+                location.href = "/business/showCustomAndBusiness?customId=" + data.customId;
             } else if (layEvent === 'visit') {
                 //携带数据跳转到回访登记页面
-                location.href = "/visit/showCustomAndVisit?customId=" + data.customId
+                location.href = "/visit/showCustomAndVisit?customId=" + data.customId;
             }
         });
 
         //添加表单提交按钮事件
         form.on('submit(addCustomFilter)', function (data) {
-            console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
             //提交表单数据
             $.ajax({
                 url: "/custom/add",
@@ -367,7 +365,6 @@
                     customId: data.field.customId
                     , contact: data.field.contact
                     , phone: data.field.phone
-                    //…
                 }
                 , page: {
                     curr: 1 //重新从第 1 页开始
@@ -388,12 +385,13 @@
                     curr: 1 //重新从第 1 页开始
                 }
             });
-        })
+        });
 
         //选择excel文件
         upload.render({
             elem: '#excelInsert'
             , accept: 'file' //普通文件
+            , exts: 'xlsx|xls'
             , url: '/custom/excelInsert' //上传接口
             , done: function (res) {
                 if (res.code === 0) {

@@ -1,16 +1,16 @@
 package com.cloudwise.trademark.controller;
 
 import com.cloudwise.trademark.entity.Custom;
+import com.cloudwise.trademark.entity.Dictionary;
 import com.cloudwise.trademark.entity.PageBean;
 import com.cloudwise.trademark.entity.ReturnBean;
 import com.cloudwise.trademark.entity.Business;
 import com.cloudwise.trademark.service.BusinessService;
+import com.cloudwise.trademark.service.DictionaryService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 /**
@@ -27,6 +27,8 @@ public class BusinessController extends BaseController {
      */
     @Resource
     private BusinessService BusinessService;
+    @Resource
+    private DictionaryService dictionaryService;
 
     @GetMapping("toBusiness")
     public ModelAndView toBusiness() {
@@ -189,14 +191,51 @@ public class BusinessController extends BaseController {
      * @param :
      * @return com.cloudwise.trademark.entity.ReturnBean
      * @create by: IvanZ
-     * @description : 进度分析
+     * @description : 进度分析，以代理人为横轴
      * @create time: 2020/12/29 11:57
      */
-    @GetMapping("progressEchart")
-    public ReturnBean progressEchart() {
-        return null;
+    @GetMapping("progressEchartName")
+    public ReturnBean progressEchartName(String progressType,String datePeriod) {
+        Map<String, Object> map = BusinessService.progressEchartName(progressType,datePeriod);
+        return returnSuccess(map);
     }
 
+
+    /**
+     * @create by: Back
+     * @description: 进度分析，以时间为横轴
+     * @create time: 2020/12/30 10:12
+     * @return
+     */
+    @GetMapping("progressEchartTime")
+    public ReturnBean progressEchartTime(String loginName,String processId) {
+
+        if (processId != null && !"".equals(processId)){
+        int i = Integer.parseInt(processId);
+            Dictionary  dictionary = dictionaryService.queryById(i);
+            Map<String, Object> map = BusinessService.progressEchartTime(loginName,dictionary.getDictionaryName());
+            return returnSuccess(map);
+        }else{
+            Map<String, Object> map = BusinessService.progressEchartTime(loginName,null);
+            return returnSuccess(map);
+        }
+
+
+    }
+
+    /**
+     * @create by: Back
+     * @description: 查询所有进度类型
+     * @create time: 2020/12/30 14:10
+     * @return
+     */
+    @GetMapping("selectProcessType")
+    public ReturnBean selectProcessType(PageBean pageBean, com.cloudwise.trademark.entity.Dictionary dictionary) {
+        int offset = getOffset(pageBean);
+        List<Dictionary> dictionaries = dictionaryService.queryAllByConditionAndLimit(dictionary, offset, pageBean.getLimit());
+        long rowCount = dictionaryService.getRowCount(dictionary);
+        return returnSuccess(dictionaries, rowCount);
+    }
     /**
      * @param :
      * @return com.cloudwise.trademark.entity.ReturnBean
@@ -220,6 +259,8 @@ public class BusinessController extends BaseController {
     public ReturnBean attendance() {
         return null;
     }
+
+
 
 
 }

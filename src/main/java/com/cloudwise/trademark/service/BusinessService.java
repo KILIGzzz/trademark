@@ -107,4 +107,22 @@ public interface BusinessService {
      * @return java.util.List<java.lang.Integer>
      */
     List<Integer> getIndexData();
+
+
+    /**
+     * @create by: Back
+     * @description:进度图表
+     * @create time: 2020/12/30 9:49
+     * @return
+     */
+    Map<String,Object> progressEchartName(String progressType,String datePeriod);
+
+
+    /**
+     * @create by: Back
+     * @description:进度图表
+     * @create time: 2020/12/30 9:49
+     * @return
+     */
+    Map<String,Object> progressEchartTime(String loginName,String progressType);
 }

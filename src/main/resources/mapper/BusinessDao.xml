@@ -160,6 +160,53 @@
     <select id="getMoney" resultType="java.lang.Integer">
         select sum(proxy_money) from tbl_business where left(applicant_time,10) = #{today};
     </select>
+    <!--进度图表，横坐标为时间-->
+    <select id="progressEchartTime" resultType="java.util.Map">
+        select month(tg.create_time) month ,count(tg.create_time) progressCount,td.business_id,tg.create_time,tg.progress_type,td.proxy_id,td.login_name
+        from tbl_progress tg inner join
+        (select business_id, tb.custom_id, proxy_id,tc.login_name
+        from tbl_business tb
+        right join (select tc.proxy_id,tc.custom_id,tu.login_name
+        from tbl_custom tc
+        inner join tbl_user tu
+        on tc.proxy_id = tu.user_id) tc on tb.custom_id = tc.custom_id
+        ) td on tg.business_id=td.business_id
+        <where>
+            <if test="loginName != null and loginName !=''">
+             and   td.login_name like "%"#{loginName}"%"
+            </if>
+            <if test="progressType != null and progressType !=''">
+            and  tg.progress_type like "%"#{progressType}"%"
+            </if>
+        </where>
+        group by month
+    </select>
+    <!--进度图表，横坐标为代理人-->
+    <select id="progressEchartName" resultType="java.util.Map">
+        select month(tg.create_time) month ,count(tg.create_time) progressCount,td.business_id,tg.create_time,tg.progress_type,td.proxy_id,td.login_name
+        from tbl_progress tg
+            inner join
+        (select business_id, tb.custom_id, proxy_id,tc.login_name
+        from tbl_business tb
+        right join
+            (select tc.proxy_id,tc.custom_id,tu.login_name
+        from tbl_custom tc
+        inner join
+            tbl_user tu
+        on tc.proxy_id = tu.user_id) tc
+                on tb.custom_id = tc.custom_id
+        ) td
+            on tg.business_id=td.business_id
+        <where>
+            <if test="loginName != null and loginName !=''">
+                and   td.login_name like "%"#{loginName}"%"
+            </if>
+            <if test="progressType != null and progressType !=''">
+                and  tg.progress_type=#{progressType}
+            </if>
+        </where>
+        group by month
+    </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="businessId" useGeneratedKeys="true">

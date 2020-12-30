@@ -143,4 +143,19 @@ public interface BusinessDao {
      * @return int
      */
     Integer getMoney(String today);
+
+    /**
+     * @create by: Back
+     * @description:进度图表
+     * @create time: 2020/12/30 9:49
+     * @return
+     */
+    List<Map<String,Object>> progressEchartName(@Param("progressType") String progressType,@Param("dataPeriod") String datePeriod);
+    /**
+     * @create by: Back
+     * @description:进度图表
+     * @create time: 2020/12/30 9:49
+     * @return
+     */
+    List<Map<String,Object>> progressEchartTime(@Param("loginName") String loginName,@Param("progressType") String progressType);
 }

@@ -78,33 +78,4 @@ public class BaseController {
         }
     }
 
-    /**
-     * @param :
-     * @return void
-     * @create by: IvanZ
-     * @description : 导入考勤表
-     * @create time: 2020/12/29 14:06
-     */
-    public List<Attendance> importAttendance() throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\KILIG\\Desktop\\1_attlog.txt"));
-        List<Attendance> mapList = new ArrayList<>();
-        String line;
-        while ((line = br.readLine()) != null) {
-            //分割行
-            String[] lineArray = line.split("\t");
-            //创建一个map存储所需数据
-            Attendance attendance = new Attendance();
-            //处理user_id
-            //获取user_id
-            String[] ids = lineArray[0].split(" ");
-            //将用户id存入实体类
-            attendance.setUserId(Integer.parseInt(ids[ids.length - 1]));
-            //处理签到签退时间
-            attendance.setAttendanceTime(lineArray[1]);
-            mapList.add(attendance);
-        }
-        br.close();
-        return mapList;
-    }
-
 }

@@ -11,7 +11,7 @@
  Target Server Version : 50717
  File Encoding         : 65001
 
- Date: 30/12/2020 14:46:01
+ Date: 30/12/2020 20:22:59
 */
 
 SET NAMES utf8mb4;
@@ -22,8 +22,8 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_attendance`;
 CREATE TABLE `tbl_attendance`  (
-  `attendance_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '签到编号',
-  `user_id` int(5) NOT NULL COMMENT '员工编号',
+  `attendance_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '签到编号',
+  `user_id` int(11) NOT NULL COMMENT '员工编号',
   `attendance_time` datetime(0) NULL DEFAULT NULL COMMENT '打卡时间',
   PRIMARY KEY (`attendance_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 714 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
@@ -803,20 +803,21 @@ CREATE TABLE `tbl_custom`  (
   `proxy_id` int(11) NOT NULL COMMENT '代理人ID',
   `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`custom_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 90 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 91 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tbl_custom
 -- ----------------------------
-INSERT INTO `tbl_custom` VALUES (81, '李丹阳', '13253590568', '李丹阳', '河南省郑州市郑州大学', 'Enzo', '2020-12-28 05:25:43', NULL, NULL, 1, '我的第一个正式用户');
-INSERT INTO `tbl_custom` VALUES (82, '亢艺涵', '13254689908', '亢艺涵', '河南省周口', 'Enzo', '2020-12-28 06:04:36', NULL, NULL, 11, '我的第二个客户');
-INSERT INTO `tbl_custom` VALUES (83, '张真', '13585679912', '张真', '禹州市瑶飞机械有限公司', 'Back', '2020-12-28 14:53:52', 'Back', '2020-12-28 15:16:52', 11, '禹州市瑶飞机械有限公司');
-INSERT INTO `tbl_custom` VALUES (84, '吴鑫', '15936003780', '吴鑫', '河南省鹿邑县产业集聚区宋河酒业', 'Back', '2020-12-28 15:03:17', 'Back', '2020-12-28 15:16:47', 10, '河南省鹿邑县产业集聚区宋河酒业');
-INSERT INTO `tbl_custom` VALUES (85, '乔永秀', '13523595089', '乔永秀', '河南省郑州市市辖区郑东新区平安大道210号中国中原大学生创业孵化园二层S0501号', 'Back', '2020-12-28 15:08:40', NULL, NULL, 11, '中原大学生创业孵化园二层S0501号');
-INSERT INTO `tbl_custom` VALUES (86, '邹  雪', '18305606824', '邹  雪', '安徽省亳州市蒙城县纬三路与安驰大道交叉口', 'Ivan', '2020-12-28 15:20:59', NULL, NULL, 10, '安徽瑞蒙科技有限公司');
-INSERT INTO `tbl_custom` VALUES (87, '张玉生', '15225328578', '张玉生', '河南亚圣生物科技有限公司', 'Ivan', '2020-12-28 15:25:57', NULL, NULL, 12, '河南亚圣生物科技有限公司');
-INSERT INTO `tbl_custom` VALUES (88, '郭善云', '13939431515', '郭善云', '河南酷玩童年教育咨询有限公司', 'Ivan', '2020-12-28 15:30:16', NULL, NULL, 13, '河南酷玩童年教育咨询有限公司');
-INSERT INTO `tbl_custom` VALUES (89, '李杰', '15225328578', '李杰', '庆阳市长欣道路运输有限公司', 'Epic', '2020-12-28 15:37:05', NULL, NULL, 11, '庆阳市长欣道路运输有限公司');
+INSERT INTO `tbl_custom` VALUES (81, '李丹阳', '13253590568', '李丹阳', '河南省郑州市郑州大学', 'Enzo', '2020-12-28 05:25:43', NULL, NULL, 4, '我的第一个正式用户');
+INSERT INTO `tbl_custom` VALUES (82, '亢艺涵', '13254689908', '亢艺涵', '河南省周口', 'Enzo', '2020-12-28 06:04:36', NULL, NULL, 4, '我的第二个客户');
+INSERT INTO `tbl_custom` VALUES (83, '张真', '13585679912', '张真', '禹州市瑶飞机械有限公司', 'Back', '2020-12-28 14:53:52', 'Back', '2020-12-28 15:16:52', 3, '禹州市瑶飞机械有限公司');
+INSERT INTO `tbl_custom` VALUES (84, '吴鑫', '15936003780', '吴鑫', '河南省鹿邑县产业集聚区宋河酒业', 'Back', '2020-12-28 15:03:17', 'Back', '2020-12-28 15:16:47', 3, '河南省鹿邑县产业集聚区宋河酒业');
+INSERT INTO `tbl_custom` VALUES (85, '乔永秀', '13523595089', '乔永秀', '河南省郑州市市辖区郑东新区平安大道210号中国中原大学生创业孵化园二层S0501号', 'Back', '2020-12-28 15:08:40', NULL, NULL, 3, '中原大学生创业孵化园二层S0501号');
+INSERT INTO `tbl_custom` VALUES (86, '邹  雪', '18305606824', '邹  雪', '安徽省亳州市蒙城县纬三路与安驰大道交叉口', 'Ivan', '2020-12-28 15:20:59', NULL, NULL, 2, '安徽瑞蒙科技有限公司');
+INSERT INTO `tbl_custom` VALUES (87, '张玉生', '15225328578', '张玉生', '河南亚圣生物科技有限公司', 'Ivan', '2020-12-28 15:25:57', NULL, NULL, 2, '河南亚圣生物科技有限公司');
+INSERT INTO `tbl_custom` VALUES (88, '郭善云', '13939431515', '郭善云', '河南酷玩童年教育咨询有限公司', 'Ivan', '2020-12-28 15:30:16', NULL, NULL, 2, '河南酷玩童年教育咨询有限公司');
+INSERT INTO `tbl_custom` VALUES (89, '李杰', '15225328578', '李杰', '庆阳市长欣道路运输有限公司', 'Epic', '2020-12-28 15:37:05', NULL, NULL, 19, '庆阳市长欣道路运输有限公司');
+INSERT INTO `tbl_custom` VALUES (90, '皮皮侯', '13258869966', '皮皮侯', '郑州大学', 'Enzo', '2020-12-29 15:43:44', NULL, NULL, 4, '');
 
 -- ----------------------------
 -- Table structure for tbl_dept
@@ -1030,10 +1031,10 @@ CREATE TABLE `tbl_menu`  (
 -- ----------------------------
 -- Records of tbl_menu
 -- ----------------------------
-INSERT INTO `tbl_menu` VALUES (1, '客户管理', 0, 2, '#', 'M', '0', '', 'layui-icon-camera-fill', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '系统监控目录');
-INSERT INTO `tbl_menu` VALUES (2, '统计分析', 0, 5, '#', 'M', '0', '', NULL, 'Enzo', '2020-12-29 11:38:57', NULL, NULL, '统计分析');
-INSERT INTO `tbl_menu` VALUES (3, '系统管理', 0, 1, '#', 'M', '0', '', 'layui-icon-set', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '系统管理目录');
-INSERT INTO `tbl_menu` VALUES (4, '业务字典', 0, 4, '#', 'M', '0', '', '#', 'Enzo', '2020-12-23 18:56:38', 'Enzo', NULL, '字典管理');
+INSERT INTO `tbl_menu` VALUES (1, '客户管理', 0, 2, '#', 'M', '0', '', 'layui-icon layui-icon-user', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '系统监控目录');
+INSERT INTO `tbl_menu` VALUES (2, '统计分析', 0, 5, '#', 'M', '0', '', 'layui-icon layui-icon-chart-screen', 'Enzo', '2020-12-29 11:38:57', NULL, NULL, '统计分析');
+INSERT INTO `tbl_menu` VALUES (3, '系统管理', 0, 1, '#', 'M', '0', '', 'layui-icon layui-icon-app', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '系统管理目录');
+INSERT INTO `tbl_menu` VALUES (4, '业务字典', 0, 4, '#', 'M', '0', '', 'layui-icon layui-icon-read', 'Enzo', '2020-12-23 18:56:38', 'Enzo', NULL, '字典管理');
 INSERT INTO `tbl_menu` VALUES (100, '用户管理', 3, 1, '/user/toUser', 'C', '0', 'system:user:view', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '用户管理菜单');
 INSERT INTO `tbl_menu` VALUES (101, '角色管理', 3, 2, '/role/toRole', 'C', '0', 'system:role:view', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '角色管理菜单');
 INSERT INTO `tbl_menu` VALUES (102, '菜单管理', 3, 3, '/menu/toMenu', 'C', '0', 'system:menu:view', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '菜单管理菜单');
@@ -1041,7 +1042,7 @@ INSERT INTO `tbl_menu` VALUES (103, '部门管理', 3, 4, '/dept/toDept', 'C', '
 INSERT INTO `tbl_menu` VALUES (109, '客户列表', 1, 1, '/custom/toCustom', 'C', '0', 'monitor:online:view', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '在线用户菜单');
 INSERT INTO `tbl_menu` VALUES (111, '业务列表', 1, 2, '/business/toBusiness', 'C', '0', 'monitor:data:view', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '数据监控菜单');
 INSERT INTO `tbl_menu` VALUES (112, '进度列表', 1, 3, '/progress/toProgress', 'C', '0', 'monitor:server:view', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '服务监控菜单');
-INSERT INTO `tbl_menu` VALUES (113, '回访信息', 1, 4, '/visit/toVisit', 'C', '0', '', NULL, 'Enzo', '2020-12-24 09:31:13', 'Enzo', NULL, '回访信息');
+INSERT INTO `tbl_menu` VALUES (113, '回访信息', 1, 4, '/visit/toVisit', 'C', '0', '', '#', 'Enzo', '2020-12-24 09:31:13', 'Enzo', NULL, '回访信息');
 INSERT INTO `tbl_menu` VALUES (114, '字典类型', 4, 1, '/dictionaryType/toDictionaryType', 'C', '0', '', '#', 'Enzo', '2020-12-23 18:59:34', 'Enzo', NULL, '字典类型');
 INSERT INTO `tbl_menu` VALUES (115, '字典种类', 4, 2, '/dictionary/toDictionary', 'C', '0', '', '#', 'Enzo', '2020-12-23 19:00:43', 'Enzo', NULL, '字典种类');
 INSERT INTO `tbl_menu` VALUES (1000, '用户查询', 100, 1, '#', 'F', '0', 'system:user:list', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '');
@@ -1063,11 +1064,11 @@ INSERT INTO `tbl_menu` VALUES (1015, '部门查询', 103, 1, '#', 'F', '0', 'sys
 INSERT INTO `tbl_menu` VALUES (1016, '部门新增', 103, 2, '#', 'F', '0', 'system:dept:add', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '');
 INSERT INTO `tbl_menu` VALUES (1017, '部门修改', 103, 3, '#', 'F', '0', 'system:dept:edit', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '');
 INSERT INTO `tbl_menu` VALUES (1018, '部门删除', 103, 4, '#', 'F', '0', 'system:dept:remove', '#', 'Enzo', '2018-03-16 11:33:00', 'Enzo', '2018-03-16 11:33:00', '');
-INSERT INTO `tbl_menu` VALUES (1020, '业务分析', 2, 1, '/statistical/toBusinessEchart', 'C', '0', '', NULL, 'Enzo', '2020-12-29 11:40:28', NULL, NULL, '业务分析');
-INSERT INTO `tbl_menu` VALUES (1021, '进度分析', 2, 2, '/statistical/toProgressEchart', 'C', '0', '', NULL, 'Enzo', '2020-12-29 11:41:22', NULL, NULL, '进度分析');
-INSERT INTO `tbl_menu` VALUES (1022, '回访分析', 2, 3, '/statistical/toVisitEchart', 'C', '0', '', NULL, 'Enzo', '2020-12-29 11:42:04', NULL, NULL, '回访分析');
-INSERT INTO `tbl_menu` VALUES (1023, '考勤分析', 2, 4, '/statistical/toAttendance', 'C', '0', '', NULL, 'Enzo', '2020-12-29 13:14:11', NULL, NULL, '考勤分析');
-INSERT INTO `tbl_menu` VALUES (1024, '考勤列表', 2, 5, '/statistical/toAttendanceTable', 'C', '0', '', NULL, 'Enzo', '2020-12-29 20:32:10', NULL, NULL, '考勤列表');
+INSERT INTO `tbl_menu` VALUES (1020, '业务分析', 2, 1, '/statistical/toBusinessEchart', 'C', '0', '', '#', 'Enzo', '2020-12-29 11:40:28', NULL, NULL, '业务分析');
+INSERT INTO `tbl_menu` VALUES (1021, '进度分析', 2, 2, '/statistical/toProgressEchart', 'C', '0', '', '#', 'Enzo', '2020-12-29 11:41:22', NULL, NULL, '进度分析');
+INSERT INTO `tbl_menu` VALUES (1022, '回访分析', 2, 3, '/statistical/toVisitEchart', 'C', '0', '', '#', 'Enzo', '2020-12-29 11:42:04', NULL, NULL, '回访分析');
+INSERT INTO `tbl_menu` VALUES (1023, '考勤分析', 2, 4, '/statistical/toAttendance', 'C', '0', '', '#', 'Enzo', '2020-12-29 13:14:11', NULL, NULL, '考勤分析');
+INSERT INTO `tbl_menu` VALUES (1024, '考勤列表', 2, 5, '/statistical/toAttendanceTable', 'C', '0', '', '#', 'Enzo', '2020-12-29 20:32:10', NULL, NULL, '考勤列表');
 
 -- ----------------------------
 -- Table structure for tbl_progress
@@ -1239,21 +1240,29 @@ CREATE TABLE `tbl_user`  (
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '备注',
   PRIMARY KEY (`user_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户信息表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 28 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户信息表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tbl_user
 -- ----------------------------
-INSERT INTO `tbl_user` VALUES (1, 101, 'admin', 'Enzo', 'enzopowershare@163.com', '13253590339', '0', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609132705265[I@5eb832eb.jpg', '24134f2d7c3ff8cdfa6d6e2966d56501', '86c9e924-6bd7-46f8-9db4-76c6c6c3862f', '0', '0', 'Enzo', '2020-12-28 12:59:04', 'Enzo', '2020-12-30 11:22:16', '管理员');
-INSERT INTO `tbl_user` VALUES (10, 102, 'ivan', 'Ivan', 'ivanshare@163.com', '13253590389', '0', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/30/1609298785937[I@37443111.jpeg', '8fb6fad441e465ee6d0bfb51dc920a28', '98cc378b-094a-4310-8305-625790edbfba', '0', '0', 'Enzo', '2020-12-28 13:53:27', 'Enzo', '2020-12-30 11:26:30', NULL);
-INSERT INTO `tbl_user` VALUES (11, 103, 'back', 'Back', 'backshare@163.com', '13253597890', '0', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/30/1609299460027[I@8e1f273.jpg', 'cc2dff56b3a4c427bfaf22b3aaeb84d5', 'a10ea41d-104a-43a7-8dce-1067e909c9b0', '0', '0', 'Enzo', '2020-12-28 13:54:18', NULL, '2020-12-30 11:37:43', NULL);
-INSERT INTO `tbl_user` VALUES (12, 104, 'epic', 'Epic', 'epicshare@163.com', '13253591230', '0', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/30/1609299713090[I@4c84b705.jpg', '143e361f61b432ebdcccfaa2d254c3c5', '18ad998e-77ef-42bb-b4cd-03d0215149d7', '0', '0', 'Enzo', '2020-12-28 13:55:13', NULL, '2020-12-30 11:41:54', NULL);
-INSERT INTO `tbl_user` VALUES (13, 105, 'nemo', 'Nemo', 'nemoshare@163.com', '13253598520', '0', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/30/1609299937190[I@2aa30a98.jpg', '4c60c62d8100e39f33146fe3dd91220c', 'f61006be-ad4a-4e75-9e1e-e252dcfb6e94', '0', '0', 'Enzo', '2020-12-28 13:56:13', NULL, '2020-12-30 11:45:38', NULL);
-INSERT INTO `tbl_user` VALUES (14, 101, 'hodor', 'Hodor', 'hodorshare@163.com', '13253597410', '0', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/30/1609301344614[I@7b010dbd.jpg', '0cce16583129cf34e034795c75e8dea7', '8884d3f1-d8ea-44c4-b812-ae1bad8f62f0', '0', '0', 'Enzo', '2020-12-28 13:57:36', NULL, '2020-12-30 12:09:09', NULL);
-INSERT INTO `tbl_user` VALUES (15, 101, 'myth', 'Myth', 'mythshare@163.com', '13253599630', '0', NULL, '2299392cb89b2084bb24d367b25c4e3d', 'b67fa48d-2e80-4344-99e1-b3fecbe2f880', '0', '0', 'Enzo', '2020-12-28 13:58:46', NULL, NULL, NULL);
-INSERT INTO `tbl_user` VALUES (16, 101, 'river', 'River', 'rivershare@163.com', '13253599510', '0', NULL, '0a3195e988709c892401a79cd9f98440', '10088728-b6a2-4861-adf7-e63e401954dc', '0', '0', 'Enzo', '2020-12-28 13:59:28', NULL, NULL, NULL);
-INSERT INTO `tbl_user` VALUES (17, 101, 'borna', 'Borna', 'bornashare@163.com', '13253597952', '0', NULL, 'b35baef1655d81d98bae3f8127d1c21c', '06f4dcd6-8b7e-4530-85aa-f496211c8277', '0', '0', 'Enzo', '2020-12-28 14:00:42', NULL, NULL, NULL);
-INSERT INTO `tbl_user` VALUES (18, 101, 'square', 'Square', 'squareshare@163.com', '13258618899', '0', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/29/1609256753494[I@3a2ca901.jpg', '45a3afb75e5763ed74d7268c0e0c0cb9', 'f3f7be61-0fd9-44a3-9b3d-473a44513c72', '0', '0', 'Enzo', '2020-12-29 23:42:02', 'Enzo', '2020-12-29 23:45:56', NULL);
+INSERT INTO `tbl_user` VALUES (2, 102, 'ivan', 'Ivan', 'ivanshare@163.com', '13253590389', '0', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/30/1609298785937[I@37443111.jpeg', '8fb6fad441e465ee6d0bfb51dc920a28', '98cc378b-094a-4310-8305-625790edbfba', '0', '0', 'Enzo', '2020-12-28 13:53:27', 'Enzo', '2020-12-30 11:26:30', NULL);
+INSERT INTO `tbl_user` VALUES (3, 103, 'back', 'Back', 'backshare@163.com', '13253597890', '0', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/30/1609299460027[I@8e1f273.jpg', 'cc2dff56b3a4c427bfaf22b3aaeb84d5', 'a10ea41d-104a-43a7-8dce-1067e909c9b0', '0', '0', 'Enzo', '2020-12-28 13:54:18', NULL, '2020-12-30 11:37:43', NULL);
+INSERT INTO `tbl_user` VALUES (4, 101, 'enzo', 'Enzo', 'enzopowershare@163.com', '13253590339', '0', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/28/1609132705265[I@5eb832eb.jpg', '24134f2d7c3ff8cdfa6d6e2966d56501', '86c9e924-6bd7-46f8-9db4-76c6c6c3862f', '0', '0', 'Enzo', '2020-12-28 12:59:04', 'Enzo', '2020-12-30 11:22:16', '管理员');
+INSERT INTO `tbl_user` VALUES (5, 101, 'river', 'River', 'rivershare@163.com', '13253599510', '0', NULL, '0a3195e988709c892401a79cd9f98440', '10088728-b6a2-4861-adf7-e63e401954dc', '0', '0', 'Enzo', '2020-12-28 13:59:28', NULL, NULL, NULL);
+INSERT INTO `tbl_user` VALUES (6, 101, 'luka', 'Luka', 'lukashare@163.com', '13568897809', '0', NULL, 'd4ceec85c0ce04ec96c77788208ab046', '6bc4014a-c112-425b-ba7b-412f3d67b854', '0', '0', 'Enzo', '2020-12-30 18:51:05', NULL, NULL, NULL);
+INSERT INTO `tbl_user` VALUES (7, 101, 'hoyo', 'Hoyo', 'hoyoshare@163.com', '13836894675', '0', NULL, 'f53d89d11c3277be9c1feff9c02a69ae', '12b295fd-e259-4f0e-a92d-35cf5cf5714e', '0', '0', 'Enzo', '2020-12-30 18:59:33', NULL, NULL, NULL);
+INSERT INTO `tbl_user` VALUES (8, 101, 'keeno', 'Keeno', 'keenoshare@163.com', '13258618899', '0', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/29/1609256753494[I@3a2ca901.jpg', '45a3afb75e5763ed74d7268c0e0c0cb9', 'f3f7be61-0fd9-44a3-9b3d-473a44513c72', '0', '0', 'Enzo', '2020-12-29 23:42:02', 'Enzo', '2020-12-30 18:42:28', NULL);
+INSERT INTO `tbl_user` VALUES (9, 101, 'bee', 'Bee', 'beeshare@163.com', '13253590999', '0', NULL, '81effb28368e625d87f884123cc845a2', '5c93e817-c1e3-4554-b0a9-aad647504a30', '0', '0', 'Enzo', '2020-12-30 18:43:22', NULL, NULL, NULL);
+INSERT INTO `tbl_user` VALUES (10, 105, 'nemo', 'Nemo', 'nemoshare@163.com', '13253598520', '0', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/30/1609299937190[I@2aa30a98.jpg', '4c60c62d8100e39f33146fe3dd91220c', 'f61006be-ad4a-4e75-9e1e-e252dcfb6e94', '0', '0', 'Enzo', '2020-12-28 13:56:13', NULL, '2020-12-30 11:45:38', NULL);
+INSERT INTO `tbl_user` VALUES (11, 101, 'myth', 'Myth', 'mythshare@163.com', '13253599630', '0', NULL, '2299392cb89b2084bb24d367b25c4e3d', 'b67fa48d-2e80-4344-99e1-b3fecbe2f880', '0', '0', 'Enzo', '2020-12-28 13:58:46', NULL, NULL, NULL);
+INSERT INTO `tbl_user` VALUES (12, 101, 'borna', 'Borna', 'bornashare@163.com', '13253597952', '0', NULL, 'b35baef1655d81d98bae3f8127d1c21c', '06f4dcd6-8b7e-4530-85aa-f496211c8277', '0', '0', 'Enzo', '2020-12-28 14:00:42', NULL, NULL, NULL);
+INSERT INTO `tbl_user` VALUES (19, 104, 'epic', 'Epic', 'epicshare@163.com', '13253591230', '0', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/30/1609299713090[I@4c84b705.jpg', '143e361f61b432ebdcccfaa2d254c3c5', '18ad998e-77ef-42bb-b4cd-03d0215149d7', '0', '0', 'Enzo', '2020-12-28 13:55:13', NULL, '2020-12-30 11:41:54', NULL);
+INSERT INTO `tbl_user` VALUES (21, 101, 'percy', 'Percy', 'percyshare@163.com', '13256785432', '0', NULL, '7973392ad66dcffb5edff1319ce989a9', 'a13d1ee7-b6e2-4a37-a354-39eef8860adb', '0', '0', 'Enzo', '2020-12-30 18:44:38', NULL, NULL, NULL);
+INSERT INTO `tbl_user` VALUES (22, 101, 'hodor', 'Hodor', 'hodorshare@163.com', '13253597410', '0', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/30/1609301344614[I@7b010dbd.jpg', '0cce16583129cf34e034795c75e8dea7', '8884d3f1-d8ea-44c4-b812-ae1bad8f62f0', '0', '0', 'Enzo', '2020-12-28 13:57:36', NULL, '2020-12-30 12:09:09', NULL);
+INSERT INTO `tbl_user` VALUES (24, 101, 'maple', 'Maple', 'mapleshare@163.com', '13269543590', '0', NULL, 'e8840635796a7cb6afb81059de9b41c1', '5c1f506c-f4ab-4a3d-8bcf-61773cca5ad5', '0', '0', 'Enzo', '2020-12-30 18:46:30', NULL, NULL, NULL);
+INSERT INTO `tbl_user` VALUES (25, 101, 'hunk', 'Hunk', 'hunkshare@163.com', '13286873495', '0', NULL, '31f1931b6942174900f527017a9d9e12', '6fbe5c73-fd3d-40ef-aec8-3ec039afaf10', '0', '0', 'Enzo', '2020-12-30 18:48:13', NULL, NULL, NULL);
+INSERT INTO `tbl_user` VALUES (26, 101, 'falli', 'Falli', 'fallishare@163.com', '13527669055', '0', NULL, '0f8ea2bb56e721094300c5c56415893c', 'fad19c19-465a-4012-9899-c20f92bfc975', '0', '0', 'Enzo', '2020-12-30 18:49:07', NULL, NULL, NULL);
+INSERT INTO `tbl_user` VALUES (27, 101, 'george', 'George', 'georgeshare@163.com', '13734688857', '0', NULL, 'baeb1863ca0caffcd4326dbd38f64373', 'afe985aa-b369-41d5-bf77-19616f7accab', '0', '0', 'Enzo', '2020-12-30 18:50:27', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for tbl_user_role
@@ -1268,16 +1277,24 @@ CREATE TABLE `tbl_user_role`  (
 -- ----------------------------
 -- Records of tbl_user_role
 -- ----------------------------
-INSERT INTO `tbl_user_role` VALUES (1, 1);
-INSERT INTO `tbl_user_role` VALUES (10, 1);
-INSERT INTO `tbl_user_role` VALUES (11, 1);
-INSERT INTO `tbl_user_role` VALUES (12, 1);
-INSERT INTO `tbl_user_role` VALUES (13, 2);
-INSERT INTO `tbl_user_role` VALUES (14, 2);
-INSERT INTO `tbl_user_role` VALUES (15, 2);
-INSERT INTO `tbl_user_role` VALUES (16, 2);
-INSERT INTO `tbl_user_role` VALUES (17, 2);
-INSERT INTO `tbl_user_role` VALUES (18, 2);
+INSERT INTO `tbl_user_role` VALUES (2, 1);
+INSERT INTO `tbl_user_role` VALUES (3, 1);
+INSERT INTO `tbl_user_role` VALUES (4, 1);
+INSERT INTO `tbl_user_role` VALUES (5, 2);
+INSERT INTO `tbl_user_role` VALUES (6, 2);
+INSERT INTO `tbl_user_role` VALUES (7, 2);
+INSERT INTO `tbl_user_role` VALUES (8, 2);
+INSERT INTO `tbl_user_role` VALUES (9, 2);
+INSERT INTO `tbl_user_role` VALUES (10, 2);
+INSERT INTO `tbl_user_role` VALUES (11, 2);
+INSERT INTO `tbl_user_role` VALUES (12, 2);
+INSERT INTO `tbl_user_role` VALUES (19, 1);
+INSERT INTO `tbl_user_role` VALUES (21, 2);
+INSERT INTO `tbl_user_role` VALUES (22, 2);
+INSERT INTO `tbl_user_role` VALUES (24, 2);
+INSERT INTO `tbl_user_role` VALUES (25, 2);
+INSERT INTO `tbl_user_role` VALUES (26, 2);
+INSERT INTO `tbl_user_role` VALUES (27, 2);
 
 -- ----------------------------
 -- Table structure for tbl_visit
@@ -1293,18 +1310,23 @@ CREATE TABLE `tbl_visit`  (
   `update_time` datetime(0) NULL DEFAULT NULL,
   `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`visit_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tbl_visit
 -- ----------------------------
 INSERT INTO `tbl_visit` VALUES (1, '回访的主要目的', 81, 'Enzo', '2020-12-28 05:49:13', NULL, NULL, '主要目的完成情况');
 INSERT INTO `tbl_visit` VALUES (2, '客户第一次回访', 83, 'Back', '2020-12-28 15:01:52', NULL, NULL, '第一次回访');
-INSERT INTO `tbl_visit` VALUES (3, '客户评价', 83, 'Back', '2020-12-28 15:02:26', 'Back', '2020-12-28 15:02:32', '客户评价');
-INSERT INTO `tbl_visit` VALUES (4, '业务评价', 84, 'Back', '2020-12-28 15:14:55', NULL, NULL, '业务评价');
-INSERT INTO `tbl_visit` VALUES (5, '业务的第二次回访', 84, 'Back', '2020-12-28 15:15:44', NULL, NULL, '业务的第二次回访');
+INSERT INTO `tbl_visit` VALUES (3, '客户评价', 83, 'Back', '2020-11-01 15:02:26', 'Back', '2020-12-28 15:02:32', '客户评价');
+INSERT INTO `tbl_visit` VALUES (4, '业务评价', 84, 'Back', '2020-10-01 15:14:55', NULL, NULL, '业务评价');
+INSERT INTO `tbl_visit` VALUES (5, '业务的第二次回访', 84, 'Back', '2020-10-01 15:15:44', NULL, NULL, '业务的第二次回访');
 INSERT INTO `tbl_visit` VALUES (6, '业务评价', 86, 'Ivan', '2020-12-28 15:24:41', NULL, NULL, '业务评价');
 INSERT INTO `tbl_visit` VALUES (7, '业务评价', 88, 'Ivan', '2020-12-28 15:33:30', NULL, NULL, '业务评价');
-INSERT INTO `tbl_visit` VALUES (8, '业务评价', 85, 'Epic', '2020-11-01 15:39:23', NULL, NULL, '业务评价');
+INSERT INTO `tbl_visit` VALUES (8, '业务评价', 85, 'Epic', '2020-12-28 15:39:23', NULL, NULL, '业务评价');
+INSERT INTO `tbl_visit` VALUES (9, '询问顾客需要申请新的商标吗', 81, 'Enzo', '2020-12-30 10:26:55', NULL, NULL, '不需要');
+INSERT INTO `tbl_visit` VALUES (10, '询问顾客需要申请新的权限吗', 81, 'Enzo', '2020-11-01 10:27:23', NULL, NULL, '需要');
+INSERT INTO `tbl_visit` VALUES (11, '询问顾客需要申请新的专利吗', 81, 'Enzo', '2020-10-01 10:27:35', NULL, NULL, '需要');
+INSERT INTO `tbl_visit` VALUES (12, '给客户提供专利申请咨询', 81, 'Enzo', '2020-09-01 10:28:18', NULL, NULL, '客户表示很满意');
+INSERT INTO `tbl_visit` VALUES (13, '请客户吃饭，边吃饭边谈生意', 81, 'Enzo', '2020-12-30 10:30:03', NULL, NULL, '可以');
 
 SET FOREIGN_KEY_CHECKS = 1;

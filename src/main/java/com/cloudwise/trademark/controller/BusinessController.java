@@ -280,7 +280,7 @@ public class BusinessController extends BaseController {
     @GetMapping("visitEchartTime")
     public ReturnBean visitEchartTime(String loginName) {
         if (loginName == null || "".equals(loginName)){
-            loginName = "admin";
+            loginName = "enzo";
         }
         Map<String, Object> map = BusinessService.showVisitEchartTime(loginName);
         return returnSuccess(map);

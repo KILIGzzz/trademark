@@ -11,7 +11,7 @@
 <body style="background-color: rgb(57,61,73)">
 
 <div class="layui-carousel" id="shuffling"
-     style="background-color: rgb(57,61,73);position:absolute;top:57%;left:50%;transform: translate(-50%,-50%);">
+     style="background-color: rgb(57,61,73);position:absolute;top:50%;left:50%;transform: translate(-50%,-50%);">
     <div carousel-item="">
         <div style="background-color: rgb(57,61,73)">
             <!--条件显示图表-->
@@ -40,7 +40,7 @@
                 <button type="reset" class="layui-btn layui-btn-primary" id="firstButton">重置</button>
             </form>
             <!--图表显示-->
-            <div id="progressCountName" style="height:540px;width: 1200px;top:40px"></div>
+            <div id="progressCountName" style="height:540px;width: 1400px;top:40px"></div>
         </div>
         <div style="background-color: rgb(57,61,73)">
             <!--条件查询-->
@@ -64,7 +64,7 @@
                 <button type="reset" class="layui-btn layui-btn-primary" id="myButton">重置</button>
             </form>
             <!-- 图表显示-->
-            <div id="progressCountTime" style="height:540px;width: 1200px;top:40px"></div>
+            <div id="progressCountTime" style="height:540px;width: 1400px;top:40px"></div>
         </div>
     </div>
 </div>
@@ -176,7 +176,7 @@
         carousel.render({
             elem: '#shuffling'
             , arrow: 'always'
-            , width: '1200px'
+            , width: '1400px'
             , height: '540px'
             , interval: 5000
         });

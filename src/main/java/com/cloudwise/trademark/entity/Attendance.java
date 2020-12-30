@@ -36,4 +36,9 @@ public class Attendance implements Serializable {
      * 签退时间
      */
     private String checkOut;
+
+    /**
+     * 员工姓名
+     */
+    private String loginName;
 }

@@ -6,25 +6,35 @@
     <link rel="stylesheet" href="/layui/css/layui.css" media="all">
     <script src="/layui/layui.js"></script>
 </head>
+<!--头部工具栏-->
+<script type="text/html" id="toolbarAtt" lay-event="toolbar">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-xs" id="attInsert">导入考勤表</button>
+    </div>
+</script>
+
 <body>
-    <!--条件查询-->
-    <form class="layui-form" style="margin-top: 10px;margin-left: 10px">
-        <div class="layui-inline">
-            日期：
-            <div class="layui-input-inline">
-                <input type="text" name="attendanceTime" id="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
-            </div>
+<!--条件查询-->
+<form class="layui-form" style="margin-top: 10px;margin-left: 10px">
+    <div class="layui-inline">
+        日期：
+        <div class="layui-input-inline">
+            <input type="text" name="attendanceTime" id="date" placeholder="yyyy-MM-dd" autocomplete="off"
+                   class="layui-input">
         </div>
-        <button class="layui-btn" lay-submit lay-filter="selectConditionFilter" data-type="reload">搜索</button>
-    </form>
-    <table id="attendance" lay-filter="attendanceTableFilter"></table>
+    </div>
+    <button class="layui-btn" lay-submit lay-filter="selectConditionFilter" data-type="reload">搜索</button>
+    <button type="reset" class="layui-btn layui-btn-primary" id="reset">重置</button>
+</form>
+<table id="attendance" lay-filter="attendanceTableFilter"></table>
 </body>
 <script>
-    layui.use(['jquery','table','form','laydate'], function () {
+    layui.use(['jquery', 'table', 'form', 'laydate', 'upload'], function () {
         var $ = layui.jquery;
         var table = layui.table;
         var laydate = layui.laydate;
         var form = layui.form;
+        let upload = layui.upload;
 
         //日期
         laydate.render({
@@ -45,10 +55,11 @@
             , height: 530
             , url: '/attendance/findAll' //数据接口
             , page: true //开启分页
+            , toolbar: "#toolbarAtt"
             , cols: [
                 [ //表头
                     {field: 'attendanceId', title: '考勤编号', width: 120, sort: true}
-                    , {field: 'userId', title: '人员编号', width: 120, sort: true}
+                    , {field: 'loginName', title: '员工姓名', width: 120}
                     , {field: 'checkIn', title: '签到时间', width: 200}
                     , {field: 'checkOut', title: '签退时间', width: 200}
                 ]]
@@ -68,6 +79,39 @@
             });
             return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
         });
-    })
+
+        //选择excel文件
+        upload.render({
+            elem: '#attInsert'
+            , accept: 'file' //普通文件
+            , exts: 'txt|dat'
+            , url: '/attendance/attInsert' //上传接口
+            , done: function (res) {
+                if (res.code === 0) {
+                    layer.msg('导入成功');
+                    attendanceTable.reload({
+                        page: {
+                            curr: 1
+                        }
+                    });
+                } else {
+                    layer.msg('导入失败');
+                }
+            }
+        });
+
+        $("#reset").click(
+            function () {
+                attendanceTable.reload({
+                    where: {
+                        attendanceTime: '',
+                    }
+                    , page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                });
+            }
+        );
+    });
 </script>
 </html>

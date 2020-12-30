@@ -108,11 +108,14 @@
             <if test="progress.progressId != null and progress.progressId != ''">
                 and progress_id = #{progress.progressId}
             </if>
-            <if test="progress.businessId != null and progress.businessId != 0">
+            <if test="progress.businessId != null and progress.businessId != '' and progress.businessId != 0">
                 and business_id = #{progress.businessId}
             </if>
             <if test="progress.progressType != null and progress.progressType != ''">
                 and progress_type like "%"#{progress.progressType}"%"
+            </if>
+            <if test="progress.createBy != null and progress.createBy != ''">
+                and create_by like "%"#{progress.createBy}"%"
             </if>
         </where>
         limit #{offset}, #{limit}
@@ -125,11 +128,14 @@
             <if test="progressId != null and progressId != ''">
                 and progress_id = #{progressId}
             </if>
-            <if test="businessId != null and businessId != 0">
+            <if test="businessId != null and businessId != '' and businessId != 0">
                 and business_id = #{businessId}
             </if>
             <if test="progressType != null and progressType != ''">
                 and progress_type like "%"#{progressType}"%"
+            </if>
+            <if test="createBy != null and createBy != ''">
+                and create_by like "%"#{createBy}"%"
             </if>
         </where>
     </select>

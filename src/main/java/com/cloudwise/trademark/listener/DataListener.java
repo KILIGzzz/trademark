@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class DataListener extends AnalysisEventListener<Custom> {
     /**
-     * 每隔5条存储数据库，实际使用中可以3000条，然后清理list ，方便内存回收
+     * 每隔5条存储数据库，然后清理list ，方便内存回收
      *
      * @createBy Enzo
      * @createTime 2020/12/28 21:39

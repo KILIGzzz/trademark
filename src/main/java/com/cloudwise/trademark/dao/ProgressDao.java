@@ -32,7 +32,11 @@ public interface ProgressDao {
     List<Progress> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
 
     /**
+     * 按条件查询并分页
+     *
      * @param progress 实体类
+     * @param offset   分页参数，起始页
+     * @param limit    分页参数，每页的查询行数限制
      * @return List<Progress> queryAllByConditionAndLimit
      * @createBy Enzo
      * @createTime 2020/12/23 12:35
@@ -89,22 +93,22 @@ public interface ProgressDao {
     int deleteById(Integer progressId);
 
     /**
+     * @return getRowCount总条数
      * @create by: ydq
      * @description: 方法作用：获取数据总条数
      * @create time: 2020/12/23 15:13
      * @param: progress查询条件
-     * @return getRowCount总条数
      */
     long getRowCount(Progress progress);
 
     /**
+     * @return
      * @create by: ydq
      * @description: 方法作用：查询所有的进度类型
      * @create time: 2020/12/23 16:26
      * @param:
-     * @return
      */
-    List<Map<String,Object>> findAllProgress();
+    List<Map<String, Object>> findAllProgress();
 
 
 }

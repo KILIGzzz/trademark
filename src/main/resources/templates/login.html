@@ -23,7 +23,7 @@
             <div class="logo_box">
                 <h3>欢迎你</h3>
                 <th:block th:text="${message}"/>
-                <form id="loginForm" action="/login" method="post" onsubmit="return checkLogin()">
+                <form id="loginForm" action="/login" method="post">
                     <div class="input_outer">
                         <span class="u_user"></span>
                         <input name="username" id="username" class="text"
@@ -50,22 +50,6 @@
 <script src="/model/js/EasePack.min.js"></script>
 <script src="/model/js/rAF.js"></script>
 <script src="/model/js/demo-1.js"></script>
-<script>
-    //校验用户名和密码不能为空
-    function checkLogin() {
-        let username = document.getElementById("username").value;
-        let password = document.getElementById("password").value;
-        if (username == null || username === '') {
-            alert("用户名不能为空");
-            return false;
-        }
-        if (password == null || password === '') {
-            alert("密码不能为空");
-            return false;
-        }
-        return true;
-    }
-</script>
 <div style="text-align:center;">
 </div>
 </body>

@@ -191,6 +191,50 @@ public class BusinessServiceImpl implements BusinessService {
     }
 
     @Override
+    public Map<String, Object> showVisitEchartName(String startTime,String endTime) {
+        List<Map<String, Object>> maps = businessDao.showVisitEchartName(startTime,endTime);
+        //定义返回的map
+        Map<String,Object> map = new HashMap<>();
+        //定义x轴
+        String[] loginNameX = new String[maps.size()];
+        //定义y轴
+        String[] visitCountY = new String[maps.size()];
+        for (int i = 0; i < maps.size(); i++) {
+            loginNameX[i] = maps.get(i).get("login_name").toString();
+            Object temp = maps.get(i).get("visit_count");
+            if (temp == null){
+                temp = 0;
+            }
+            visitCountY[i] =temp.toString();
+        }
+        map.put("loginNameX",loginNameX);
+        map.put("visitCountY",visitCountY);
+        return map;
+    }
+
+    @Override
+    public Map<String, Object> showVisitEchartTime(String loginName) {
+        List<Map<String, Object>> maps = businessDao.showVisitEchartTime(loginName);
+        //定义返回的map
+        Map<String,Object> map = new HashMap<>();
+        //定义x轴
+        String[] monthX = new String[maps.size()];
+        //定义y轴
+        String[] visitCountY = new String[maps.size()];
+        for (int i = 0; i < maps.size(); i++) {
+            monthX[i] = maps.get(i).get("month").toString();
+            Object temp = maps.get(i).get("visit_count");
+            if (temp == null){
+                temp = 0;
+            }
+            visitCountY[i] =temp.toString();
+        }
+        map.put("monthX", monthX);
+        map.put("visitCountY",visitCountY);
+        return map;
+    }
+
+    @Override
     public Map<String, Object> progressEchartName(String progressType, String datePeriod) {
         List<Map<String, Object>> maps = businessDao.progressEchartTime(progressType,datePeriod);
         Map<String,Object> map = new HashMap<>();

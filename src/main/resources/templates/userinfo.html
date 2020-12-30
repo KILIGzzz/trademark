@@ -38,7 +38,8 @@
     <div class="layui-form-item">
         <label class="layui-form-label">邮箱</label>
         <div class="layui-input-inline">
-            <input type="text" name="email" th:value="${session.user.email}" required lay-verify="email" placeholder="请输入电子邮箱"
+            <input type="text" name="email" th:value="${session.user.email}" required lay-verify="email"
+                   placeholder="请输入电子邮箱"
                    autocomplete="off"
                    class="layui-input">
         </div>
@@ -46,7 +47,8 @@
     <div class="layui-form-item">
         <label class="layui-form-label">手机号</label>
         <div class="layui-input-inline">
-            <input type="text" name="phonenumber" th:value="${session.user.phonenumber}" required lay-verify="required|phone"
+            <input type="text" name="phonenumber" th:value="${session.user.phonenumber}" required
+                   lay-verify="required|phone"
                    placeholder="请输入手机号"
                    autocomplete="off"
                    class="layui-input">
@@ -102,8 +104,9 @@
                 success: function (result) {
                     layer.closeAll();//关闭对话框
                     layer.msg(result.msg);
+                    window.parent.location.reload();
                 }
-            })
+            });
             return false;
         });
     });

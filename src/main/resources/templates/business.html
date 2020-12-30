@@ -266,12 +266,12 @@
         tableSelect: 'tableSelect',
     });
     layui.use(['table', 'layer', 'jquery', 'laydate', 'form', 'tableSelect'], function () {
-        var table = layui.table;
-        var layer = layui.layer;
-        var $ = layui.jquery;
-        var form = layui.form;
-        var laydate = layui.laydate;
-        var tableSelect = layui.tableSelect;
+        let table = layui.table;
+        let layer = layui.layer;
+        let $ = layui.jquery;
+        let form = layui.form;
+        let laydate = layui.laydate;
+        let tableSelect = layui.tableSelect;
 
         //添加客户编号选择表格
         tableSelect.render({
@@ -365,9 +365,10 @@
             , url: businessUrl //数据接口
             , page: true //开启分页
             , toolbar: '#toolbarDemo'
+            , totalRow: true //开启合计行
             , cols: [
                 [ //表头
-                    {field: 'businessId', title: '业务ID', width: 100, sort: true}
+                    {field: 'businessId', title: '业务ID', width: 100, sort: true, totalRowText: '合计:'}
                     , {field: 'applicantCode', title: '申请号', width: 160}
                     , {field: 'applicantTime', title: '申请时间', width: 160}
                     , {field: 'businessName', title: '业务名', width: 160}
@@ -375,8 +376,8 @@
                     , {field: 'businessTopType', title: '业务类型', width: 100,}
                     , {field: 'businessSecondType', title: '业务种类', width: 160}
                     , {field: 'trademarkType', title: '商标类型', width: 200}
-                    , {field: 'price', title: '成交价格', width: 100}
-                    , {field: 'proxyMoney', title: '代理费', width: 100}
+                    , {field: 'price', title: '成交价格', width: 100, totalRow: true}
+                    , {field: 'proxyMoney', title: '代理费', width: 100, totalRow: true}
                     , {field: 'createBy', title: '创建人', width: 80}
                     , {field: 'createTime', title: '创建时间', width: 160}
                     , {field: 'updateBy', title: '修改人', width: 80}
@@ -384,7 +385,8 @@
                     , {field: 'customId', title: '客户ID', width: 100}
                     , {field: 'remark', title: '备注', width: 100}
                     , {fixed: 'right', align: 'center', title: '操作', width: 160, toolbar: '#ListDemo'}
-                ]]
+                ]
+            ]
         });
 
         let $topType = $("#topType");

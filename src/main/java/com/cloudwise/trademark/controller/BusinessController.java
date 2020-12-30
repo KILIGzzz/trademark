@@ -206,6 +206,12 @@ public class BusinessController extends BaseController {
      */
     @GetMapping("visitEchartName")
     public ReturnBean visitEchartName(String startTime,String endTime) {
+        if (startTime == null || "".equals(startTime)){
+            startTime = "2000-01-01";
+        }
+        if (endTime == null || "".equals(endTime)){
+            endTime = "2100-01-01";
+        }
         Map<String, Object> map = BusinessService.showVisitEchartName(startTime,endTime);
         return returnSuccess(map);
     }
@@ -219,6 +225,9 @@ public class BusinessController extends BaseController {
      */
     @GetMapping("visitEchartTime")
     public ReturnBean visitEchartTime(String loginName) {
+        if (loginName == null || "".equals(loginName)){
+            loginName = "admin";
+        }
         Map<String, Object> map = BusinessService.showVisitEchartTime(loginName);
         return returnSuccess(map);
     }

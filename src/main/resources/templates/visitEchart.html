@@ -91,7 +91,7 @@
             console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
             let str = "?loginName="+data.field.loginName
             //调用考勤图方法
-            showChartTime(str)
+            showChartTime(str,data.field.loginName)
             return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
         });
 
@@ -170,14 +170,12 @@
             })
         }
 
-        function showChartTime(str){
+        function showChartTime(str,loginName){
             $.ajax({
                 url: "/business/visitEchartTime"+str,
                 type: "GET",
                 dataType: "JSON",
                 success: function (data) {
-                    console.log(data.data.monthX)
-                    console.log(data.data.visitCountY)
                     if (data.code == 0) {
                         //获取横坐标
                         var monthX = data.data.monthX;
@@ -187,10 +185,13 @@
                         // var checkOutY = data.data.checkOutY;
                         // 基于准备好的dom，初始化echarts实例
                         var myChartTime = echarts.init(document.getElementById('visitEchartTime'), 'chalk');
+                        if (loginName == null || loginName === ""){
+                            loginName = 'admin'
+                        }
                         // 指定图表的配置项和数据
                         var optionTime = {
                             title: {
-                                text: '回访分析',
+                                text: loginName+'回访分析',
                                 subtext: '回访数量'
                             },
                             tooltip: {
@@ -223,7 +224,7 @@
                             series: [
                                 {
                                     name: '回访数量',
-                                    type: 'line',
+                                    type: 'bar',
                                     data: visitCountY,
                                     markPoint: {
                                         data: [

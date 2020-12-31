@@ -85,9 +85,9 @@ public class ProgressController extends BaseController {
     /**
      * 添加进度
      *
-     * @param progress  实体类
-     * @param upload    实体类
-     * @param uploadMap 实体类
+     * @param progress  进度实体类
+     * @param upload    文件实体类
+     * @param uploadMap 映射文件实体类
      * @return ReturnBean
      * @createBy Enzo
      * @createTime 2020/12/31 10:32
@@ -117,23 +117,53 @@ public class ProgressController extends BaseController {
     }
 
     /**
-     * @return
-     * @create by: ydq
-     * @description: 方法作用：修改进度
-     * @create time: 2020/12/23 17:52
-     * @param:
+     * 修改进度
+     *
+     * @param progress  进度实体类
+     * @param upload    文件实体类
+     * @param uploadMap 映射文件实体类
+     * @return ReturnBean
+     * @createBy Enzo
+     * @createTime 2020/12/31 13:08
      */
     @PostMapping("update")
     public ReturnBean update(Progress progress, Upload upload, UploadMap uploadMap) {
         try {
             progressService.update(progress);
-            if (progress.getUpload() != null) {
-                upload.setUploadId(progress.getUpload());
+            String uploadName = uploadMap.getUploadSourceName();
+            if (uploadName != null && !"".equals(uploadName)) {
+                Integer uploadId = progress.getUpload();
+                if (uploadId != null) {
+                    upload.setUploadId(uploadId);
+                    upload.setSourceName(uploadName);
+                    upload.setDestinationName(uploadMap.getUploadDtName());
+                    uploadService.update(upload);
+                } else {
+                    upload.setSourceName(uploadName);
+                    upload.setDestinationName(uploadMap.getUploadDtName());
+                    uploadService.insert(upload);
+                    progress.setUpload(upload.getUploadId());
+                    progressService.update(progress);
+                }
+
             }
-            if (progress.getNotice() != null) {
-                upload.setUploadId(progress.getNotice());
+            String noticeName = uploadMap.getNoticeSourceName();
+            if (noticeName != null && !"".equals(noticeName)) {
+                Integer noticeId = progress.getNotice();
+                if (noticeId != null) {
+                    upload.setUploadId(noticeId);
+                    upload.setSourceName(noticeName);
+                    upload.setDestinationName(uploadMap.getNoticeDtName());
+                    uploadService.update(upload);
+                } else {
+                    upload.setSourceName(noticeName);
+                    upload.setDestinationName(uploadMap.getNoticeDtName());
+                    uploadService.insert(upload);
+                    progress.setNotice(upload.getUploadId());
+                    progressService.update(progress);
+                }
+
             }
-            uploadService.update(upload);
             return returnSuccess(progress);
         } catch (Exception e) {
             return returnFail(null);

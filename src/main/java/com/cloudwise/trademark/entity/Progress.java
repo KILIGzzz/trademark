@@ -43,6 +43,13 @@ public class Progress implements Serializable {
 
     private String remark;
 
-    private Upload uploadClass;
+    /**
+     * 原文件名
+     */
+    private String sourceName;
+    /**
+     * 服务器文件名
+     */
+    private String destinationName;
 
 }

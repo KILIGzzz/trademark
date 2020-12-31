@@ -13,9 +13,8 @@
         <result property="updateBy" column="update_by" jdbcType="VARCHAR"/>
         <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
         <result property="remark" column="remark" jdbcType="VARCHAR"/>
-        <result property="uploadClass.uploadId" column="upload_id" jdbcType="INTEGER"/>
-        <result property="uploadClass.sourceName" column="source_name" jdbcType="VARCHAR"/>
-        <result property="uploadClass.destinationName" column="destination_name" jdbcType="VARCHAR"/>
+        <result property="sourceName" column="source_name" jdbcType="VARCHAR"/>
+        <result property="destinationName" column="destination_name" jdbcType="VARCHAR"/>
     </resultMap>
 
     <!--查询单个-->
@@ -93,7 +92,7 @@
     <select id="queryAllByConditionAndLimit" resultMap="ProgressMap">
         select progress_id,
         progress_type,
-        tp.upload,
+        upload,
         notice,
         business_id,
         create_by,

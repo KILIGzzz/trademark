@@ -11,7 +11,7 @@
  Target Server Version : 80022
  File Encoding         : 65001
 
- Date: 31/12/2020 11:54:40
+ Date: 31/12/2020 15:17:53
 */
 
 SET NAMES utf8mb4;
@@ -1530,7 +1530,7 @@ INSERT INTO `tbl_progress` VALUES (61, '撤三复审', 36, NULL, 17, 'Enzo', '20
 INSERT INTO `tbl_progress` VALUES (62, '撤三复审', NULL, 37, 17, 'Enzo', '2020-12-31 10:56:04', NULL, NULL, '三审');
 INSERT INTO `tbl_progress` VALUES (63, '驳回复审申请', 38, NULL, 23, 'Enzo', '2020-12-31 11:03:32', NULL, NULL, '驳回复审申请');
 INSERT INTO `tbl_progress` VALUES (64, '驳回复审申请', NULL, 39, 23, 'Enzo', '2020-12-31 11:03:32', NULL, NULL, '驳回复审申请');
-INSERT INTO `tbl_progress` VALUES (65, '领证书', 40, 41, 18, 'Enzo', '2020-12-31 11:06:23', NULL, NULL, '领证书文件上传');
+INSERT INTO `tbl_progress` VALUES (65, '领证书', 40, NULL, 18, 'Enzo', '2020-12-31 11:06:23', 'Enzo', '2020-12-31 15:16:24', '领证书文件上传');
 
 -- ----------------------------
 -- Table structure for tbl_role
@@ -1651,8 +1651,7 @@ INSERT INTO `tbl_upload` VALUES (36, '撤三复审上传文件.rar', 'https://en
 INSERT INTO `tbl_upload` VALUES (37, '撤三复审通知文件.rar', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/31/1609383353039[I@3c837dfb.rar');
 INSERT INTO `tbl_upload` VALUES (38, '驳回复审申请上传文件.rar', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/31/1609383783420[I@4bb7099d.rar');
 INSERT INTO `tbl_upload` VALUES (39, '驳回复审申请通知文件.rar', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/31/1609383796816[I@4a682547.rar');
-INSERT INTO `tbl_upload` VALUES (40, '领证书上传文件.rar', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/31/1609383959226[I@85fb47f.rar');
-INSERT INTO `tbl_upload` VALUES (41, '领证书通知文件.rar', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/31/1609383973844[I@48be2a86.rar');
+INSERT INTO `tbl_upload` VALUES (40, '领证书.rar', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/31/1609398982907[I@169b80db.rar');
 
 -- ----------------------------
 -- Table structure for tbl_user

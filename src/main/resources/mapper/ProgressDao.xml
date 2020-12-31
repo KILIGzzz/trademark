@@ -102,7 +102,7 @@
         remark,
         source_name,
         destination_name
-        from tbl_progress tp left join tbl_upload tu on (tp.upload = tu.upload_id and tp.notice = tu.upload_id)
+        from tbl_progress tp inner join tbl_upload tu on (tp.upload = tu.upload_id or tp.notice = tu.upload_id)
         <where>
             <if test="progress.progressId != null and progress.progressId != ''">
                 and progress_id = #{progress.progressId}
@@ -122,7 +122,7 @@
 
     <select id="getRowCount" resultType="java.lang.Long" parameterType="com.cloudwise.trademark.entity.Progress">
         select count(*) count
-        from tbl_progress tp left join tbl_upload tu on (tp.upload = tu.upload_id and tp.notice = tu.upload_id)
+        from tbl_progress tp inner join tbl_upload tu on (tp.upload = tu.upload_id or tp.notice = tu.upload_id)
         <where>
             <if test="progressId != null and progressId != ''">
                 and progress_id = #{progressId}

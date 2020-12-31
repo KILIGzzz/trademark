@@ -4,7 +4,6 @@ import com.cloudwise.trademark.entity.Attendance;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * (Attendance)表数据库访问层
@@ -80,5 +79,7 @@ public interface AttendanceDao {
      * @return 影响行数
      */
     int deleteById(Integer attendanceId);
+
+    void deleteAll();
 
 }

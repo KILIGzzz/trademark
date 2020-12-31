@@ -50,14 +50,16 @@
         </where>
     </select>
     <select id="getCount" resultType="java.lang.Long">
-        select count(*) / 2
-        from tbl_attendance ta
-                 right join
-             (select user_id, max(attendance_time) checkOut
-              from tbl_attendance
+        select count(*)
+        from (select ta.attendance_id, ta.user_id, ta.attendance_time checkIn, tco.checkOut
+              from tbl_attendance ta
+                       right join (select user_id, max(attendance_time) checkOut
+                                   from tbl_attendance
+                                   where attendance_time like #{attendanceTime}"%"
+                                   group by user_id) tco on ta.user_id = tco.user_id
               where attendance_time like #{attendanceTime}"%"
-              group by user_id) tco on ta.user_id = tco.user_id
-        where attendance_time like #{attendanceTime}"%"
+              group by user_id) apd
+                 inner join tbl_user ts on apd.user_id = ts.user_id
     </select>
 
     <!--新增所有列-->
@@ -103,6 +105,9 @@
         delete
         from trademark.tbl_attendance
         where attendance_id = #{attendanceId}
+    </delete>
+    <delete id="deleteAll">
+        truncate table trademark.tbl_attendance;
     </delete>
 
 </mapper>

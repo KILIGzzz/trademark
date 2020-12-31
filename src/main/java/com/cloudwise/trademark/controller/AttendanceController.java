@@ -67,6 +67,28 @@ public class AttendanceController extends BaseController {
         }
         List<Attendance> attendances = attendanceService.queryAllByLimit(getOffset(pageBean), pageBean.getLimit(), attendance);
         long count = attendanceService.getCount(attendance);
+        for (Attendance attendance1 : attendances) {
+            String out = attendance1.getCheckOut();
+            String[] s = out.split(" ");
+            String[] split = s[1].split(":");
+            Integer outHour = Integer.valueOf(split[0]);
+            if (outHour < 17) {
+                attendance1.setCheckOut("");
+            }
+            if (outHour < 20 && !"".equals(attendance1.getCheckOut())) {
+                attendance1.setOutStatus("早退");
+            }
+            String in = attendance1.getCheckIn();
+            String[] i = in.split(" ");
+            String[] iSplit = i[1].split(":");
+            Integer inHour = Integer.valueOf(iSplit[0]);
+            if (inHour > 17) {
+                attendance1.setCheckIn("");
+            }
+            if (inHour >= 9 && !"".equals(attendance1.getCheckIn())) {
+                attendance1.setInStatus("迟到");
+            }
+        }
         ReturnBean returnBean = returnSuccess(attendances, count);
         return returnBean;
     }
@@ -88,6 +110,23 @@ public class AttendanceController extends BaseController {
         }
         Integer count = Integer.parseInt(String.valueOf(attendanceService.getCount(attendance)));
         List<Attendance> attendances = attendanceService.queryAllByLimit(0, count, attendance);
+
+        for (Attendance attendance1 : attendances) {
+            String out = attendance1.getCheckOut();
+            String[] s = out.split(" ");
+            String[] split = s[1].split(":");
+            Integer outHour = Integer.valueOf(split[0]);
+            if (outHour < 17) {
+                attendance1.setCheckOut("");
+            }
+            String in = attendance1.getCheckIn();
+            String[] i = in.split(" ");
+            String[] iSplit = i[1].split(":");
+            Integer inHour = Integer.valueOf(iSplit[0]);
+            if (inHour > 17) {
+                attendance1.setCheckIn("");
+            }
+        }
 
         String[] loginNameX = new String[attendances.size()];
 
@@ -121,7 +160,7 @@ public class AttendanceController extends BaseController {
         try {
             File f = MyUtil.multipartFileToFile(file);
             List<Attendance> attendances = MyUtil.importAttendance(f);
-            System.out.println(attendances);
+            attendanceService.deleteAll();
             for (Attendance attendance : attendances) {
                 attendanceService.insert(attendance);
             }

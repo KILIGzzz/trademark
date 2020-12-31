@@ -73,10 +73,12 @@
 
     <!--隐藏input框，获取相应值-->
     <input hidden th:value="${session.username}" name="createBy">
-    <input type="hidden" name="destinationName" id="insertDestinationName">
+    <input type="hidden" name="uploadDtName" id="insertUploadDtName">
+    <input type="hidden" name="noticeDtName" id="insertNoticeDtName">
     <input type="hidden" name="insertUpload" id="insertUpload">
     <input type="hidden" name="insertNotice" id="insertNotice">
-    <input type="hidden" name="sourceName" id="insertSourceName">
+    <input type="hidden" name="uploadSourceName" id="uploadSourceName">
+    <input type="hidden" name="noticeSourceName" id="noticeSourceName">
 
     <div class="layui-form-item">
         <label class="layui-form-label">进度类型</label>
@@ -138,6 +140,7 @@
     <input type="hidden" name="upload">
     <input type="hidden" name="notice">
     <input type="hidden" name="sourceName" id="updateSourceName">
+
     <div class="layui-form-item">
         <label class="layui-form-label">进度类型</label>
         <div class="layui-input-block">
@@ -232,7 +235,7 @@
             done: function (elem, data) {
                 //选择完后的回调，包含2个返回值 elem:返回之前input对象；data:表格返回的选中的数据 []
                 //拿到data[]后 就按照业务需求做想做的事情啦~比如加个隐藏域放ID...
-                elem.val(data.data[0].businessId)
+                elem.val(data.data[0].businessId);
             }
         })
 
@@ -498,10 +501,10 @@
                 if (res.response === 'success') {
                     let src = "https://" + res.name;
                     //给隐藏的input框赋值，传入后台
-                    $("#insertDestinationName").val(src);
+                    $("#insertUploadDtName").val(src);
                     let fileName = res.fileName;
                     $("#insertUpload").val(fileName);
-                    $("#insertSourceName").val(fileName);
+                    $("#uploadSourceName").val(fileName);
                     //回显原文件名
                     $("#insertAddSourceName").val(fileName);
                     layer.msg('上传成功');
@@ -528,10 +531,10 @@
                 if (res.response === 'success') {
                     let src = "https://" + res.name;
                     //给隐藏的input框赋值，传入后台
-                    $("#insertDestinationName").val(src);
+                    $("#insertNoticeDtName").val(src);
                     let fileName = res.fileName;
                     $("#insertNotice").val(fileName);
-                    $("#insertSourceName").val(fileName);
+                    $("#noticeSourceName").val(fileName);
                     //回显原文件名
                     $("#insertInformSourceName").val(fileName);
                     layer.msg('上传成功');

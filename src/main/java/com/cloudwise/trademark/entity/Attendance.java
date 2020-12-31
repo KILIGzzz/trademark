@@ -41,4 +41,8 @@ public class Attendance implements Serializable {
      * 员工姓名
      */
     private String loginName;
+
+    private String inStatus;
+
+    private String outStatus;
 }

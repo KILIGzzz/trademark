@@ -59,12 +59,13 @@ public interface AttendanceService {
     boolean deleteById(Integer attendanceId);
 
     /**
-     * @param null:
      * @return
      * @create by: IvanZ
      * @description : 获取考勤表数据
      * @create time: 2020/12/29 16:36
      */
     Map<String, Object> showAttendanceEchart();
+
+    void deleteAll();
 
 }

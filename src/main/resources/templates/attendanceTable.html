@@ -58,11 +58,13 @@
             , toolbar: "#toolbarAtt"
             , cols: [
                 [ //表头
-                    {field: 'attendanceId', title: '考勤编号', width: 120, sort: true}
-                    , {field: 'loginName', title: '员工姓名', width: 120}
+                    {field: 'loginName', title: '员工姓名', width: 120}
                     , {field: 'checkIn', title: '签到时间', width: 200}
                     , {field: 'checkOut', title: '签退时间', width: 200}
-                ]]
+                    , {field: 'inStatus', title: '迟到状态', width: 120}
+                    , {field: 'outStatus', title: '早退状态', width: 120}
+                ]
+            ]
         });
 
         //表单提交

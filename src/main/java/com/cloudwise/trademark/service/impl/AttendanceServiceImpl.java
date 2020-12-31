@@ -81,4 +81,9 @@ public class AttendanceServiceImpl implements AttendanceService {
     public Map<String, Object> showAttendanceEchart() {
         return null;
     }
+
+    @Override
+    public void deleteAll() {
+        attendanceDao.deleteAll();
+    }
 }

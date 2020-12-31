@@ -1,9 +1,6 @@
 package com.cloudwise.trademark.controller;
 
-import com.cloudwise.trademark.entity.PageBean;
-import com.cloudwise.trademark.entity.Progress;
-import com.cloudwise.trademark.entity.ReturnBean;
-import com.cloudwise.trademark.entity.Upload;
+import com.cloudwise.trademark.entity.*;
 import com.cloudwise.trademark.service.ProgressService;
 import com.cloudwise.trademark.service.UploadService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,24 +83,31 @@ public class ProgressController extends BaseController {
     }
 
     /**
-     * @param progress
-     * @return
-     * @create by: ydq
-     * @description: 方法作用：添加进度
-     * @create time: 2020/12/23 17:48
-     * @modifiedBy Enzo
+     * 添加进度
+     *
+     * @param progress  实体类
+     * @param upload    实体类
+     * @param uploadMap 实体类
+     * @return ReturnBean
+     * @createBy Enzo
+     * @createTime 2020/12/31 10:32
      */
     @PostMapping("add")
-    public ReturnBean add(Progress progress, Upload upload, String insertUpload, String insertNotice) {
+    public ReturnBean add(Progress progress, Upload upload, UploadMap uploadMap) {
         try {
-            uploadService.insert(upload);
-            Integer uploadId = upload.getUploadId();
-            String sourceName = upload.getSourceName();
-            if (sourceName.equals(insertUpload)) {
-                progress.setUpload(uploadId);
+            String uploadName = uploadMap.getUploadSourceName();
+            if (uploadName != null && !"".equals(uploadName)) {
+                upload.setSourceName(uploadName);
+                upload.setDestinationName(uploadMap.getUploadDtName());
+                uploadService.insert(upload);
+                progress.setUpload(upload.getUploadId());
             }
-            if (sourceName.equals(insertNotice)) {
-                progress.setNotice(uploadId);
+            String noticeName = uploadMap.getNoticeSourceName();
+            if (noticeName != null && !"".equals(noticeName)) {
+                upload.setSourceName(noticeName);
+                upload.setDestinationName(uploadMap.getNoticeDtName());
+                uploadService.insert(upload);
+                progress.setNotice(upload.getUploadId());
             }
             progressService.insert(progress);
             return returnSuccess(progress);
@@ -120,7 +124,7 @@ public class ProgressController extends BaseController {
      * @param:
      */
     @PostMapping("update")
-    public ReturnBean update(Progress progress, Upload upload) {
+    public ReturnBean update(Progress progress, Upload upload, UploadMap uploadMap) {
         try {
             progressService.update(progress);
             if (progress.getUpload() != null) {

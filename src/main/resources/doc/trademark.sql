@@ -11,7 +11,7 @@
  Target Server Version : 80022
  File Encoding         : 65001
 
- Date: 30/12/2020 23:24:51
+ Date: 31/12/2020 11:54:40
 */
 
 SET NAMES utf8mb4;
@@ -26,7 +26,7 @@ CREATE TABLE `tbl_attendance`  (
   `user_id` int NOT NULL COMMENT '员工编号',
   `attendance_time` datetime NULL DEFAULT NULL COMMENT '打卡时间',
   PRIMARY KEY (`attendance_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 714 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1136 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tbl_attendance
@@ -744,6 +744,428 @@ INSERT INTO `tbl_attendance` VALUES (710, 22, '2020-12-16 08:55:32');
 INSERT INTO `tbl_attendance` VALUES (711, 11, '2020-12-16 08:56:48');
 INSERT INTO `tbl_attendance` VALUES (712, 4, '2020-12-16 08:57:18');
 INSERT INTO `tbl_attendance` VALUES (713, 21, '2020-12-16 08:58:13');
+INSERT INTO `tbl_attendance` VALUES (714, 6, '2020-12-16 20:36:43');
+INSERT INTO `tbl_attendance` VALUES (715, 7, '2020-12-16 20:37:05');
+INSERT INTO `tbl_attendance` VALUES (716, 4, '2020-12-16 20:39:20');
+INSERT INTO `tbl_attendance` VALUES (717, 2, '2020-12-16 20:39:27');
+INSERT INTO `tbl_attendance` VALUES (718, 3, '2020-12-16 20:39:38');
+INSERT INTO `tbl_attendance` VALUES (719, 11, '2020-12-16 20:41:12');
+INSERT INTO `tbl_attendance` VALUES (720, 10, '2020-12-16 20:41:47');
+INSERT INTO `tbl_attendance` VALUES (721, 26, '2020-12-16 20:42:29');
+INSERT INTO `tbl_attendance` VALUES (722, 27, '2020-12-16 20:44:10');
+INSERT INTO `tbl_attendance` VALUES (723, 12, '2020-12-16 20:44:24');
+INSERT INTO `tbl_attendance` VALUES (724, 12, '2020-12-16 20:44:25');
+INSERT INTO `tbl_attendance` VALUES (725, 25, '2020-12-16 20:44:46');
+INSERT INTO `tbl_attendance` VALUES (726, 24, '2020-12-16 20:44:49');
+INSERT INTO `tbl_attendance` VALUES (727, 23, '2020-12-16 20:45:10');
+INSERT INTO `tbl_attendance` VALUES (728, 21, '2020-12-16 20:47:43');
+INSERT INTO `tbl_attendance` VALUES (729, 22, '2020-12-16 20:48:07');
+INSERT INTO `tbl_attendance` VALUES (730, 5, '2020-12-16 20:48:34');
+INSERT INTO `tbl_attendance` VALUES (731, 8, '2020-12-16 20:48:43');
+INSERT INTO `tbl_attendance` VALUES (732, 9, '2020-12-16 20:48:45');
+INSERT INTO `tbl_attendance` VALUES (733, 19, '2020-12-16 20:54:54');
+INSERT INTO `tbl_attendance` VALUES (734, 9, '2020-12-17 08:32:24');
+INSERT INTO `tbl_attendance` VALUES (735, 19, '2020-12-17 08:34:41');
+INSERT INTO `tbl_attendance` VALUES (736, 5, '2020-12-17 08:36:16');
+INSERT INTO `tbl_attendance` VALUES (737, 8, '2020-12-17 08:41:12');
+INSERT INTO `tbl_attendance` VALUES (738, 8, '2020-12-17 08:41:13');
+INSERT INTO `tbl_attendance` VALUES (739, 23, '2020-12-17 08:45:09');
+INSERT INTO `tbl_attendance` VALUES (740, 12, '2020-12-17 08:46:54');
+INSERT INTO `tbl_attendance` VALUES (741, 7, '2020-12-17 08:47:42');
+INSERT INTO `tbl_attendance` VALUES (742, 6, '2020-12-17 08:47:57');
+INSERT INTO `tbl_attendance` VALUES (743, 10, '2020-12-17 08:52:11');
+INSERT INTO `tbl_attendance` VALUES (744, 27, '2020-12-17 08:52:28');
+INSERT INTO `tbl_attendance` VALUES (745, 25, '2020-12-17 08:54:33');
+INSERT INTO `tbl_attendance` VALUES (746, 3, '2020-12-17 08:54:45');
+INSERT INTO `tbl_attendance` VALUES (747, 2, '2020-12-17 08:54:53');
+INSERT INTO `tbl_attendance` VALUES (748, 4, '2020-12-17 08:54:57');
+INSERT INTO `tbl_attendance` VALUES (749, 26, '2020-12-17 08:55:38');
+INSERT INTO `tbl_attendance` VALUES (750, 24, '2020-12-17 08:55:42');
+INSERT INTO `tbl_attendance` VALUES (751, 22, '2020-12-17 08:55:50');
+INSERT INTO `tbl_attendance` VALUES (752, 21, '2020-12-17 08:55:54');
+INSERT INTO `tbl_attendance` VALUES (753, 11, '2020-12-17 09:00:16');
+INSERT INTO `tbl_attendance` VALUES (754, 8, '2020-12-17 20:30:28');
+INSERT INTO `tbl_attendance` VALUES (755, 9, '2020-12-17 20:31:04');
+INSERT INTO `tbl_attendance` VALUES (756, 26, '2020-12-17 20:31:35');
+INSERT INTO `tbl_attendance` VALUES (757, 25, '2020-12-17 20:32:46');
+INSERT INTO `tbl_attendance` VALUES (758, 3, '2020-12-17 20:33:24');
+INSERT INTO `tbl_attendance` VALUES (759, 2, '2020-12-17 20:33:28');
+INSERT INTO `tbl_attendance` VALUES (760, 4, '2020-12-17 20:34:32');
+INSERT INTO `tbl_attendance` VALUES (761, 10, '2020-12-17 20:34:42');
+INSERT INTO `tbl_attendance` VALUES (762, 11, '2020-12-17 20:37:40');
+INSERT INTO `tbl_attendance` VALUES (763, 6, '2020-12-17 20:37:45');
+INSERT INTO `tbl_attendance` VALUES (764, 24, '2020-12-17 20:39:37');
+INSERT INTO `tbl_attendance` VALUES (765, 23, '2020-12-17 20:39:44');
+INSERT INTO `tbl_attendance` VALUES (766, 27, '2020-12-17 20:39:48');
+INSERT INTO `tbl_attendance` VALUES (767, 19, '2020-12-17 20:40:43');
+INSERT INTO `tbl_attendance` VALUES (768, 5, '2020-12-17 20:41:13');
+INSERT INTO `tbl_attendance` VALUES (769, 12, '2020-12-17 20:42:53');
+INSERT INTO `tbl_attendance` VALUES (770, 12, '2020-12-17 20:45:59');
+INSERT INTO `tbl_attendance` VALUES (771, 7, '2020-12-17 20:46:26');
+INSERT INTO `tbl_attendance` VALUES (772, 21, '2020-12-17 20:56:51');
+INSERT INTO `tbl_attendance` VALUES (773, 22, '2020-12-17 21:35:21');
+INSERT INTO `tbl_attendance` VALUES (774, 5, '2020-12-18 08:40:20');
+INSERT INTO `tbl_attendance` VALUES (775, 8, '2020-12-18 08:43:29');
+INSERT INTO `tbl_attendance` VALUES (776, 9, '2020-12-18 08:47:04');
+INSERT INTO `tbl_attendance` VALUES (777, 10, '2020-12-18 08:51:06');
+INSERT INTO `tbl_attendance` VALUES (778, 7, '2020-12-18 08:52:08');
+INSERT INTO `tbl_attendance` VALUES (779, 6, '2020-12-18 08:52:27');
+INSERT INTO `tbl_attendance` VALUES (780, 27, '2020-12-18 08:52:35');
+INSERT INTO `tbl_attendance` VALUES (781, 12, '2020-12-18 08:52:40');
+INSERT INTO `tbl_attendance` VALUES (782, 26, '2020-12-18 08:52:44');
+INSERT INTO `tbl_attendance` VALUES (783, 23, '2020-12-18 08:52:50');
+INSERT INTO `tbl_attendance` VALUES (784, 24, '2020-12-18 08:53:31');
+INSERT INTO `tbl_attendance` VALUES (785, 25, '2020-12-18 08:53:43');
+INSERT INTO `tbl_attendance` VALUES (786, 2, '2020-12-18 08:54:36');
+INSERT INTO `tbl_attendance` VALUES (787, 3, '2020-12-18 08:54:40');
+INSERT INTO `tbl_attendance` VALUES (788, 11, '2020-12-18 08:55:04');
+INSERT INTO `tbl_attendance` VALUES (789, 19, '2020-12-18 08:56:04');
+INSERT INTO `tbl_attendance` VALUES (790, 4, '2020-12-18 08:56:25');
+INSERT INTO `tbl_attendance` VALUES (791, 22, '2020-12-18 08:57:38');
+INSERT INTO `tbl_attendance` VALUES (792, 21, '2020-12-18 08:58:52');
+INSERT INTO `tbl_attendance` VALUES (793, 6, '2020-12-18 17:41:27');
+INSERT INTO `tbl_attendance` VALUES (794, 7, '2020-12-18 17:41:52');
+INSERT INTO `tbl_attendance` VALUES (795, 3, '2020-12-18 17:42:00');
+INSERT INTO `tbl_attendance` VALUES (796, 2, '2020-12-18 17:42:28');
+INSERT INTO `tbl_attendance` VALUES (797, 4, '2020-12-18 17:42:46');
+INSERT INTO `tbl_attendance` VALUES (798, 23, '2020-12-18 17:44:36');
+INSERT INTO `tbl_attendance` VALUES (799, 11, '2020-12-18 17:48:38');
+INSERT INTO `tbl_attendance` VALUES (800, 24, '2020-12-18 17:49:10');
+INSERT INTO `tbl_attendance` VALUES (801, 25, '2020-12-18 17:49:27');
+INSERT INTO `tbl_attendance` VALUES (802, 26, '2020-12-18 17:52:05');
+INSERT INTO `tbl_attendance` VALUES (803, 9, '2020-12-18 17:52:26');
+INSERT INTO `tbl_attendance` VALUES (804, 5, '2020-12-18 17:52:29');
+INSERT INTO `tbl_attendance` VALUES (805, 21, '2020-12-18 18:05:20');
+INSERT INTO `tbl_attendance` VALUES (806, 8, '2020-12-18 18:13:16');
+INSERT INTO `tbl_attendance` VALUES (807, 10, '2020-12-18 18:13:26');
+INSERT INTO `tbl_attendance` VALUES (808, 22, '2020-12-18 18:13:29');
+INSERT INTO `tbl_attendance` VALUES (809, 12, '2020-12-21 08:00:35');
+INSERT INTO `tbl_attendance` VALUES (810, 12, '2020-12-21 08:00:37');
+INSERT INTO `tbl_attendance` VALUES (811, 27, '2020-12-21 08:18:02');
+INSERT INTO `tbl_attendance` VALUES (812, 5, '2020-12-21 08:42:46');
+INSERT INTO `tbl_attendance` VALUES (813, 23, '2020-12-21 08:47:31');
+INSERT INTO `tbl_attendance` VALUES (814, 10, '2020-12-21 08:48:08');
+INSERT INTO `tbl_attendance` VALUES (815, 19, '2020-12-21 08:49:02');
+INSERT INTO `tbl_attendance` VALUES (816, 9, '2020-12-21 08:49:37');
+INSERT INTO `tbl_attendance` VALUES (817, 25, '2020-12-21 08:50:16');
+INSERT INTO `tbl_attendance` VALUES (818, 22, '2020-12-21 08:50:30');
+INSERT INTO `tbl_attendance` VALUES (819, 22, '2020-12-21 08:50:33');
+INSERT INTO `tbl_attendance` VALUES (820, 7, '2020-12-21 08:51:44');
+INSERT INTO `tbl_attendance` VALUES (821, 6, '2020-12-21 08:51:50');
+INSERT INTO `tbl_attendance` VALUES (822, 8, '2020-12-21 08:53:56');
+INSERT INTO `tbl_attendance` VALUES (823, 26, '2020-12-21 08:54:32');
+INSERT INTO `tbl_attendance` VALUES (824, 24, '2020-12-21 08:54:39');
+INSERT INTO `tbl_attendance` VALUES (825, 2, '2020-12-21 08:54:56');
+INSERT INTO `tbl_attendance` VALUES (826, 3, '2020-12-21 08:55:02');
+INSERT INTO `tbl_attendance` VALUES (827, 21, '2020-12-21 08:55:16');
+INSERT INTO `tbl_attendance` VALUES (828, 4, '2020-12-21 08:57:11');
+INSERT INTO `tbl_attendance` VALUES (829, 11, '2020-12-21 09:06:12');
+INSERT INTO `tbl_attendance` VALUES (830, 21, '2020-12-21 20:54:44');
+INSERT INTO `tbl_attendance` VALUES (831, 10, '2020-12-21 20:58:45');
+INSERT INTO `tbl_attendance` VALUES (832, 25, '2020-12-21 20:59:32');
+INSERT INTO `tbl_attendance` VALUES (833, 26, '2020-12-21 20:59:34');
+INSERT INTO `tbl_attendance` VALUES (834, 27, '2020-12-21 20:59:41');
+INSERT INTO `tbl_attendance` VALUES (835, 4, '2020-12-21 21:02:56');
+INSERT INTO `tbl_attendance` VALUES (836, 2, '2020-12-21 21:03:00');
+INSERT INTO `tbl_attendance` VALUES (837, 3, '2020-12-21 21:03:08');
+INSERT INTO `tbl_attendance` VALUES (838, 8, '2020-12-21 21:03:46');
+INSERT INTO `tbl_attendance` VALUES (839, 8, '2020-12-21 21:03:56');
+INSERT INTO `tbl_attendance` VALUES (840, 23, '2020-12-21 21:04:00');
+INSERT INTO `tbl_attendance` VALUES (841, 5, '2020-12-21 21:05:26');
+INSERT INTO `tbl_attendance` VALUES (842, 9, '2020-12-21 21:05:29');
+INSERT INTO `tbl_attendance` VALUES (843, 6, '2020-12-21 21:08:08');
+INSERT INTO `tbl_attendance` VALUES (844, 22, '2020-12-21 21:08:37');
+INSERT INTO `tbl_attendance` VALUES (845, 22, '2020-12-21 21:08:38');
+INSERT INTO `tbl_attendance` VALUES (846, 24, '2020-12-21 21:08:40');
+INSERT INTO `tbl_attendance` VALUES (847, 11, '2020-12-21 21:10:18');
+INSERT INTO `tbl_attendance` VALUES (848, 9, '2020-12-21 21:10:26');
+INSERT INTO `tbl_attendance` VALUES (849, 12, '2020-12-21 21:46:14');
+INSERT INTO `tbl_attendance` VALUES (850, 7, '2020-12-21 21:51:45');
+INSERT INTO `tbl_attendance` VALUES (851, 12, '2020-12-22 08:24:05');
+INSERT INTO `tbl_attendance` VALUES (852, 5, '2020-12-22 08:37:26');
+INSERT INTO `tbl_attendance` VALUES (853, 19, '2020-12-22 08:41:15');
+INSERT INTO `tbl_attendance` VALUES (854, 8, '2020-12-22 08:46:58');
+INSERT INTO `tbl_attendance` VALUES (855, 26, '2020-12-22 08:50:00');
+INSERT INTO `tbl_attendance` VALUES (856, 24, '2020-12-22 08:50:34');
+INSERT INTO `tbl_attendance` VALUES (857, 25, '2020-12-22 08:50:39');
+INSERT INTO `tbl_attendance` VALUES (858, 23, '2020-12-22 08:52:01');
+INSERT INTO `tbl_attendance` VALUES (859, 10, '2020-12-22 08:52:28');
+INSERT INTO `tbl_attendance` VALUES (860, 27, '2020-12-22 08:53:11');
+INSERT INTO `tbl_attendance` VALUES (861, 2, '2020-12-22 08:53:38');
+INSERT INTO `tbl_attendance` VALUES (862, 22, '2020-12-22 08:54:43');
+INSERT INTO `tbl_attendance` VALUES (863, 22, '2020-12-22 08:54:44');
+INSERT INTO `tbl_attendance` VALUES (864, 3, '2020-12-22 08:54:53');
+INSERT INTO `tbl_attendance` VALUES (865, 6, '2020-12-22 08:56:25');
+INSERT INTO `tbl_attendance` VALUES (866, 7, '2020-12-22 08:56:33');
+INSERT INTO `tbl_attendance` VALUES (867, 9, '2020-12-22 08:56:45');
+INSERT INTO `tbl_attendance` VALUES (868, 11, '2020-12-22 08:57:16');
+INSERT INTO `tbl_attendance` VALUES (869, 4, '2020-12-22 08:57:43');
+INSERT INTO `tbl_attendance` VALUES (870, 21, '2020-12-22 08:58:39');
+INSERT INTO `tbl_attendance` VALUES (871, 12, '2020-12-22 20:31:48');
+INSERT INTO `tbl_attendance` VALUES (872, 2, '2020-12-22 20:53:15');
+INSERT INTO `tbl_attendance` VALUES (873, 4, '2020-12-22 20:53:23');
+INSERT INTO `tbl_attendance` VALUES (874, 3, '2020-12-22 20:53:29');
+INSERT INTO `tbl_attendance` VALUES (875, 11, '2020-12-22 20:55:22');
+INSERT INTO `tbl_attendance` VALUES (876, 9, '2020-12-22 20:55:46');
+INSERT INTO `tbl_attendance` VALUES (877, 8, '2020-12-22 20:57:53');
+INSERT INTO `tbl_attendance` VALUES (878, 6, '2020-12-22 20:57:59');
+INSERT INTO `tbl_attendance` VALUES (879, 5, '2020-12-22 20:58:40');
+INSERT INTO `tbl_attendance` VALUES (880, 22, '2020-12-22 20:59:09');
+INSERT INTO `tbl_attendance` VALUES (881, 22, '2020-12-22 20:59:10');
+INSERT INTO `tbl_attendance` VALUES (882, 24, '2020-12-22 20:59:13');
+INSERT INTO `tbl_attendance` VALUES (883, 10, '2020-12-22 20:59:20');
+INSERT INTO `tbl_attendance` VALUES (884, 7, '2020-12-22 20:59:25');
+INSERT INTO `tbl_attendance` VALUES (885, 27, '2020-12-22 21:01:28');
+INSERT INTO `tbl_attendance` VALUES (886, 25, '2020-12-22 21:01:38');
+INSERT INTO `tbl_attendance` VALUES (887, 26, '2020-12-22 21:01:41');
+INSERT INTO `tbl_attendance` VALUES (888, 19, '2020-12-22 21:02:20');
+INSERT INTO `tbl_attendance` VALUES (889, 21, '2020-12-22 21:27:26');
+INSERT INTO `tbl_attendance` VALUES (890, 12, '2020-12-23 07:48:50');
+INSERT INTO `tbl_attendance` VALUES (891, 19, '2020-12-23 08:40:44');
+INSERT INTO `tbl_attendance` VALUES (892, 19, '2020-12-23 08:40:46');
+INSERT INTO `tbl_attendance` VALUES (893, 5, '2020-12-23 08:42:02');
+INSERT INTO `tbl_attendance` VALUES (894, 27, '2020-12-23 08:50:48');
+INSERT INTO `tbl_attendance` VALUES (895, 10, '2020-12-23 08:51:37');
+INSERT INTO `tbl_attendance` VALUES (896, 8, '2020-12-23 08:54:08');
+INSERT INTO `tbl_attendance` VALUES (897, 26, '2020-12-23 08:54:28');
+INSERT INTO `tbl_attendance` VALUES (898, 22, '2020-12-23 08:54:39');
+INSERT INTO `tbl_attendance` VALUES (899, 24, '2020-12-23 08:55:56');
+INSERT INTO `tbl_attendance` VALUES (900, 25, '2020-12-23 08:56:09');
+INSERT INTO `tbl_attendance` VALUES (901, 2, '2020-12-23 08:56:20');
+INSERT INTO `tbl_attendance` VALUES (902, 11, '2020-12-23 08:56:59');
+INSERT INTO `tbl_attendance` VALUES (903, 9, '2020-12-23 08:57:52');
+INSERT INTO `tbl_attendance` VALUES (904, 21, '2020-12-23 09:00:09');
+INSERT INTO `tbl_attendance` VALUES (905, 23, '2020-12-23 09:01:40');
+INSERT INTO `tbl_attendance` VALUES (906, 6, '2020-12-23 09:05:02');
+INSERT INTO `tbl_attendance` VALUES (907, 4, '2020-12-23 09:14:30');
+INSERT INTO `tbl_attendance` VALUES (908, 7, '2020-12-23 09:15:51');
+INSERT INTO `tbl_attendance` VALUES (909, 19, '2020-12-23 20:43:19');
+INSERT INTO `tbl_attendance` VALUES (910, 2, '2020-12-23 20:52:58');
+INSERT INTO `tbl_attendance` VALUES (911, 4, '2020-12-23 20:53:00');
+INSERT INTO `tbl_attendance` VALUES (912, 3, '2020-12-23 20:53:13');
+INSERT INTO `tbl_attendance` VALUES (913, 10, '2020-12-23 21:04:08');
+INSERT INTO `tbl_attendance` VALUES (914, 25, '2020-12-23 21:05:44');
+INSERT INTO `tbl_attendance` VALUES (915, 27, '2020-12-23 21:07:26');
+INSERT INTO `tbl_attendance` VALUES (916, 21, '2020-12-23 21:12:11');
+INSERT INTO `tbl_attendance` VALUES (917, 5, '2020-12-23 21:15:51');
+INSERT INTO `tbl_attendance` VALUES (918, 9, '2020-12-23 21:16:02');
+INSERT INTO `tbl_attendance` VALUES (919, 9, '2020-12-23 21:16:08');
+INSERT INTO `tbl_attendance` VALUES (920, 8, '2020-12-23 21:16:50');
+INSERT INTO `tbl_attendance` VALUES (921, 12, '2020-12-23 21:23:51');
+INSERT INTO `tbl_attendance` VALUES (922, 11, '2020-12-23 21:23:57');
+INSERT INTO `tbl_attendance` VALUES (923, 26, '2020-12-23 21:26:23');
+INSERT INTO `tbl_attendance` VALUES (924, 23, '2020-12-23 21:31:02');
+INSERT INTO `tbl_attendance` VALUES (925, 7, '2020-12-23 21:31:32');
+INSERT INTO `tbl_attendance` VALUES (926, 6, '2020-12-23 21:33:30');
+INSERT INTO `tbl_attendance` VALUES (927, 22, '2020-12-23 21:33:38');
+INSERT INTO `tbl_attendance` VALUES (928, 12, '2020-12-24 08:29:41');
+INSERT INTO `tbl_attendance` VALUES (929, 5, '2020-12-24 08:44:11');
+INSERT INTO `tbl_attendance` VALUES (930, 23, '2020-12-24 08:49:27');
+INSERT INTO `tbl_attendance` VALUES (931, 8, '2020-12-24 08:49:31');
+INSERT INTO `tbl_attendance` VALUES (932, 9, '2020-12-24 08:51:10');
+INSERT INTO `tbl_attendance` VALUES (933, 26, '2020-12-24 08:51:32');
+INSERT INTO `tbl_attendance` VALUES (934, 6, '2020-12-24 08:51:36');
+INSERT INTO `tbl_attendance` VALUES (935, 7, '2020-12-24 08:51:42');
+INSERT INTO `tbl_attendance` VALUES (936, 27, '2020-12-24 08:51:47');
+INSERT INTO `tbl_attendance` VALUES (937, 10, '2020-12-24 08:51:55');
+INSERT INTO `tbl_attendance` VALUES (938, 25, '2020-12-24 08:52:21');
+INSERT INTO `tbl_attendance` VALUES (939, 24, '2020-12-24 08:53:51');
+INSERT INTO `tbl_attendance` VALUES (940, 19, '2020-12-24 08:54:03');
+INSERT INTO `tbl_attendance` VALUES (941, 11, '2020-12-24 08:54:30');
+INSERT INTO `tbl_attendance` VALUES (942, 2, '2020-12-24 08:54:36');
+INSERT INTO `tbl_attendance` VALUES (943, 3, '2020-12-24 08:54:49');
+INSERT INTO `tbl_attendance` VALUES (944, 4, '2020-12-24 08:57:42');
+INSERT INTO `tbl_attendance` VALUES (945, 22, '2020-12-24 08:59:56');
+INSERT INTO `tbl_attendance` VALUES (946, 22, '2020-12-24 08:59:57');
+INSERT INTO `tbl_attendance` VALUES (947, 21, '2020-12-24 09:00:02');
+INSERT INTO `tbl_attendance` VALUES (948, 26, '2020-12-24 19:24:36');
+INSERT INTO `tbl_attendance` VALUES (949, 27, '2020-12-24 19:24:51');
+INSERT INTO `tbl_attendance` VALUES (950, 23, '2020-12-24 19:26:26');
+INSERT INTO `tbl_attendance` VALUES (951, 24, '2020-12-24 19:28:21');
+INSERT INTO `tbl_attendance` VALUES (952, 21, '2020-12-24 19:28:31');
+INSERT INTO `tbl_attendance` VALUES (953, 6, '2020-12-24 19:28:34');
+INSERT INTO `tbl_attendance` VALUES (954, 26, '2020-12-24 19:30:06');
+INSERT INTO `tbl_attendance` VALUES (955, 25, '2020-12-24 19:30:11');
+INSERT INTO `tbl_attendance` VALUES (956, 6, '2020-12-24 19:30:49');
+INSERT INTO `tbl_attendance` VALUES (957, 7, '2020-12-24 19:31:01');
+INSERT INTO `tbl_attendance` VALUES (958, 9, '2020-12-24 19:31:16');
+INSERT INTO `tbl_attendance` VALUES (959, 5, '2020-12-24 19:31:21');
+INSERT INTO `tbl_attendance` VALUES (960, 22, '2020-12-24 19:31:36');
+INSERT INTO `tbl_attendance` VALUES (961, 22, '2020-12-24 19:31:37');
+INSERT INTO `tbl_attendance` VALUES (962, 8, '2020-12-24 19:31:45');
+INSERT INTO `tbl_attendance` VALUES (963, 10, '2020-12-24 19:31:58');
+INSERT INTO `tbl_attendance` VALUES (964, 12, '2020-12-24 19:35:42');
+INSERT INTO `tbl_attendance` VALUES (965, 19, '2020-12-24 19:38:35');
+INSERT INTO `tbl_attendance` VALUES (966, 11, '2020-12-24 19:39:48');
+INSERT INTO `tbl_attendance` VALUES (967, 2, '2020-12-24 20:23:01');
+INSERT INTO `tbl_attendance` VALUES (968, 3, '2020-12-24 20:23:10');
+INSERT INTO `tbl_attendance` VALUES (969, 4, '2020-12-24 20:23:35');
+INSERT INTO `tbl_attendance` VALUES (970, 12, '2020-12-25 08:29:07');
+INSERT INTO `tbl_attendance` VALUES (971, 5, '2020-12-25 08:42:27');
+INSERT INTO `tbl_attendance` VALUES (972, 23, '2020-12-25 08:42:59');
+INSERT INTO `tbl_attendance` VALUES (973, 8, '2020-12-25 08:43:55');
+INSERT INTO `tbl_attendance` VALUES (974, 10, '2020-12-25 08:44:24');
+INSERT INTO `tbl_attendance` VALUES (975, 10, '2020-12-25 08:52:01');
+INSERT INTO `tbl_attendance` VALUES (976, 9, '2020-12-25 08:52:05');
+INSERT INTO `tbl_attendance` VALUES (977, 27, '2020-12-25 08:53:20');
+INSERT INTO `tbl_attendance` VALUES (978, 19, '2020-12-25 08:58:06');
+INSERT INTO `tbl_attendance` VALUES (979, 26, '2020-12-25 08:58:10');
+INSERT INTO `tbl_attendance` VALUES (980, 24, '2020-12-25 08:58:16');
+INSERT INTO `tbl_attendance` VALUES (981, 2, '2020-12-25 08:58:20');
+INSERT INTO `tbl_attendance` VALUES (982, 3, '2020-12-25 08:58:24');
+INSERT INTO `tbl_attendance` VALUES (983, 25, '2020-12-25 08:58:32');
+INSERT INTO `tbl_attendance` VALUES (984, 4, '2020-12-25 08:58:51');
+INSERT INTO `tbl_attendance` VALUES (985, 22, '2020-12-25 09:00:36');
+INSERT INTO `tbl_attendance` VALUES (986, 11, '2020-12-25 09:00:47');
+INSERT INTO `tbl_attendance` VALUES (987, 6, '2020-12-25 09:01:08');
+INSERT INTO `tbl_attendance` VALUES (988, 7, '2020-12-25 09:01:13');
+INSERT INTO `tbl_attendance` VALUES (989, 21, '2020-12-25 09:01:19');
+INSERT INTO `tbl_attendance` VALUES (990, 4, '2020-12-25 17:30:26');
+INSERT INTO `tbl_attendance` VALUES (991, 25, '2020-12-25 17:41:41');
+INSERT INTO `tbl_attendance` VALUES (992, 3, '2020-12-25 17:41:52');
+INSERT INTO `tbl_attendance` VALUES (993, 19, '2020-12-25 17:42:41');
+INSERT INTO `tbl_attendance` VALUES (994, 27, '2020-12-25 17:44:56');
+INSERT INTO `tbl_attendance` VALUES (995, 26, '2020-12-25 17:45:04');
+INSERT INTO `tbl_attendance` VALUES (996, 6, '2020-12-25 17:46:25');
+INSERT INTO `tbl_attendance` VALUES (997, 11, '2020-12-25 17:48:28');
+INSERT INTO `tbl_attendance` VALUES (998, 10, '2020-12-25 17:48:32');
+INSERT INTO `tbl_attendance` VALUES (999, 23, '2020-12-25 17:49:05');
+INSERT INTO `tbl_attendance` VALUES (1000, 5, '2020-12-25 17:49:33');
+INSERT INTO `tbl_attendance` VALUES (1001, 9, '2020-12-25 17:49:59');
+INSERT INTO `tbl_attendance` VALUES (1002, 22, '2020-12-25 17:50:46');
+INSERT INTO `tbl_attendance` VALUES (1003, 21, '2020-12-25 17:53:26');
+INSERT INTO `tbl_attendance` VALUES (1004, 7, '2020-12-25 17:53:45');
+INSERT INTO `tbl_attendance` VALUES (1005, 27, '2020-12-28 08:25:52');
+INSERT INTO `tbl_attendance` VALUES (1006, 23, '2020-12-28 08:44:12');
+INSERT INTO `tbl_attendance` VALUES (1007, 8, '2020-12-28 08:45:12');
+INSERT INTO `tbl_attendance` VALUES (1008, 10, '2020-12-28 08:45:19');
+INSERT INTO `tbl_attendance` VALUES (1009, 5, '2020-12-28 08:45:23');
+INSERT INTO `tbl_attendance` VALUES (1010, 26, '2020-12-28 08:46:15');
+INSERT INTO `tbl_attendance` VALUES (1011, 9, '2020-12-28 08:46:20');
+INSERT INTO `tbl_attendance` VALUES (1012, 6, '2020-12-28 08:51:54');
+INSERT INTO `tbl_attendance` VALUES (1013, 19, '2020-12-28 08:51:58');
+INSERT INTO `tbl_attendance` VALUES (1014, 25, '2020-12-28 08:52:01');
+INSERT INTO `tbl_attendance` VALUES (1015, 7, '2020-12-28 08:52:06');
+INSERT INTO `tbl_attendance` VALUES (1016, 24, '2020-12-28 08:56:35');
+INSERT INTO `tbl_attendance` VALUES (1017, 2, '2020-12-28 08:57:30');
+INSERT INTO `tbl_attendance` VALUES (1018, 4, '2020-12-28 08:57:34');
+INSERT INTO `tbl_attendance` VALUES (1019, 3, '2020-12-28 08:57:38');
+INSERT INTO `tbl_attendance` VALUES (1020, 21, '2020-12-28 08:58:51');
+INSERT INTO `tbl_attendance` VALUES (1021, 11, '2020-12-28 08:59:06');
+INSERT INTO `tbl_attendance` VALUES (1022, 22, '2020-12-28 08:59:12');
+INSERT INTO `tbl_attendance` VALUES (1023, 10, '2020-12-28 20:38:48');
+INSERT INTO `tbl_attendance` VALUES (1024, 11, '2020-12-28 20:39:20');
+INSERT INTO `tbl_attendance` VALUES (1025, 26, '2020-12-28 20:39:26');
+INSERT INTO `tbl_attendance` VALUES (1026, 25, '2020-12-28 20:40:43');
+INSERT INTO `tbl_attendance` VALUES (1027, 3, '2020-12-28 20:41:27');
+INSERT INTO `tbl_attendance` VALUES (1028, 6, '2020-12-28 20:41:37');
+INSERT INTO `tbl_attendance` VALUES (1029, 21, '2020-12-28 20:41:41');
+INSERT INTO `tbl_attendance` VALUES (1030, 23, '2020-12-28 20:43:52');
+INSERT INTO `tbl_attendance` VALUES (1031, 24, '2020-12-28 20:43:57');
+INSERT INTO `tbl_attendance` VALUES (1032, 22, '2020-12-28 20:44:04');
+INSERT INTO `tbl_attendance` VALUES (1033, 8, '2020-12-28 20:44:39');
+INSERT INTO `tbl_attendance` VALUES (1034, 27, '2020-12-28 20:46:05');
+INSERT INTO `tbl_attendance` VALUES (1035, 2, '2020-12-28 20:46:10');
+INSERT INTO `tbl_attendance` VALUES (1036, 4, '2020-12-28 20:46:19');
+INSERT INTO `tbl_attendance` VALUES (1037, 12, '2020-12-28 20:46:32');
+INSERT INTO `tbl_attendance` VALUES (1038, 19, '2020-12-28 20:49:25');
+INSERT INTO `tbl_attendance` VALUES (1039, 9, '2020-12-28 20:49:33');
+INSERT INTO `tbl_attendance` VALUES (1040, 5, '2020-12-28 20:54:55');
+INSERT INTO `tbl_attendance` VALUES (1041, 7, '2020-12-28 21:35:35');
+INSERT INTO `tbl_attendance` VALUES (1042, 12, '2020-12-29 07:11:03');
+INSERT INTO `tbl_attendance` VALUES (1043, 8, '2020-12-29 08:43:16');
+INSERT INTO `tbl_attendance` VALUES (1044, 5, '2020-12-29 08:43:49');
+INSERT INTO `tbl_attendance` VALUES (1045, 10, '2020-12-29 08:44:33');
+INSERT INTO `tbl_attendance` VALUES (1046, 11, '2020-12-29 08:46:03');
+INSERT INTO `tbl_attendance` VALUES (1047, 26, '2020-12-29 08:51:42');
+INSERT INTO `tbl_attendance` VALUES (1048, 25, '2020-12-29 08:53:44');
+INSERT INTO `tbl_attendance` VALUES (1049, 6, '2020-12-29 08:54:41');
+INSERT INTO `tbl_attendance` VALUES (1050, 7, '2020-12-29 08:54:57');
+INSERT INTO `tbl_attendance` VALUES (1051, 27, '2020-12-29 08:55:06');
+INSERT INTO `tbl_attendance` VALUES (1052, 9, '2020-12-29 08:55:17');
+INSERT INTO `tbl_attendance` VALUES (1053, 3, '2020-12-29 08:55:36');
+INSERT INTO `tbl_attendance` VALUES (1054, 2, '2020-12-29 08:55:40');
+INSERT INTO `tbl_attendance` VALUES (1055, 19, '2020-12-29 08:56:21');
+INSERT INTO `tbl_attendance` VALUES (1056, 23, '2020-12-29 08:57:28');
+INSERT INTO `tbl_attendance` VALUES (1057, 4, '2020-12-29 08:58:17');
+INSERT INTO `tbl_attendance` VALUES (1058, 21, '2020-12-29 08:58:27');
+INSERT INTO `tbl_attendance` VALUES (1059, 24, '2020-12-29 08:59:32');
+INSERT INTO `tbl_attendance` VALUES (1060, 22, '2020-12-29 09:00:24');
+INSERT INTO `tbl_attendance` VALUES (1061, 22, '2020-12-29 09:00:25');
+INSERT INTO `tbl_attendance` VALUES (1062, 25, '2020-12-29 20:38:08');
+INSERT INTO `tbl_attendance` VALUES (1063, 4, '2020-12-29 20:40:30');
+INSERT INTO `tbl_attendance` VALUES (1064, 3, '2020-12-29 20:40:50');
+INSERT INTO `tbl_attendance` VALUES (1065, 2, '2020-12-29 20:42:00');
+INSERT INTO `tbl_attendance` VALUES (1066, 10, '2020-12-29 20:44:30');
+INSERT INTO `tbl_attendance` VALUES (1067, 26, '2020-12-29 20:47:16');
+INSERT INTO `tbl_attendance` VALUES (1068, 27, '2020-12-29 20:47:27');
+INSERT INTO `tbl_attendance` VALUES (1069, 12, '2020-12-29 20:47:51');
+INSERT INTO `tbl_attendance` VALUES (1070, 11, '2020-12-29 20:49:51');
+INSERT INTO `tbl_attendance` VALUES (1071, 23, '2020-12-29 20:49:55');
+INSERT INTO `tbl_attendance` VALUES (1072, 24, '2020-12-29 20:52:19');
+INSERT INTO `tbl_attendance` VALUES (1073, 22, '2020-12-29 20:52:24');
+INSERT INTO `tbl_attendance` VALUES (1074, 6, '2020-12-29 20:52:28');
+INSERT INTO `tbl_attendance` VALUES (1075, 19, '2020-12-29 20:55:27');
+INSERT INTO `tbl_attendance` VALUES (1076, 9, '2020-12-29 20:55:35');
+INSERT INTO `tbl_attendance` VALUES (1077, 8, '2020-12-29 20:55:38');
+INSERT INTO `tbl_attendance` VALUES (1078, 5, '2020-12-29 20:55:53');
+INSERT INTO `tbl_attendance` VALUES (1079, 8, '2020-12-29 21:38:46');
+INSERT INTO `tbl_attendance` VALUES (1080, 7, '2020-12-29 21:38:51');
+INSERT INTO `tbl_attendance` VALUES (1081, 9, '2020-12-29 21:39:08');
+INSERT INTO `tbl_attendance` VALUES (1082, 12, '2020-12-30 07:31:12');
+INSERT INTO `tbl_attendance` VALUES (1083, 8, '2020-12-30 08:47:12');
+INSERT INTO `tbl_attendance` VALUES (1084, 5, '2020-12-30 08:49:59');
+INSERT INTO `tbl_attendance` VALUES (1085, 19, '2020-12-30 08:51:12');
+INSERT INTO `tbl_attendance` VALUES (1086, 9, '2020-12-30 08:51:16');
+INSERT INTO `tbl_attendance` VALUES (1087, 10, '2020-12-30 08:51:47');
+INSERT INTO `tbl_attendance` VALUES (1088, 11, '2020-12-30 08:53:11');
+INSERT INTO `tbl_attendance` VALUES (1089, 26, '2020-12-30 08:54:50');
+INSERT INTO `tbl_attendance` VALUES (1090, 6, '2020-12-30 08:55:00');
+INSERT INTO `tbl_attendance` VALUES (1091, 7, '2020-12-30 08:55:03');
+INSERT INTO `tbl_attendance` VALUES (1092, 27, '2020-12-30 08:55:12');
+INSERT INTO `tbl_attendance` VALUES (1093, 25, '2020-12-30 08:55:22');
+INSERT INTO `tbl_attendance` VALUES (1094, 25, '2020-12-30 08:55:28');
+INSERT INTO `tbl_attendance` VALUES (1095, 23, '2020-12-30 08:56:00');
+INSERT INTO `tbl_attendance` VALUES (1096, 2, '2020-12-30 08:56:43');
+INSERT INTO `tbl_attendance` VALUES (1097, 4, '2020-12-30 08:56:47');
+INSERT INTO `tbl_attendance` VALUES (1098, 3, '2020-12-30 08:56:52');
+INSERT INTO `tbl_attendance` VALUES (1099, 24, '2020-12-30 08:58:28');
+INSERT INTO `tbl_attendance` VALUES (1100, 22, '2020-12-30 08:59:44');
+INSERT INTO `tbl_attendance` VALUES (1101, 22, '2020-12-30 08:59:45');
+INSERT INTO `tbl_attendance` VALUES (1102, 10, '2020-12-30 20:37:48');
+INSERT INTO `tbl_attendance` VALUES (1103, 8, '2020-12-30 20:38:08');
+INSERT INTO `tbl_attendance` VALUES (1104, 4, '2020-12-30 20:38:58');
+INSERT INTO `tbl_attendance` VALUES (1105, 25, '2020-12-30 20:39:24');
+INSERT INTO `tbl_attendance` VALUES (1106, 26, '2020-12-30 20:39:29');
+INSERT INTO `tbl_attendance` VALUES (1107, 2, '2020-12-30 20:39:42');
+INSERT INTO `tbl_attendance` VALUES (1108, 27, '2020-12-30 20:39:46');
+INSERT INTO `tbl_attendance` VALUES (1109, 3, '2020-12-30 20:40:00');
+INSERT INTO `tbl_attendance` VALUES (1110, 11, '2020-12-30 20:41:24');
+INSERT INTO `tbl_attendance` VALUES (1111, 23, '2020-12-30 20:42:29');
+INSERT INTO `tbl_attendance` VALUES (1112, 22, '2020-12-30 20:43:00');
+INSERT INTO `tbl_attendance` VALUES (1113, 22, '2020-12-30 20:43:01');
+INSERT INTO `tbl_attendance` VALUES (1114, 5, '2020-12-30 21:20:14');
+INSERT INTO `tbl_attendance` VALUES (1115, 9, '2020-12-30 21:20:19');
+INSERT INTO `tbl_attendance` VALUES (1116, 19, '2020-12-30 21:20:22');
+INSERT INTO `tbl_attendance` VALUES (1117, 7, '2020-12-30 21:23:10');
+INSERT INTO `tbl_attendance` VALUES (1118, 6, '2020-12-30 21:26:02');
+INSERT INTO `tbl_attendance` VALUES (1119, 5, '2020-12-31 08:35:47');
+INSERT INTO `tbl_attendance` VALUES (1120, 27, '2020-12-31 08:47:30');
+INSERT INTO `tbl_attendance` VALUES (1121, 9, '2020-12-31 08:47:42');
+INSERT INTO `tbl_attendance` VALUES (1122, 10, '2020-12-31 08:48:31');
+INSERT INTO `tbl_attendance` VALUES (1123, 8, '2020-12-31 08:51:05');
+INSERT INTO `tbl_attendance` VALUES (1124, 19, '2020-12-31 08:51:12');
+INSERT INTO `tbl_attendance` VALUES (1125, 3, '2020-12-31 08:55:53');
+INSERT INTO `tbl_attendance` VALUES (1126, 2, '2020-12-31 08:56:19');
+INSERT INTO `tbl_attendance` VALUES (1127, 26, '2020-12-31 08:56:21');
+INSERT INTO `tbl_attendance` VALUES (1128, 25, '2020-12-31 08:56:25');
+INSERT INTO `tbl_attendance` VALUES (1129, 7, '2020-12-31 08:56:50');
+INSERT INTO `tbl_attendance` VALUES (1130, 24, '2020-12-31 08:58:39');
+INSERT INTO `tbl_attendance` VALUES (1131, 6, '2020-12-31 08:58:43');
+INSERT INTO `tbl_attendance` VALUES (1132, 11, '2020-12-31 08:58:48');
+INSERT INTO `tbl_attendance` VALUES (1133, 22, '2020-12-31 08:59:18');
+INSERT INTO `tbl_attendance` VALUES (1134, 4, '2020-12-31 08:59:33');
+INSERT INTO `tbl_attendance` VALUES (1135, 1, '2020-12-31 09:06:05');
 
 -- ----------------------------
 -- Table structure for tbl_business
@@ -1086,7 +1508,7 @@ CREATE TABLE `tbl_progress`  (
   `update_time` datetime NULL DEFAULT NULL,
   `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`progress_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 59 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 60 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tbl_progress
@@ -1102,6 +1524,13 @@ INSERT INTO `tbl_progress` VALUES (55, '下证', 30, NULL, 16, 'Enzo', '2020-12-
 INSERT INTO `tbl_progress` VALUES (56, '领证书', NULL, 31, 14, 'Enzo', '2020-12-29 22:10:32', NULL, NULL, '叫了只鸡领证书');
 INSERT INTO `tbl_progress` VALUES (57, '商标申请受通', 32, NULL, 25, 'Square', '2020-12-29 23:49:35', NULL, NULL, '跨国毛线专用商标注册');
 INSERT INTO `tbl_progress` VALUES (58, '公告', NULL, 33, 25, 'Square', '2020-12-29 23:50:16', NULL, NULL, '');
+INSERT INTO `tbl_progress` VALUES (59, '下证', 34, NULL, 15, 'Enzo', '2020-12-31 10:48:25', NULL, NULL, '成功');
+INSERT INTO `tbl_progress` VALUES (60, '公告', 35, NULL, 18, 'Enzo', '2020-12-31 10:53:29', NULL, NULL, '申请不合格');
+INSERT INTO `tbl_progress` VALUES (61, '撤三复审', 36, NULL, 17, 'Enzo', '2020-12-31 10:56:04', NULL, NULL, '三审');
+INSERT INTO `tbl_progress` VALUES (62, '撤三复审', NULL, 37, 17, 'Enzo', '2020-12-31 10:56:04', NULL, NULL, '三审');
+INSERT INTO `tbl_progress` VALUES (63, '驳回复审申请', 38, NULL, 23, 'Enzo', '2020-12-31 11:03:32', NULL, NULL, '驳回复审申请');
+INSERT INTO `tbl_progress` VALUES (64, '驳回复审申请', NULL, 39, 23, 'Enzo', '2020-12-31 11:03:32', NULL, NULL, '驳回复审申请');
+INSERT INTO `tbl_progress` VALUES (65, '领证书', 40, 41, 18, 'Enzo', '2020-12-31 11:06:23', NULL, NULL, '领证书文件上传');
 
 -- ----------------------------
 -- Table structure for tbl_role
@@ -1200,7 +1629,7 @@ CREATE TABLE `tbl_upload`  (
   `source_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '原文件名',
   `destination_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '服务器文件名',
   PRIMARY KEY (`upload_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 34 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 35 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tbl_upload
@@ -1216,6 +1645,14 @@ INSERT INTO `tbl_upload` VALUES (30, '商标异议申请成功.rar', 'https://en
 INSERT INTO `tbl_upload` VALUES (31, '叫了只鸡领证书.rar', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/29/1609251022756[I@46dc024b.rar');
 INSERT INTO `tbl_upload` VALUES (32, '跨国毛线专用商标.rar', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/29/1609256965433[I@261f6139.rar');
 INSERT INTO `tbl_upload` VALUES (33, '跨国毛线公告通知.rar', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/29/1609257013317[I@384ac032.rar');
+INSERT INTO `tbl_upload` VALUES (34, '下证.rar', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/31/1609382884303[I@59d9f93.rar');
+INSERT INTO `tbl_upload` VALUES (35, '申请不合格.rar', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/31/1609383182647[I@68264fd0.rar');
+INSERT INTO `tbl_upload` VALUES (36, '撤三复审上传文件.rar', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/31/1609383332391[I@59deb092.rar');
+INSERT INTO `tbl_upload` VALUES (37, '撤三复审通知文件.rar', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/31/1609383353039[I@3c837dfb.rar');
+INSERT INTO `tbl_upload` VALUES (38, '驳回复审申请上传文件.rar', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/31/1609383783420[I@4bb7099d.rar');
+INSERT INTO `tbl_upload` VALUES (39, '驳回复审申请通知文件.rar', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/31/1609383796816[I@4a682547.rar');
+INSERT INTO `tbl_upload` VALUES (40, '领证书上传文件.rar', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/31/1609383959226[I@85fb47f.rar');
+INSERT INTO `tbl_upload` VALUES (41, '领证书通知文件.rar', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/31/1609383973844[I@48be2a86.rar');
 
 -- ----------------------------
 -- Table structure for tbl_user
@@ -1240,7 +1677,7 @@ CREATE TABLE `tbl_user`  (
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '备注',
   PRIMARY KEY (`user_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 28 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户信息表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 29 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户信息表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tbl_user
@@ -1259,6 +1696,7 @@ INSERT INTO `tbl_user` VALUES (12, 101, 'borna', 'Borna', 'bornashare@163.com', 
 INSERT INTO `tbl_user` VALUES (19, 104, 'epic', 'Epic', 'epicshare@163.com', '13253591230', '0', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/30/1609299713090[I@4c84b705.jpg', '143e361f61b432ebdcccfaa2d254c3c5', '18ad998e-77ef-42bb-b4cd-03d0215149d7', '0', '0', 'Enzo', '2020-12-28 13:55:13', NULL, '2020-12-30 11:41:54', NULL);
 INSERT INTO `tbl_user` VALUES (21, 101, 'percy', 'Percy', 'percyshare@163.com', '13256785432', '0', NULL, '7973392ad66dcffb5edff1319ce989a9', 'a13d1ee7-b6e2-4a37-a354-39eef8860adb', '0', '0', 'Enzo', '2020-12-30 18:44:38', NULL, NULL, NULL);
 INSERT INTO `tbl_user` VALUES (22, 101, 'hodor', 'Hodor', 'hodorshare@163.com', '13253597410', '0', 'https://enzo-trademark-bucket.oss-cn-beijing.aliyuncs.com/myFile/2020/12/30/1609301344614[I@7b010dbd.jpg', '0cce16583129cf34e034795c75e8dea7', '8884d3f1-d8ea-44c4-b812-ae1bad8f62f0', '0', '0', 'Enzo', '2020-12-28 13:57:36', NULL, '2020-12-30 12:09:09', NULL);
+INSERT INTO `tbl_user` VALUES (23, 101, 'eukie', 'Eukie', 'eukieshare@163.com', '13258674585', '0', NULL, 'ea4898662b0addfbf1e7349b41437d40', '9d368768-bef3-410e-a356-01fbeb8db84e', '0', '0', 'Enzo', '2020-12-31 11:14:55', NULL, NULL, NULL);
 INSERT INTO `tbl_user` VALUES (24, 101, 'maple', 'Maple', 'mapleshare@163.com', '13269543590', '0', NULL, 'e8840635796a7cb6afb81059de9b41c1', '5c1f506c-f4ab-4a3d-8bcf-61773cca5ad5', '0', '0', 'Enzo', '2020-12-30 18:46:30', NULL, NULL, NULL);
 INSERT INTO `tbl_user` VALUES (25, 101, 'hunk', 'Hunk', 'hunkshare@163.com', '13286873495', '0', NULL, '31f1931b6942174900f527017a9d9e12', '6fbe5c73-fd3d-40ef-aec8-3ec039afaf10', '0', '0', 'Enzo', '2020-12-30 18:48:13', NULL, NULL, NULL);
 INSERT INTO `tbl_user` VALUES (26, 101, 'falli', 'Falli', 'fallishare@163.com', '13527669055', '0', NULL, '0f8ea2bb56e721094300c5c56415893c', 'fad19c19-465a-4012-9899-c20f92bfc975', '0', '0', 'Enzo', '2020-12-30 18:49:07', NULL, NULL, NULL);
@@ -1295,6 +1733,7 @@ INSERT INTO `tbl_user_role` VALUES (24, 2);
 INSERT INTO `tbl_user_role` VALUES (25, 2);
 INSERT INTO `tbl_user_role` VALUES (26, 2);
 INSERT INTO `tbl_user_role` VALUES (27, 2);
+INSERT INTO `tbl_user_role` VALUES (28, 2);
 
 -- ----------------------------
 -- Table structure for tbl_visit

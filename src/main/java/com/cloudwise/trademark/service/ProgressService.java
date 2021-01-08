@@ -1,7 +1,6 @@
 package com.cloudwise.trademark.service;
 
 import com.cloudwise.trademark.entity.Progress;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -82,5 +81,15 @@ public interface ProgressService {
      * @param:
      */
     List<Map<String, Object>> findAllProgress();
+
+    /**
+     * 查询进度id对应的客户id和客户姓名
+     *
+     * @param businessId 进度id
+     * @return Map<String, Object>
+     * @createBy Enzo
+     * @createTime 2021/1/7 20:07
+     */
+   String findIdName(Integer businessId);
 
 }

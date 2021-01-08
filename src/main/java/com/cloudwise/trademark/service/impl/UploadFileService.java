@@ -44,7 +44,7 @@ public class UploadFileService {
      * @createBy Enzo
      * @createTime 2020/12/25 11:02
      */
-    public UploadResult upload(MultipartFile uploadFile) {
+    public UploadResult upload(MultipartFile uploadFile, String idName) {
         // 校验文件格式
         boolean isLegal = false;
         for (String type : FILE_TYPE) {
@@ -64,7 +64,7 @@ public class UploadFileService {
         //获取原始文件名
         String fileName = uploadFile.getOriginalFilename();
         //将原始文件名修改成新文件名，防止重名覆盖
-        String filePath = getFilePath(fileName);
+        String filePath = getFilePath(fileName, idName);
         // 上传到阿里云
         try {
             ossClient.putObject(aliyunOssConfig.getBucketName(), filePath, new
@@ -91,17 +91,15 @@ public class UploadFileService {
      * @createBy Enzo
      * @createTime 2020/12/23 17:13
      */
-    private String getFilePath(String sourceFileName) {
+    private String getFilePath(String sourceFileName, String idName) {
         //xxxx.jpg，以.分隔文件名，返回一个字符串数组
         String[] strings = sourceFileName.split("\\.");
         //获取文件的后缀
         String suffix = strings[strings.length - 1];
         DateTime dateTime = new DateTime();
-        return "myFile/" + dateTime.toString("yyyy")
+        return "myFile/" + idName + "/" + dateTime.toString("yyyy")
                 + "/" + dateTime.toString("MM") + "/"
-                + dateTime.toString("dd") + "/" + System.currentTimeMillis() +
-                RandomUtil.randomInts(6) + "." +
-                suffix;
+                + dateTime.toString("dd") + "/" + System.currentTimeMillis() + "." + suffix;
     }
 
     /**

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -114,6 +115,11 @@ public class ProgressController extends BaseController {
         } catch (Exception e) {
             return returnFail(null);
         }
+    }
+
+    @GetMapping("businessIdSession")
+    public void businessIdSession(String businessId, HttpServletRequest request) {
+        request.getSession().setAttribute("businessId", businessId);
     }
 
     /**

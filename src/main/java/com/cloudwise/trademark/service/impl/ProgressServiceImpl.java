@@ -117,4 +117,12 @@ public class ProgressServiceImpl implements ProgressService {
         return progressDao.findAllProgress();
     }
 
+    @Override
+    public String findIdName(Integer businessId) {
+        Map<String, Object> map = progressDao.findIdName(businessId);
+        System.out.println(map);
+        String idName = map.get("customId").toString() + "" + map.get("applicant").toString();
+        return idName;
+    }
+
 }

@@ -110,5 +110,14 @@ public interface ProgressDao {
      */
     List<Map<String, Object>> findAllProgress();
 
+    /**
+     * 查询进度id对应的客户id和客户姓名
+     *
+     * @param businessId 进度id
+     * @return Map<String, Object>
+     * @createBy Enzo
+     * @createTime 2021/1/7 20:07
+     */
+    Map<String, Object> findIdName(Integer businessId);
 
 }

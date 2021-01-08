@@ -2,6 +2,7 @@ package com.cloudwise.trademark.controller;
 
 import com.aliyun.oss.model.OSSObjectSummary;
 import com.cloudwise.trademark.entity.UploadResult;
+import com.cloudwise.trademark.service.ProgressService;
 import com.cloudwise.trademark.service.impl.UploadFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
@@ -28,6 +30,9 @@ public class UploadController {
     @Autowired
     private UploadFileService uploadFileService;
 
+    @Autowired
+    private ProgressService progressService;
+
     /**
      * 文件上传到oss
      *
@@ -38,8 +43,10 @@ public class UploadController {
      */
     @RequestMapping("/upload")
     @ResponseBody
-    public UploadResult upload(@RequestParam("file") MultipartFile uploadFile) throws Exception {
-        return this.uploadFileService.upload(uploadFile);
+    public UploadResult upload(@RequestParam("file") MultipartFile uploadFile, HttpServletRequest request) throws Exception {
+        String businessId = request.getSession().getAttribute("businessId").toString();
+        String idName = progressService.findIdName(Integer.parseInt(businessId));
+        return this.uploadFileService.upload(uploadFile, idName);
     }
 
     /**

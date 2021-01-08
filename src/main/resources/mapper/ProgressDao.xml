@@ -143,6 +143,11 @@
         from tbl_dictionary
         where type_id = (select type_id from tbl_dictionary_type where type_name = '进度类型');
     </select>
+    <select id="findIdName" resultType="java.util.Map">
+        select custom_id customId, applicant
+        from tbl_custom
+        where custom_id = (select custom_id from tbl_business where business_id = #{businessId})
+    </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="progressId" useGeneratedKeys="true">

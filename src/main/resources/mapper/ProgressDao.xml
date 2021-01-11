@@ -148,6 +148,23 @@
         from tbl_custom
         where custom_id = (select custom_id from tbl_business where business_id = #{businessId})
     </select>
+    <!--根据邮箱返回所有进度-->
+    <select id="showProgressByEmail" resultType="com.cloudwise.trademark.entity.Progress">
+        select progress_id    progressId,
+               progress_type  progressType,
+               upload,
+               notice,
+               tp.business_id businessId,
+               tp.create_by   createBy,
+               tp.create_time createTime,
+               tp.update_by   updateBy,
+               tp.update_time updateTime,
+               tp.remark
+        from tbl_progress tp
+                 inner join tbl_business tb on tp.business_id = tb.business_id
+                 inner join tbl_custom tc on tb.custom_id = tc.custom_id
+        where email = #{email}
+    </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="progressId" useGeneratedKeys="true">

@@ -233,7 +233,8 @@
     </select>
     <!--进度图表，横坐标为时间-->
     <select id="progressEchartTime" resultType="java.util.Map">
-        select month(tg.create_time) month ,count(tg.create_time) progressCount,td.business_id,tg.create_time,tg.progress_type,td.proxy_id,td.login_name
+        select month(tg.create_time) month ,count(tg.create_time)
+        progressCount,td.business_id,tg.create_time,tg.progress_type,td.proxy_id,td.login_name
         from tbl_progress tg inner join
         (select business_id, tb.custom_id, proxy_id,tc.login_name
         from tbl_business tb
@@ -244,33 +245,34 @@
         ) td on tg.business_id=td.business_id
         <where>
             <if test="loginName != null and loginName !=''">
-             and   td.login_name =#{loginName}
+                and td.login_name =#{loginName}
             </if>
             <if test="progressType != null and progressType !=''">
-            and  tg.progress_type=#{progressType}
+                and tg.progress_type=#{progressType}
             </if>
         </where>
         group by month
     </select>
     <!--进度图表，横坐标为代理人-->
     <select id="progressEchartName" resultType="java.util.Map">
-        select month(tg.create_time) month ,count(tg.create_time) progressCount,td.business_id,tg.create_time,tg.progress_type,td.proxy_id,td.login_name proxy
+        select month(tg.create_time) month ,count(tg.create_time)
+        progressCount,td.business_id,tg.create_time,tg.progress_type,td.proxy_id,td.login_name proxy
         from tbl_progress tg
-            inner join
+        inner join
         (select business_id, tb.custom_id, proxy_id,tc.login_name
         from tbl_business tb
         right join
-            (select tc.proxy_id,tc.custom_id,tu.login_name
+        (select tc.proxy_id,tc.custom_id,tu.login_name
         from tbl_custom tc
         inner join
-            tbl_user tu
+        tbl_user tu
         on tc.proxy_id = tu.user_id) tc
-                on tb.custom_id = tc.custom_id
+        on tb.custom_id = tc.custom_id
         ) td
-            on tg.business_id=td.business_id
+        on tg.business_id=td.business_id
         <where>
             <if test="progressType != null and progressType !=''">
-                and  tg.progress_type=#{progressType}
+                and tg.progress_type=#{progressType}
             </if>
             <if test="startTime!=''">
                 and tg.create_time between #{startTime} and #{endTime}
@@ -280,13 +282,16 @@
     </select>
     <!--获取业务类型总数量-->
     <select id="businessEchart" resultType="java.util.Map">
-        select count(*),business_top_type from tbl_business group by business_top_type
+        select count(*), business_top_type
+        from tbl_business
+        group by business_top_type
     </select>
     <!--业务分析按代理人-->
     <select id="showAgentChart" resultType="java.util.Map">
-        select count(*),login_name from tbl_business
-                                            inner join tbl_custom on tbl_custom.custom_id = tbl_business.custom_id
-                                            inner join tbl_user on proxy_id = user_id
+        select count(*), login_name
+        from tbl_business
+                 inner join tbl_custom on tbl_custom.custom_id = tbl_business.custom_id
+                 inner join tbl_user on proxy_id = user_id
         where applicant_time between #{startTime} and #{endTime}
         group by login_name
     </select>
@@ -294,14 +299,28 @@
     <select id="showBusinessChartByAgent" resultType="java.util.Map">
         select month(applicant_time) month,count(*) count
         from tbl_business
-                 inner join tbl_custom on tbl_custom.custom_id = tbl_business.custom_id
-                 inner join tbl_user on proxy_id = user_id
+        inner join tbl_custom on tbl_custom.custom_id = tbl_business.custom_id
+        inner join tbl_user on proxy_id = user_id
         <where>
             <if test="loginName!=null and loginName!=''">
                 login_name = #{loginName}
             </if>
         </where>
         group by month
+    </select>
+    <select id="showBusinessByEmail" resultType="com.cloudwise.trademark.entity.Business">
+        select business_id businessId, applicant_code applicantCode, applicant_time applicantTime, business_top_type
+        businessTopType, business_name businessName, trademark_type trademarkType,
+        business_second_type businessSecondType, price price, proxy_money proxyMoney, upload_id uploadId, tb.create_by
+        createBy, tb.create_time createTime, tb.update_by updateBy, tb.update_time updateTime, tb.custom_id customId,
+        tb.remark remark
+        from tbl_business tb
+        inner join tbl_custom tc on tb.custom_id = tc.custom_id
+        <where>
+            <if test="email!=null and email!=''">
+                email = #{email}
+            </if>
+        </where>
     </select>
 
     <!--新增所有列-->

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <script src="/layui/layui.js"></script>
+</head>
+<body>
+<table id="businessTable" lay-filter="businessTableTest"></table>
+<table id="progressTable" lay-filter="progressTableTest"></table>
+</body>
+<script>
+    layui.use('table', function () {
+        var table = layui.table;
+        let email = '123@qq.com';
+        let businessUrl = '/business/showBusinessByEmail?email=' + email
+        //第一个实例
+        table.render({
+            elem: '#businessTable'
+            , height: 312
+            , url: businessUrl //数据接口
+            , page: false //是否开启分页
+            , cols: [
+                [ //表头
+                    {field: 'businessId', title: '业务编号', width: 100, sort: true}
+                    , {field: 'applicantCode', title: '申请号', width: 160}
+                    , {field: 'applicantTime', title: '申请时间', width: 160}
+                    , {field: 'businessName', title: '业务名', width: 160}
+                    , {field: 'businessTopType', title: '业务类型', width: 100,}
+                    , {field: 'businessSecondType', title: '业务种类', width: 160}
+                    , {field: 'trademarkType', title: '商标类型', width: 200}
+                    , {field: 'price', title: '成交价格', width: 100}
+                    , {field: 'proxyMoney', title: '代理费', width: 100}
+                    , {field: 'createBy', title: '创建人', width: 80}
+                    , {field: 'createTime', title: '创建时间', width: 160}
+                    , {field: 'updateBy', title: '修改人', width: 80}
+                    , {field: 'updateTime', title: '修改时间', width: 160}
+                    , {field: 'customId', title: '客户ID', width: 100}
+                    , {field: 'remark', title: '备注', width: 100}
+                ]
+            ]
+        });
+    });
+
+    layui.use('table', function () {
+        var table = layui.table;
+        let email = '123@qq.com';
+        let progressUrl = '/progress/showProgressByEmail?email=' + email
+        //第一个实例
+        table.render({
+            elem: '#progressTable'
+            , height: 312
+            , url: progressUrl //数据接口
+            , page: false //是否开启分页
+            , cols: [
+                [
+                    {field: 'progressId', title: '进度ID', width: 80, fixed: 'left'},
+                    {field: 'progressType', title: '进度类型', width: 120},
+                    {field: 'upload', title: '上传文件名(点击下载)', width: 170,},
+                    {field: 'notice', title: '通知文件名(点击下载)', width: 170,},
+                    {field: 'businessId', title: '业务ID', width: 80},
+                    {field: 'createBy', title: '创建人', width: 80},
+                    {field: 'createTime', title: '创建时间', width: 100},
+                    {field: 'updateBy', title: '更新人', width: 80},
+                    {field: 'updateTime', title: '更新时间', width: 100},
+                    {field: 'remark', title: '备注', width: 160},
+                ]
+            ]
+        });
+    });
+</script>
+</html>

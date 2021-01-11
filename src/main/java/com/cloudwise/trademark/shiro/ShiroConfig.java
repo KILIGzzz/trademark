@@ -78,6 +78,7 @@ public class ShiroConfig {
         map.put("/customLogin", "anon");
         map.put("/login", "anon");
         map.put("/model/**", "anon");
+        map.put("/customIndex/**", "anon");
         map.put("/layui/**", "anon");
         //过滤所有的请求
         map.put("/manage/**", "authc");

@@ -358,5 +358,16 @@ public class BusinessServiceImpl implements BusinessService {
         return map;
     }
 
-
+    /**
+     * @param : String email
+     * @return : List<Map<String, Object>>
+     * @create by : ydq
+     * @description: 方法作用 ：根据邮箱查询所有业务
+     * @create time : 2021/1/11 15:40
+     */
+    @Override
+    public List<Business> showBusinessByEmail(String email) {
+        List<Business> list = businessDao.showBusinessByEmail(email);
+        return list;
+    }
 }

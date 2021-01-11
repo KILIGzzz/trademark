@@ -120,4 +120,12 @@ public interface ProgressDao {
      */
     Map<String, Object> findIdName(Integer businessId);
 
+    /**
+     * @param :
+     * @return :
+     * @create by : ydq
+     * @description: 方法作用 ：根据邮箱返回所有业务进度
+     * @create time : 2021/1/11 16:35
+     */
+    List<Progress> showProgressByEmail(String email);
 }

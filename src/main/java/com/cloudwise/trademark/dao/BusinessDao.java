@@ -205,4 +205,13 @@ public interface BusinessDao {
      * @param:
      */
     List<Map<String, Object>> showBusinessChartByAgent(String loginName);
+
+    /**
+     * @param :String email
+     * @return :List<Map<String, Object>>
+     * @create by : ydq
+     * @description: 方法作用 ：根据登录邮箱返回所有业务
+     * @create time : 2021/1/11 15:22
+     */
+    List<Business> showBusinessByEmail(String email);
 }

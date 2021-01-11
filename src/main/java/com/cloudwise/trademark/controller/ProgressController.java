@@ -192,4 +192,18 @@ public class ProgressController extends BaseController {
         return mv;
     }
 
+    /**
+     * @param email 邮箱
+     * @return List<Progress>
+     * @create by : ydq
+     * @description: 方法作用 ：根据邮箱返回所有进度
+     * @create time : 2021/1/11 16:46
+     */
+    @GetMapping("showProgressByEmail")
+    public ReturnBean showProgressByEmail(String email) {
+        List<Progress> progresses = progressService.showProgressByEmail(email);
+        //返回json结果
+        ReturnBean returnBean = returnSuccess(progresses);
+        return returnBean;
+    }
 }

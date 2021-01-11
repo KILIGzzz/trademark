@@ -90,6 +90,14 @@ public interface ProgressService {
      * @createBy Enzo
      * @createTime 2021/1/7 20:07
      */
-   String findIdName(Integer businessId);
+    String findIdName(Integer businessId);
 
+    /**
+     * @param :
+     * @return :
+     * @create by : ydq
+     * @description: 方法作用 ：根据邮箱返回所有进度
+     * @create time : 2021/1/11 16:44
+     */
+    List<Progress> showProgressByEmail(String email);
 }

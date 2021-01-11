@@ -313,5 +313,19 @@ public class BusinessController extends BaseController {
         return returnSuccess(map);
     }
 
-
+    /**
+     * @param :
+     * @return :
+     * @create by : ydq
+     * @description: 方法作用 ：根据邮箱返回所有业务
+     * @create time : 2021/1/11 15:48
+     */
+    @GetMapping("showBusinessByEmail")
+    public ReturnBean showBusinessByEmail(String email) {
+        //计算分页参数
+        List<Business> tbList = BusinessService.showBusinessByEmail(email);
+        //返回json结果
+        ReturnBean returnBean = returnSuccess(tbList);
+        return returnBean;
+    }
 }

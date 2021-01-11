@@ -125,4 +125,16 @@ public class ProgressServiceImpl implements ProgressService {
         return idName;
     }
 
+    /**
+     * @param email 邮箱
+     * @return List<Progress>
+     * @create by : ydq
+     * @description: 方法作用 ：根据邮箱返回所有进度
+     * @create time : 2021/1/11 16:46
+     */
+    @Override
+    public List<Progress> showProgressByEmail(String email) {
+        List<Progress> progresses = progressDao.showProgressByEmail(email);
+        return progresses;
+    }
 }

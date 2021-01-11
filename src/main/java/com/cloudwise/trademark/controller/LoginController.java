@@ -5,8 +5,6 @@ import com.cloudwise.trademark.entity.Menu;
 import com.cloudwise.trademark.entity.User;
 import com.cloudwise.trademark.service.MenuService;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.IncorrectCredentialsException;
-import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,12 +38,12 @@ public class LoginController {
      */
     @GetMapping("toLogin")
     public String toLogin() {
-        return "login";
+        return "manage/login";
     }
 
     @GetMapping("toHome")
     public String toHome() {
-        return "home";
+        return "manage/home";
     }
 
     /**
@@ -69,7 +67,7 @@ public class LoginController {
             subject.login(token);
         } catch (Exception e) {
             modelAndView.addObject("message", "用户名或密码错误！");
-            modelAndView.setViewName("login");
+            modelAndView.setViewName("manage/login");
             return modelAndView;
         }
         //在右上角显示用户名和照片
@@ -83,7 +81,7 @@ public class LoginController {
         //查询该用户有权限的所有菜单
         final List<Menu> menusByLoginName = menuService.findMenusByLoginName(username);
         modelAndView.addObject("menus", menusByLoginName);
-        modelAndView.setViewName("home");
+        modelAndView.setViewName("manage/home");
         return modelAndView;
     }
 
@@ -98,6 +96,6 @@ public class LoginController {
     public String logout() {
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
-        return "login";
+        return "manage/login";
     }
 }

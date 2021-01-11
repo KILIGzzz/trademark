@@ -38,7 +38,7 @@ public class UserController extends BaseController {
     @GetMapping("toUser")
     public ModelAndView toUser() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("user");
+        modelAndView.setViewName("manage/user");
         return modelAndView;
     }
 

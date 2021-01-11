@@ -1,6 +1,5 @@
 package com.cloudwise.trademark.controller;
 
-import com.cloudwise.trademark.entity.Dept;
 import com.cloudwise.trademark.entity.DictionaryType;
 import com.cloudwise.trademark.entity.PageBean;
 import com.cloudwise.trademark.entity.ReturnBean;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -37,7 +35,7 @@ public class DictionaryTypeController extends BaseController {
     @GetMapping("toDictionaryType")
     public ModelAndView toDictionaryType() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("dictionaryType");
+        modelAndView.setViewName("manage/dictionaryType");
         return modelAndView;
     }
 

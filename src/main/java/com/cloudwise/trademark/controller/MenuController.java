@@ -36,7 +36,7 @@ public class MenuController extends BaseController {
     @GetMapping("toMenu")
     public ModelAndView toMenu() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("menu");
+        modelAndView.setViewName("manage/menu");
         return modelAndView;
     }
 

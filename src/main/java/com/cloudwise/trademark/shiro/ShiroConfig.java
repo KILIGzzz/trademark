@@ -75,11 +75,12 @@ public class ShiroConfig {
         Map<String, String> map = new LinkedHashMap<>();
         //放行login
         map.put("/toLogin", "anon");
+        map.put("/customLogin", "anon");
         map.put("/login", "anon");
         map.put("/model/**", "anon");
         map.put("/layui/**", "anon");
         //过滤所有的请求
-        map.put("/**", "authc");
+        map.put("/manage/**", "authc");
         //登录成功去哪
         shiroFilterFactoryBean.setSuccessUrl("/toHome");
         //所有的未认证的请求都去登录页面

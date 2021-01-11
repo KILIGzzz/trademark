@@ -40,7 +40,7 @@ public class ProgressController extends BaseController {
     @GetMapping("toProgress")
     public ModelAndView toProgress() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("progress");
+        modelAndView.setViewName("manage/progress");
         return modelAndView;
     }
 
@@ -188,7 +188,7 @@ public class ProgressController extends BaseController {
     public ModelAndView showBusinessAndProgress(int customId, int businessId, ModelAndView mv) {
         mv.addObject("customId", customId);
         mv.addObject("businessId", businessId);
-        mv.setViewName("progress");
+        mv.setViewName("manage/progress");
         return mv;
     }
 

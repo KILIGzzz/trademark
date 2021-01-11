@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>客户登录</title>
+</head>
+<body>
+<form action="/customLogin/login" method="post">
+    <label>
+        邮箱<input type="text" name="email">
+    </label>
+    <label>
+        验证码<input type="text" name="verification">
+    </label>
+    <a href="/customLogin/sendEmail?email=2691199602@qq.com">发送验证码</a>
+    <button type="submit">登录</button>
+    <button type="reset">重置</button>
+</form>
+</body>
+</html>

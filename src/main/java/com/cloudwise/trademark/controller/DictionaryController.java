@@ -36,7 +36,7 @@ public class DictionaryController extends BaseController {
     @GetMapping("toDictionary")
     public ModelAndView toDictionary() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("dictionary");
+        modelAndView.setViewName("manage/dictionary");
         return modelAndView;
     }
 

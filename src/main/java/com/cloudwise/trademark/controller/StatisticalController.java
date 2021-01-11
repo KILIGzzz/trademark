@@ -16,26 +16,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class StatisticalController extends BaseController {
     @GetMapping("toBusinessEchart")
     public String toBusinessEchart() {
-        return "businessEchart";
+        return "manage/businessEchart";
     }
 
     @GetMapping("toProgressEchart")
     public String toProgressEchart() {
-        return "progressEchart";
+        return "manage/progressEchart";
     }
 
     @GetMapping("toVisitEchart")
     public String toVisitEchart() {
-        return "visitEchart";
+        return "manage/visitEchart";
     }
 
     @GetMapping("toAttendance")
     public String toAttendance() {
-        return "attendance";
+        return "manage/attendance";
     }
 
     @GetMapping("toAttendanceTable")
     public String toAttendanceTable() {
-        return "attendanceTable";
+        return "manage/attendanceTable";
     }
 }

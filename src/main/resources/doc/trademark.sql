@@ -11,7 +11,7 @@
  Target Server Version : 80022
  File Encoding         : 65001
 
- Date: 11/01/2021 14:37:47
+ Date: 11/01/2021 18:30:54
 */
 
 SET NAMES utf8mb4;
@@ -1499,7 +1499,9 @@ INSERT INTO `tbl_menu` VALUES (1024, '考勤列表', 2, 5, '/statistical/toAtten
 DROP TABLE IF EXISTS `tbl_potential_customer`;
 CREATE TABLE `tbl_potential_customer`  (
   `id` int NOT NULL AUTO_INCREMENT COMMENT '潜在客户id',
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '客户姓名',
+  `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '手机号',
+  `businessType` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '想要办理的业务类型',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 

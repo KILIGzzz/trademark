@@ -34,7 +34,7 @@ public class RoleController extends BaseController {
     @GetMapping("toRole")
     public ModelAndView toRole() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("role");
+        modelAndView.setViewName("manage/role");
         return modelAndView;
     }
 

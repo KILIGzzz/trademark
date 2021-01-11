@@ -35,7 +35,7 @@ public class CustomController extends BaseController {
     @GetMapping("toCustom")
     public ModelAndView toCustom() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("custom");
+        modelAndView.setViewName("manage/custom");
         return modelAndView;
     }
 

@@ -2,7 +2,6 @@ package com.cloudwise.trademark.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -25,12 +24,12 @@ public class HomeController {
 
     @GetMapping("toUserinfo")
     public String toUserinfo() {
-        return "userinfo";
+        return "manage/userinfo";
     }
 
     @GetMapping("toIndex")
     public String toIndex() {
-        return "homeIndex";
+        return "manage/homeIndex";
     }
 
 }

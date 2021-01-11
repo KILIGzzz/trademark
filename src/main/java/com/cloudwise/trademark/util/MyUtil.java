@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * @author Enzo
@@ -91,4 +92,31 @@ public class MyUtil {
         br.close();
         return mapList;
     }
+
+
+    /**
+     * 生成随机数字和字母组合
+     *
+     * @param length 组合长度
+     * @return String
+     * @createBy Enzo
+     * @createTime 2021/1/11 18:16
+     */
+    public static String getCharAndNum(int length) {
+
+        Random random = new Random();
+
+        StringBuilder stringBuffer = new StringBuilder();
+
+        String charStr = "0123456789abcdefghijklmnopqrstuvwxyz";
+
+        int charLength = charStr.length();
+
+        for (int i = 0; i < length; i++) {
+            int index = random.nextInt(charLength);
+            stringBuffer.append(charStr.charAt(index));
+        }
+        return stringBuffer.toString();
+    }
+
 }

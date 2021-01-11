@@ -35,7 +35,7 @@ public class DeptController extends BaseController {
     @GetMapping("toDept")
     public ModelAndView toDept() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("dept");
+        modelAndView.setViewName("manage/dept");
         return modelAndView;
     }
 

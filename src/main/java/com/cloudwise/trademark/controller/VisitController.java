@@ -38,7 +38,7 @@ public class VisitController extends BaseController {
     @GetMapping("toVisit")
     public ModelAndView toVisit() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("visit");
+        modelAndView.setViewName("manage/visit");
         return modelAndView;
     }
 
@@ -117,8 +117,7 @@ public class VisitController extends BaseController {
     @GetMapping("showCustomAndVisit")
     public ModelAndView showCustomAndBusiness(int customId, ModelAndView mv) {
         mv.addObject("customId", customId);
-        mv.setViewName("visit");
+        mv.setViewName("manage/visit");
         return mv;
     }
-
 }

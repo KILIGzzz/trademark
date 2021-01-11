@@ -1,6 +1,5 @@
 package com.cloudwise.trademark.controller;
 
-import com.cloudwise.trademark.entity.Custom;
 import com.cloudwise.trademark.entity.Dictionary;
 import com.cloudwise.trademark.entity.PageBean;
 import com.cloudwise.trademark.entity.ReturnBean;
@@ -33,7 +32,7 @@ public class BusinessController extends BaseController {
     @GetMapping("toBusiness")
     public ModelAndView toBusiness() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("business");
+        modelAndView.setViewName("manage/business");
         return modelAndView;
     }
 
@@ -132,7 +131,7 @@ public class BusinessController extends BaseController {
     @GetMapping("showCustomAndBusiness")
     public ModelAndView showCustomAndBusiness(int customId, ModelAndView mv) {
         mv.addObject("customId", customId);
-        mv.setViewName("business");
+        mv.setViewName("manage/business");
         return mv;
     }
 
